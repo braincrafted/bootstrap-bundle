@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<title>Twitter Bootstrap</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+{% include 'BraincraftedBootstrapBundle::_stylesheets.html.twig' %}
+<link rel="stylesheet" href="/bundles/braincraftedbootstrap/css/docs.css">
+<link rel="stylesheet" href="/bundles/braincraftedbootstrap/css/google-code-prettify.css">
+
+{% include 'BraincraftedBootstrapBundle::_html5shiv.html.twig' %}
+
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="{{ path('BraincraftedBootstrapBundle_overview') }}">Bootstrap</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="{{ path('BraincraftedBootstrapBundle_overview') }}">Overview</a></li>
+                    <li class=""><a href="{{ path('BraincraftedBootstrapBundle_scaffolding') }}">Scaffolding</a></li>
+                    <li class=""><a href="{{ path('BraincraftedBootstrapBundle_baseCss') }}">Base CSS</a></li>
+                    <li class=""><a href="{{ path('BraincraftedBootstrapBundle_components') }}">Components</a></li>
+                    <li class=""><a href="{{ path('BraincraftedBootstrapBundle_javascript') }}">Javascript plugins</a></li>
+                    <li class=""><a href="{{ path('BraincraftedBootstrapBundle_less') }}">Using LESS</a></li>
+                    <li class="divider-vertical"></li>
+                    <li class=""><a href="./download.html">Customize</a></li>
+                    <li class=""><a href="./examples.html">Examples</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block body %}{% endblock %}
+
+<div class="container">
+    <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
+        <p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+    </footer>
+</div>
+
+{% include 'BraincraftedBootstrapBundle::_javascripts.html.twig' %}
+<script src="/bundles/braincraftedbootstrap/js/docs.js"></script>
+<script src="/bundles/braincraftedbootstrap/js/google-code-prettify.js"></script>
+
+</body>
+
+</html>
