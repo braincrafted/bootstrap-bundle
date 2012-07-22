@@ -832,57 +832,22 @@
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="control-group">
-                            <label class="control-label" for="input01">Text input</label>
+                            {{ form_label(horizontalForm.textInput, null, { 'label_attr': { 'class': 'control-label' } }) }}
                             <div class="controls">
-                                <input type="text" class="input-xlarge" id="input01">
+                                {{ form_widget(horizontalForm.textInput) }}
                                 <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="optionsCheckbox">Checkbox</label>
+                            {{ form_label(horizontalForm.checkbox, 'Checkbox', { 'label_attr': { 'class': 'control-label' } })}}
                             <div class="controls">
-                                <label class="checkbox">
-                                    <input type="checkbox" id="optionsCheckbox" value="option1">
-                                    Option one is this and that&mdash;be sure to include why it's great
-                                </label>
+                                {{ form_widget(horizontalForm.checkbox )}}
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="select01">Select list</label>
-                            <div class="controls">
-                                <select id="select01">
-                                    <option>something</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="multiSelect">Multicon-select</label>
-                            <div class="controls">
-                                <select multiple="multiple" id="multiSelect">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="fileInput">File input</label>
-                            <div class="controls">
-                                <input class="input-file" id="fileInput" type="file">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="textarea">Textarea</label>
-                            <div class="controls">
-                                <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
-                            </div>
-                        </div>
+                        {{ form_row(horizontalForm.selectList) }}
+                        {{ form_row(horizontalForm.multiconSelect) }}
+                        {{ form_row(horizontalForm.fileInput) }}
+                        {{ form_row(horizontalForm.textarea) }}
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Save changes</button>
                             <button class="btn">Cancel</button>
@@ -891,20 +856,20 @@
                 </form>
                 <h3>Example markup</h3>
                 <p>Given the above example form layout, here's the markup associated with the first input and control group. The <code>.control-group</code>, <code>.control-label</code>, and <code>.controls</code> classes are all required for styling.</p>
-    <pre class="prettyprint linenums">
-    &lt;form class="form-horizontal"&gt;
+<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
     &lt;fieldset&gt;
       &lt;legend&gt;Legend text&lt;/legend&gt;
       &lt;div class="control-group"&gt;
-        &lt;label class="control-label" for="input01"&gt;Text input&lt;/label&gt;
+        {{ "{{ form_label(form.input01, 'Text input', { 'label_attr': { 'class': 'control-label' } }) }}" }}
         &lt;div class="controls"&gt;
-          &lt;input type="text" class="input-xlarge" id="input01"&gt;
+          {{ "{{ form_widget(form.input01, { 'attr': { 'class': 'input-xlarge' } }) }}" }}
           &lt;p class="help-block"&gt;Supporting help text&lt;/p&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/fieldset&gt;
-    &lt;/form&gt;
-    </pre>
+&lt;/form&gt;
+</pre>
             </div>
         </div>
 

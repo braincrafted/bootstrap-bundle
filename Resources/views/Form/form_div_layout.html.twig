@@ -13,6 +13,9 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
+    {% if type == 'file' %}
+    {% set attr = attr|merge({ 'class': 'file-input' }) %}
+    {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -262,10 +265,12 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div>
-        {{ form_label(form, label|default(null)) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form) }}
+    <div class="control-group">
+        {{ form_label(form, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        <div class="controls">
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+        </div>
     </div>
 {% endspaceless %}
 {% endblock form_row %}

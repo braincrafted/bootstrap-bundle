@@ -17,6 +17,7 @@ namespace Braincrafted\BootstrapBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Braincrafted\BootstrapBundle\Form\Type\BasicFormType;
+use Braincrafted\BootstrapBundle\Form\Type\HorizontalFormType;
 use Braincrafted\BootstrapBundle\Form\Type\InlineFormType;
 use Braincrafted\BootstrapBundle\Form\Type\SearchFormType;
 
@@ -47,16 +48,18 @@ class BootstrapController extends Controller
 
     public function baseCssAction()
     {
-        $basicForm  = $this->createForm(new BasicFormType());
-        $inlineForm = $this->createForm(new InlineFormType());
-        $searchForm = $this->createForm(new SearchFormType());
+        $basicForm      = $this->createForm(new BasicFormType());
+        $horizontalForm = $this->createForm(new HorizontalFormType());
+        $inlineForm     = $this->createForm(new InlineFormType());
+        $searchForm     = $this->createForm(new SearchFormType());
 
         return $this->render(
             'BraincraftedBootstrapBundle:Bootstrap:baseCss.html.twig',
             array(
-                'basicForm'     => $basicForm->createView(),
-                'inlineForm'    => $inlineForm->createView(),
-                'searchForm'    => $searchForm->createView()
+                'basicForm'         => $basicForm->createView(),
+                'horizontalForm'    => $horizontalForm->createView(),
+                'inlineForm'        => $inlineForm->createView(),
+                'searchForm'        => $searchForm->createView()
             )
         );
     }
