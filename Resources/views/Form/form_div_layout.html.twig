@@ -17,6 +17,9 @@
     {% set attr = attr|merge({ 'class': 'file-input' }) %}
     {% endif %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+    {% if help_block is defined %}
+    <p class="help-block">{{ help_block }}</p>
+    {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
