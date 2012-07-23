@@ -21,8 +21,11 @@
     {% else %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
     {% endif %}
+    {% if attr.help_block is defined %}
+    {% set help_block = attr.help_block %}
+    {% endif %}
     {% if help_block is defined %}
-    <p class="help-block">{{ help_block }}</p>
+    <p class="help-block">{{ help_block|markdown }}</p>
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -66,15 +69,25 @@
 
 {% block choice_widget_expanded %}
 {% spaceless %}
+    {% set child_vars = {} %}
+    {% if attr is defined %}
+    {% set child_vars = child_vars|merge({'attr': attr}) %}
+    {% endif %}
     {% if form_type is not defined or form_type != 'horizontal'  %}
     <div {{ block('widget_container_attributes') }}>
     {% endif %}
     {% for child in form %}
-        {{ form_widget(child) }}
+        {{ form_widget(child, child_vars) }}
         {{ form_label(child) }}
     {% endfor %}
     {% if form_type is not defined or form_type != 'horizontal'  %}
     </div>
+    {% endif %}
+    {% if attr.help_block is defined %}
+    {% set help_block = attr.help_block %}
+    {% endif %}
+    {% if help_block is defined %}
+    <p class="help-block">{{ help_block|markdown }}</p>
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
@@ -95,6 +108,12 @@
         {% set options = choices %}
         {{ block('choice_widget_options') }}
     </select>
+    {% if attr.help_block is defined %}
+    {% set help_block = attr.help_block %}
+    {% endif %}
+    {% if help_block is defined %}
+    <p class="help-block">{{ help_block|markdown }}</p>
+    {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_collapsed %}
 
@@ -122,20 +141,37 @@
     {% if required %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
     {% endif %}
+    {% if attr.inline is defined and attr.inline %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
+    {% endif %}
     {% if label is empty %}
         {% set label = name|humanize %}
     {% endif %}
-    {% set label_attr = label_attr|merge({ 'class': 'checkbox' }) %}
+    {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' checkbox')|trim }) %}
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ label|trans({}, translation_domain) }}
     </label>
-
 {% endspaceless %}
 {% endblock checkbox_widget %}
 
 {% block radio_widget %}
 {% spaceless %}
-    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}>
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if attr.inline is defined and attr.inline %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' radio')|trim }) %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}> {{ label|trans({}, translation_domain) }}
+    </label>
 {% endspaceless %}
 {% endblock radio_widget %}
 
@@ -304,7 +340,7 @@
         <div class="controls">
             {{ form_widget(form, {'form_type': form_type}) }}
             {% if errors|length > 0 or attr.help_inline is defined %}
-            <span class="help-inline">{{ attr.help_inline }}{{ form_errors(form, {'form_type': form_type}) }}</span>
+            <span class="help-inline">{{ attr.help_inline|markdown }}{{ form_errors(form, {'form_type': form_type}) }}</span>
             {% endif %}
         </div>
     </div>
