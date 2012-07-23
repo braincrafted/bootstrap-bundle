@@ -59,12 +59,16 @@
 
 {% block choice_widget_expanded %}
 {% spaceless %}
+    {% if form_type is not defined or form_type != 'horizontal'  %}
     <div {{ block('widget_container_attributes') }}>
+    {% endif %}
     {% for child in form %}
         {{ form_widget(child) }}
         {{ form_label(child) }}
     {% endfor %}
+    {% if form_type is not defined or form_type != 'horizontal'  %}
     </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
@@ -236,6 +240,15 @@
 
 {# Labels #}
 
+{% block checkbox_label %}
+{% spaceless %}
+{% if widget_label is defined %}
+{% set label = widget_label %}
+{{ block('form_label') }}
+{% endif %}
+{% endspaceless %}
+{% endblock %}
+
 {% block form_label %}
 {% spaceless %}
     {% if not compound %}
@@ -265,13 +278,29 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group">
-        {{ form_label(form, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+    {% set label_vars = {} %}
+    {% if widget_label is defined %}
+    {% set label_vars = label_vars|merge({'widget_label': widget_label}) %}
+    {% endif %}
+    {% set form_type = form_type|default('vertical') %}
+    {% if form_type == 'horizontal' %}
+    {% set label_vars = label_vars|merge({'label_attr': {'class': 'control-label'}}) %}
+    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
+        {{ form_label(form, label|default(null), label_vars) }}
         <div class="controls">
-            {{ form_errors(form) }}
-            {{ form_widget(form) }}
+            {{ form_widget(form, {'form_type': form_type}) }}
+            {% if errors|length > 0 %}
+            <span class="help-inline">{{ form_errors(form, {'form_type': form_type}) }}</span>
+            {% endif %}
         </div>
     </div>
+    {% else %}
+    <div>
+        {{ form_label(form, label|default(null), label_vars) }}
+        {{ form_errors(form, {'form_type': form_type}) }}
+        {{ form_widget(form, {'form_type': form_type}) }}
+    </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
 
@@ -290,15 +319,14 @@
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <ul>
         {% for error in errors %}
-            <li>{{
+            {{
                 error.messagePluralization is null
                     ? error.messageTemplate|trans(error.messageParameters, 'validators')
                     : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-            }}</li>
+            }}
+            {% if not loop.last %},{% endif %}
         {% endfor %}
-    </ul>
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
@@ -317,8 +345,12 @@
 
 {% block form_rows %}
 {% spaceless %}
+    {% set child_vars = {} %}
+    {% if form_type is defined %}
+    {% set child_vars = child_vars|merge({'form_type': form_type}) %}
+    {% endif %}
     {% for child in form %}
-        {{ form_row(child) }}
+        {{ form_row(child, child_vars) }}
     {% endfor %}
 {% endspaceless %}
 {% endblock form_rows %}
