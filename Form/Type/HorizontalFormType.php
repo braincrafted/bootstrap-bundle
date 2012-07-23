@@ -17,7 +17,8 @@ class HorizontalFormType extends AbstractType
             )
         ));
         $builder->add('checkbox', 'checkbox', array(
-            'label'     => 'Option one is this and that—be sure to include why it\'s great',
+            'label'     => 'Option one is this and that—be sure to include'
+                .' why it\'s great',
             'required'  => false,
             'attr'      => array(
                 'class'         => 'input-small'
