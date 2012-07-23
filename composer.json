@@ -1,0 +1,21 @@
+{
+    "name":         "braincrafted/bootstrap-bundle",
+    "description":  "Twitter Bootstrap for Symfony2",
+    "keywords":     ["bootstrap"],
+    "type":         "symfony-bundle",
+    "license":      "Apache-2.0",
+    "authorsa":     [
+        {
+            "name":     "Florian Eckerstorfer",
+            "email":    "florian@theroadtojoy.at",
+            "homepage": "http://florianeckerstorfer.com"
+        }
+    ],
+    "require":      {
+        "symfony/framework-bundle": ">=2.0,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "Braincrafted\\BootstrapBundle": "" }
+    },
+    "target-dir": "Braincrafted/BootstrapBundle"
+}
