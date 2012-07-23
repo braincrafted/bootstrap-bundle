@@ -16,7 +16,11 @@
     {% if type == 'file' %}
     {% set attr = attr|merge({ 'class': 'file-input' }) %}
     {% endif %}
+    {% if attr.uneditable is defined and attr.uneditable %}
+    <span class="{{ attr.class|default('') }} uneditable-input">{% if value is not empty %}{{ value }}{% endif %}
+    {% else %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+    {% endif %}
     {% if help_block is defined %}
     <p class="help-block">{{ help_block }}</p>
     {% endif %}
@@ -245,6 +249,9 @@
 
 {% block checkbox_label %}
 {% spaceless %}
+{% if widget_label is not defined and attr.widget_label is defined %}
+{% set widget_label = attr.widget_label %}
+{% endif %}
 {% if widget_label is defined %}
 {% set label = widget_label %}
 {{ block('form_label') }}
@@ -288,12 +295,16 @@
     {% set form_type = form_type|default('vertical') %}
     {% if form_type == 'horizontal' %}
     {% set label_vars = label_vars|merge({'label_attr': {'class': 'control-label'}}) %}
-    <div class="control-group{% if errors|length > 0 %} error{% endif %}">
+    {% set control_group_class = 'control-group '~attr.control_group_class|default('') %}
+    {% if errors|length > 0 %}
+    {% set control_group_class = control_group_class~' error' %}
+    {% endif %}
+    <div class="{{ control_group_class }}">
         {{ form_label(form, label|default(null), label_vars) }}
         <div class="controls">
             {{ form_widget(form, {'form_type': form_type}) }}
-            {% if errors|length > 0 %}
-            <span class="help-inline">{{ form_errors(form, {'form_type': form_type}) }}</span>
+            {% if errors|length > 0 or attr.help_inline is defined %}
+            <span class="help-inline">{{ attr.help_inline }}{{ form_errors(form, {'form_type': form_type}) }}</span>
             {% endif %}
         </div>
     </div>
@@ -360,6 +371,9 @@
 
 {% block widget_attributes %}
 {% spaceless %}
+    {% if disabled %}
+    {% set attr = attr|merge({'class': 'disabled '~attr.class|default('')}) %}
+    {% endif %}
     id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
     {% for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
 {% endspaceless %}
