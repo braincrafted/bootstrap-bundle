@@ -16,6 +16,8 @@
 {% set listAttributes = item.childrenAttributes %}
 {% if options.nav_type is defined and options.nav_type == 'list' %}
 {% set listAttributes = item.childrenAttributes|merge({'class': 'nav nav-list'}) %}
+{% elseif options.nav_type is defined and options.nav_type == 'tabs' %}
+{% set listAttributes = item.childrenAttributes|merge({'class': 'nav nav-tabs'}) %}
 {% endif %}
 {{ block('list') -}}
 {% endblock %}
@@ -47,7 +49,7 @@
 {% block item %}
 {% if item.displayed %}
 {# building the class of the item #}
-    {% if options.nav_type is defined and options.nav_type == 'list' and options.currentClass == 'current' %}
+    {% if options.nav_type is defined and options.nav_type in ['list', 'tabs'] and options.currentClass == 'current' %}
         {% set options = options|merge({'currentClass': 'active'}) %}
     {% endif %}
     {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
