@@ -25,13 +25,24 @@
 {% elseif options.nav_type is defined and options.nav_type == 'stacked-pills' %}
 {% set listAttributes = item.childrenAttributes|merge({'class': 'nav nav-pills nav-stacked'}) %}
 {% endif %}
+{% set currentDepth = 0 %}
 {{ block('list') -}}
 {% endblock %}
 
 {% block list %}
 {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
+    {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
+    {%- if currentDepth > 0 %}
+        {%- set classes = classes|merge(['dropdown-menu']) %}
+    {%- endif %}
+    {%- if classes is not empty %}
+        {%- set listAttributes = listAttributes|merge({'class': classes|join(' ')}) %}
+    {%- endif %}
+    {%- set thisDepth = currentDepth %}
     <ul{{ _self.attributes(listAttributes) }}>
+        {%- set currentDepth = currentDepth + 1 %}
         {{ block('children') }}
+        {%- set currentDepth = thisDepth %}
     </ul>
 {% endif %}
 {% endblock %}
@@ -59,6 +70,9 @@
         {% set options = options|merge({'currentClass': 'active'}) %}
     {% endif %}
     {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
+    {%- if item.hasChildren %}
+        {%- set classes = classes|merge(['dropdown']) %}
+    {% endif %}
     {%- if matcher.isCurrent(item) %}
         {%- set classes = classes|merge([options.currentClass]) %}
     {%- elseif matcher.isAncestor(item, options.depth) %}
@@ -75,8 +89,16 @@
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- endif %}
 {# displaying the item #}
-    {%- if options.nav_type == 'list' and item.label|raw == '-DIVIDER-' %}
+    {%- if options.nav_type in ['list', 'tabs', 'pills'] and item.label|raw == '-DIVIDER-' %}
     <li class="divider"></li>
+    {%- elseif item.hasChildren %}
+    <li{{ _self.attributes(attributes) }}>
+        {{ block('dropdownLabel') }}
+        {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
+        {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
+        {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
+        {{ block('list') }}
+    </li>
     {%- elseif item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
     <li{{ _self.attributes(attributes) }}>
         {{ block('linkElement') }}
@@ -110,3 +132,5 @@
 {% endblock %}
 
 {% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw }}{% else %}{{ item.label|escape|icon(matcher.isCurrent(item))|raw }}{% endif %}{% endblock %}
+
+{% block dropdownLabel %}<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ block('label') }} <b class="caret"></b></a>{% endblock %}
