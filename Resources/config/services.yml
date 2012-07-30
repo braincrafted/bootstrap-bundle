@@ -7,3 +7,7 @@ services:
             - @service_container
         tags:
             - { name: knp_menu.voter }
+    braincrafted.twig.bootstrap_icon_extension:
+        class: Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension
+        tags:
+            - { name: twig.extension }

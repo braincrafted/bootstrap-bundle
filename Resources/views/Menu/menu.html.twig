@@ -101,4 +101,4 @@
     {{ block('label') }}
 {% endblock %}
 
-{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw }}{% else %}{{ item.label }}{% endif %}{% endblock %}
+{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw }}{% else %}{{ item.label|icon(matcher.isCurrent(item))|raw }}{% endif %}{% endblock %}
