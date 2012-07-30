@@ -67,7 +67,9 @@
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- endif %}
 {# displaying the item #}
-    {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
+    {%- if options.nav_type == 'list' and item.label|raw == '-DIVIDER-' %}
+    <li class="divider"></li>
+    {%- elseif item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
     <li{{ _self.attributes(attributes) }}>
         {{ block('linkElement') }}
 {# render the list of children#}
