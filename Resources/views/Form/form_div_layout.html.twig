@@ -94,14 +94,14 @@
 {% block choice_widget_options %}
 {% spaceless %}
     {% for index, choice in options %}
-        {% if _form_is_choice_group(choice) %}
+        {% if is_choice_group(choice) %}
             <optgroup label="{{ index|trans({}, translation_domain) }}">
                 {% for nested_choice in choice %}
-                    <option value="{{ nested_choice.value }}"{% if _form_is_choice_selected(form, nested_choice) %} selected="selected"{% endif %}>{{ nested_choice.label|trans({}, translation_domain) }}</option>
+                    <option value="{{ nested_choice.value }}"{% if is_choice_selected(form, nested_choice) %} selected="selected"{% endif %}>{{ nested_choice.label|trans({}, translation_domain) }}</option>
                 {% endfor %}
             </optgroup>
         {% else %}
-            <option value="{{ choice.value }}"{% if _form_is_choice_selected(form, choice) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+            <option value="{{ choice.value }}"{% if is_choice_selected(form, choice) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
         {% endif %}
     {% endfor %}
 {% endspaceless %}
