@@ -1,5 +1,4 @@
 parameters:
-#    braincrafted_bootstrap.example.class: Braincrafted\BootstrapBundle\Example
 
 services:
     braincrafted.bootstrap.voter.request:
@@ -8,6 +7,7 @@ services:
             - @service_container
         tags:
             - { name: knp_menu.voter }
-#    braincrafted_bootstrap.example:
-#        class: %braincrafted_bootstrap.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    braincrafted.twig.bootstrap_icon_extension:
+        class: Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension
+        tags:
+            - { name: twig.extension }
