@@ -92,7 +92,7 @@
     {% if help_block[0] is defined %}
         {% if help_block|length == 2 %}
             {{ help_block[0]|trans(help_block[1], help_block[2])|markdown }}
-        {% elseif help_block|lenggth == 1 %}
+        {% elseif help_block|length == 1 %}
             {{ help_block[0]|trans(help_block[1])|markdown }}
         {% else %}
             {{ help_block[0]|trans|markdown }}
@@ -368,7 +368,7 @@
     {% if help_inline[0] is defined %}
         {% if help_inline|length == 2 %}
             {{ help_inline[0]|trans(help_inline[1], help_inline[2])|markdown }}
-        {% elseif help_inline|lenggth == 1 %}
+        {% elseif help_inline|length == 1 %}
             {{ help_inline[0]|trans(help_inline[1])|markdown }}
         {% else %}
             {{ help_inline[0]|trans|markdown }}
