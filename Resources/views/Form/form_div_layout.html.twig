@@ -22,10 +22,8 @@
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
     {% endif %}
     {% if attr.help_block is defined %}
-    {% set help_block = attr.help_block %}
+    {{ block('help_block') }}
     {% endif %}
-    {% if help_block is defined %}
-    <p class="help-block">{{ help_block|markdown }}</p>
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -84,13 +82,27 @@
     </div>
     {% endif %}
     {% if attr.help_block is defined %}
-    {% set help_block = attr.help_block %}
-    {% endif %}
-    {% if help_block is defined %}
-    <p class="help-block">{{ help_block|markdown }}</p>
+    {{ block('help_block') }}
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
+
+{% block help_block %}{% spaceless %}
+{% set help_block = attr.help_block %}
+<p class="help-block">
+    {% if help_block[0] is defined %}
+        {% if help_block|length == 2 %}
+            {{ help_block[0]|trans(help_block[1], help_block[2])|markdown }}
+        {% elseif help_block|lenggth == 1 %}
+            {{ help_block[0]|trans(help_block[1])|markdown }}
+        {% else %}
+            {{ help_block[0]|trans|markdown }}
+        {% endif %}
+    {% else %}
+    {{ help_block|markdown }}
+    {% endif %}
+</p>
+{% endspaceless %}{% endblock %}
 
 {% block choice_widget_collapsed %}
 {% spaceless %}
@@ -109,10 +121,7 @@
         {{ block('choice_widget_options') }}
     </select>
     {% if attr.help_block is defined %}
-    {% set help_block = attr.help_block %}
-    {% endif %}
-    {% if help_block is defined %}
-    <p class="help-block">{{ help_block|markdown }}</p>
+    {{ block('help_block') }}
     {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_collapsed %}
@@ -338,9 +347,10 @@
         {{ form_label(form, label|default(null), label_vars) }}
         <div class="controls">
             {{ form_widget(form, {'form_type': form_type}) }}
-            {% if errors|length > 0 or attr.help_inline is defined %}
-            <span class="help-inline">{{ attr.help_inline|markdown }}{{ form_errors(form, {'form_type': form_type}) }}</span>
+            {% if errors|length > 0 %}
+            <span class="help-inline">{{ form_errors(form, {'form_type': form_type}) }}</span>
             {% endif %}
+            {% if attr.help_inline is defined %}{{ block('help_inline') }}{% endif %}
         </div>
     </div>
     {% else %}
@@ -352,6 +362,23 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
+
+{% block help_inline %}{% spaceless %}
+{% set help_inline = attr.help_inline %}
+<span class="help-inline">
+    {% if help_inline[0] is defined %}
+        {% if help_inline|length == 2 %}
+            {{ help_inline[0]|trans(help_inline[1], help_inline[2])|markdown }}
+        {% elseif help_inline|lenggth == 1 %}
+            {{ help_inline[0]|trans(help_inline[1])|markdown }}
+        {% else %}
+            {{ help_inline[0]|trans|markdown }}
+        {% endif %}
+    {% else %}
+        {{ attr.help_inline|markdown }}
+    {% endif %}
+</span>
+{% endspaceless %}{% endblock %}
 
 {% block hidden_row %}
     {{ form_widget(form) }}
