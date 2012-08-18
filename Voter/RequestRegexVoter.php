@@ -8,10 +8,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Voter based on the uri
- *
- * @link https://github.com/KnpLabs/KnpMenuBundle/issues/122#issuecomment-6563863
  */
-class RequestVoter implements VoterInterface
+class RequestRegexVoter implements VoterInterface
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
@@ -34,8 +32,9 @@ class RequestVoter implements VoterInterface
      */
     public function matchItem(ItemInterface $item)
     {
-        if ($item->getUri() === $this->container->get('request')->getRequestUri()) {
-            return true;
+        $uri = str_replace(array('/', '.'), array('\/', '\.'), $item->getUri());
+        if (preg_match('/' . $uri . '/', $this->container->get('request')->getRequestUri())) {
+           return true;
         }
 
         return null;
