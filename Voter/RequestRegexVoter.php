@@ -37,6 +37,6 @@ class RequestRegexVoter implements VoterInterface
            return true;
         }
 
-        return null;
+        return false;
     }
 }
