@@ -26,6 +26,8 @@
 {% set listAttributes = item.childrenAttributes|merge({'class': 'nav nav-pills nav-stacked'}) %}
 {% elseif options.nav_type is defined and options.nav_type == 'navbar' %}
 {% set listAttributes = item.childrenAttributes|merge({'class': 'nav'}) %}
+{% elseif options.nav_type is defined and options.nav_type == 'navbar-right' %}
+{% set listAttributes = item.childrenAttributes|merge({'class': 'nav pull-right'}) %}
 {% endif %}
 {% set currentDepth = 0 %}
 {{ block('list') -}}
