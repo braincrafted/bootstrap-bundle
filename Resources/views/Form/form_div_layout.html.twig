@@ -333,31 +333,35 @@
 {% spaceless %}
     {% set label_vars = {} %}
     {% if widget_label is defined %}
-    {% set label_vars = label_vars|merge({'widget_label': widget_label}) %}
+        {% set label_vars = label_vars|merge({'widget_label': widget_label}) %}
     {% endif %}
     {% set form_type = form_type|default('vertical') %}
     {% if form_type == 'horizontal' %}
-    {% set label_vars = label_vars|merge({'label_attr': {'class': 'control-label'}}) %}
-    {% set control_group_class = 'control-group '~attr.control_group_class|default('') %}
-    {% if errors|length > 0 %}
-    {% set control_group_class = control_group_class~' error' %}
-    {% endif %}
-    <div class="{{ control_group_class }}">
-        {{ form_label(form, label|default(null), label_vars) }}
-        <div class="controls">
-            {{ form_widget(form, {'form_type': form_type}) }}
-            {% if errors|length > 0 %}
-            <span class="help-inline">{{ form_errors(form, {'form_type': form_type}) }}</span>
-            {% endif %}
-            {% if attr.help_inline is defined %}{{ block('help_inline') }}{% endif %}
+        {% set label_vars = label_vars|merge({'label_attr': {'class': 'control-label'}}) %}
+        {% set control_group_class = 'control-group '~attr.control_group_class|default('') %}
+        {% if errors|length > 0 %}
+            {% set control_group_class = control_group_class~' error' %}
+        {% endif %}
+        <div class="{{ control_group_class }}">
+            {{ form_label(form, label|default(null), label_vars) }}
+            <div class="controls">
+                {{ form_widget(form, {'form_type': form_type}) }}
+                {% if errors|length > 0 %}
+                    <span class="help-inline">{{ form_errors(form, {'form_type': form_type}) }}</span>
+                {% endif %}
+                {% if attr.help_inline is defined %}{{ block('help_inline') }}{% endif %}
+            </div>
         </div>
-    </div>
-    {% else %}
-    <div>
+    {% elseif form_type == 'inline' %}
         {{ form_label(form, label|default(null), label_vars) }}
         {{ form_errors(form, {'form_type': form_type}) }}
         {{ form_widget(form, {'form_type': form_type}) }}
-    </div>
+    {% else %}
+        <div>
+            {{ form_label(form, label|default(null), label_vars) }}
+            {{ form_errors(form, {'form_type': form_type}) }}
+            {{ form_widget(form, {'form_type': form_type}) }}
+        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
