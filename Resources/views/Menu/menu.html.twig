@@ -17,6 +17,7 @@
     Twitter Bootstrap uses the CSS class "active" to indicate
     the current item, so lets change that.
 #}
+{% set options = options|merge({'currentDepth': 0}) %}
 {% if options.nav_type is defined and options.currentClass is defined and options.currentClass == 'current' %}
     {% set options = options|merge({'currentClass': 'active'}) %}
 {% endif %}
@@ -41,6 +42,13 @@
     {% elseif options.nav_type is defined and options.nav_type == 'list' %}
         {% set listClass = 'nav-list' %}
     {% endif %}
+
+    {% if options.pull is defined and options.pull == 'right' %}
+        {% set listClass = (listClass|default('') ~ ' pull-right')|trim %}
+    {% elseif options.pull is defined and options.pull == 'left' %}
+        {% set listClass = (listClass|default('') ~ 'pull-left')|trim %}
+    {% endif %}
+
     {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
     <ul{{ _self.attributes(listAttributes) }}>
@@ -76,6 +84,7 @@
 {% if options.depth is not none %}
 {% set options = currentOptions|merge({'depth': currentOptions.depth - 1}) %}
 {% endif %}
+{% set options = options|merge({'currentDepth': options.currentDepth + 1}) %}
 {% for item in currentItem.children %}
     {{ block('item') }}
 {% endfor %}
@@ -99,23 +108,27 @@
     {%- if item.actsLikeLast %}
         {%- set classes = classes|merge([options.lastClass]) %}
     {%- endif %}
-    {%- if item.hasChildren and options.nav_type in ['tabs', 'pills'] %}
-        {%- set classes = classes|merge(['dropdown']) %}
-    {%- elseif item.hasChildren and options.nav_type == 'list' %}
+    {%- if item.hasChildren and (options.nav_type == 'list' or options.currentDepth is not sameas(1)) %}
         {%- set classes = classes|merge(['nav-header']) %}
-    {%- endif %}
-    {%- if item.label == '-DIVIDER-' %}
-        {%- set classes = classes|merge(['divider']) %}
+    {%- elseif item.hasChildren and options.nav_type in ['tabs', 'pills', 'navbar'] %}
+        {%- set classes = classes|merge(['dropdown']) %}
     {%- endif %}
 
     {%- set attributes = item.attributes %}
+
+    {%- if options.nav_type is defined and options.nav_type == 'navbar' and attributes.divider is defined and attributes.divider is not empty and options.currentDepth is sameas(1) %}
+        {%- set classes = classes|merge(['divider-vertical']) %}
+    {%- elseif attributes.divider is defined and attributes.divider is not empty %}
+        {%- set classes = classes|merge(['divider']) %}
+    {%- endif %}
+
     {%- if classes is not empty %}
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- endif %}
 {# displaying the item #}
     <li{{ _self.attributes(attributes) }}>
-        {%- if item.label == '-DIVIDER-' %}
-        {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills'] %}
+        {%- if attributes.divider is defined and attributes.divider is not empty %}
+        {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills', 'navbar'] and options.currentDepth is sameas(1) %}
         {{ block('dropdownElement') }}
         {%- elseif item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
         {{ block('linkElement') }}
@@ -126,10 +139,10 @@
         {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
         {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
         {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
-        {%- if item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills'] %}
-            {{ block('dropdownList') }}
-        {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type == 'list' %}
+        {%- if item.hasChildren and options.nav_type is defined and (options.nav_type == 'list' or options.currentDepth is not sameas(1)) %}
             {{ block('listList') }}
+        {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills', 'navbar'] %}
+            {{ block('dropdownList') }}
         {%- else %}
             {{ block('list') }}
         {%- endif %}
