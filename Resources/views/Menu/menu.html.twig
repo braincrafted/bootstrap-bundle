@@ -47,6 +47,17 @@
 {% endif %}
 {% endblock %}
 
+{% block dropdownList %}
+{% spaceless %}
+    {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
+        {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' dropdown-menu')|trim}) %}
+        <ul{{ _self.attributes(listAttributes) }}>
+        {{ block('children') }}
+        </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock dropdownList %}
+
 {% block children %}
 {# save current variables #}
 {% set currentOptions = options %}
@@ -78,13 +89,22 @@
     {%- if item.actsLikeLast %}
         {%- set classes = classes|merge([options.lastClass]) %}
     {%- endif %}
+    {%- if item.hasChildren and options.nav_type in ['tabs', 'pills'] %}
+        {%- set classes = classes|merge(['dropdown']) %}
+    {%- endif %}
+    {%- if item.label == '-DIVIDER-' %}
+        {%- set classes = classes|merge(['divider']) %}
+    {%- endif %}
     {%- set attributes = item.attributes %}
     {%- if classes is not empty %}
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- endif %}
 {# displaying the item #}
     <li{{ _self.attributes(attributes) }}>
-        {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
+        {%- if item.label == '-DIVIDER-' %}
+        {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills'] %}
+        {{ block('dropdownElement') }}
+        {%- elseif item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
         {{ block('linkElement') }}
         {%- else %}
         {{ block('spanElement') }}
@@ -93,12 +113,26 @@
         {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
         {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
         {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
-        {{ block('list') }}
+        {{ block('dropdownList') }}
     </li>
 {% endif %}
 {% endblock %}
 
 {% block linkElement %}<a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
+
+{% block dropdownElement %}
+{% spaceless %}
+    {% set labelAttributes = item.labelAttributes %}
+    {% set labelAttributes = labelAttributes|merge({'class': (labelAttributes.class|default('') ~ ' dropdown-toggle')|trim}) %}
+    {% set labelAttributes = labelAttributes|merge({'data-toggle': 'dropdown'}) %}
+    <a href="#"{{ _self.attributes(labelAttributes) }}>{{ block('label') }} <b class="caret"></b></a>
+{% endspaceless %}
+{% endblock dropdownElement %}
+
+{% block dividerElement %}
+{% spaceless %}
+{% endspaceless %}
+{% endblock dividerElement %}
 
 {% block spanElement %}<span{{ _self.attributes(item.labelAttributes) }}>{{ block('label') }}</span>{% endblock %}
 
