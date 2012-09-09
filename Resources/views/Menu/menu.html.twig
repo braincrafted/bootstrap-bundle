@@ -38,6 +38,8 @@
         {% set listClass = 'nav-tabs nav-stacked' %}
     {% elseif options.nav_type is defined and options.nav_type == 'stacked_pills' %}
         {% set listClass = 'nav-pills nav-stacked' %}
+    {% elseif options.nav_type is defined and options.nav_type == 'list' %}
+        {% set listClass = 'nav-list' %}
     {% endif %}
     {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
@@ -57,6 +59,14 @@
     {% endif %}
 {% endspaceless %}
 {% endblock dropdownList %}
+
+{% block listList %}
+{% spaceless %}
+    {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
+        {{ block('children') }}
+    {% endif %}
+{% endspaceless %}
+{% endblock listList %}
 
 {% block children %}
 {# save current variables #}
@@ -91,10 +101,13 @@
     {%- endif %}
     {%- if item.hasChildren and options.nav_type in ['tabs', 'pills'] %}
         {%- set classes = classes|merge(['dropdown']) %}
+    {%- elseif item.hasChildren and options.nav_type == 'list' %}
+        {%- set classes = classes|merge(['nav-header']) %}
     {%- endif %}
     {%- if item.label == '-DIVIDER-' %}
         {%- set classes = classes|merge(['divider']) %}
     {%- endif %}
+
     {%- set attributes = item.attributes %}
     {%- if classes is not empty %}
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
@@ -113,7 +126,13 @@
         {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
         {%- set childrenClasses = childrenClasses|merge(['menu_level_' ~ item.level]) %}
         {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
-        {{ block('dropdownList') }}
+        {%- if item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills'] %}
+            {{ block('dropdownList') }}
+        {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type == 'list' %}
+            {{ block('listList') }}
+        {%- else %}
+            {{ block('list') }}
+        {%- endif %}
     </li>
 {% endif %}
 {% endblock %}
