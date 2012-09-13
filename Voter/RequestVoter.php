@@ -1,6 +1,11 @@
 <?php
 
-namespace Braincrafted\BootstrapBundle  \Voter;
+/**
+ * This file is part of Bootstrap for Symfony2.
+ * Copyright 2012 Florian Eckerstorfer
+ */
+
+namespace Braincrafted\BootstrapBundle\Voter;
 
 use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Voter\VoterInterface;
@@ -29,7 +34,8 @@ class RequestVoter implements VoterInterface
      * If the voter is not able to determine a result,
      * it should return null to let other voters do the job.
      *
-     * @param ItemInterface $item
+     * @param \Knp\Menu\ItemInterface $item The item
+     *
      * @return boolean|null
      */
     public function matchItem(ItemInterface $item)

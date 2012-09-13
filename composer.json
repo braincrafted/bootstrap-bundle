@@ -13,7 +13,10 @@
         }
     ],
     "require":      {
-        "symfony/framework-bundle": ">=2.0,<2.2-dev"
+        "php": ">=5.3.3",
+        "twig/extensions": "dev-master",
+        "knplabs/knp-menu":         "dev-master",
+        "knplabs/knp-menu-bundle":  "dev-master"
     },
     "autoload": {
         "psr-0": { "Braincrafted\\BootstrapBundle": "" }
