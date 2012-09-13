@@ -1,0 +1,25 @@
+{
+    "name":         "braincrafted/bootstrap-bundle",
+    "version":      "1.0.0",
+    "description":  "Twitter Bootstrap for Symfony2",
+    "keywords":     ["bootstrap"],
+    "type":         "symfony-bundle",
+    "license":      "MIT",
+    "authorsa":     [
+        {
+            "name":     "Florian Eckerstorfer",
+            "email":    "florian@theroadtojoy.at",
+            "homepage": "http://florianeckerstorfer.com"
+        }
+    ],
+    "require":      {
+        "php": ">=5.3.3",
+        "twig/extensions": "dev-master",
+        "knplabs/knp-menu":         "dev-master",
+        "knplabs/knp-menu-bundle":  "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Braincrafted\\BootstrapBundle": "" }
+    },
+    "target-dir": "Braincrafted/BootstrapBundle"
+}
