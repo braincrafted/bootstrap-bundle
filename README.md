@@ -3,6 +3,8 @@ BraincraftedBootstrapBundle
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
+[![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
+
 About
 -----
 
