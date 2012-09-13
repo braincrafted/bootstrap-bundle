@@ -42,7 +42,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             '<i class="icon-white icon-heart"></i>',
-            $this->extension->iconFilter('heart', true),
+            $this->extension->iconFilter('heart', 'white'),
             '->iconFilter() returns the HTML code for the given icon in white.'
         );
     }
@@ -59,7 +59,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             '<i class="icon-white icon-heart"></i> foobar',
-            $this->extension->parseIconsFilter('.icon-heart foobar', true),
+            $this->extension->parseIconsFilter('.icon-heart foobar', 'white'),
             '->parseIconsFilter() returns the HTML code with the replaced icons in white.'
         );
     }

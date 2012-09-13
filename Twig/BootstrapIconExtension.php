@@ -29,8 +29,8 @@ class BootstrapIconExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'parse_icons'   => new Twig_Filter_Method($this, 'parseIconsFilter'),
-            'icon'          => new Twig_Filter_Method($this, 'iconFilter')
+            'parse_icons'   => new Twig_Filter_Method($this, 'parseIconsFilter', array('is_safe' => array('html'))),
+            'icon'          => new Twig_Filter_Method($this, 'iconFilter', array('is_safe' => array('html')))
         );
     }
 
@@ -38,17 +38,17 @@ class BootstrapIconExtension extends Twig_Extension
      * Parses the given string and replaces all occurrences of .icon-[name] with the corresponding icon.
      *
      * @param string $text  The text to parse
-     * @param bool   $white If TRUE the white icon is returned instead of the black one
+     * @param string $color The color of the icon; can be "black" or "white"; defaults to "black"
      *
      * @return string The HTML code with the icons
      */
-    public function parseIconsFilter($text, $white = false)
+    public function parseIconsFilter($text, $color = 'black')
     {
         $that = $this;
         return preg_replace_callback(
             '/\.icon-([a-z0-9-]+)/',
-            function ($matches) use ($white, $that) {
-                return $that->iconFilter($matches[1], $white);
+            function ($matches) use ($color, $that) {
+                return $that->iconFilter($matches[1], $color);
             },
             $text
         );
@@ -58,13 +58,13 @@ class BootstrapIconExtension extends Twig_Extension
      * Returns the HTML code for the given icon.
      *
      * @param string $icon  The name of the icon
-     * @param bool   $white If TRUE the white icon is returned instead of the black one
+     * @param string $color The color of the icon; can be "black" or "white"; defaults to "black"
      *
      * @return string The HTML code for the icon
      */
-    public function iconFilter($icon, $white = false)
+    public function iconFilter($icon, $color = 'black')
     {
-        return sprintf('<i class="%sicon-%s"></i>', $white ? 'icon-white ' : '', $icon);
+        return sprintf('<i class="%sicon-%s"></i>', $color == 'white' ? 'icon-white ' : '', $icon);
     }
 
     /**
