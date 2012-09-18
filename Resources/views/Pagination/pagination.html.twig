@@ -1,0 +1,41 @@
+{# Twitter Bootstrap Sliding pagination control implementation #}
+
+{% set orientation_class = '' %}
+{% if alignment is defined %}
+    {% if alignment == 'center' %}
+        {% set orientation_class = ' pagination-centered' %}
+    {% elseif alignment == 'right' %}
+        {% set orientation_class = ' pagination-right' %}
+    {% endif %}
+{% endif %}
+
+{% if pageCount > 1 %}
+<div class="pagination{{ orientation_class }}">
+    <ul>
+    {% if first is defined and current != first %}
+        <li><a href="{{ path(route, query|merge({(pageParameterName): first})) }}">First</a></li>
+    {% endif %}
+
+    {% if previous is defined %}
+        <li><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;</a></li>
+    {% endif %}
+
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <li><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></li>
+        {% else %}
+            <li class="active"><span>{{ page }}</span></li>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if next is defined %}
+        <li><a href="{{ path(route, query|merge({(pageParameterName): next})) }}">&raquo;</a></li>
+    {% endif %}
+
+    {% if last is defined and current != last %}
+        <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">Last</a></li>
+    {% endif %}
+    </ul>
+</div>
+{% endif %}

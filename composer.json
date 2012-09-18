@@ -15,6 +15,9 @@
     "require":      {
         "symfony/framework-bundle": ">=2.0,<2.2-dev"
     },
+    "suggest":      {
+        "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle"
+    },
     "autoload": {
         "psr-0": { "Braincrafted\\BootstrapBundle": "" }
     },
