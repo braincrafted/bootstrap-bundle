@@ -3,17 +3,48 @@ BraincraftedBootstrapBundle
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
+[![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
+
 About
 -----
 
 BraincraftedBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
 
-**Fair Warning**: This is in a very early development stage. Currently there are only the required stylesheets, JavaScripts and icons included and I started to include the form styles as Twig templates.
+Installation
+------------
 
-Todo
-----
+First you need to add BraincraftedBootstrapBundle to `composer.json`:
 
-- Form styles
-- Navigation/Menu (using [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle))
+    {
+       "require": {
+            "braincrafted/bootstrap-bundle": "dev-master"
+        }
+    }
 
-(This list of todos may grow as I think of more.)
+and you have to add the bundle to your `AppKernel.php`:
+
+    // app/AppKernel.php
+    ...
+    class AppKernel extends Kernel
+    {
+        ...
+        public function registerBundles()
+        {
+            $bundles = array(
+                ...
+                new Braincrafted\BootstrapBundle\BraincraftedBootstrapBundle()
+            );
+            ...
+
+            return $bundles;
+        }
+        ...
+    }
+
+Then you should check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BraincraftedBootstrapBundle in your Symfony2 project.
+
+License
+-------
+
+- The bundle is licensed under the [MIT License](http://opensource.org/licenses/MIT)
+- The CSS and Javascript from the Twitter Bootstrap are licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)

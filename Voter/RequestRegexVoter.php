@@ -12,17 +12,28 @@ use Knp\Menu\Matcher\Voter\VoterInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Voter based on the uri
+ * RequestRegexVoter
  *
- * @link https://github.com/KnpLabs/KnpMenuBundle/issues/122#issuecomment-6563863
+ * @category   Voter
+ * @package    BraincraftedBootstrapBundle
+ * @subpackage Voter
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
-class RequestVoter implements VoterInterface
+class RequestRegexVoter implements VoterInterface
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
     private $container;
 
+    /**
+     * Constructor.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container The container
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -40,8 +51,9 @@ class RequestVoter implements VoterInterface
      */
     public function matchItem(ItemInterface $item)
     {
-        if ($item->getUri() === $this->container->get('request')->getRequestUri()) {
-            return true;
+        $uri = str_replace(array('/', '.'), array('\/', '\.'), $item->getUri());
+        if (preg_match('/' . $uri . '/', $this->container->get('request')->getRequestUri())) {
+           return true;
         }
 
         return false;

@@ -1,10 +1,10 @@
 {
     "name":         "braincrafted/bootstrap-bundle",
-    "version":      "0.0.1-alpha1",
+    "version":      "1.0.2",
     "description":  "Twitter Bootstrap for Symfony2",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
-    "license":      "Apache-2.0",
+    "license":      "MIT",
     "authorsa":     [
         {
             "name":     "Florian Eckerstorfer",
@@ -13,7 +13,10 @@
         }
     ],
     "require":      {
-        "symfony/framework-bundle": ">=2.0,<2.2-dev"
+        "php": ">=5.3.3",
+        "twig/extensions": "dev-master",
+        "knplabs/knp-menu":         "dev-master",
+        "knplabs/knp-menu-bundle":  "dev-master"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle"

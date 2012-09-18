@@ -7,6 +7,12 @@ services:
             - @service_container
         tags:
             - { name: knp_menu.voter }
+    braincrafted.bootstrap.voter.request.regex:
+        class: Braincrafted\BootstrapBundle\Voter\RequestRegexVoter
+        arguments:
+            - @service_container
+        tags:
+            - { name: knp_menu.voter }
     braincrafted.twig.bootstrap_icon_extension:
         class: Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension
         tags:
