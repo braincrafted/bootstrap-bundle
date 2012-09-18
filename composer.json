@@ -14,12 +14,12 @@
     ],
     "require":      {
         "php": ">=5.3.3",
-        "twig/extensions": "dev-master",
-        "knplabs/knp-menu":         "dev-master",
-        "knplabs/knp-menu-bundle":  "dev-master"
+        "twig/extensions": "dev-master"
     },
     "suggest":      {
-        "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle"
+        "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
+        "knplabs/knp-menu":         "Required to use KnpMenuBundle.",
+        "knplabs/knp-menu-bundle":  "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle."
     },
     "autoload": {
         "psr-0": { "Braincrafted\\BootstrapBundle": "" }
