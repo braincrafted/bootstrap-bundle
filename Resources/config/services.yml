@@ -21,3 +21,7 @@ services:
         class: Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension
         tags:
             - { name: twig.extension }
+    braincrafted.twig.bootstrap_badge_extension:
+        class: Braincrafted\BootstrapBundle\Twig\BootstrapBadgeExtension
+        tags:
+            - { name: twig.extension }
