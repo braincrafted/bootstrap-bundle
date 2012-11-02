@@ -1,3 +1,18 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/bundles/braincraftedbootstrap/js/jquery-1.7.2.min.js"><\/script>')</script>
-<script src="/bundles/braincraftedbootstrap/js/bootstrap.js"></script>
+{% javascripts
+    'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-transition.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-modal.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-dropdown.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-tab.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-tooltip.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-popover.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-alert.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-button.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-collapse.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-carousel.js'
+    '../vendor/twitter/bootstrap/js/bootstrap-typeahead.js'
+%}
+        
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}

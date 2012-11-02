@@ -1,2 +1,11 @@
-<link rel="stylesheet" href="/bundles/braincraftedbootstrap/css/bootstrap.css">
-<link rel="stylesheet" href="/bundles/braincraftedbootstrap/css/bootstrap-responsive.css">
+{% stylesheets '../vendor/twitter/bootstrap/less/bootstrap.less' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+{% endstylesheets %}
+<style>
+    body {
+        padding-top: 60px;
+    }
+</style>
+{% stylesheets '../vendor/twitter/bootstrap/less/resonsive.less' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+{% endstylesheets %}
