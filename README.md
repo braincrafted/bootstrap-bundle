@@ -72,14 +72,14 @@ Alternatives
 To get started quickly just extend the `base.html.twig` layout from your twig file.
 
 ```html+django
-// src/name/nameBundle/resources/views/Default/default.twig
+// src/Acme/DemoBundle/Resources/views/Default/default.twig
 {% extends "BraincraftedBootstrapBundle::base.html.twig" %}
 ```
 
 You can place any content into the container block:
 
 ```html+django
-// src/name/nameBundle/resources/view/Default/default.twig
+// src/Acme/DemoBundle/Resources/view/Default/default.twig
 {% block container %}
   <div class="container">
     <h1>Trial and error are your friend</h1>
@@ -94,7 +94,7 @@ The navbar at the top is from the Twitter Bootstrap example file. It can be over
 block to your own template:
 
 ```html+django
-// src/name/nameBundle/resources/view/Default/index.html.twig
+// src/Acme/DemoBundle/Resources/view/Default/index.html.twig
 {% block navigation %}
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -128,13 +128,13 @@ First we need to modify assetic in our `config.yml` to include our own Bundle:
 ```yaml
 // app/config/config.yml
 assetic:
-    bundles:        ["BraincraftedBootstrapBundle", "$MyAwesomeBundle"]
+    bundles:        ["BraincraftedBootstrapBundle", "AcmeDemoBundle"]
 ```
 
 Now in our `.less` file we are going to include the base `bootstrap.less` and the `responsive.less`:
 
 ```css
-// src/name/nameBundle/resources/public/less/tidri.less
+// src/Acme/DemoBundle/Resources/public/less/my.less
 @import "../../../../../../vendor/twitter/bootstrap/less/bootstrap.less";
     body {
         padding-top: 60px;
@@ -147,10 +147,10 @@ Now in our `.less` file we are going to include the base `bootstrap.less` and th
 Now in our template `index.html.twig` we are going to add the stylesheets block:
 
 ```html+django
-// src/name/nameBundle/resources/view/Default/index.html.twig
+// src/Acme/DemoBundle/Resources/view/Default/index.html.twig
 {% extends "BraincraftedBootstrapBundle::base.html.twig" %}
 
-{% stylesheets '@MyAwesomeBundle/Resources/public/less/my.less' %}
+{% stylesheets '@AcmeDemoBundle/Resources/public/less/my.less' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
 {% endstylesheets %}
 ```
@@ -158,7 +158,7 @@ Now in our template `index.html.twig` we are going to add the stylesheets block:
 Twitter Bootstrap is now extendable and we can use mixins inside of our .less file:
 
 ```css
-// src/name/nameBundle/resources/public/less/my.less
+// src/Acme/DemoBundle/Resources/public/less/my.less
 @import "../../../../../../vendor/twitter/bootstrap/less/bootstrap.less";
     body {
         padding-top: 60px;
