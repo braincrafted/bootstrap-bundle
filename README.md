@@ -64,7 +64,7 @@ Finally we need to tell assetic to dump some assets.
 ./app/console assetic:dump
 ```
 
-Then you can check out the documentation to find out one way you can use BraincraftedBootstrapBundle in your Symfony2 project.
+Then you can check out the [documentation](http://bootstrap.braincrafted.com) to find out one way you can use BraincraftedBootstrapBundle in your Symfony2 project.
 
 Alternatives
 ------------
