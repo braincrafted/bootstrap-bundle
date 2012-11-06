@@ -51,8 +51,10 @@
         
     {% endblock %}
     
-    {% include 'BraincraftedBootstrapBundle::_javascripts.html.twig' %}
-    
+    {% block javascripts %}
+        {% include 'BraincraftedBootstrapBundle::_javascripts.html.twig' %}
+        {% include 'BraincraftedBootstrapBundle::_html5shiv.html.twig' %}
+    {% endblock %}
     </body>
 </html>
 
