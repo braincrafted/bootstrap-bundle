@@ -12,14 +12,35 @@
             "homepage": "http://florianeckerstorfer.com"
         }
     ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "package":             {
+                "dist":                 {
+                    "type": "zip",
+                    "url": "https://github.com/twitter/bootstrap/zipball/master"
+                },
+                "name": "twitter/bootstrap",
+                "source":                 {
+                    "reference": "master",
+                    "type": "git",
+                    "url": "https://github.com/twitter/bootstrap.git"
+                },
+                "version": "master"
+            },
+            "type": "package"
+        }
+    ],
     "require":      {
         "php": ">=5.3.3",
-        "twig/extensions": "dev-master"
+        "twig/extensions": "dev-master",
+        "twitter/bootstrap": "master",
+        "leafo/lessphp": "dev-master"
     },
     "suggest":      {
-        "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
-        "knplabs/knp-menu":         "Required to use KnpMenuBundle.",
-        "knplabs/knp-menu-bundle":  "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle."
+            "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
+            "knplabs/knp-menu":             "Required to use KnpMenuBundle.",
+            "knplabs/knp-menu-bundle":      "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle."
     },
     "autoload": {
         "psr-0": { "Braincrafted\\BootstrapBundle": "" }

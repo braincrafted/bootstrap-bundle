@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block stylesheets %}
+            {% include 'BraincraftedBootstrapBundle::_stylesheets.html.twig' %}
+        {% endblock %}
+
+        {% image 
+            '../vendor/twitter/bootstrap/img/glyphicons-halflings-white.png'
+            output='img/glyphicons-halflings-white.png' %}
+        {% endimage %}
+
+        {% image 
+            '../vendor/twitter/bootstrap/img/glyphicons-halflings-white.png'
+            output='img/glyphicons-halflings.png' %}
+        {% endimage %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    {% block body %}
+    
+        {% block navigation %}
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+              <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">project name</a>
+                <div class="nav-collapse collapse">
+                  <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endblock %}
+         
+        {% block container %}
+          <!-- content here -->
+        {% endblock %}
+        
+    {% endblock %}
+    
+    {% block javascripts %}
+        {% include 'BraincraftedBootstrapBundle::_javascripts.html.twig' %}
+        {% include 'BraincraftedBootstrapBundle::_html5shiv.html.twig' %}
+    {% endblock %}
+    </body>
+</html>
+
