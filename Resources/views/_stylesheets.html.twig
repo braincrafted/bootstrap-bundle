@@ -1,11 +1,23 @@
-{% stylesheets '../vendor/twitter/bootstrap/less/bootstrap.less' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+{% stylesheets
+    '../vendor/twitter/bootstrap/less/bootstrap.less'
+    output='compiled/css/bootstrap.css'
+%}
+
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+
 {% endstylesheets %}
+
 <style>
     body {
         padding-top: 60px;
     }
 </style>
-{% stylesheets '../vendor/twitter/bootstrap/less/responsive.less' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+
+{% stylesheets
+    '../vendor/twitter/bootstrap/less/responsive.less'
+    output='compiled/css/responsive.css'
+%}
+
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+
 {% endstylesheets %}
