@@ -353,7 +353,7 @@
 
 {% block horizontal_row %}
 {% spaceless %}
-    <div class="control-group{% if errors|length %} error{% endif %}">
+    <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
         {{ form_label(form) }}
         <div class="controls">
             {{ form_widget(form) }}
