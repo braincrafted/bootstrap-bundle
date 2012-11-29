@@ -434,7 +434,7 @@
 {% spaceless %}
     {% for child in form %}
         {% if not child.rendered %}
-            {{ form_row(child) }}
+            {{ block('form_rows') }}
         {% endif %}
     {% endfor %}
 {% endspaceless %}
