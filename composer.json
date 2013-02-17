@@ -5,7 +5,7 @@
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
     "license":      "MIT",
-    "authorsa":     [
+    "authors":     [
         {
             "name":     "Florian Eckerstorfer",
             "email":    "florian@theroadtojoy.at",
