@@ -1,6 +1,6 @@
 {
     "name":         "braincrafted/bootstrap-bundle",
-    "version":      "1.0.2",
+    "version":      "2.3.0",
     "description":  "Twitter Bootstrap for Symfony2",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
