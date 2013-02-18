@@ -16,6 +16,12 @@
         "php": ">=5.3.3",
         "twig/extensions": "dev-master"
     },
+    "require-dev": {
+        "knplabs/knp-menu": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "knplabs/knp-markdown-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master"
+    },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
         "knplabs/knp-menu":         "Required to use KnpMenuBundle.",
