@@ -8,7 +8,7 @@
 namespace Braincrafted\BootstrapBundle\Voter;
 
 use Knp\Menu\ItemInterface;
-use Knp\Menu\Matcher\Voter\VoterInterface;
+use Braincrafted\BootstrapBundle\Voter\VoterInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
