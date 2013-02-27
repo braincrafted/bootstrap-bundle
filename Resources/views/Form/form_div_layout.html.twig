@@ -46,7 +46,13 @@
 {% block form_widget_prepend_input %}
 {% spaceless %}
     <div class="input-prepend">
-        <span class="add-on">{{ attr.prepend_input|trans({}, translation_domain) }}</span>
+    <span class="add-on">
+    {% if attr.prepend_input.icon is defined and attr.prepend_input.icon is not empty %}
+        <i class="{{ attr.prepend_input.icon }}"></i>
+    {% else %}
+        {{ attr.prepend_input|trans({}, translation_domain) }}
+    {% endif %}
+    </span>
         {% set attr = attr|merge({'prepend_input': ''}) %}
         {{ block('form_widget_simple') }}
     </div>
