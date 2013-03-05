@@ -14,8 +14,7 @@
     ],
     "require":      {
         "php":              ">=5.3.3",
-        "twig/extensions":  "dev-master",
-        "sp/bower-bundle":  "*"
+        "twig/extensions":  "dev-master"
     },
     "require-dev": {
         "knplabs/knp-menu": "dev-master",
