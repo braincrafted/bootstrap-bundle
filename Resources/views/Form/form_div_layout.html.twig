@@ -34,11 +34,23 @@
 {% block form_widget_prepend_append_input %}
 {% spaceless %}
     <div class="input-prepend input-append">
-        <span class="add-on">{{ attr.prepend_input|trans({}, translation_domain) }}</span>
+        <span class="add-on">
+        {% if attr.prepend_input.icon is defined and attr.prepend_input.icon is not empty %}
+            <i class="{{ attr.prepend_input.icon }}"></i>
+        {% else %}
+            {{ attr.prepend_input|trans({}, translation_domain) }}
+        {% endif %}
+        </span>
         {% set append_input = attr.append_input|trans({}, translation_domain) %}
         {% set attr = attr|merge({'prepend_input': '', 'append_input': ''}) %}
         {{ block('form_widget_simple') }}
-        <span class="add-on">{{ append_input }}</span>
+        <span class="add-on">
+        {% if attr.append_input.icon is defined and attr.append_input.icon is not empty %}
+            <i class="{{ attr.append_input.icon }}"></i>
+        {% else %}
+            {{ append_input }}
+        {% endif %}
+        </span>
     </div>
 {% endspaceless %}
 {% endblock form_widget_prepend_append_input %}
@@ -46,7 +58,13 @@
 {% block form_widget_prepend_input %}
 {% spaceless %}
     <div class="input-prepend">
-        <span class="add-on">{{ attr.prepend_input|trans({}, translation_domain) }}</span>
+    <span class="add-on">
+    {% if attr.prepend_input.icon is defined and attr.prepend_input.icon is not empty %}
+        <i class="{{ attr.prepend_input.icon }}"></i>
+    {% else %}
+        {{ attr.prepend_input|trans({}, translation_domain) }}
+    {% endif %}
+    </span>
         {% set attr = attr|merge({'prepend_input': ''}) %}
         {{ block('form_widget_simple') }}
     </div>
@@ -59,7 +77,13 @@
         {% set append_input = attr.append_input|trans({}, translation_domain) %}
         {% set attr = attr|merge({'append_input': ''}) %}
         {{ block('form_widget_simple') }}
-        <span class="add-on">{{ append_input }}</span>
+        <span class="add-on">
+        {% if attr.append_input.icon is defined and attr.append_input.icon is not empty %}
+            <i class="{{ attr.append_input.icon }}"></i>
+        {% else %}
+            {{ append_input }}
+        {% endif %}
+        </span>
     </div>
 {% endspaceless %}
 {% endblock form_widget_append_input %}

@@ -108,9 +108,9 @@
     {%- if item.actsLikeLast %}
         {%- set classes = classes|merge([options.lastClass]) %}
     {%- endif %}
-    {%- if item.hasChildren and (options.nav_type == 'list' or options.currentDepth is not sameas(1)) %}
+    {%- if item.hasChildren and ((options.nav_type is defined and options.nav_type == 'list') or options.currentDepth is not sameas(1)) %}
         {%- set classes = classes|merge(['nav-header']) %}
-    {%- elseif item.hasChildren and options.nav_type in ['tabs', 'pills', 'navbar'] %}
+    {%- elseif item.hasChildren and options.nav_type is defined and options.nav_type in ['tabs', 'pills', 'navbar'] %}
         {%- set classes = classes|merge(['dropdown']) %}
     {%- endif %}
 
