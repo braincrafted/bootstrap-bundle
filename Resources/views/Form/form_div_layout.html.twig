@@ -127,7 +127,7 @@
 {% spaceless %}
     {% set child_vars = {'attr': attr} %}
     {% for child in form %}
-        {{ form_label(child, label, child_vars) }}
+        {{ form_label(child, null, child_vars) }}
     {% endfor %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
