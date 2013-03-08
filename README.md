@@ -69,7 +69,7 @@ Check out the [documentation](http://bootstrap.braincrafted.com) to find out how
 Compatibility
 -------------
 
-- **BraincraftedBootstrapBundle v1.3.0**
+- **BraincraftedBootstrapBundle v1.3.***
     - Twitter Bootstrap v2.3.1
     - Symfony 2.2.*
 
