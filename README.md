@@ -41,6 +41,11 @@ and you have to add the bundle to your `AppKernel.php`:
         ...
     }
 
+Download Assets
+---------------
+
+This bundle does no longer contain the asset files from Twitter Bootstrap (images, stylesheets and JavaScripts). A detailed description of how to install these assets will come together with the 1.3.0 release of BootstrapBundle. In the mean time the easiest way to obtain those assets is by downloading the static files or by adding `twitter/bootstrap` to the `require` section of your `composer.json`.
+
 Then you should check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BraincraftedBootstrapBundle in your Symfony2 project.
 
 License
