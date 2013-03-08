@@ -1,6 +1,6 @@
 {
     "name":         "braincrafted/bootstrap-bundle",
-    "version":      "1.2.0",
+    "version":      "1.3.0",
     "description":  "Twitter Bootstrap for Symfony2",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
@@ -13,19 +13,20 @@
         }
     ],
     "require":      {
-        "php": ">=5.3.3",
-        "twig/extensions": "dev-master"
+        "php":              ">=5.3.3",
+        "twig/extensions":  "1.0.*"
     },
     "require-dev": {
-        "knplabs/knp-menu": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
-        "knplabs/knp-markdown-bundle": "dev-master",
+        "knplabs/knp-menu":             "dev-master",
+        "knplabs/knp-menu-bundle":      "dev-master",
+        "knplabs/knp-markdown-bundle":  "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
-        "knplabs/knp-menu":         "Required to use KnpMenuBundle.",
-        "knplabs/knp-menu-bundle":  "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle."
+        "knplabs/knp-menu":             "Required to use KnpMenuBundle.",
+        "knplabs/knp-menu-bundle":      "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle.",
+        "twitter/bootstrap":            "Twitter Bootstrap provides the assets (images, CSS and JS)"
     },
     "autoload": {
         "psr-0": { "Braincrafted\\BootstrapBundle": "" }
