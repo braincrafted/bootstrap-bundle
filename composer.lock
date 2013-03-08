@@ -1,5 +1,5 @@
 {
-    "hash": "28bdab77de0f6b5fbfb325942ff196fc",
+    "hash": "a903e680ec19bb001999a4d9f368862b",
     "packages": [
         {
             "name": "twig/extensions",
@@ -1159,7 +1159,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "twig/extensions": 20,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "knplabs/knp-markdown-bundle": 20,

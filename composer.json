@@ -14,7 +14,7 @@
     ],
     "require":      {
         "php":              ">=5.3.3",
-        "twig/extensions":  "dev-master"
+        "twig/extensions":  "1.0.*"
     },
     "require-dev": {
         "knplabs/knp-menu": "dev-master",
