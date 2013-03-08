@@ -39,38 +39,73 @@ class BootstrapBadgeExtension extends Twig_Extension
     }
 
     /**
-     * Returns the HTML code for a badge
+     * Returns the HTML code for a badge.
      *
      * @param string $text  The text of the badge
      * @param string $type  The type of badge
      *
-     * @return string The HTML code with the icons
+     * @return string The HTML code of the badge
      */
     public function badgeFilter($text, $type = null)
     {
         return sprintf('<span class="badge%s">%s</span>', ($type ? ' badge-' . $type : ''), $text);
     }
 
+    /**
+     * Returns the HTML code for a success badge.
+     *
+     * @param string $text The text of the badge
+     *
+     * @return string The HTML code of the badge
+     */
     public function badgeSuccessFilter($text)
     {
         return $this->badgeFilter($text, 'success');
     }
 
+    /**
+     * Returns the HTML code for a warning badge.
+     *
+     * @param string $text The text of the badge
+     *
+     * @return string The HTML code of the badge
+     */
     public function badgeWarningFilter($text)
     {
         return $this->badgeFilter($text, 'warning');
     }
 
+    /**
+     * Returns the HTML code for a important badge.
+     *
+     * @param string $text The text of the badge
+     *
+     * @return string The HTML code of the badge
+     */
     public function badgeImportantFilter($text)
     {
         return $this->badgeFilter($text, 'important');
     }
 
+    /**
+     * Returns the HTML code for a info badge.
+     *
+     * @param string $text The text of the badge
+     *
+     * @return string The HTML code of the badge
+     */
     public function badgeInfoFilter($text)
     {
         return $this->badgeFilter($text, 'info');
     }
 
+    /**
+     * Returns the HTML code for a inverse badge.
+     *
+     * @param string $text The text of the badge
+     *
+     * @return string The HTML code of the badge
+     */
     public function badgeInverseFilter($text)
     {
         return $this->badgeFilter($text, 'inverse');
