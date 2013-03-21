@@ -45,6 +45,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     public function prepend(ContainerBuilder $container)
     {
         $bundles = $container->getParameter('kernel.bundles');
+
+        // Configure TwigBundle
         if (isset($bundles['TwigBundle'])) {
             foreach ($container->getExtensions() as $name => $extension) {
                 switch ($name) {
@@ -52,6 +54,21 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
                         $container->prependExtensionConfig($name, array(
                             'form'  => array(
                                 'resources' => array('BcBootstrapBundle:Form:form_div_layout.html.twig')
+                            )
+                        ));
+                        break;
+                }
+            }
+        }
+
+        // Configure KnpMenuBundle
+        if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle'])) {
+            foreach ($container->getExtensions() as $name => $extension) {
+                switch ($name) {
+                    case 'knp_menu':
+                        $container->prependExtensionConfig($name, array(
+                            'twig'  => array(
+                                'template'  => 'BcBootstrapBundle:Menu:menu.html.twig'
                             )
                         ));
                         break;
