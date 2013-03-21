@@ -48,31 +48,55 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
 
         // Configure TwigBundle
         if (isset($bundles['TwigBundle'])) {
-            foreach ($container->getExtensions() as $name => $extension) {
-                switch ($name) {
-                    case 'twig':
-                        $container->prependExtensionConfig($name, array(
-                            'form'  => array(
-                                'resources' => array('BcBootstrapBundle:Form:form_div_layout.html.twig')
-                            )
-                        ));
-                        break;
-                }
-            }
+            $this->configureTwigBundle($bundles, $container);
         }
 
         // Configure KnpMenuBundle
         if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle'])) {
-            foreach ($container->getExtensions() as $name => $extension) {
-                switch ($name) {
-                    case 'knp_menu':
-                        $container->prependExtensionConfig($name, array(
-                            'twig'  => array(
-                                'template'  => 'BcBootstrapBundle:Menu:menu.html.twig'
-                            )
-                        ));
-                        break;
-                }
+
+        }
+    }
+
+    /**
+     * Configures the TwigBundle.
+     *
+     * @param array            $bundles   The list of loaded bundles
+     * @param ContainerBuilder $container The service container
+     * @return void
+     */
+    protected function configureTwigBundle(array $bundles, ContainerBuilder $container)
+    {
+        foreach ($container->getExtensions() as $name => $extension) {
+            switch ($name) {
+                case 'twig':
+                    $container->prependExtensionConfig($name, array(
+                        'form'  => array(
+                            'resources' => array('BcBootstrapBundle:Form:form_div_layout.html.twig')
+                        )
+                    ));
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Configures the KnpMenuBundle.
+     *
+     * @param array            $bundles   The list of loaded bundles
+     * @param ContainerBuilder $container The service container
+     * @return void
+     */
+    protected function configureKnpMenuBundle(array $bundles, ContainerBuilder $container)
+    {
+        foreach ($container->getExtensions() as $name => $extension) {
+            switch ($name) {
+                case 'knp_menu':
+                    $container->prependExtensionConfig($name, array(
+                        'twig'  => array(
+                            'template'  => 'BcBootstrapBundle:Menu:menu.html.twig'
+                        )
+                    ));
+                    break;
             }
         }
     }
