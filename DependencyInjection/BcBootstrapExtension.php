@@ -53,7 +53,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
 
         // Configure KnpMenuBundle
         if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle'])) {
-
+            $this->configureKnpMenuBundle($bundles, $container);
         }
     }
 
