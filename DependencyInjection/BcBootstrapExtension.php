@@ -55,6 +55,10 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
         if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle'])) {
             $this->configureKnpMenuBundle($bundles, $container);
         }
+
+        if (isset($bundles['TwigBundle']) && isset($bundles['KnpPaginatorBundle'])) {
+            $this->configureKnpPaginatorBundle($bundles, $container);
+        }
     }
 
     /**
@@ -62,6 +66,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      *
      * @param array            $bundles   The list of loaded bundles
      * @param ContainerBuilder $container The service container
+     *
      * @return void
      */
     protected function configureTwigBundle(array $bundles, ContainerBuilder $container)
@@ -84,6 +89,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      *
      * @param array            $bundles   The list of loaded bundles
      * @param ContainerBuilder $container The service container
+     *
      * @return void
      */
     protected function configureKnpMenuBundle(array $bundles, ContainerBuilder $container)
@@ -94,6 +100,29 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
                     $container->prependExtensionConfig($name, array(
                         'twig'  => array(
                             'template'  => 'BcBootstrapBundle:Menu:menu.html.twig'
+                        )
+                    ));
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Configures the KnpPaginatorBundle.
+     *
+     * @param array            $bundles   The list of loaded bundles
+     * @param ContainerBuilder $container The service container
+     *
+     * @return void
+     */
+    protected function configureKnpPaginatorBundle(array $bundles, ContainerBuilder $container)
+    {
+        foreach ($container->getExtensions() as $name => $extension) {
+            switch ($name) {
+                case 'knp_paginator':
+                    $container->prependExtensionConfig($name, array(
+                        'template' => array(
+                            'pagination' => 'BcBootstrapBundle:Pagination:pagination.html.twig'
                         )
                     ));
                     break;
