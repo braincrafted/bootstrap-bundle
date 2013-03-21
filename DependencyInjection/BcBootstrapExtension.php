@@ -6,10 +6,11 @@
 
 namespace Bc\Bundle\BootstrapBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * BcBootstrapExtension
@@ -21,7 +22,7 @@ use Symfony\Component\DependencyInjection\Loader;
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
-class BcBootstrapExtension extends Extension
+class BcBootstrapExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritDoc}
@@ -36,5 +37,26 @@ class BcBootstrapExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
             );
         $loader->load('services.yml');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+        if (isset($bundles['TwigBundle'])) {
+            foreach ($container->getExtensions() as $name => $extension) {
+                switch ($name) {
+                    case 'twig':
+                        $container->prependExtensionConfig($name, array(
+                            'form'  => array(
+                                'resources' => array('BcBootstrapBundle:Form:form_div_layout.html.twig')
+                            )
+                        ));
+                        break;
+                }
+            }
+        }
     }
 }
