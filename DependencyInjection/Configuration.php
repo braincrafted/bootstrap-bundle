@@ -29,6 +29,13 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('bc_bootstrap');
 
+        $rootNode
+            ->children()
+            ->scalarNode('assets_dir')->defaultValue('%kernel.root_dir%/../vendor/twitter/bootstrap')->end()
+            ->scalarNode('jquery_path')->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js')->end()
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }

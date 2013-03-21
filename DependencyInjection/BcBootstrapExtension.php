@@ -46,6 +46,11 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     {
         $bundles = $container->getParameter('kernel.bundles');
 
+        // Configure AsseticBundle
+        if (isset($bundles['AsseticBundle'])) {
+            $this->configureAsseticBundle($bundles, $container);
+        }
+
         // Configure TwigBundle
         if (isset($bundles['TwigBundle'])) {
             $this->configureTwigBundle($bundles, $container);
@@ -58,6 +63,61 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
 
         if (isset($bundles['TwigBundle']) && isset($bundles['KnpPaginatorBundle'])) {
             $this->configureKnpPaginatorBundle($bundles, $container);
+        }
+    }
+
+    /**
+     * Configures the AsseticBundle.
+     *
+     * @param array            $bundles   The list of loaded bundles
+     * @param ContainerBuilder $container The service container
+     *
+     * @return void
+     */
+    protected function configureAsseticBundle(array $bundles, ContainerBuilder $container)
+    {
+        $configs = $container->getExtensionConfig($this->getAlias());
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+        foreach ($container->getExtensions() as $name => $extension) {
+            switch ($name) {
+                case 'assetic':
+                    $container->prependExtensionConfig($name, array(
+                        'assets'    => array(
+                            'bootstrap_css' => array(
+                                'inputs'        => array(
+                                    $config['assets_dir'].'/less/bootstrap.less',
+                                    $config['assets_dir'].'/less/responsive.less'
+                                ),
+                                'filters'       => array('less', 'cssrewrite'),
+                                'output'        => 'css/bootstrap.css'
+                            ),
+                            'bootstrap_js'  => array(
+                                'inputs'        => array(
+                                    $config['assets_dir'].'/js/bootstrap-transition.js',
+                                    $config['assets_dir'].'/js/bootstrap-alert.js',
+                                    $config['assets_dir'].'/js/bootstrap-button.js',
+                                    $config['assets_dir'].'/js/bootstrap-carousel.js',
+                                    $config['assets_dir'].'/js/bootstrap-collapse.js',
+                                    $config['assets_dir'].'/js/bootstrap-dropdown.js',
+                                    $config['assets_dir'].'/js/bootstrap-modal.js',
+                                    $config['assets_dir'].'/js/bootstrap-tooltip.js',
+                                    $config['assets_dir'].'/js/bootstrap-popover.js',
+                                    $config['assets_dir'].'/js/bootstrap-scrollspy.js',
+                                    $config['assets_dir'].'/js/bootstrap-tab.js',
+                                    $config['assets_dir'].'/js/bootstrap-typeahead.js',
+                                    $config['assets_dir'].'/js/bootstrap-affix.js'
+                                ),
+                                'output'        => 'js/bootstrap.js'
+                            ),
+                            'jquery'        => array(
+                                'inputs'        => array($config['jquery_path']),
+                                'output'        => 'js/jquery.js'
+                            )
+                        )
+                    ));
+                    break;
+            }
         }
     }
 
