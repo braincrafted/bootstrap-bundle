@@ -1,13 +1,12 @@
 <?php
-
 /**
- * This file is part of Bootstrap for Symfony2.
- * Copyright 2012 Florian Eckerstorfer
+ * This file is part of braincrafted/bootstrap-bundle
+ * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Braincrafted\BootstrapBundle\Tests\Twig;
+namespace Bc\Bundle\BootstrapBundle\Tests\Twig;
 
-use Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension;
+use Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
 
 /**
  * BootstrapIconExtensionTest
@@ -16,7 +15,7 @@ use Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension;
  * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
- * @copyright  2012 Florian Eckerstorfer
+ * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */

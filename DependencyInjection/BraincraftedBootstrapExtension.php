@@ -1,6 +1,10 @@
 <?php
+/**
+ * This file is part of braincrafted/bootstrap-bundle
+ * (c) 2012-2013 by Florian Eckerstorfer
+ */
 
-namespace Braincrafted\BootstrapBundle\DependencyInjection;
+namespace Bc\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -8,11 +12,16 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * BcBootstrapExtension
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @package    braincrafted/bootstrap-bundle
+ * @subpackage DependencyInjection
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
-class BraincraftedBootstrapExtension extends Extension
+class BcBootstrapExtension extends Extension
 {
     /**
      * {@inheritDoc}

@@ -1,14 +1,23 @@
 <?php
+/**
+ * This file is part of braincrafted/bootstrap-bundle
+ * (c) 2012-2013 by Florian Eckerstorfer
+ */
 
-namespace Braincrafted\BootstrapBundle\DependencyInjection;
+namespace Bc\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * This is the class that validates and merges configuration from your app/config files
+ * Configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ * @package    braincrafted/bootstrap-bundle
+ * @subpackage DependencyInjection
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
 class Configuration implements ConfigurationInterface
 {
@@ -18,11 +27,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('braincrafted_bootstrap');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode = $treeBuilder->root('bc_bootstrap');
 
         return $treeBuilder;
     }
