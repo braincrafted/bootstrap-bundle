@@ -15,7 +15,7 @@ BraincraftedBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.c
 Installation
 ------------
 
-First you need to add BraincraftedBootstrapBundle to `composer.json`:
+First you need to add `braincrafted/bootstrap-bundle` to `composer.json`:
 
     {
        "require": {
@@ -25,7 +25,7 @@ First you need to add BraincraftedBootstrapBundle to `composer.json`:
 
 Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `1.3.*`.
 
-You also have to add BootstrapBundle to your `AppKernel.php`:
+You also have to add `BcBootstrapBundle` to your `AppKernel.php`:
 
     // app/AppKernel.php
     ...
@@ -36,7 +36,7 @@ You also have to add BootstrapBundle to your `AppKernel.php`:
         {
             $bundles = array(
                 ...
-                new Braincrafted\BootstrapBundle\BraincraftedBootstrapBundle()
+                new Bc\Bundle\BootstrapBundle\BcBootstrapBundle()
             );
             ...
 
