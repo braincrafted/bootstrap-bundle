@@ -90,7 +90,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
                                     $config['assets_dir'].'/less/responsive.less'
                                 ),
                                 'filters'       => array('less', 'cssrewrite'),
-                                'output'        => 'css/bootstrap.css'
+                                'output'        => $config['output_dir'].'/css/bootstrap.css'
                             ),
                             'bootstrap_js'  => array(
                                 'inputs'        => array(
@@ -108,11 +108,11 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
                                     $config['assets_dir'].'/js/bootstrap-typeahead.js',
                                     $config['assets_dir'].'/js/bootstrap-affix.js'
                                 ),
-                                'output'        => 'js/bootstrap.js'
+                                'output'        => $config['output_dir'].'/js/bootstrap.js'
                             ),
                             'jquery'        => array(
                                 'inputs'        => array($config['jquery_path']),
-                                'output'        => 'js/jquery.js'
+                                'output'        => $config['output_dir'].'/js/jquery.js'
                             )
                         )
                     ));
