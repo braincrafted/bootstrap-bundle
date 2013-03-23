@@ -91,7 +91,7 @@
 {% block form_widget_compound %}
 {% spaceless %}
     {% if form.parent is empty %}
-        {{ form_errors(form) }}
+        {{ block('form_errors_compound') }}
     {% endif %}
     {{ block('form_rows') }}
     {{ form_rest(form) }}
@@ -334,7 +334,7 @@
     {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' radio')|trim}) %}
     {% if attr.inline is defined and attr.inline %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
-    {% endif %} 				      
+    {% endif %}
     {% if required %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
     {% endif %}
@@ -456,6 +456,32 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+{% block form_errors_compound %}
+{% spaceless %}
+    {% if errors|length == 1 %}
+    <div class="alert alert-error control-group error">
+        <span class="help-inline">{{
+            errors[0].messagePluralization is null
+                ? errors[0].messageTemplate|trans(errors[0].messageParameters, 'validators')
+                : errors[0].messageTemplate|transchoice(errors[0].messagePluralization, errors[0].messageParameters, 'validators')
+        }}</span>
+    </div>
+    {% elseif errors|length > 0 %}
+    <div class="alert alert-error control-group error">
+        <ul class="help-block">
+            {% for error in errors %}
+                <li>{{
+                    error.messagePluralization is null
+                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+                }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors_compound %}
 
 {% block form_rest %}
 {% spaceless %}
