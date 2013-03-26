@@ -1,5 +1,5 @@
-BraincraftedBootstrapBundle
-===========================
+BcBootstrapBundle
+== ===============
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
@@ -9,7 +9,7 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 About
 -----
 
-BraincraftedBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
+BcBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
 
 
 Installation
@@ -70,7 +70,7 @@ Compatibility
 -------------
 
 - **BraincraftedBootstrapBundle v1.3.***
-    - Twitter Bootstrap v2.3.1
+    - Twitter Bootstrap v2.3.*
     - Symfony 2.2.*
 
 
