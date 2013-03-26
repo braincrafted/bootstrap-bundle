@@ -1,6 +1,7 @@
 <?php
 /**
- * This file is part of braincrafted/bootstrap-bundle
+ * This file is part of BcBootstrapBundle.
+ *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
@@ -12,7 +13,7 @@ use Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
  * BootstrapLabelExtensionTest
  *
  * @category   Test
- * @package    braincrafted/bootstrap-bundle
+ * @package    BcBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -24,6 +25,9 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension */
     private $extension;
 
+    /**
+     * @return void
+     */
     public function setUp()
     {
         $this->extension = new BootstrapLabelExtension();

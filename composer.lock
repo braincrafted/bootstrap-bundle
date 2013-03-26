@@ -1,5 +1,5 @@
 {
-    "hash": "685c85719c5d1f5a4276e1c1b13b1ba5",
+    "hash": "f88d750c19a95070f502cd63bdea5c3e",
     "packages": [
 
     ],
@@ -126,6 +126,106 @@
                 "spl"
             ],
             "time": "2012-09-19 22:55:18"
+        },
+        {
+            "name": "instaclick/php-code-sniffer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/instaclick/PHP_CodeSniffer.git",
+                "reference": "4cab7ffbac5df3f495797dbbb6321545f6ab8cde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/instaclick/PHP_CodeSniffer/zipball/4cab7ffbac5df3f495797dbbb6321545f6ab8cde",
+                "reference": "4cab7ffbac5df3f495797dbbb6321545f6ab8cde",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.2"
+            },
+            "bin": [
+                "scripts/phpcs"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "CodeSniffer.php",
+                    "CodeSniffer/CLI.php",
+                    "CodeSniffer/Exception.php",
+                    "CodeSniffer/File.php",
+                    "CodeSniffer/MultiFileSniff.php",
+                    "CodeSniffer/Reporting.php",
+                    "CodeSniffer/Report.php",
+                    "CodeSniffer/Sniff.php",
+                    "CodeSniffer/Tokens.php",
+                    "CodeSniffer/Reports/",
+                    "CodeSniffer/CommentParser/",
+                    "CodeSniffer/Tokenizers/",
+                    "CodeSniffer/DocGenerators/",
+                    "CodeSniffer/Standards/AbstractPatternSniff.php",
+                    "CodeSniffer/Standards/AbstractScopeSniff.php",
+                    "CodeSniffer/Standards/AbstractVariableSniff.php",
+                    "CodeSniffer/Standards/IncorrectPatternException.php",
+                    "CodeSniffer/Standards/Generic/Sniffs/",
+                    "CodeSniffer/Standards/MySource/Sniffs/",
+                    "CodeSniffer/Standards/PEAR/Sniffs/",
+                    "CodeSniffer/Standards/PSR1/Sniffs/",
+                    "CodeSniffer/Standards/PSR2/Sniffs/",
+                    "CodeSniffer/Standards/Squiz/Sniffs/",
+                    "CodeSniffer/Standards/Zend/Sniffs/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Instaclick",
+                    "role": "fork maintainer"
+                }
+            ],
+            "description": "(fork) PHP_CodeSniffer tokenises PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "http://instaclick.com",
+            "keywords": [
+                "phpcs",
+                "standards"
+            ],
+            "time": "2013-01-04 16:10:29"
+        },
+        {
+            "name": "instaclick/symfony2-coding-standard",
+            "version": "dev-master",
+            "target-dir": "Symfony2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/instaclick/Symfony2-coding-standard.git",
+                "reference": "da9e7f875ced2be544407bbfc522ad9cf71641c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/instaclick/Symfony2-coding-standard/zipball/da9e7f875ced2be544407bbfc522ad9cf71641c2",
+                "reference": "da9e7f875ced2be544407bbfc522ad9cf71641c2",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "dev-master"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Instaclick",
+                    "homepage": "http://instaclick.com/",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A code standard to check against the Symfony coding standards.",
+            "time": "2013-01-04 17:00:44"
         },
         {
             "name": "knplabs/knp-components",
@@ -423,6 +523,105 @@
                 "paginator"
             ],
             "time": "2013-03-14 07:27:40"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "5fca55702b4e035b60a7b1cbac538572db47121d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5fca55702b4e035b60a7b1cbac538572db47121d",
+                "reference": "5fca55702b4e035b60a7b1cbac538572db47121d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PHPParser": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2013-03-05 14:42:24"
+        },
+        {
+            "name": "pdepend/pdepend",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/pdepend/pdepend.git",
+                "reference": "1.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/pdepend/pdepend/zipball/1.1.0",
+                "reference": "1.1.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.3"
+            },
+            "bin": [
+                "src/bin/pdepend"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Official version of pdepend to be handled with Composer",
+            "time": "2012-09-12 04:09:19"
+        },
+        {
+            "name": "phpmd/phpmd",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/phpmd/phpmd.git",
+                "reference": "1.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/phpmd/phpmd/archive/1.4.1.zip",
+                "reference": "1.4.1",
+                "shasum": ""
+            },
+            "require": {
+                "pdepend/pdepend": "*",
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "src/bin/phpmd"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "../../pdepend/pdepend/src/main/php",
+                "src/main/php"
+            ],
+            "description": "Official version of PHPMD handled with Composer.",
+            "time": "2012-12-14 12:25:09"
         },
         {
             "name": "psr/log",
@@ -1116,7 +1315,10 @@
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "knplabs/knp-markdown-bundle": 20,
-        "knplabs/knp-paginator-bundle": 20
+        "knplabs/knp-paginator-bundle": 20,
+        "nikic/php-parser": 20,
+        "instaclick/php-code-sniffer": 20,
+        "instaclick/symfony2-coding-standard": 20
     },
     "platform": {
         "php": ">=5.3.3"

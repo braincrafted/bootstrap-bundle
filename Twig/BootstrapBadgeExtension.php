@@ -1,6 +1,7 @@
 <?php
 /**
- * This file is part of braincrafted/bootstrap-bundle
+ * This file is part of BcBootstrapBundle.
+ *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
@@ -13,7 +14,7 @@ use Twig_Filter_Method;
  * BootstrapLabelExtension
  *
  * @category   TwigExtension
- * @package    braincrafted/bootstrap-bundle
+ * @package    BcBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -40,8 +41,8 @@ class BootstrapBadgeExtension extends Twig_Extension
     /**
      * Returns the HTML code for a badge.
      *
-     * @param string $text  The text of the badge
-     * @param string $type  The type of badge
+     * @param string $text The text of the badge
+     * @param string $type The type of badge
      *
      * @return string The HTML code of the badge
      */

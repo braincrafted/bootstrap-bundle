@@ -1,6 +1,7 @@
 <?php
 /**
- * This file is part of braincrafted/bootstrap-bundle
+ * This file is part of BcBootstrapBundle.
+ *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
@@ -12,7 +13,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Configuration
  *
- * @package    braincrafted/bootstrap-bundle
+ * @package    BcBootstrapBundle
  * @subpackage DependencyInjection
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -34,8 +35,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('output_dir')->defaultValue('')->end()
             ->scalarNode('assets_dir')->defaultValue('%kernel.root_dir%/../vendor/twitter/bootstrap')->end()
             ->scalarNode('jquery_path')->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js')->end()
-            ->end()
-        ;
+            ->end();
 
         return $treeBuilder;
     }

@@ -1,6 +1,7 @@
 <?php
 /**
- * This file is part of braincrafted/bootstrap-bundle
+ * This file is part of BcBootstrapBundle.
+ *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
@@ -24,6 +25,9 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension */
     private $extension;
 
+    /**
+     * Set up
+     */
     public function setUp()
     {
         $this->extension = new BootstrapIconExtension();

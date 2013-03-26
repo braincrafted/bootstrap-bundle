@@ -8,7 +8,7 @@
     "authors":     [
         {
             "name":     "Florian Eckerstorfer",
-            "email":    "florian@theroadtojoy.at",
+            "email":    "florian@eckerstorfer.co",
             "homepage": "http://florianeckerstorfer.com"
         }
     ],
@@ -16,10 +16,14 @@
         "php":              ">=5.3.3"
     },
     "require-dev": {
-        "knplabs/knp-menu":             "dev-master",
-        "knplabs/knp-menu-bundle":      "dev-master",
-        "knplabs/knp-markdown-bundle":  "dev-master",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-menu":                     "dev-master",
+        "knplabs/knp-menu-bundle":              "dev-master",
+        "knplabs/knp-markdown-bundle":          "dev-master",
+        "knplabs/knp-paginator-bundle":         "dev-master",
+        "nikic/php-parser":                     "dev-master",
+        "instaclick/php-code-sniffer":          "dev-master",
+        "instaclick/symfony2-coding-standard":  "dev-master",
+        "phpmd/phpmd":                          "1.4.*"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
