@@ -105,7 +105,6 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     /**
      * Configures the TwigBundle.
      *
-     * @param array            $bundles   The list of loaded bundles
      * @param ContainerBuilder $container The service container
      *
      * @return void

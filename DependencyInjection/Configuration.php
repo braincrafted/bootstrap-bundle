@@ -27,6 +27,11 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
+        return $this->buildConfigTree();
+    }
+
+    private function buildConfigTree()
+    {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('bc_bootstrap');
 
@@ -37,6 +42,6 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('jquery_path')->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js')->end()
             ->end();
 
-        return $treeBuilder;
+        return $rootNode;
     }
 }
