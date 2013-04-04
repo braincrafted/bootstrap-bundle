@@ -42,6 +42,6 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('jquery_path')->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js')->end()
             ->end();
 
-        return $rootNode;
+        return $treeBuilder;
     }
 }
