@@ -1,5 +1,5 @@
 BcBootstrapBundle
-== ===============
+=================
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
