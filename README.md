@@ -11,6 +11,8 @@ About
 
 BcBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
 
+This bundle is highly opiniated by how I use Twitter Bootstrap and Symfony.
+
 
 Installation
 ------------
