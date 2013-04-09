@@ -13,3 +13,8 @@ services:
         class: Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension
         tags:
             - { name: twig.extension }
+
+    bc_bootstrap.flash:
+        class: Bc\Bundle\BootstrapBundle\Session\FlashMessage
+        arguments:
+            - @session
