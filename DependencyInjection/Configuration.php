@@ -19,6 +19,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ *
+ * @codeCoverageIgnore
  */
 class Configuration implements ConfigurationInterface
 {

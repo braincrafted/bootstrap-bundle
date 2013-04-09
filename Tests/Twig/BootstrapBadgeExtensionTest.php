@@ -19,10 +19,11 @@ use Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension;
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ * @group      unit
  */
 class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapBadgeExtension */
+    /** @var BootstrapBadgeExtension */
     private $extension;
 
     /**
@@ -34,7 +35,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFilter
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFilter
      */
     public function testBadgeFilter()
     {
@@ -51,7 +52,62 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapBadgeExtension::getFilters
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeSuccessFilter
+     */
+    public function testBadgeSuccessFilter()
+    {
+        $this->assertEquals(
+            '<span class="badge badge-success">Foobar</span>',
+            $this->extension->badgeSuccessFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeWarningFilter
+     */
+    public function testBadgeWarningFilter()
+    {
+        $this->assertEquals(
+            '<span class="badge badge-warning">Foobar</span>',
+            $this->extension->badgeWarningFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeImportantFilter
+     */
+    public function testBadgeImportantFilter()
+    {
+        $this->assertEquals(
+            '<span class="badge badge-important">Foobar</span>',
+            $this->extension->badgeImportantFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInfoFilter
+     */
+    public function testBadgeInfoFilter()
+    {
+        $this->assertEquals(
+            '<span class="badge badge-info">Foobar</span>',
+            $this->extension->badgeInfoFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInverseFilter
+     */
+    public function testBadgeInverseFilter()
+    {
+        $this->assertEquals(
+            '<span class="badge badge-inverse">Foobar</span>',
+            $this->extension->badgeInverseFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getFilters
      */
     public function testGetFilters()
     {
@@ -66,7 +122,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapBadgeExtension::getName
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getName
      */
     public function testGetName()
     {

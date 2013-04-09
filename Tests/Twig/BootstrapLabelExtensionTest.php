@@ -19,10 +19,11 @@ use Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ * @group      unit
  */
 class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension */
+    /** @var BootstrapLabelExtension */
     private $extension;
 
     /**
@@ -34,7 +35,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension::labelFilter
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelFilter
      */
     public function testLabelFilter()
     {
@@ -51,7 +52,62 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension::getFilters
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelSuccessFilter
+     */
+    public function testLabelSuccessFilter()
+    {
+        $this->assertEquals(
+            '<span class="label label-success">Foobar</span>',
+            $this->extension->labelSuccessFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelWarningFilter
+     */
+    public function testLabelWarningFilter()
+    {
+        $this->assertEquals(
+            '<span class="label label-warning">Foobar</span>',
+            $this->extension->labelWarningFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelImportantFilter
+     */
+    public function testLabelImportantFilter()
+    {
+        $this->assertEquals(
+            '<span class="label label-important">Foobar</span>',
+            $this->extension->labelImportantFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInfoFilter
+     */
+    public function testLabelInfoFilter()
+    {
+        $this->assertEquals(
+            '<span class="label label-info">Foobar</span>',
+            $this->extension->labelInfoFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInverseFilter
+     */
+    public function testLabelInverseFilter()
+    {
+        $this->assertEquals(
+            '<span class="label label-inverse">Foobar</span>',
+            $this->extension->labelInverseFilter('Foobar')
+        );
+    }
+
+    /**
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getFilters
      */
     public function testGetFilters()
     {
@@ -66,7 +122,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension::getName
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getName
      */
     public function testGetName()
     {

@@ -22,6 +22,8 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ *
+ * @codeCoverageIgnore
  */
 class BcBootstrapExtension extends Extension implements PrependExtensionInterface
 {
@@ -40,7 +42,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader(
             $container,
@@ -82,6 +84,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      * @param ContainerBuilder $container The service container
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     private function configureAsseticBundle(ContainerBuilder $container)
     {
@@ -108,6 +112,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      * @param ContainerBuilder $container The service container
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     private function configureTwigBundle(ContainerBuilder $container)
     {
@@ -129,6 +135,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      * @param ContainerBuilder $container The service container
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     private function configureKnpMenuBundle(ContainerBuilder $container)
     {
@@ -150,6 +158,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      * @param ContainerBuilder $container The service container
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     private function configureKnpPaginatorBundle(ContainerBuilder $container)
     {
