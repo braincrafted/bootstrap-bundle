@@ -1,11 +1,11 @@
 <?php
-
 /**
- * This file is part of Bootstrap for Symfony2.
- * Copyright 2012 Florian Eckerstorfer
+ * This file is part of BcBootstrapBundle.
+ *
+ * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Braincrafted\BootstrapBundle\Twig;
+namespace Bc\Bundle\BootstrapBundle\Twig;
 
 use Twig_Extension;
 use Twig_Filter_Method;
@@ -14,10 +14,10 @@ use Twig_Filter_Method;
  * BootstrapIconExtension
  *
  * @category   TwigExtension
- * @package    BraincraftedBootstrapBundle
+ * @package    BcBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
- * @copyright  2012 Florian Eckerstorfer
+ * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
@@ -45,6 +45,7 @@ class BootstrapIconExtension extends Twig_Extension
     public function parseIconsFilter($text, $color = 'black')
     {
         $that = $this;
+
         return preg_replace_callback(
             '/\.icon-([a-z0-9-]+)/',
             function ($matches) use ($color, $that) {

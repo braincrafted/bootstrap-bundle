@@ -1,11 +1,11 @@
 <?php
-
 /**
- * This file is part of Bootstrap for Symfony2.
- * Copyright 2012 Florian Eckerstorfer
+ * This file is part of BcBootstrapBundle.
+ *
+ * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Braincrafted\BootstrapBundle\Twig;
+namespace Bc\Bundle\BootstrapBundle\Twig;
 
 use Twig_Extension;
 use Twig_Filter_Method;
@@ -14,10 +14,10 @@ use Twig_Filter_Method;
  * BootstrapLabelExtension
  *
  * @category   TwigExtension
- * @package    BraincraftedBootstrapBundle
+ * @package    BcBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
- * @copyright  2012 Florian Eckerstorfer
+ * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
@@ -41,8 +41,8 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * Returns the HTML code for a label.
      *
-     * @param string $text  The text of the label
-     * @param string $type  The type of label
+     * @param string $text The text of the label
+     * @param string $type The type of label
      *
      * @return string The HTML code of the label
      */
@@ -54,7 +54,7 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * Returns the HTML code for a success label.
      *
-     * @param string $text  The text of the label
+     * @param string $text The text of the label
      *
      * @return string The HTML code of the label
      */
@@ -66,7 +66,7 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * Returns the HTML code for a warning label.
      *
-     * @param string $text  The text of the label
+     * @param string $text The text of the label
      *
      * @return string The HTML code of the label
      */
@@ -78,7 +78,7 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * Returns the HTML code for a important label.
      *
-     * @param string $text  The text of the label
+     * @param string $text The text of the label
      *
      * @return string The HTML code of the label
      */
@@ -90,7 +90,7 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * Returns the HTML code for a info label.
      *
-     * @param string $text  The text of the label
+     * @param string $text The text of the label
      *
      * @return string The HTML code of the label
      */
@@ -102,7 +102,7 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * Returns the HTML code for a inverse label.
      *
-     * @param string $text  The text of the label
+     * @param string $text The text of the label
      *
      * @return string The HTML code of the label
      */

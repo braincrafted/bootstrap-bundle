@@ -1,6 +1,6 @@
 {
     "name":         "braincrafted/bootstrap-bundle",
-    "version":      "1.3.1",
+    "version":      "1.3.2",
     "description":  "Twitter Bootstrap for Symfony2",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
@@ -8,7 +8,7 @@
     "authors":     [
         {
             "name":     "Florian Eckerstorfer",
-            "email":    "florian@theroadtojoy.at",
+            "email":    "florian@eckerstorfer.co",
             "homepage": "http://florianeckerstorfer.com"
         }
     ],
@@ -16,10 +16,14 @@
         "php":              ">=5.3.3"
     },
     "require-dev": {
-        "knplabs/knp-menu":             "dev-master",
-        "knplabs/knp-menu-bundle":      "dev-master",
-        "knplabs/knp-markdown-bundle":  "dev-master",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-menu":                     "dev-master",
+        "knplabs/knp-menu-bundle":              "dev-master",
+        "knplabs/knp-markdown-bundle":          "dev-master",
+        "knplabs/knp-paginator-bundle":         "dev-master",
+        "nikic/php-parser":                     "dev-master",
+        "instaclick/php-code-sniffer":          "dev-master",
+        "instaclick/symfony2-coding-standard":  "dev-master",
+        "phpmd/phpmd":                          "1.4.*"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
@@ -28,7 +32,7 @@
         "twitter/bootstrap":            "Twitter Bootstrap provides the assets (images, CSS and JS)"
     },
     "autoload": {
-        "psr-0": { "Braincrafted\\BootstrapBundle": "" }
+        "psr-0": { "Bc\\Bundle\\BootstrapBundle": "" }
     },
-    "target-dir": "Braincrafted/BootstrapBundle"
+    "target-dir": "Bc/Bundle/BootstrapBundle"
 }

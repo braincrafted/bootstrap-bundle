@@ -1,5 +1,5 @@
-BraincraftedBootstrapBundle
-===========================
+BcBootstrapBundle
+=================
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
@@ -9,13 +9,15 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 About
 -----
 
-BraincraftedBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
+BcBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
+
+This bundle is highly opiniated by how I use Twitter Bootstrap and Symfony.
 
 
 Installation
 ------------
 
-First you need to add BraincraftedBootstrapBundle to `composer.json`:
+First you need to add `braincrafted/bootstrap-bundle` to `composer.json`:
 
     {
        "require": {
@@ -25,7 +27,7 @@ First you need to add BraincraftedBootstrapBundle to `composer.json`:
 
 Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `1.3.*`.
 
-You also have to add BootstrapBundle to your `AppKernel.php`:
+You also have to add `BcBootstrapBundle` to your `AppKernel.php`:
 
     // app/AppKernel.php
     ...
@@ -36,7 +38,7 @@ You also have to add BootstrapBundle to your `AppKernel.php`:
         {
             $bundles = array(
                 ...
-                new Braincrafted\BootstrapBundle\BraincraftedBootstrapBundle()
+                new Bc\Bundle\BootstrapBundle\BcBootstrapBundle()
             );
             ...
 
@@ -63,16 +65,34 @@ You can find a detailed description in the documentation.
 More Information
 ----------------
 
-Check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BraincraftedBootstrapBundle in your Symfony2 project.
+Check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BcBootstrapBundle in your Symfony2 project.
 
 
 Compatibility
 -------------
 
-- **BraincraftedBootstrapBundle v1.3.***
-    - Twitter Bootstrap v2.3.1
+- **BcBootstrapBundle v1.3.***
+    - Twitter Bootstrap v2.3.*
+    - Symfony 2.2.*
+- **BcBootstrapBundle v1.4.***
+    - Twitter Bootstrap v2.3.*
     - Symfony 2.2.*
 
+
+Changelog
+---------
+
+### Version 1.4.0
+
+- Changed namespace to `Bc\Bundle\BootstrapBundle`
+- Automatically configure Twig
+- Automatically configure KnpMenuBundle
+- Automatically configure KnpPaginatorBundle
+- Automatically confiugre Assetic
+- Improved layout of error messages in compound fields
+- Improved code style (usage of PHP_CodeSniffer and PHPMD)
+- Support for `data-prototype` option in collection fields
+- Helper and template for flash messages
 
 License
 -------
