@@ -65,16 +65,34 @@ You can find a detailed description in the documentation.
 More Information
 ----------------
 
-Check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BraincraftedBootstrapBundle in your Symfony2 project.
+Check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BcBootstrapBundle in your Symfony2 project.
 
 
 Compatibility
 -------------
 
-- **BraincraftedBootstrapBundle v1.3.***
+- **BcBootstrapBundle v1.3.***
+    - Twitter Bootstrap v2.3.*
+    - Symfony 2.2.*
+- **BcBootstrapBundle v1.4.***
     - Twitter Bootstrap v2.3.*
     - Symfony 2.2.*
 
+
+Changelog
+---------
+
+### Version 1.4.0
+
+- Changed namespace to `Bc\Bundle\BootstrapBundle`
+- Automatically configure Twig
+- Automatically configure KnpMenuBundle
+- Automatically configure KnpPaginatorBundle
+- Automatically confiugre Assetic
+- Improved layout of error messages in compound fields
+- Improved code style (usage of PHP_CodeSniffer and PHPMD)
+- Support for `data-prototype` option in collection fields
+- Helper and template for flash messages
 
 License
 -------
