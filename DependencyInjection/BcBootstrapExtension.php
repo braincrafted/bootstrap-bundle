@@ -181,7 +181,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
                 $config['assets_dir'].'/less/bootstrap.less',
                 $config['assets_dir'].'/less/responsive.less'
             ),
-            'filters'       => array('less', 'cssrewrite'),
+            'filters'       => array($config['less_filter'], 'cssrewrite'),
             'output'        => $config['output_dir'].'/css/bootstrap.css'
         );
     }
