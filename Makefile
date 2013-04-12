@@ -1,8 +1,20 @@
-phpcs:
-	@./vendor/bin/phpcs --standard=vendor/instaclick/symfony2-coding-standard/Symfony2 --ignore="vendor/,Tests/" .
+test-unit:
+	@./vendor/bin/phpunit -c ./ --group unit
 
-phpcs-test:
-	@./vendor/bin/phpcs --standard=vendor/instaclick/symfony2-coding-standard/Symfony2 Tests/
+test-functional:
+	@./vendor/bin/phpunit -c ./ --group functional
 
-phpmd:
-	@./vendor/bin/phpmd ./ text codesize,controversial,design,naming,unusedcode --exclude vendor/
+test:
+	@./vendor/bin/phpunit -c ./
+
+code-coverage:
+	@./vendor/bin/phpunit -c ./ --coverage-html ./Resources/docs/code-coverage
+	@open ./Resources/docs/code-coverage/index.html
+
+checkstyle:
+	@./vendor/bin/phpcs --standard="vendor/instaclick/symfony2-coding-standard/Symfony2" --ignore=Tests/,vendor/ ./
+
+detectmess:
+	@@./vendor/bin/phpmd ./ text codesize,unusedcode,naming,design,controversial --exclude Tests/,vendor/
+
+all: phpunit phpcs phpmd

@@ -20,10 +20,12 @@
         "knplabs/knp-menu-bundle":              "dev-master",
         "knplabs/knp-markdown-bundle":          "dev-master",
         "knplabs/knp-paginator-bundle":         "dev-master",
-        "nikic/php-parser":                     "dev-master",
+        "phpunit/phpunit":                      "3.7.*",
+        "mockery/mockery":                      "dev-master@dev",
         "instaclick/php-code-sniffer":          "dev-master",
-        "instaclick/symfony2-coding-standard":  "dev-master",
-        "phpmd/phpmd":                          "1.4.*"
+        "phpmd/phpmd":                          "1.4.*",
+        "nikic/php-parser":                     "dev-master",
+        "instaclick/symfony2-coding-standard":  "dev-master"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",

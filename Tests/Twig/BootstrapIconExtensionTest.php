@@ -19,10 +19,11 @@ use Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ * @group      unit
  */
 class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension */
+    /** @var BootstrapIconExtension */
     private $extension;
 
     /**
@@ -34,7 +35,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::iconFilter
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFilter
      */
     public function testIconFilter()
     {
@@ -51,7 +52,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
      */
     public function testParseIconsFilter()
     {
@@ -68,7 +69,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::getFilters
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters
      */
     public function testGetFilters()
     {
@@ -79,7 +80,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::getName
+     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getName
      */
     public function testGetName()
     {
