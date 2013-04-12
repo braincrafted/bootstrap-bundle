@@ -88,7 +88,7 @@ Changelog
 - Automatically configure Twig
 - Automatically configure KnpMenuBundle
 - Automatically configure KnpPaginatorBundle
-- Automatically confiugre Assetic
+- Automatically configure Assetic
 - Improved layout of error messages in compound fields
 - Improved code style (usage of PHP_CodeSniffer and PHPMD)
 - Support for `data-prototype` option in collection fields
