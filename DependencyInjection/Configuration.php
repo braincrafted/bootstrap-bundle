@@ -42,6 +42,12 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('output_dir')->defaultValue('')->end()
             ->scalarNode('assets_dir')->defaultValue('%kernel.root_dir%/../vendor/twitter/bootstrap')->end()
             ->scalarNode('jquery_path')->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js')->end()
+            ->scalarNode('less_filter')
+                ->defaultValue('less')
+                ->validate()
+                ->ifNotInArray(array('less', 'lessphp'))
+                    ->thenInvalid('Invalid less filter "%s"')
+                ->end()
             ->end();
 
         return $treeBuilder;
