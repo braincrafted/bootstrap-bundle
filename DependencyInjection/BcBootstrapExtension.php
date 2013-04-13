@@ -177,20 +177,40 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
 
     private function buildAsseticConfig(array $config)
     {
+        $output = array();
+        if ($config['less_filter'] !== 'none') {
+            $output['bootstrap_css'] = $this->buildAsseticBootstrapCssWithLessConfig($config);
+        } else {
+            $output['bootstrap_css'] = $this->buildAsseticBootstrapCssWithoutLessConfig($config);
+        }
+        $output['bootstrap_js'] = $this->buildAsseticBootstrapJsConfig($config);
+        $output['jquery'] = $this->buildAsseticJqueryConfig($config);
+        return $output;
+    }
+
+    private function buildAsseticBootstrapCssWithoutLessConfig(array $config)
+    {
+        $inputs = array();
+        $inputs[] = $config['assets_dir'].'/docs/assets/css/bootstrap.css';
+        if ($config['include_responsive'] === true) {
+            $inputs[] = $config['assets_dir'].'/docs/assets/css/bootstrap-responsive.css';
+        }
         return array(
-            'bootstrap_css' => $this->buildAsseticBootstrapCssConfig($config),
-            'bootstrap_js'  => $this->buildAsseticBootstrapJsConfig($config),
-            'jquery'        => $this->buildAsseticJqueryConfig($config)
+            'inputs'        => $inputs,
+            'filters'       => array('cssrewrite'),
+            'output'        => $config['output_dir'].'/css/bootstrap.css'
         );
     }
 
-    private function buildAsseticBootstrapCssConfig(array $config)
+    private function buildAsseticBootstrapCssWithLessConfig(array $config)
     {
+        $inputs = array();
+        $inputs[] = $config['assets_dir'].'/less/bootstrap.less';
+        if ($config['include_responsive'] === true) {
+            $inputs[] = $config['assets_dir'].'/less/responsive.less';
+        }
         return array(
-            'inputs'        => array(
-                $config['assets_dir'].'/less/bootstrap.less',
-                $config['assets_dir'].'/less/responsive.less'
-            ),
+            'inputs'        => $inputs,
             'filters'       => array($config['less_filter'], 'cssrewrite'),
             'output'        => $config['output_dir'].'/css/bootstrap.css'
         );

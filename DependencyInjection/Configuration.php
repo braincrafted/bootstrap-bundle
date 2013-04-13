@@ -45,8 +45,12 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('less_filter')
                 ->defaultValue('less')
                 ->validate()
-                ->ifNotInArray(array('less', 'lessphp'))
+                    ->ifNotInArray(array('less', 'lessphp', 'none'))
                     ->thenInvalid('Invalid less filter "%s"')
+                ->end()
+                ->end()
+            ->booleanNode('include_responsive')
+                ->defaultValue(true)
                 ->end()
             ->end();
 
