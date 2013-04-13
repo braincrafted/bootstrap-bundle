@@ -409,7 +409,7 @@
 
 {% block horizontal_checkbox_row %}
 {% spaceless %}
-    <div class="control-group">
+    <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
         <div class="controls">
             {{ form_label(form) }}
             {{ form_errors(form) }}
