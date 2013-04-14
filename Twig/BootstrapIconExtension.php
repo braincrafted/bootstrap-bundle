@@ -47,8 +47,9 @@ class BootstrapIconExtension extends Twig_Extension
         $that = $this;
 
         return preg_replace_callback(
-            '/\.icon-([a-z0-9-]+)/',
+            '/\.icon-([a-z0-9-]+)(\((white|black)\))?/',
             function ($matches) use ($color, $that) {
+                $color = isset($matches[3]) ? $matches[3] : $color;
                 return $that->iconFilter($matches[1], $color);
             },
             $text
