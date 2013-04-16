@@ -186,10 +186,22 @@
         {{ block('form_widget_simple') }}
     {% else %}
         <div {{ block('widget_container_attributes') }}>
+            {% set attr = { 'date': {}, 'time': {} }|merge(attr) %}
+
+            {% set dateAttr = attr.date %}
+            {% set timeAttr = attr.time %}
+
+            {% if 'single_text' == form.date.vars.widget %}
+                {% set dateAttr = { 'class': 'input-medium' }|merge(dateAttr) %}
+            {% endif %}
+            {% if 'single_text' == form.time.vars.widget %}
+                {% set timeAttr = { 'class': 'input-medium' }|merge(timeAttr) %}
+            {% endif %}
+
             {{ form_errors(form.date) }}
             {{ form_errors(form.time) }}
-            {{ form_widget(form.date) }}
-            {{ form_widget(form.time) }}
+            {{ form_widget(form.date, { 'attr':  { 'placeholder': 'Date' }|merge(dateAttr) }) }}&nbsp;
+            {{ form_widget(form.time, { 'attr': { 'placeholder': 'Time' }|merge(timeAttr) }) }}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -201,10 +213,11 @@
         {{ block('form_widget_simple') }}
     {% else %}
         <div {{ block('widget_container_attributes') }}>
+            {% set date_pattern = date_pattern|replace({ '}}{{': '}}&nbsp;{{' }) %}
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year),
-                '{{ month }}': form_widget(form.month),
-                '{{ day }}':   form_widget(form.day),
+                '{{ year }}':  form_widget(form.year, { 'attr': { 'class': 'input-small' } }),
+                '{{ month }}': form_widget(form.month, { 'attr': { 'class': 'input-medium' } }),
+                '{{ day }}':   form_widget(form.day, { 'attr': { 'class': 'input-mini' } }),
             })|raw }}
         </div>
     {% endif %}
@@ -217,7 +230,7 @@
         {{ block('form_widget_simple') }}
     {% else %}
         <div {{ block('widget_container_attributes') }}>
-            {{ form_widget(form.hour, { 'attr': { 'size': '1' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1' } }) }}{% endif %}
+            {{ form_widget(form.hour, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}:{{ form_widget(form.minute, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% if with_seconds %}:{{ form_widget(form.second, { 'attr': { 'size': '1', 'class': 'input-mini' } }) }}{% endif %}
         </div>
     {% endif %}
 {% endspaceless %}
