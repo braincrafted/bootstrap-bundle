@@ -240,7 +240,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
                 $config['assets_dir'].'/js/bootstrap-scrollspy.js',
                 $config['assets_dir'].'/js/bootstrap-tab.js',
                 $config['assets_dir'].'/js/bootstrap-typeahead.js',
-                $config['assets_dir'].'/js/bootstrap-affix.js'
+                $config['assets_dir'].'/js/bootstrap-affix.js',
+                __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
             ),
             'output'        => $config['output_dir'].'/js/bootstrap.js'
         );

@@ -109,6 +109,27 @@
 {% endspaceless %}
 {% endblock collection_widget %}
 
+{% block bootstrap_collection_widget %}
+{% spaceless %}
+    {% if prototype is defined %}
+        {% set attr = attr|merge({'data-prototype': form_widget(prototype) }) %}
+    {% endif %}
+    <div {{ block('widget_container_attributes') }}>
+        <ul class="unstyled">
+            {% for field in form %}
+                <li>
+                    {{ form_widget(field) }}
+                    {{ form_errors(field) }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% if form.vars.allow_add %}
+            <a href="#" class="btn btn-primary btn-small" data-add="collection" data-collection="{{ form.vars.id }}"><i class="icon-plus-sign icon-white"></i> Add</a>
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock bootstrap_collection_widget %}
+
 {% block textarea_widget %}
 {% spaceless %}
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>

@@ -18,3 +18,8 @@ services:
         class: Bc\Bundle\BootstrapBundle\Session\FlashMessage
         arguments:
             - @session
+
+    bc_bootstrap.form.type.collection:
+        class: Bc\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType
+        tags:
+            - { name: form.type, alias: bootstrap_collection }
