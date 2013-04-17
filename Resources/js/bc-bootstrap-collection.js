@@ -1,6 +1,6 @@
 /* ==========================================================
  * bc-bootstrap-collection.js
- * http://bootstrap.braincrafted.comn
+ * http://bootstrap.braincrafted.com
  * ==========================================================
  * Copyright 2013 Florian Eckerstorfer
  *
@@ -14,13 +14,17 @@
     /* COLLECTION CLASS DEFINITION
      * ====================== */
 
-    var add = '[data-add="collection"]',
-        Collection = function (el) {
-            $(el).on('click', add, this.add);
+    var addField = '[data-addfield="collection"]',
+        removeField = '[data-removefield="collection"]',
+        CollectionAdd = function (el) {
+            $(el).on('click', addField, this.addField);
+        },
+        CollectionRemove = function (el) {
+            $(el).on('click', removeField, this.removeField);
         }
     ;
 
-    Collection.prototype.add = function (e) {
+    CollectionAdd.prototype.addField = function (e) {
         var $this = $(this),
             selector = $this.attr('data-collection'),
             $parent
@@ -36,24 +40,49 @@
         ;
 
         var newWidget = collection.attr('data-prototype');
+
+        // Check if an element with this ID already exists.
+        // If it does, increase the count by one and try again
+        var newName = newWidget.match(/id="(.*?)"/);
+        while ($('#' + newName[1].replace(/__name__/g, count)).size() > 0) {
+            count++;
+        }
         newWidget = newWidget.replace(/__name__/g, count);
+        newWidget = newWidget.replace(/__id__/g, newName[1].replace(/__name__/g, count));
         var newLi = $('<li></li>').html(newWidget);
         newLi.appendTo(list);
     };
+
+    CollectionRemove.prototype.removeField = function (e) {
+        var $this = $(this),
+            selector = $this.attr('data-field'),
+            $parent
+        ;
+
+        $parent = $(selector);
+
+        e && e.preventDefault();
+
+        console.log($('#' + selector));
+        console.log($('#' + selector).parent());
+
+        var listElement = $('#' + selector).parent().remove();
+    }
 
 
     /* COLLECTION PLUGIN DEFINITION
      * ======================= */
 
-    var old = $.fn.collection;
+    var oldAdd = $.fn.addField;
+    var oldRemove = $.fn.removeField;
 
-    $.fn.collection = function (option) {
+    $.fn.addField = function (option) {
         return this.each(function () {
             var $this = $(this),
-                data = $this.data('collection')
+                data = $this.data('addfield')
             ;
             if (!data) {
-                $this.data('collection', (data = new Collection(this)));
+                $this.data('addfield', (data = new CollectionAdd(this)));
             }
             if (typeof option == 'string') {
                 data[option].call($this);
@@ -61,14 +90,33 @@
         });
     };
 
-    $.fn.collection.Constructor = Collection;
+    $.fn.removeField = function (option) {
+        return this.each(function() {
+            var $this = $(this),
+                data = $this.data('removefield')
+            ;
+            if (!data) {
+                $this.data('removefield', (data = new CollectionRemove(this)));
+            }
+            if (typeof option == 'string') {
+                data[option].call($this);
+            }
+        });
+    };
+
+    $.fn.addField.Constructor = CollectionAdd;
+    $.fn.removeField.Constructor = CollectionRemove;
 
 
     /* COLLECTION NO CONFLICT
      * ================= */
 
-    $.fn.collection.noConflict = function () {
-        $.fn.collection = old;
+    $.fn.addField.noConflict = function () {
+        $.fn.addField = oldAdd;
+        return this;
+    }
+    $.fn.removeField.noConflict = function () {
+        $.fn.removeField = oldRemove;
         return this;
     }
 
@@ -76,6 +124,7 @@
     /* COLLECTION DATA-API
      * ============== */
 
-    $(document).on('click.collection.data-api', add, Collection.prototype.add);
+    $(document).on('click.addfield.data-api', addField, CollectionAdd.prototype.addField);
+    $(document).on('click.removefield.data-api', removeField, CollectionRemove.prototype.removeField);
 
  }(window.jQuery);

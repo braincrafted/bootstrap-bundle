@@ -112,7 +112,11 @@
 {% block bootstrap_collection_widget %}
 {% spaceless %}
     {% if prototype is defined %}
-        {% set attr = attr|merge({'data-prototype': form_widget(prototype) }) %}
+        {% set prototype_html = form_widget(prototype) %}
+        {% if form.vars.allow_delete %}
+            {% set prototype_html = prototype_html ~ ' &nbsp;<a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__"><i class="icon-minus-sign icon-white"></i> Remove</a>' %}
+        {% endif %}
+        {% set attr = attr|merge({'data-prototype': prototype_html }) %}
     {% endif %}
     <div {{ block('widget_container_attributes') }}>
         <ul class="unstyled">
@@ -120,11 +124,14 @@
                 <li>
                     {{ form_widget(field) }}
                     {{ form_errors(field) }}
+                    {% if form.vars.allow_delete %}
+                    &nbsp;<a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="{{ field.vars.id }}"><i class="icon-minus-sign icon-white"></i> Remove</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
         {% if form.vars.allow_add %}
-            <a href="#" class="btn btn-primary btn-small" data-add="collection" data-collection="{{ form.vars.id }}"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}"><i class="icon-plus-sign icon-white"></i> Add</a>
         {% endif %}
     </div>
 {% endspaceless %}
