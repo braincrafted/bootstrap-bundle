@@ -114,7 +114,7 @@
     {% if prototype is defined %}
         {% set prototype_html = form_widget(prototype) %}
         {% if form.vars.allow_delete %}
-            {% set prototype_html = prototype_html ~ ' &nbsp;<a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__"><i class="icon-minus-sign icon-white"></i> Remove</a>' %}
+            {% set prototype_html = prototype_html ~ ' &nbsp;<a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__"><i class="icon-minus-sign icon-white"></i> ' ~ form.vars.delete_button_text ~ '</a>' %}
         {% endif %}
         {% set attr = attr|merge({'data-prototype': prototype_html }) %}
     {% endif %}
@@ -125,13 +125,13 @@
                     {{ form_widget(field) }}
                     {{ form_errors(field) }}
                     {% if form.vars.allow_delete %}
-                    &nbsp;<a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="{{ field.vars.id }}"><i class="icon-minus-sign icon-white"></i> Remove</a>
+                    &nbsp;<a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="{{ field.vars.id }}"><i class="icon-minus-sign icon-white"></i> {{ form.vars.delete_button_text }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
         </ul>
         {% if form.vars.allow_add %}
-            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}"><i class="icon-plus-sign icon-white"></i> {{ form.vars.add_button_text }}</a>
         {% endif %}
     </div>
 {% endspaceless %}
