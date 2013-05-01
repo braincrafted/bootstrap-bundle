@@ -211,14 +211,18 @@
 {% block datetime_widget %}
 {% spaceless %}
     {% if widget == 'single_text' %}
+        {% set attr = attr|merge({'date': ''}) %}
+        {% set attr = attr|merge({'time': ''}) %}
         {{ block('form_widget_simple') }}
     {% else %}
+        {% set attr = { 'date': {}, 'time': {} }|merge(attr) %}
+
+        {% set dateAttr = attr.date %}
+        {% set timeAttr = attr.time %}
+
+        {% set attr = attr|merge({'date': ''}) %}
+        {% set attr = attr|merge({'time': ''}) %}
         <div {{ block('widget_container_attributes') }}>
-            {% set attr = { 'date': {}, 'time': {} }|merge(attr) %}
-
-            {% set dateAttr = attr.date %}
-            {% set timeAttr = attr.time %}
-
             {% if 'single_text' == form.date.vars.widget %}
                 {% set dateAttr = { 'class': 'input-medium' }|merge(dateAttr) %}
             {% endif %}
