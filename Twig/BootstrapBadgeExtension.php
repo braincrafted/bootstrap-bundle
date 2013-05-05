@@ -29,12 +29,12 @@ class BootstrapBadgeExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'badge'          => new Twig_Filter_Method($this, 'badgeFilter', array('is_safe' => array('html'))),
-            'badge_success'  => new Twig_Filter_Method($this, 'badgeSuccessFilter', array('is_safe' => array('html'))),
-            'badge_warning'  => new Twig_Filter_Method($this, 'badgeWarningFilter', array('is_safe' => array('html'))),
-            'badge_important'=> new Twig_Filter_Method($this, 'badgeImportantFilter', array('is_safe' => array('html'))),
-            'badge_info'     => new Twig_Filter_Method($this, 'badgeInfoFilter', array('is_safe' => array('html'))),
-            'badge_inverse'  => new Twig_Filter_Method($this, 'badgeInverseFilter', array('is_safe' => array('html')))
+            'badge'          => new Twig_Filter_Method($this, 'badgeFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'badge_success'  => new Twig_Filter_Method($this, 'badgeSuccessFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'badge_warning'  => new Twig_Filter_Method($this, 'badgeWarningFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'badge_important'=> new Twig_Filter_Method($this, 'badgeImportantFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'badge_info'     => new Twig_Filter_Method($this, 'badgeInfoFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'badge_inverse'  => new Twig_Filter_Method($this, 'badgeInverseFilter', array('pre_escape' => 'html', 'is_safe' => array('html')))
         );
     }
 
