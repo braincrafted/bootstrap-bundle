@@ -10,7 +10,7 @@ class TypeSetterExtension extends AbstractTypeExtension
 {
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['type'] = $form->getConfig()->getType()->getName();
+        $view->vars['original_type'] = $form->getConfig()->getType()->getName();
     }
 
     public function getExtendedType()
