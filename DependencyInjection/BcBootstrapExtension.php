@@ -58,22 +58,30 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     {
         $bundles = $container->getParameter('kernel.bundles');
 
-        // Configure AsseticBundle
-        if (isset($bundles['AsseticBundle'])) {
-            $this->configureAsseticBundle($container);
+        $configs = $container->getExtensionConfig($this->getAlias());
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+        // Configure Assetic if AsseticBundle is activated and the option
+        // "bc_bootstrap.auto_configure.assetic" is set to TRUE (default value).
+        if (isset($bundles['AsseticBundle']) && $config['auto_configure']['assetic']) {
+            $this->configureAsseticBundle($container, $config);
         }
 
-        // Configure TwigBundle
-        if (isset($bundles['TwigBundle'])) {
+        // Configure Twig if TwigBundle is activated and the option
+        // "bc_bootstrap.auto_configure.twig" is set to TRUE (default value).
+        if (isset($bundles['TwigBundle']) && $config['auto_configure']['twig']) {
             $this->configureTwigBundle($container);
         }
 
-        // Configure KnpMenuBundle
-        if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle'])) {
+        // Configure KnpMenu if KnpMenuBundle and TwigBundle are activated and the option
+        // "bc_bootstrap.auto_configure.knp_menu" is set to TRUE (default value).
+        if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle']) && $config['auto_configure']['knp_menu']) {
             $this->configureKnpMenuBundle($container);
         }
 
-        if (isset($bundles['TwigBundle']) && isset($bundles['KnpPaginatorBundle'])) {
+        // Configure KnpPaginiator if KnpPaginatorBundle and TwigBundle are activated and the option
+        // "bc_bootstrap.auto_configure.knp_paginator" is set to TRUE (default value).
+        if (isset($bundles['TwigBundle']) && isset($bundles['KnpPaginatorBundle']) && $config['auto_configure']['knp_paginator']) {
             $this->configureKnpPaginatorBundle($container);
         }
     }
@@ -82,16 +90,14 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
      * Configures the AsseticBundle.
      *
      * @param ContainerBuilder $container The service container
+     * @param array            $config    The bundle configuration
      *
      * @return void
      *
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    private function configureAsseticBundle(ContainerBuilder $container)
+    private function configureAsseticBundle(ContainerBuilder $container, array $config)
     {
-        $configs = $container->getExtensionConfig($this->getAlias());
-        $config = $this->processConfiguration(new Configuration(), $configs);
-
         foreach ($container->getExtensions() as $name => $extension) {
             switch ($name) {
                 case 'assetic':

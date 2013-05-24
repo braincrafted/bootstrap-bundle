@@ -29,12 +29,12 @@ class BootstrapLabelExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'label'          => new Twig_Filter_Method($this, 'labelFilter', array('is_safe' => array('html'))),
-            'label_success'  => new Twig_Filter_Method($this, 'labelSuccessFilter', array('is_safe' => array('html'))),
-            'label_warning'  => new Twig_Filter_Method($this, 'labelWarningFilter', array('is_safe' => array('html'))),
-            'label_important'=> new Twig_Filter_Method($this, 'labelImportantFilter', array('is_safe' => array('html'))),
-            'label_info'     => new Twig_Filter_Method($this, 'labelInfoFilter', array('is_safe' => array('html'))),
-            'label_inverse'  => new Twig_Filter_Method($this, 'labelInverseFilter', array('is_safe' => array('html')))
+            'label'          => new Twig_Filter_Method($this, 'labelFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_success'  => new Twig_Filter_Method($this, 'labelSuccessFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_warning'  => new Twig_Filter_Method($this, 'labelWarningFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_important'=> new Twig_Filter_Method($this, 'labelImportantFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_info'     => new Twig_Filter_Method($this, 'labelInfoFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_inverse'  => new Twig_Filter_Method($this, 'labelInverseFilter', array('pre_escape' => 'html', 'is_safe' => array('html')))
         );
     }
 

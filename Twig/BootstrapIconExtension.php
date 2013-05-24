@@ -29,8 +29,16 @@ class BootstrapIconExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'parse_icons'   => new Twig_Filter_Method($this, 'parseIconsFilter', array('is_safe' => array('html'))),
-            'icon'          => new Twig_Filter_Method($this, 'iconFilter', array('is_safe' => array('html')))
+            'parse_icons'   => new Twig_Filter_Method(
+                $this,
+                'parseIconsFilter',
+                array('pre_escape' => 'html', 'is_safe' => array('html'))
+            ),
+            'icon'          => new Twig_Filter_Method(
+                $this,
+                'iconFilter',
+                array('pre_escape' => 'html', 'is_safe' => array('html'))
+            )
         );
     }
 
