@@ -22,11 +22,12 @@
     {% else %}
         <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
     {% endif %}
-    {% if attr.help_block is defined %}
-        {{ block('help_block') }}
-    {% endif %}
-    {% if attr.help is defined %}
+    {% if attr.help is defined and attr.help is not empty %}
         {{ block('help_inline') }}
+    {% endif %}
+    {{ form_errors(form) }}
+    {% if attr.help_block is defined and attr.help_block is not empty %}
+        {{ block('help_block') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
@@ -43,7 +44,7 @@
         </span>
         {% set append_input = attr.append_input|trans({}, translation_domain) %}
         {% set attr = attr|merge({'prepend_input': '', 'append_input': ''}) %}
-        {{ block('form_widget_simple') }}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
         <span class="add-on">
         {% if attr.append_input.icon is defined and attr.append_input.icon is not empty %}
             <i class="{{ attr.append_input.icon }}"></i>
@@ -66,7 +67,7 @@
     {% endif %}
     </span>
         {% set attr = attr|merge({'prepend_input': ''}) %}
-        {{ block('form_widget_simple') }}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
     </div>
 {% endspaceless %}
 {% endblock form_widget_prepend_input %}
@@ -76,7 +77,7 @@
     <div class="input-append">
         {% set append_input = attr.append_input|trans({}, translation_domain) %}
         {% set attr = attr|merge({'append_input': ''}) %}
-        {{ block('form_widget_simple') }}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
         <span class="add-on">
         {% if attr.append_input.icon is defined and attr.append_input.icon is not empty %}
             <i class="{{ attr.append_input.icon }}"></i>
@@ -431,7 +432,6 @@
         {{ form_label(form) }}
         <div class="controls">
             {{ form_widget(form) }}
-            {{ form_errors(form) }}
         </div>
     </div>
 {% endspaceless %}
