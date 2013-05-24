@@ -350,7 +350,7 @@
         {% if label is empty %}
             {% set label = name|humanize %}
         {% endif %}
-        {% if type is defined and type == 'form' %}
+        {% if original_type is defined and original_type == 'form' %}
             <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</legend>
         {% else %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
