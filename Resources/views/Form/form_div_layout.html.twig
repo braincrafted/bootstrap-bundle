@@ -235,6 +235,7 @@
             {{ form_errors(form.time) }}
             {{ form_widget(form.date, { 'attr':  { 'placeholder': 'Date' }|merge(dateAttr) }) }}&nbsp;
             {{ form_widget(form.time, { 'attr': { 'placeholder': 'Time' }|merge(timeAttr) }) }}
+            {{ form_errors(form) }}
         </div>
     {% endif %}
 {% endspaceless %}
