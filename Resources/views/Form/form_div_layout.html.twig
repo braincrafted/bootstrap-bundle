@@ -13,6 +13,9 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
+    {% if attr.placeholder is defined %}
+        {% set attr = attr|merge({'placeholder': attr.placeholder|trans({}, translation_domain) }) %}
+    {% endif %}
     {% if attr.prepend_input is defined and attr.append_input is defined and attr.prepend_input is not empty and attr.append_input is not empty %}
         {{ block('form_widget_prepend_append_input') }}
     {% elseif attr.prepend_input is defined and attr.prepend_input is not empty %}
