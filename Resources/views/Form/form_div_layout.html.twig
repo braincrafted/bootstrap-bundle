@@ -340,7 +340,7 @@
 {% spaceless %}
     {% set type = type|default('submit') %}
     {% if attr['class'] is not defined %}
-        {% set attr = attr|merge({'class':'btn btn-primary pull-right'}) %}
+        {% set attr = attr|merge({'class':'btn btn-primary'}) %}
     {% endif %}
     {{ block('button_widget') }}
 {% endspaceless %}
@@ -349,7 +349,7 @@
 {% block button_widget %}
 {% spaceless %}
     {% if attr.class is not defined %}
-        {% set attr = attr|merge({'class':'btn pull-right'}) %}
+        {% set attr = attr|merge({'class':'btn'}) %}
     {% endif %}
 
     {% if label is empty %}
