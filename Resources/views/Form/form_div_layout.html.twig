@@ -337,6 +337,31 @@
 {% endspaceless %}
 {% endblock email_widget %}
 
+{# Buttons #}
+
+{% block submit_widget %}
+{% spaceless %}
+    {% set type = type|default('submit') %}
+    {% if attr['class'] is not defined %}
+        {% set attr = attr|merge({'class':'btn btn-primary'}) %}
+    {% endif %}
+    {{ block('button_widget') }}
+{% endspaceless %}
+{% endblock submit_widget %}
+
+{% block button_widget %}
+{% spaceless %}
+    {% if attr.class is not defined %}
+        {% set attr = attr|merge({'class':'btn'}) %}
+    {% endif %}
+
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+{% endspaceless %}
+{% endblock button_widget %}
+
 {# Labels #}
 
 {% block form_label %}
