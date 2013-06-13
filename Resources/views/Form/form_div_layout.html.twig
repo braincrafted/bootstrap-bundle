@@ -1,3 +1,23 @@
+{% block form_start %}
+{% spaceless %}
+    {% set method = method|upper %}
+    {% if method in ["GET", "POST"] %}
+        {% set form_method = method %}
+    {% else %}
+        {% set form_method = "POST" %}
+    {% endif %}
+    {% if form_type is defined %}
+    	{% set attr_form = attr|merge({'class': (attr.class|default('') ~ ' form-' ~ form_type)|trim}) %}
+    {% else %}
+    	{% set attr_form = attr %}
+    {% endif %}
+    <form method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr_form %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {% if form_method != method %}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {% endif %}
+{% endspaceless %}
+{% endblock form_start %}
+
 {# Widgets #}
 
 {% block form_widget %}
@@ -358,7 +378,16 @@
     {% if label is empty %}
         {% set label = name|humanize %}
     {% endif %}
-    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+
+    {% if form_type is defined and form_type == 'horizontal' %}
+    <div class="control-group{% if validation_state is defined %} {{validation_state}}{% endif %}">
+        <div class="controls">
+    {% endif %}
+		    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+    {% if form_type is defined and form_type == 'horizontal' %}
+        </div>
+    </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock button_widget %}
 
