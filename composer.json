@@ -1,5 +1,5 @@
 {
-    "name":         "braincrafted/bootstrap-bundle",
+    "name":         "piotrpasich/bootstrap-bundle",
     "version":      "1.4.2",
     "description":  "Twitter Bootstrap for Symfony2",
     "keywords":     ["bootstrap"],
