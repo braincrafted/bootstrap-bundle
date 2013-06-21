@@ -73,15 +73,15 @@
     ================================================== -->
     <div class="row-fluid">
         {% block mainbody %}
-        <div class="span4 bs-docs-sidebar visible-tablet visible-phone">
+        <div class="span3 bs-docs-sidebar">
             {% block bootstrap_leftmenu %}
-            <ul class="nav nav-list bs-docs-sidenav sidebar-nav">
+            <ul class="nav nav-list bs-docs-sidenav sidebar-nav visible-tablet visible-phone">
                 <li><a class="" href="#home"><i class="icon-chevron-right"></i> Home</a></li>
                 <li><a class="" href="#getting-started"><i class="icon-chevron-right"></i> Getting strarted?</a></li>
             </ul>
             {% endblock %}
         </div>
-        <div class="span8">
+        <div class="span9">
             <section>
             {% block body %}
                 <section id="contents">
