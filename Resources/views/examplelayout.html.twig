@@ -7,21 +7,22 @@
 
     {% block stylesheets %}
         {% stylesheets
-            'bundles/bcbootstrap/css/bootstrap.css'
-            'bundles/bcbootstrap/css/bootstrap-responsive.css'
-            'bundles/bcbootstrap/css/docs.css' filter='cssrewrite'
+        'bundles/bcbootstrap/css/bootstrap.css'
+        'bundles/bcbootstrap/css/bootstrap-responsive.css'
+        'bundles/bcbootstrap/css/docs.css' filter='cssrewrite'
         %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock %}
 
-    {% javascripts
-        '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
-        'bundles/bcbootstrap/js/bootstrap.js'
-    %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% block javascriptstop %}
+        {% javascripts
+            '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+            'bundles/bcbootstrap/js/bootstrap.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
