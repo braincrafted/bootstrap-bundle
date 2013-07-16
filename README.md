@@ -77,10 +77,17 @@ Compatibility
 - **BcBootstrapBundle v1.4.***
     - Twitter Bootstrap v2.3.*
     - Symfony 2.2.*
+- **BcBootstrapBundle v2.0**
+    - Bootstrap v3.0.*
+    - Symfony v2.3.*
 
 
 Changelog
 ---------
+
+## Version 2.0.0
+
+- Remove `include_responsive` option because Bootstrap 3.0.0 no longer has a not responsive version
 
 ### Version 1.4.0
 
