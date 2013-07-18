@@ -1,9 +1,13 @@
-BcBootstrapBundle
+[BcBootstrapBundle](http://bootstrap.braincrafted.com)
 =================
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
+
+## BcBootstrapBundle 2.0 is in an early development phase
+
+Do not use, there is still a lot of stuff missing.
 
 
 About
@@ -87,7 +91,10 @@ Changelog
 
 ## Version 2.0.0
 
+- Updated to Bootstrap 3.0.0
 - Remove `include_responsive` option because Bootstrap 3.0.0 no longer has a not responsive version
+- Added `boostrap_money` form type that uses Bootstraps prepend or append style to display the currency
+- `percent` form type uses Bootstraps append style to display the percent sign
 
 ### Version 1.4.0
 

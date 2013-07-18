@@ -13,6 +13,10 @@ services:
         class: Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension
         tags:
             - { name: twig.extension }
+    bc_bootstrap.twig.form_extension:
+        class: Bc\Bundle\BootstrapBundle\Twig\BootstrapFormExtension
+        tags:
+            - { name: twig.extension }
 
     bc_bootstrap.flash:
         class: Bc\Bundle\BootstrapBundle\Session\FlashMessage
@@ -23,6 +27,11 @@ services:
         class: Bc\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType
         tags:
             - { name: form.type, alias: bootstrap_collection }
+
+    bc_bootstrap.form.type.money:
+        class: Bc\Bundle\BootstrapBundle\Form\Type\BootstrapMoneyType
+        tags:
+            - { name: form.type, alias: bootstrap_money }
 
     bc_bootstrap.form.extension.typesetter_extension:
         class: Bc\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension
