@@ -12,8 +12,16 @@
 
 {% block form_widget_simple %}
 {% spaceless %}
+    {% if simple_col %}
+        <div class="col-lg-{{ simple_col }}">
+    {% endif %}
+
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+
+    {% if simple_col %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
@@ -67,6 +75,10 @@
 
 {% block choice_widget_collapsed %}
 {% spaceless %}
+    {% if simple_col %}
+        <div class="col-{{ simple_col }}">
+    {% endif %}
+
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
         {% if empty_value is not none %}
             <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% else %} value=""{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
@@ -81,6 +93,10 @@
         {% set options = choices %}
         {{ block('choice_widget_options') }}
     </select>
+
+    {% if simple_col %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock choice_widget_collapsed %}
 
@@ -117,10 +133,14 @@
         {{ block('form_widget_simple') }}
     {% else %}
         <div {{ block('widget_container_attributes') }}>
+            <div class="col-sm-8">
+                {{ form_widget(form.date) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_widget(form.time) }}
+            </div>
             {{ form_errors(form.date) }}
             {{ form_errors(form.time) }}
-            {{ form_widget(form.date) }}
-            {{ form_widget(form.time) }}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -133,9 +153,9 @@
     {% else %}
         <div {{ block('widget_container_attributes') }}>
             {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year),
-                '{{ month }}': form_widget(form.month),
-                '{{ day }}':   form_widget(form.day),
+                '{{ year }}':  form_widget(form.year, { 'simple_col': 4}),
+                '{{ month }}': form_widget(form.month, { 'simple_col': 4}),
+                '{{ day }}':   form_widget(form.day, { 'simple_col': 4}),
             })|raw }}
         </div>
     {% endif %}
@@ -148,8 +168,11 @@
         {{ block('form_widget_simple') }}
     {% else %}
         {% set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} %}
+        {% set attr = attr|merge({ 'class': 'bootstrap-time' }) %}
         <div {{ block('widget_container_attributes') }}>
-            {{ form_widget(form.hour, vars) }}{% if with_minutes %}:{{ form_widget(form.minute, vars) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, vars) }}{% endif %}
+            {{ form_widget(form.hour, vars) }}
+            {% if with_minutes %}:{{ form_widget(form.minute, vars) }}{% endif %}
+            {% if with_seconds %}:{{ form_widget(form.second, vars) }}{% endif %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -258,8 +281,11 @@
         {% if not style %}
             {% set style = bootstrap_get_style() %}
         {% endif %}
+        {% if not label_col %}
+            {% set label_col = 2 %}
+        {% endif %}
         {% if style == 'horizontal' %}
-            {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-lg-2 control-label')|trim }) %}
+            {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label col-lg-' ~ label_col)|trim }) %}
         {% endif %}
 
         {% if not compound %}
@@ -295,10 +321,16 @@
     {% if not style %}
         {% set style = bootstrap_get_style() %}
     {% endif %}
+    {% if not label_col %}
+        {% set label_col = 2 %}
+    {% endif %}
+    {% if not widget_col %}
+        {% set widget_col = 10 %}
+    {% endif %}
     {% if style == 'horizontal' %}
         <div class="row">
             {{ form_label(form) }}
-            <div class="col-lg-10">
+            <div class="col-lg-{{ widget_col }}">
                 {{ form_widget(form) }}
                 {{ form_errors(form) }}
             </div>
