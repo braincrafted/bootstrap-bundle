@@ -170,7 +170,7 @@
 {% endspaceless %}
 {% endblock integer_widget %}
 
-{% block bootstrap_money_widget %}
+{% block money_widget %}
 {% spaceless %}
     <div class="input-group">
         {{ money_pattern|replace({
@@ -180,7 +180,7 @@
         })|raw }}
     </div>
 {% endspaceless %}
-{% endblock bootstrap_money_widget %}
+{% endblock money_widget %}
 
 {% block url_widget %}
 {% spaceless %}

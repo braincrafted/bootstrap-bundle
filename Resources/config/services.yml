@@ -29,9 +29,9 @@ services:
             - { name: form.type, alias: bootstrap_collection }
 
     bc_bootstrap.form.type.money:
-        class: Bc\Bundle\BootstrapBundle\Form\Type\BootstrapMoneyType
+        class: Bc\Bundle\BootstrapBundle\Form\Type\MoneyType
         tags:
-            - { name: form.type, alias: bootstrap_money }
+            - { name: form.type, alias: money }
 
     bc_bootstrap.form.extension.typesetter_extension:
         class: Bc\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension

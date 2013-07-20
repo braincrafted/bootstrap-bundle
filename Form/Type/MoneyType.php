@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\MoneyToLocalizedString
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BootstrapMoneyType extends BaseMoneyType
+class MoneyType extends BaseMoneyType
 {
     /**
      * {@inheritdoc}
@@ -25,7 +25,7 @@ class BootstrapMoneyType extends BaseMoneyType
      */
     public function getName()
     {
-        return 'bootstrap_money';
+        return 'money';
     }
 
     /**
