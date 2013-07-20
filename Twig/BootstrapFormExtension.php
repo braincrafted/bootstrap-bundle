@@ -13,12 +13,17 @@ use Symfony\Component\Form\Extension\Core\View\ChoiceView;
  */
 class BootstrapFormExtension extends \Twig_Extension
 {
+    /** @var string */
+    private $style;
+
     /**
      * {@inheritdoc}
      */
     public function getFunctions()
     {
         return array(
+            new \Twig_SimpleFunction('bootstrap_set_style', [$this, 'setStyle']),
+            new \Twig_SimpleFunction('bootstrap_get_style', [$this, 'getStyle'])
         );
     }
 
@@ -28,5 +33,15 @@ class BootstrapFormExtension extends \Twig_Extension
     public function getName()
     {
         return 'bootstrap_form';
+    }
+
+    public function setStyle($style)
+    {
+        $this->style = $style;
+    }
+
+    public function getStyle()
+    {
+        return $this->style;
     }
 }

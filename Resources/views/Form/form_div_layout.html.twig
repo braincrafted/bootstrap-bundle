@@ -255,7 +255,10 @@
 {% block form_label %}
 {% spaceless %}
     {% if label is not sameas(false) %}
-        {% if style is defined and style == 'horizontal' %}
+        {% if not style %}
+            {% set style = bootstrap_get_style() %}
+        {% endif %}
+        {% if style == 'horizontal' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-lg-2 control-label')|trim }) %}
         {% endif %}
 
@@ -289,7 +292,10 @@
 
 {% block form_row %}
 {% spaceless %}
-    {% if style is defined and style == 'horizontal' %}
+    {% if not style %}
+        {% set style = bootstrap_get_style() %}
+    {% endif %}
+    {% if style == 'horizontal' %}
         <div class="row">
             {{ form_label(form) }}
             <div class="col-lg-10">
@@ -339,8 +345,9 @@
         {% set form_method = "POST" %}
     {% endif %}
 
-    {% if style is defined %}
+    {% if style %}
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-horizontal')|trim }) %}
+        {{ bootstrap_set_style(style) }}
     {% endif %}
 
     <form method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
@@ -356,6 +363,9 @@
         {{ form_rest(form) }}
     {% endif %}
     </form>
+    {% if bootstrap_get_style() %}
+        {{ bootstrap_set_style('') }}
+    {% endif %}
 {% endspaceless %}
 {% endblock form_end %}
 
