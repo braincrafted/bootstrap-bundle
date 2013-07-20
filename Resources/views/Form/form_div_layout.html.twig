@@ -115,6 +115,78 @@
 {% endspaceless %}
 {% endblock choice_widget_options %}
 
+{% block checkbox_row %}
+{% spaceless %}
+    {% set class = '' %}
+    {% if align_with_widget or attr.align_with_widget %}
+        {% set widget_col = widget_col|default(10) %}
+        {% set label_col = label_col|default(2) %}
+        {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
+        <div class="row">
+            <div class="{{ class }}">
+    {% endif %}
+    <div class="checkbox">
+        {% if label is not sameas(false) %}
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{ block('checkbox_widget') }}
+                {{ label|trans({}, translation_domain) }}
+            </label>
+        {% else %}
+            {{ block('checkbox_widget') }}
+        {% endif %}
+    </div>
+    {% if align_with_widget or attr.align_with_widget %}
+            </div>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock checkbox_row %}
+
+{% block radio_row %}
+{% spaceless %}
+    {% set class = '' %}
+    {% if align_with_widget or attr.align_with_widget %}
+        {% set widget_col = widget_col|default(10) %}
+        {% set label_col = label_col|default(2) %}
+        {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
+        <div class="row">
+            <div class="{{ class }}">
+    {% endif %}
+    <div class="radio">
+        {% if label is not sameas(false) %}
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{ block('radio_widget') }}
+                {{ label|trans({}, translation_domain) }}
+            </label>
+        {% else %}
+            {{ block('radio_widget') }}
+        {% endif %}
+    {% if align_with_widget or attr.align_with_widget %}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock radio_row %}
+
 {% block checkbox_widget %}
 {% spaceless %}
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
