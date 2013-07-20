@@ -66,8 +66,11 @@
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {{ form_widget(child) }}
-        {{ form_label(child) }}
+        {% if form.multiple %}
+            {{ checkbox_row(child) }}
+        {% else %}
+            {{ radio_row(child) }}
+        {% endif %}
     {% endfor %}
     </div>
 {% endspaceless %}

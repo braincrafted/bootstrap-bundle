@@ -23,7 +23,9 @@ class BootstrapFormExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('bootstrap_set_style', [$this, 'setStyle']),
-            new \Twig_SimpleFunction('bootstrap_get_style', [$this, 'getStyle'])
+            new \Twig_SimpleFunction('bootstrap_get_style', [$this, 'getStyle']),
+            'checkbox_row'  => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            'radio_row'  => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
         );
     }
 
