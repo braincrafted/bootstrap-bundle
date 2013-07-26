@@ -169,11 +169,14 @@
 
 {% block choice_widget %}
 {% spaceless %}
-    {% if expanded %}
-        {{ block('choice_widget_expanded') }}
-    {% else %}
-        {{ block('choice_widget_collapsed') }}
-    {% endif %}
+      <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
+      {{ form_errors(form) }}
+      {% if expanded %}
+          {{ block('choice_widget_expanded') }}
+      {% else %}
+          {{ block('choice_widget_collapsed') }}
+      {% endif %}
+      </div>
 {% endspaceless %}
 {% endblock choice_widget %}
 
