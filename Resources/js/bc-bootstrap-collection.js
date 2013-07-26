@@ -54,19 +54,11 @@
     };
 
     CollectionRemove.prototype.removeField = function (e) {
-        var $this = $(this),
-            selector = $this.attr('data-field'),
-            $parent
-        ;
-
-        $parent = $(selector);
+        var $this = $(this);
 
         e && e.preventDefault();
 
-        console.log($('#' + selector));
-        console.log($('#' + selector).parent());
-
-        var listElement = $('#' + selector).parent().remove();
+        var listElement = $this.closest('li').remove();
     }
 
 
