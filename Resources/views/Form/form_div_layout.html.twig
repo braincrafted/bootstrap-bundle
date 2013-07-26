@@ -479,8 +479,10 @@
     {% elseif form_type is defined and form_type == 'horizontal' %}
         {{ block('horizontal_row') }}
     {% else %}
+        <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
         {{ form_label(form) }}
         {{ form_widget(form) }}
+        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
