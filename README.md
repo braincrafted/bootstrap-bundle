@@ -55,7 +55,7 @@ This bundle does no longer contain the asset files from Twitter Bootstrap (image
 
     {
        "require": {
-            "twitter/bootstrap": "2.3.*"
+            "twbs/bootstrap": "2.3.*"
         }
     }
 
