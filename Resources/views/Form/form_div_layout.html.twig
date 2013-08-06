@@ -394,6 +394,7 @@
 {# Labels #}
 
 {% block form_label %}
+{% if label is not sameas(false) %}
 {% spaceless %}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
@@ -418,6 +419,7 @@
 {% endblock form_label %}
 
 {% block checkbox_label %}
+{% if label is not sameas(false) %}
 {% spaceless %}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
@@ -436,9 +438,11 @@
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_widget(form) }} {{ label|trans({}, translation_domain) }}
     </label>
+{% endif %}
 {% endblock checkbox_label %}
 
 {% block radio_label %}
+{% if label is not sameas(false) %}
 {% spaceless %}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
@@ -457,6 +461,7 @@
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_widget(form) }} {{ label|trans({}, translation_domain) }}
     </label>
+{% endif %}
 {% endblock radio_label %}
 
 
