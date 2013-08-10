@@ -197,12 +197,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     private function buildAsseticBootstrapCssWithoutLessConfig(array $config)
     {
         $inputs = array(
-            $config['assets_dir'].'/docs/assets/css/bootstrap.css',
+            $config['assets_dir'].'/dist/css/bootstrap.css',
         );
-
-        if ($config['include_responsive'] === true) {
-            $inputs[] = $config['assets_dir'].'/docs/assets/css/bootstrap-responsive.css';
-        }
 
         return array(
             'inputs'        => $inputs,
@@ -216,10 +212,6 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
         $inputs = array(
             $config['assets_dir'].'/less/bootstrap.less'
         );
-
-        if ($config['include_responsive'] === true) {
-            $inputs[] = $config['assets_dir'].'/less/responsive.less';
-        }
 
         $inputs[] = __DIR__.'/../Resources/less/form.less';
 
