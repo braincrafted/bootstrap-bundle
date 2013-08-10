@@ -28,7 +28,7 @@
 
 {% block list %}
 {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
-    {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' nav')|trim}) %}
+    {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' nav navbar-nav')|trim}) %}
 
     {% set listClass = '' %}
     {% if options.nav_type is defined and options.nav_type == 'tabs' %}
