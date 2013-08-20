@@ -32,6 +32,9 @@
 
 {% block form_widget_simple %}
 {% spaceless %}
+    {% if type != 'file' %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {% endif %}
     {% set type = type|default('text') %}
     {% if attr.placeholder is defined %}
         {% set attr = attr|merge({'placeholder': attr.placeholder|trans({}, translation_domain) }) %}
@@ -422,7 +425,6 @@
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
     {% endif %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' checkbox')|trim}) %}
     {% if attr.inline is defined and attr.inline %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
     {% endif %}
@@ -479,7 +481,7 @@
     {% elseif form_type is defined and form_type == 'horizontal' %}
         {{ block('horizontal_row') }}
     {% else %}
-        <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
+        <div class="form-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
         {{ form_label(form) }}
         {{ form_widget(form) }}
         </div>
@@ -511,8 +513,10 @@
     {% if form_type is defined and form_type == 'horizontal' %}
         {{ block('horizontal_checkbox_row') }}
     {% else %}
-        {{ form_label(form) }}
-        {{ form_errors(form) }}
+        <div class="checkbox">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock checkbox_row %}
