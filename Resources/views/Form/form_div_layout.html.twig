@@ -407,7 +407,7 @@
     {% if form_type is defined and form_type == 'inline' %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
     {% elseif form_type is defined and form_type == 'horizontal' %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-lg-2 control-label')|trim}) %}
     {% endif %}
     {% if label is not sameas(false) %}
         {% if label is empty %}
@@ -499,9 +499,9 @@
 
 {% block horizontal_row %}
 {% spaceless %}
-    <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
+    <div class="form-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
         {{ form_label(form) }}
-        <div class="controls">
+        <div class="col-lg-10">
             {{ form_widget(form) }}
         </div>
     </div>
@@ -530,10 +530,12 @@
 
 {% block horizontal_checkbox_row %}
 {% spaceless %}
-    <div class="control-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
-        <div class="controls">
-            {{ form_label(form) }}
-            {{ form_errors(form) }}
+    <div class="form-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
+        <div class="col-lg-offset-2 col-lg-10">
+            <div class="checkbox">
+                {{ form_label(form) }}
+                {{ form_errors(form) }}
+            </div>
         </div>
     </div>
 {% endspaceless %}
