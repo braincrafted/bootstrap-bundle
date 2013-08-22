@@ -386,7 +386,7 @@
     <div class="control-group{% if validation_state is defined %} {{validation_state}}{% endif %}">
         <div class="controls">
     {% endif %}
-		    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
     {% if form_type is defined and form_type == 'horizontal' %}
         </div>
     </div>
@@ -404,7 +404,9 @@
     {% if required %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
     {% endif %}
-    {% if form_type is defined and form_type == 'horizontal' %}
+    {% if form_type is defined and form_type == 'inline' %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
+    {% elseif form_type is defined and form_type == 'horizontal' %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
     {% endif %}
     {% if label is not sameas(false) %}
@@ -476,22 +478,24 @@
 
 {% block form_row %}
 {% spaceless %}
-    {% if form_type is defined and form_type == 'inline' %}
-        {{ block('inline_row') }}
-    {% elseif form_type is defined and form_type == 'horizontal' %}
+    {% if form_type is defined and form_type == 'horizontal' %}
         {{ block('horizontal_row') }}
     {% else %}
         <div class="form-group{% if errors|length %} error{% endif %}{% if validation_state is defined %} {{validation_state}}{% endif %}">
-        {{ form_label(form) }}
-        {{ form_widget(form) }}
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
         </div>
+        {#-
+        Try everything to render just one space after the div, but for some
+        reason more are displayed, so it doesn't look exactly like it should.
+        If anyone knows how to fix this, please do.
+        -#}
+        {% if form_type is defined and form_type == 'inline' %}
+            {{- '&nbsp;' -}}
+        {% endif %}
     {% endif %}
 {% endspaceless %}
 {% endblock form_row %}
-
-{% block inline_row %}
-    {{ form_widget(form) }}&nbsp;
-{% endblock inline_row %}
 
 {% block horizontal_row %}
 {% spaceless %}
@@ -517,6 +521,9 @@
             {{ form_label(form) }}
             {{ form_errors(form) }}
         </div>
+        {%- if form_type is defined and form_type == 'inline' %}
+            {{- '&nbsp;' -}}
+        {% endif %}
     {% endif %}
 {% endspaceless %}
 {% endblock checkbox_row %}
@@ -542,6 +549,10 @@
 {% block hidden_row %}
     {{ form_widget(form) }}
 {% endblock hidden_row %}
+
+{% block submit_row %}
+    {{ form_widget(form) }}
+{% endblock submit_row %}
 
 {# Misc #}
 
