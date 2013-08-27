@@ -185,13 +185,20 @@
 {% spaceless %}
     {% set child_vars = {'attr': attr} %}
     {% for child in form %}
-        {{ form_label(child, null, child_vars) }}
+        {% if attr.inline is defined and attr.inline %}
+            {{ form_label(child, null, child_vars) }}
+        {% else %}
+            <div class="{% if multiple %}checkbox{% else %}radio{% endif %}">
+                {{ form_label(child, null, child_vars) }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
 {% block choice_widget_collapsed %}
 {% spaceless %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
         {% if empty_value is not none %}
             <option value="">{{ empty_value|trans({}, translation_domain) }}</option>
@@ -429,7 +436,7 @@
         {% set label_attr = label_attr|merge({'for': id}) %}
     {% endif %}
     {% if attr.inline is defined and attr.inline %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' checkbox-inline')|trim}) %}
     {% endif %}
     {% if required %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
@@ -448,7 +455,6 @@
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
     {% endif %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' radio')|trim}) %}
     {% if attr.inline is defined and attr.inline %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' inline')|trim}) %}
     {% endif %}
