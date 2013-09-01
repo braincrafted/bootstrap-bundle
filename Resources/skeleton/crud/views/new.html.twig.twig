@@ -1,0 +1,22 @@
+{% block extends %}
+{{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block body %}" }}
+    <h1>{{ entity }} creation</h1>
+
+    <form class="form-horizontal" action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
+        {{ "{{ form_widget(form, {'form_type': 'horizontal'}) }}" }}
+        <div class="control-group">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create</button>
+                {% set hide_edit, hide_delete = true, true %}
+                {% include 'crud/views/others/record_actions.html.twig.twig' %}
+            </div>
+        </div>
+    </form>
+
+{{ "{% endblock %}" }}
+
+{% endblock body %}

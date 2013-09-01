@@ -1,0 +1,17 @@
+<a class="btn" href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}">
+    Back to the list
+</a>
+
+
+{% if ('edit' in actions) and (not hide_edit) %}
+    <a class="btn btn-success" href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { 'id': entity.id }) }}" }}">
+        Edit
+    </a>
+{% endif %}
+{% if ('delete' in actions) and (not hide_delete) %}
+    <form action="{{ "{{ path('" ~ route_name_prefix ~ "_delete', { 'id': entity.id }) }}" }}" method="post" style="float:right">
+        <button class="btn btn-danger" type="submit" onclick="return confirm('Do you really want to remove this element?');">Delete</button>
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ '{{ form_widget(delete_form) }}' }}
+    </form>
+{% endif %}
