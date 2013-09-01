@@ -168,7 +168,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     private function buildAsseticConfig(array $config)
     {
         return array(
-//            'bootstrap_css' => $this->buildAsseticBootstrapCssConfig($config),
+            'bootstrap_css' => $this->buildAsseticBootstrapCssConfig($config),
             'bootstrap_js'  => $this->buildAsseticBootstrapJsConfig($config),
             'jquery'        => $this->buildAsseticJqueryConfig($config)
         );

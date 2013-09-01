@@ -62,6 +62,34 @@ This bundle does no longer contain the asset files from Twitter Bootstrap (image
 You can find a detailed description in the documentation.
 
 
+Example layout
+------------
+
+There is created example layout using twitter bootstrap styles in resources.
+After successful installation you can start with prepared example layout based on bootstrap's home page.
+
+To do this, you need to extend your base layotu file in app/Resources/views/base.html.twig by:
+
+```
+    {% extends 'BcBootstrapBundle::examplelayout.html.twig' %}
+```
+
+And that's it.
+
+
+CRUD generator
+------------
+
+Because CRUD generator in Symfony framework has own structure and after generating a developer should always change some classes and code inside the code there is created new generator command in command line.
+
+It works in the same way as the oryginal enerator in Symfony, but generates templates dedicated for twitter bootstrap.
+
+
+```
+    bc:doctrine:crud
+    bc:generate:crud
+```
+
 More Information
 ----------------
 
@@ -93,6 +121,11 @@ Changelog
 - Improved code style (usage of PHP_CodeSniffer and PHPMD)
 - Support for `data-prototype` option in collection fields
 - Helper and template for flash messages
+
+### Version 1.4.1
+
+- Added CRUD generator for example layout
+- Added example layout
 
 License
 -------
