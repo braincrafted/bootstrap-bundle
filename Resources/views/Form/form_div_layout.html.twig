@@ -32,10 +32,10 @@
 
 {% block form_widget_simple %}
 {% spaceless %}
+    {% set type = type|default('text') %}
     {% if type != 'file' %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {% endif %}
-    {% set type = type|default('text') %}
     {% if attr.placeholder is defined %}
         {% set attr = attr|merge({'placeholder': attr.placeholder|trans({}, translation_domain) }) %}
     {% endif %}
