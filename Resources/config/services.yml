@@ -26,7 +26,7 @@ services:
     bc_bootstrap.form.type.collection:
         class: Bc\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType
         tags:
-            - { name: form.type, alias: bootstrap_collection }
+            - { name: form.type, alias: bc_collection }
 
     bc_bootstrap.form.type.money:
         class: Bc\Bundle\BootstrapBundle\Form\Type\MoneyType

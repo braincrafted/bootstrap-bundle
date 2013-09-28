@@ -69,6 +69,6 @@ class BootstrapCollectionType extends AbstractType
      */
     public function getName()
     {
-        return 'bootstrap_collection';
+        return 'bc_collection';
     }
 }
