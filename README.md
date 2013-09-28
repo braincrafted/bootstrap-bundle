@@ -55,7 +55,7 @@ This bundle does no longer contain the asset files from Twitter Bootstrap (image
 
     {
        "require": {
-            "twbs/bootstrap": "2.3.*"
+            "twbs/bootstrap": "3.0.*"
         }
     }
 
@@ -77,10 +77,22 @@ Compatibility
 - **BcBootstrapBundle v1.4.***
     - Twitter Bootstrap v2.3.*
     - Symfony 2.2.*
+- **BcBootstrapBundle v1.5.***
+    - Bootstrap v3.0.*
+    - Symfony 2.2.*
 
 
 Changelog
 ---------
+
+### Version 1.5.0
+
+- Works with new Bootstrap repository `twbs/bootstrap`
+- Basic support for Bootstrap v3.0
+- Allow override options in menus
+- Extend from base form layout
+- Fixed problems with removing elemnts in JavaScript collection form type
+- Various other bugfixes
 
 ### Version 1.4.0
 

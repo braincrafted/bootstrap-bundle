@@ -197,12 +197,8 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     private function buildAsseticBootstrapCssWithoutLessConfig(array $config)
     {
         $inputs = array(
-            $config['assets_dir'].'/docs/assets/css/bootstrap.css',
+            $config['assets_dir'].'/dist/css/bootstrap.css',
         );
-
-        if ($config['include_responsive'] === true) {
-            $inputs[] = $config['assets_dir'].'/docs/assets/css/bootstrap-responsive.css';
-        }
 
         return array(
             'inputs'        => $inputs,
@@ -217,10 +213,6 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
             $config['assets_dir'].'/less/bootstrap.less'
         );
 
-        if ($config['include_responsive'] === true) {
-            $inputs[] = $config['assets_dir'].'/less/responsive.less';
-        }
-
         $inputs[] = __DIR__.'/../Resources/less/form.less';
 
         return array(
@@ -234,19 +226,18 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     {
         return array(
             'inputs'        => array(
-                $config['assets_dir'].'/js/bootstrap-transition.js',
-                $config['assets_dir'].'/js/bootstrap-alert.js',
-                $config['assets_dir'].'/js/bootstrap-button.js',
-                $config['assets_dir'].'/js/bootstrap-carousel.js',
-                $config['assets_dir'].'/js/bootstrap-collapse.js',
-                $config['assets_dir'].'/js/bootstrap-dropdown.js',
-                $config['assets_dir'].'/js/bootstrap-modal.js',
-                $config['assets_dir'].'/js/bootstrap-tooltip.js',
-                $config['assets_dir'].'/js/bootstrap-popover.js',
-                $config['assets_dir'].'/js/bootstrap-scrollspy.js',
-                $config['assets_dir'].'/js/bootstrap-tab.js',
-                $config['assets_dir'].'/js/bootstrap-typeahead.js',
-                $config['assets_dir'].'/js/bootstrap-affix.js',
+                $config['assets_dir'].'/js/transition.js',
+                $config['assets_dir'].'/js/alert.js',
+                $config['assets_dir'].'/js/button.js',
+                $config['assets_dir'].'/js/carousel.js',
+                $config['assets_dir'].'/js/collapse.js',
+                $config['assets_dir'].'/js/dropdown.js',
+                $config['assets_dir'].'/js/modal.js',
+                $config['assets_dir'].'/js/tooltip.js',
+                $config['assets_dir'].'/js/popover.js',
+                $config['assets_dir'].'/js/scrollspy.js',
+                $config['assets_dir'].'/js/tab.js',
+                $config['assets_dir'].'/js/affix.js',
                 __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
             ),
             'output'        => $config['output_dir'].'/js/bootstrap.js'

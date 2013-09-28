@@ -53,7 +53,6 @@ class Configuration implements ConfigurationInterface
                         ->thenInvalid('Invalid less filter "%s"')
                     ->end()
                 ->end()
-                ->booleanNode('include_responsive')->defaultValue(true)->end()
                 ->arrayNode('auto_configure')
                     ->addDefaultsIfNotSet()
                     ->children()
