@@ -33,8 +33,12 @@
     {% set listClass = '' %}
     {% if options.type is defined and options.type == 'tabs' %}
         {% set listClass = 'nav-tabs' %}
+    {% elseif options.type is defined and options.type == 'tabs_justified' %}
+        {% set listClass = 'nav-tabs nav-justified' %}        
     {% elseif options.type is defined and options.type == 'pills' %}
         {% set listClass = 'nav-pills' %}
+    {% elseif options.type is defined and options.type == 'pills_justified' %}
+        {% set listClass = 'nav-pills nav-justified' %}        
     {% elseif options.type is defined and options.type == 'stacked_tabs' %}
         {% set listClass = 'nav-tabs nav-stacked' %}
     {% elseif options.type is defined and options.type == 'stacked_pills' %}
@@ -43,6 +47,8 @@
         {% set listClass = 'nav-list' %}
     {% elseif options.type is defined and options.type == 'navbar' %}
         {% set listClass = 'navbar-nav' %}
+    {% elseif options.type is defined and options.type == 'navbar_justified' %}
+        {% set listClass = 'nav-justified' %}        
     {% endif %}
 
     {% if options.pull is defined and options.pull == 'right' %}
@@ -112,7 +118,7 @@
     {%- endif %}
     {%- if item.hasChildren and ((options.type is defined and options.type == 'list') or options.currentDepth is not sameas(1)) %}
         {%- set classes = classes|merge(['nav-header']) %}
-    {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'pills', 'navbar'] %}
+    {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'tabs_justified', 'pills', 'pills_justified', 'navbar', 'navbar_justified'] %}
         {%- set classes = classes|merge(['dropdown']) %}
     {%- endif %}
 
@@ -130,7 +136,7 @@
 {# displaying the item #}
     <li{{ _self.attributes(attributes) }}>
         {%- if attributes.divider is defined and attributes.divider is not empty %}
-        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'pills', 'navbar'] and options.currentDepth is sameas(1) %}
+        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'tabs_justified', 'pills', 'pills_justified', 'navbar', 'navbar_justified'] and options.currentDepth is sameas(1) %}
         {{ block('dropdownElement') }}
         {%- elseif item.uri is not empty and ((matcher is defined and not matcher.isCurrent(item)) or options.currentAsLink) %}
         {{ block('linkElement') }}
@@ -145,7 +151,7 @@
         {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
         {%- if item.hasChildren and options.type is defined and (options.type == 'list' or options.currentDepth is not sameas(1)) %}
             {{ block('listList') }}
-        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'pills', 'navbar'] %}
+        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'tabs_justified', 'pills', 'pills_justified', 'navbar', 'navbar_justified'] %}
             {{ block('dropdownList') }}
         {%- else %}
             {{ block('list') }}
