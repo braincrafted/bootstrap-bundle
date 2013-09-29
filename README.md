@@ -6,6 +6,13 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
 
 
+Note
+----
+
+There is currently no stable release that supports Bootstrap 3.0. I'm working on a 2.0 release, which supports Bootstrap 3 and generally improves the bundle. However, it will take some time for get a stable release ready. Please be patient.
+
+In the meantime you can use the bundle, but you should have an understanding on how Symfony2 (especially configuration), Assetic and Composer works to get everything running.
+
 About
 -----
 
@@ -77,10 +84,22 @@ Compatibility
 - **BcBootstrapBundle v1.4.***
     - Twitter Bootstrap v2.3.*
     - Symfony 2.2.*
+- **BcBootstrapBundle v1.5.***
+    - Bootstrap v3.0.*
+    - Symfony 2.2.*
 
 
 Changelog
 ---------
+
+### Version 1.5.0
+
+- Works with new Bootstrap repository `twbs/bootstrap`
+- Basic support for Bootstrap v3.0
+- Allow override options in menus
+- Extend from base form layout
+- Fixed problems with removing elemnts in JavaScript collection form type
+- Various other bugfixes
 
 ### Version 1.4.0
 
