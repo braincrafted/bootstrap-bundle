@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file is part of BcBootstrapBundle.
+ * (c) 2012-2013 by Florian Eckerstorfer
+ */
 
 namespace Bc\Bundle\BootstrapBundle\Form\Type;
 
@@ -10,6 +14,16 @@ use Symfony\Component\Form\Extension\Core\EventListener\ResizeFormListener;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * MoneyType
+ *
+ * @package    BcBootstrapBundle
+ * @subpackage Form
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ */
 class BootstrapCollectionType extends AbstractType
 {
     /**
@@ -17,14 +31,17 @@ class BootstrapCollectionType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_replace($view->vars, array(
-            'allow_add'          => $options['allow_add'],
-            'allow_delete'       => $options['allow_delete'],
-            'add_button_text'    => $options['add_button_text'],
-            'delete_button_text' => $options['delete_button_text'],
-            'widget_col'         => $options['widget_col'],
-            'button_col'         => $options['button_col']
-        ));
+        $view->vars = array_replace(
+            $view->vars,
+            array(
+                'allow_add'          => $options['allow_add'],
+                'allow_delete'       => $options['allow_delete'],
+                'add_button_text'    => $options['add_button_text'],
+                'delete_button_text' => $options['delete_button_text'],
+                'widget_col'         => $options['widget_col'],
+                'button_col'         => $options['button_col']
+            )
+        );
 
         if ($form->getConfig()->hasAttribute('prototype')) {
             $view->vars['prototype'] = $form->getConfig()->getAttribute('prototype')->createView($view);
@@ -55,9 +72,7 @@ class BootstrapCollectionType extends AbstractType
             'options'            => array(),
         ));
 
-        $resolver->setNormalizers(array(
-            'options' => $optionsNormalizer,
-        ));
+        $resolver->setNormalizers(array('options' => $optionsNormalizer));
     }
 
     /**

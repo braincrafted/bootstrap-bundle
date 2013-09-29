@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of BcBootstrapBundle.
- *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
@@ -13,7 +12,6 @@ use Twig_Filter_Method;
 /**
  * BootstrapIconExtension
  *
- * @category   TwigExtension
  * @package    BcBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
@@ -58,6 +56,7 @@ class BootstrapIconExtension extends Twig_Extension
             '/\.icon-([a-z0-9-]+)(\((white|black)\))?/',
             function ($matches) use ($color, $that) {
                 $color = isset($matches[3]) ? $matches[3] : $color;
+
                 return $that->iconFilter($matches[1], $color);
             },
             $text

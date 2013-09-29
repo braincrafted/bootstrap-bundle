@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file is part of BcBootstrapBundle.
+ * (c) 2012-2013 by Florian Eckerstorfer
+ */
 
 namespace Bc\Bundle\BootstrapBundle\Twig;
 
@@ -7,9 +11,14 @@ use Symfony\Bridge\Twig\Form\TwigRendererInterface;
 use Symfony\Component\Form\Extension\Core\View\ChoiceView;
 
 /**
- * BootstrapFormExtension extends Twig with form capabilities.
+ * BootstrapFormExtension
  *
- * @author Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @package    BcBootstrapBundle
+ * @subpackage Twig
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
 class BootstrapFormExtension extends \Twig_Extension
 {
@@ -37,11 +46,21 @@ class BootstrapFormExtension extends \Twig_Extension
         return 'bootstrap_form';
     }
 
+    /**
+     * Sets the style.
+     *
+     * @param string $style Name of the style
+     */
     public function setStyle($style)
     {
         $this->style = $style;
     }
 
+    /**
+     * Returns the style.
+     *
+     * @return string Name of the style
+     */
     public function getStyle()
     {
         return $this->style;

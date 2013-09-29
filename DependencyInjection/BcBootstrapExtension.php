@@ -184,6 +184,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
     private function buildAsseticConfig(array $config)
     {
         $output = array();
+
         if ($config['less_filter'] !== 'none') {
             $output['bootstrap_css'] = $this->buildAsseticBootstrapCssWithLessConfig($config);
         } else {
@@ -191,6 +192,7 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
         }
         $output['bootstrap_js'] = $this->buildAsseticBootstrapJsConfig($config);
         $output['jquery'] = $this->buildAsseticJqueryConfig($config);
+
         return $output;
     }
 

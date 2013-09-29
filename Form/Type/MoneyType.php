@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file is part of BcBootstrapBundle.
+ * (c) 2012-2013 by Florian Eckerstorfer
+ */
 
 namespace Bc\Bundle\BootstrapBundle\Form\Type;
 
@@ -10,6 +14,16 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\MoneyToLocalizedString
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * MoneyType
+ *
+ * @package    BcBootstrapBundle
+ * @subpackage Form
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ */
 class MoneyType extends BaseMoneyType
 {
     /**
@@ -33,6 +47,10 @@ class MoneyType extends BaseMoneyType
      *
      * The pattern contains the placeholder "{{ widget }}" where the HTML tag should
      * be inserted
+     *
+     * @param string $currency
+     *
+     * @return string Returns the pattern
      */
     protected static function getPattern($currency)
     {
@@ -53,20 +71,33 @@ class MoneyType extends BaseMoneyType
             // the spacings between currency symbol and number are ignored, because
             // a single space leads to better readability in combination with input
             // fields
-
             // the regex also considers non-break spaces (0xC2 or 0xA0 in UTF-8)
 
             preg_match('/^([^\s\xc2\xa0]*)[\s\xc2\xa0]*123(?:[,.]0+)?[\s\xc2\xa0]*([^\s\xc2\xa0]*)$/u', $pattern, $matches);
 
-            if (!empty($matches[1])) {
-                self::$patterns[$locale][$currency] = '{{ tag_start }}'.$matches[1].'{{ tag_end }} {{ widget }}';
-            } elseif (!empty($matches[2])) {
-                self::$patterns[$locale][$currency] = '{{ widget }} {{ tag_start }}'.$matches[2].'{{ tag_end }}';
-            } else {
-                self::$patterns[$locale][$currency] = '{{ widget }}';
-            }
+            self::$patterns[$locale][$currency] = self::parsePatternMatches($matches);
         }
 
         return self::$patterns[$locale][$currency];
+    }
+
+    /**
+     * Parses the given pattern matches array and returns the pattern string.
+     *
+     * @param array $matches Pattern matches
+     *
+     * @return string Pattern
+     */
+    protected static function parsePatternMatches(array $matches)
+    {
+        if (!empty($matches[1])) {
+            return '{{ tag_start }}'.$matches[1].'{{ tag_end }} {{ widget }}';
+        }
+
+        if (!empty($matches[2])) {
+            return '{{ widget }} {{ tag_start }}'.$matches[2].'{{ tag_end }}';
+        }
+
+        return '{{ widget }}';
     }
 }
