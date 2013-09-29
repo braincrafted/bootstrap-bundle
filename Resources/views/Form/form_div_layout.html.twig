@@ -62,8 +62,8 @@
 
 {% block form_widget_prepend_append_input %}
 {% spaceless %}
-    <div class="input-prepend input-append">
-        <span class="add-on">
+    <div class="input-group">
+        <span class="input-group-addon">
         {% if attr.prepend_input.icon is defined and attr.prepend_input.icon is not empty %}
             <i class="{{ attr.prepend_input.icon }}"></i>
         {% else %}
@@ -73,7 +73,7 @@
         {% set append_input = attr.append_input|trans({}, translation_domain) %}
         {% set attr = attr|merge({'prepend_input': '', 'append_input': ''}) %}
         <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
-        <span class="add-on">
+        <span class="input-group-addon">
         {% if attr.append_input.icon is defined and attr.append_input.icon is not empty %}
             <i class="{{ attr.append_input.icon }}"></i>
         {% else %}
@@ -86,14 +86,14 @@
 
 {% block form_widget_prepend_input %}
 {% spaceless %}
-    <div class="input-prepend">
-    <span class="add-on">
-    {% if attr.prepend_input.icon is defined and attr.prepend_input.icon is not empty %}
-        <i class="{{ attr.prepend_input.icon }}"></i>
-    {% else %}
-        {{ attr.prepend_input|trans({}, translation_domain) }}
-    {% endif %}
-    </span>
+    <div class="input-group">
+        <span class="input-group-addon">
+        {% if attr.prepend_input.icon is defined and attr.prepend_input.icon is not empty %}
+            <i class="{{ attr.prepend_input.icon }}"></i>
+        {% else %}
+            {{ attr.prepend_input|trans({}, translation_domain) }}
+        {% endif %}
+        </span>
         {% set attr = attr|merge({'prepend_input': ''}) %}
         <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
     </div>
@@ -102,11 +102,11 @@
 
 {% block form_widget_append_input %}
 {% spaceless %}
-    <div class="input-append">
+    <div class="input-group">
         {% set append_input = attr.append_input|trans({}, translation_domain) %}
         {% set attr = attr|merge({'append_input': ''}) %}
         <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
-        <span class="add-on">
+        <span class="input-group-addon">
         {% if attr.append_input.icon is defined and attr.append_input.icon is not empty %}
             <i class="{{ attr.append_input.icon }}"></i>
         {% else %}
