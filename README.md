@@ -6,6 +6,13 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
 
 
+Note
+----
+
+There is currently no stable release that supports Bootstrap 3.0. I'm working on a 2.0 release, which supports Bootstrap 3 and generally improves the bundle. However, it will take some time for get a stable release ready. Please be patient.
+
+In the meantime you can use the bundle, but you should have an understanding on how Symfony2 (especially configuration), Assetic and Composer works to get everything running.
+
 About
 -----
 
