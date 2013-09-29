@@ -501,9 +501,12 @@
             {{ form_widget(form) }}
         </div>
         {#-
-        Try everything to render just one space after the div, but for some
-        reason more are displayed, so it doesn't look exactly like it should.
-        If anyone knows how to fix this, please do.
+        Tried everything to render just one space after the div, but couldn't
+        find a way, extra spaces were added in every case. This causes a
+        minimal difference of a couple of extra pixels added between each widget
+        when the form is displayed inline.
+
+        TODO: If anyone knows how to fix this, please do.
         -#}
         {% if form_type is defined and form_type == 'inline' %}
             {{- '&nbsp;' -}}
