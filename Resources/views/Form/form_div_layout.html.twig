@@ -52,9 +52,9 @@
 {% spaceless %}
     {% if prototype is defined %}
         {% set prototype_html = form_widget(prototype) %}
-        {% set prototype_html = '<div class="col-xs-10">' ~ prototype_html ~ '</div>' %}
+        {% set prototype_html = '<div class="col-xs-' ~ form.vars.widget_col ~ '">' ~ prototype_html ~ '</div>' %}
         {% if form.vars.allow_delete %}
-            {% set prototype_html = prototype_html ~ '<div class="col-xs-2"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text ~ '</a></div>' %}
+            {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text ~ '</a></div>' %}
         {% endif %}
         {% set prototype_html = '<div class="row">' ~ prototype_html ~ '</div>' %}
         {% set attr = attr|merge({'data-prototype': prototype_html }) %}
@@ -64,13 +64,13 @@
             {% for field in form %}
                 <li>
                     <div class="row">
-                        <div class="col-xs-10">
+                        <div class="col-xs-{{ form.vars.widget_col }}">
                             {{ form_widget(field) }}
                             {{ form_errors(field) }}
                         </div>
                         {% if form.vars.allow_delete %}
-                            <div class="col-xs-2">
-                                <a href="#" class="btn btn-danger btn-small col-xs-4" data-removefield="collection" data-field="{{ field.vars.id }}">{{ form.vars.delete_button_text }}</a>
+                            <div class="col-xs-{{ form.vars.button_col }}">
+                                <a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="{{ field.vars.id }}">{{ form.vars.delete_button_text }}</a>
                             </div>
                         {% endif %}
                     </div>

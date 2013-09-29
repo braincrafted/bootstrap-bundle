@@ -18,10 +18,12 @@ class BootstrapCollectionType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'allow_add'    => $options['allow_add'],
-            'allow_delete' => $options['allow_delete'],
-            'add_button_text'   => $options['add_button_text'],
-            'delete_button_text'    => $options['delete_button_text']
+            'allow_add'          => $options['allow_add'],
+            'allow_delete'       => $options['allow_delete'],
+            'add_button_text'    => $options['add_button_text'],
+            'delete_button_text' => $options['delete_button_text'],
+            'widget_col'         => $options['widget_col'],
+            'button_col'         => $options['button_col']
         ));
 
         if ($form->getConfig()->hasAttribute('prototype')) {
@@ -41,14 +43,16 @@ class BootstrapCollectionType extends AbstractType
         };
 
         $resolver->setDefaults(array(
-            'allow_add'      => false,
-            'allow_delete'   => false,
-            'prototype'      => true,
-            'prototype_name' => '__name__',
-            'type'           => 'text',
-            'add_button_text'   => 'Add',
-            'delete_button_text'    => 'Delete',
-            'options'        => array(),
+            'allow_add'          => false,
+            'allow_delete'       => false,
+            'prototype'          => true,
+            'prototype_name'     => '__name__',
+            'type'               => 'text',
+            'add_button_text'    => 'Add',
+            'delete_button_text' => 'Delete',
+            'widget_col'         => 10,
+            'button_col'         => 2,
+            'options'            => array(),
         ));
 
         $resolver->setNormalizers(array(
