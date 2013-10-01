@@ -51,12 +51,17 @@
 {% block bc_collection_widget %}
 {% spaceless %}
     {% if prototype is defined %}
-        {% set prototype_html = form_widget(prototype) %}
+        {% set prototype_vars = {} %}
+        {% if style is defined %}
+            {% set prototype_vars = prototype_vars|merge({'style': style}) %}
+        {% endif %}
+        {% set prototype_html = form_widget(prototype, prototype_vars) %}
         {% set prototype_html = '<div class="col-xs-' ~ form.vars.widget_col ~ '">' ~ prototype_html ~ '</div>' %}
         {% if form.vars.allow_delete %}
             {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text ~ '</a></div>' %}
         {% endif %}
         {% set prototype_html = '<div class="row">' ~ prototype_html ~ '</div>' %}
+
         {% set attr = attr|merge({'data-prototype': prototype_html }) %}
     {% endif %}
     <div {{ block('widget_container_attributes') }}>
