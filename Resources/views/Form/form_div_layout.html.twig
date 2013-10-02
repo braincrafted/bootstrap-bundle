@@ -12,7 +12,7 @@
 
 {% block form_widget_simple %}
 {% spaceless %}
-    {% if simple_col %}
+    {% if simple_col is defined %}
         <div class="col-lg-{{ simple_col }}">
     {% endif %}
 
@@ -21,7 +21,7 @@
 
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 
-    {% if simple_col %}
+    {% if simple_col is defined %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -55,8 +55,7 @@
         {% if style is defined %}
             {% set prototype_vars = prototype_vars|merge({'style': style}) %}
         {% endif %}
-        {% set prototype_html = form_widget(prototype, prototype_vars) %}
-        {% set prototype_html = '<div class="col-xs-' ~ form.vars.widget_col ~ '">' ~ prototype_html ~ '</div>' %}
+        {% set prototype_html = '<div class="col-xs-' ~ form.vars.widget_col ~ '">' ~ form_widget(prototype, prototype_vars) ~ '</div>' %}
         {% if form.vars.allow_delete %}
             {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text ~ '</a></div>' %}
         {% endif %}
@@ -366,7 +365,7 @@
     {% if label is empty %}
         {% set label = name|humanize %}
     {% endif %}
-    {% if type == 'submit' %}
+    {% if type is defined and type == 'submit' %}
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-primary')|trim }) %}
     {% else %}
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-default')|trim }) %}
@@ -394,13 +393,12 @@
 {% block form_label %}
 {% spaceless %}
     {% if label is not sameas(false) %}
-        {% if not style %}
-            {% set style = bootstrap_get_style() %}
-        {% endif %}
-        {% if not label_col %}
+        {% if label_col is not defined %}
             {% set label_col = 2 %}
         {% endif %}
-        {% if style == 'horizontal' %}
+        {% if style is not defined %}
+            {% set style = bootstrap_get_style() %}
+        {% elseif style == 'horizontal' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label col-lg-' ~ label_col)|trim }) %}
         {% endif %}
 
@@ -434,13 +432,13 @@
 
 {% block form_row %}
 {% spaceless %}
-    {% if not style %}
+    {% if style is not defined %}
         {% set style = bootstrap_get_style() %}
     {% endif %}
-    {% if not label_col %}
+    {% if label_col is not defined %}
         {% set label_col = 2 %}
     {% endif %}
-    {% if not widget_col %}
+    {% if widget_col is not defined %}
         {% set widget_col = 10 %}
     {% endif %}
     {% if style == 'horizontal' %}
@@ -495,7 +493,7 @@
         {% set form_method = "POST" %}
     {% endif %}
 
-    {% if style %}
+    {% if style is defined %}
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-horizontal')|trim }) %}
         {{ bootstrap_set_style(style) }}
     {% endif %}
