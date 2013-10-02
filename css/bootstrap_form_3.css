@@ -1,0 +1,11 @@
+/**
+ * Additional styles for BcBootstrapBundle
+ * (c) 2013 Florian Eckerstorfer (http://braincrafted.com)
+ * http://bootstrap.braincrafted.com
+ */
+.form-horizontal input + input {
+  margin-left: 1em;
+}
+.form-horizontal ul .btn {
+  margin-bottom: 10px;
+}
