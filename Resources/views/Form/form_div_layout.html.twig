@@ -110,7 +110,7 @@
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
-        {% if form.multiple %}
+        {% if form.multiple is defined %}
             {{ checkbox_row(child) }}
         {% else %}
             {{ radio_row(child) }}
