@@ -159,7 +159,7 @@
 {% block checkbox_row %}
 {% spaceless %}
     {% set class = '' %}
-    {% if align_with_widget or attr.align_with_widget %}
+    {% if align_with_widget is defined or attr.align_with_widget is defined %}
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
         {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
@@ -185,7 +185,7 @@
             {{ block('checkbox_widget') }}
         {% endif %}
     </div>
-    {% if align_with_widget or attr.align_with_widget %}
+    {% if align_with_widget is defined or attr.align_with_widget is defined %}
             </div>
         </div>
     {% endif %}
@@ -195,7 +195,7 @@
 {% block radio_row %}
 {% spaceless %}
     {% set class = '' %}
-    {% if align_with_widget or attr.align_with_widget %}
+    {% if align_with_widget is defined or attr.align_with_widget is defined %}
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
         {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
@@ -220,7 +220,7 @@
         {% else %}
             {{ block('radio_widget') }}
         {% endif %}
-    {% if align_with_widget or attr.align_with_widget %}
+    {% if align_with_widget is defined or attr.align_with_widget is defined %}
             </div>
         </div>
     {% endif %}
