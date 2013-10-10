@@ -1,14 +1,14 @@
 {% if close is not defined %}{% set close = false %}{% endif %}
 
 {% for flashMessage in app.session.flashbag.get('alert') %}
-    <div class="alert">
+    <div class="alert alert-warning">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
         {{ flashMessage }}
     </div>
 {% endfor %}
 
 {% for flashMessage in app.session.flashbag.get('error') %}
-    <div class="alert alert-error">
+    <div class="alert alert-danger">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
         {{ flashMessage }}
     </div>
