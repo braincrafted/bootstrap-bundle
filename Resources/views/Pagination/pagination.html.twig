@@ -29,34 +29,34 @@
             {% endif %}
         {% endif %}
 
-        <div class="pagination{{ orientation_class }}">
-            <ul>
-            {% if first is defined and current != first %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{ first_label|raw }}</a></li>
+
+        <ul class="pagination{{ orientation_class }}">
+        {% if first is defined and current != first %}
+            <li><a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{ first_label|raw }}</a></li>
+        {% endif %}
+
+        {% if previous is defined %}
+            <li><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">{{ prev_label|raw }}</a></li>
+        {% endif %}
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <li><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></li>
+            {% else %}
+                <li class="active"><span>{{ page }}</span></li>
             {% endif %}
 
-            {% if previous is defined %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">{{ prev_label|raw }}</a></li>
-            {% endif %}
+        {% endfor %}
 
-            {% for page in pagesInRange %}
-                {% if page != current %}
-                    <li><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></li>
-                {% else %}
-                    <li class="active"><span>{{ page }}</span></li>
-                {% endif %}
+        {% if next is defined %}
+            <li><a href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ next_label|raw }}</a></li>
+        {% endif %}
 
-            {% endfor %}
+        {% if last is defined and current != last %}
+            <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{ last_label|raw }}</a></li>
+        {% endif %}
+        </ul>
 
-            {% if next is defined %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ next_label|raw }}</a></li>
-            {% endif %}
-
-            {% if last is defined and current != last %}
-                <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{ last_label|raw }}</a></li>
-            {% endif %}
-            </ul>
-        </div>
     {% else %}
         {% if aligned is not defined %}
             {% set aligned = false %}
