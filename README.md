@@ -77,7 +77,7 @@ Compatibility
 
 - **BcBootstrapBundle v1.3.***
     - Twitter Bootstrap v2.3.*
-    - jQuery v1.10.*
+    - jQuery v1.9.*
     - Symfony 2.2.*
 - **BcBootstrapBundle v1.4.***
     - Twitter Bootstrap v2.3.*
