@@ -44,7 +44,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('%kernel.root_dir%/../vendor/twbs/bootstrap')
                 ->end()
                 ->scalarNode('jquery_path')
-                    ->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js')
+                    ->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js')
                 ->end()
                 ->scalarNode('less_filter')
                     ->defaultValue('less')

@@ -77,12 +77,15 @@ Compatibility
 
 - **BcBootstrapBundle v1.3.***
     - Twitter Bootstrap v2.3.*
+    - jQuery v1.10.*
     - Symfony 2.2.*
 - **BcBootstrapBundle v1.4.***
     - Twitter Bootstrap v2.3.*
+    - jQuery v1.9.*
     - Symfony 2.2.*
 - **BcBootstrapBundle v2.0**
     - Bootstrap v3.0.*
+    - jQuery v1.10.*
     - Symfony v2.3.*
 
 
@@ -91,7 +94,8 @@ Changelog
 
 ## Version 2.0.0
 
-- Updated to Bootstrap 3.0.0
+- Updated to Bootstrap v3.0.0
+- Updated to jQuery v1.10.2
 - Remove `include_responsive` option because Bootstrap 3.0.0 no longer has a not responsive version
 - Added `boostrap_money` form type that uses Bootstraps prepend or append style to display the currency
 - `percent` form type uses Bootstraps append style to display the percent sign
