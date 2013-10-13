@@ -31,7 +31,7 @@
 {% spaceless %}
     <div {{ block('widget_container_attributes') }}>
         {% if form.parent is empty %}
-            {{ form_errors(form) }}
+            {{ block('global_form_errors') }}
         {% endif %}
         {{ block('form_rows') }}
         {{ form_rest(form) }}
@@ -526,14 +526,29 @@
 {% endspaceless %}
 {% endblock form_enctype %}
 
+{% block global_form_errors %}
+    {% set style = style|default(bootstrap_get_style()) %}
+    {% if errors|length > 0 %}
+        {% set global_errors = true %}
+        {% if style == 'horizontal' %}
+            <div class="alert alert-danger">
+                {{ block('form_errors') }}
+            </div>
+        {% else %}
+            {{ block('form_errors') }}
+        {% endif %}
+    {% endif %}
+{% endblock global_form_errors %}
+
 {% block form_errors %}
 {% spaceless %}
+    {% set global_errors = global_errors|default(false) %}
     {% if errors|length > 0 %}
-    <ul class="help-block">
-        {% for error in errors %}
-            <li>{{ error.message }}</li>
-        {% endfor %}
-    </ul>
+        <ul{% if not global_errors %} class="help-block"{% endif %}>
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
