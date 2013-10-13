@@ -311,6 +311,10 @@
 .form-horizontal .col-lg12 .col-sm-12 {
   padding-left: 0;
 }
+.form-horizontal .has-error ul.help-block {
+  list-style: none;
+  padding-left: 0;
+}
 .row .checkbox {
   margin-top: 0;
   margin-bottom: 0;
