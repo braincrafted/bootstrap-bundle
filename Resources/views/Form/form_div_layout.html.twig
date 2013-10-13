@@ -67,7 +67,7 @@
         <ul class="bc-collection list-unstyled">
             {% for field in form %}
                 <li>
-                    <div class="row{% if field.vars.errors|length %} has-error{% endif %}">
+                    <div class="row">
                         <div class="col-xs-{{ form.vars.sub_widget_col }}">
                             {{ form_widget(field) }}
                             {{ form_errors(field) }}
@@ -445,7 +445,7 @@
         {% set widget_col = 10 %}
     {% endif %}
     {% if style == 'horizontal' %}
-        <div class="form-group row{% if errors|length %} has-error{% endif %}">
+        <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             {{ form_label(form) }}
             <div class="col-lg-{{ widget_col }}">
                 {{ form_widget(form) }}
