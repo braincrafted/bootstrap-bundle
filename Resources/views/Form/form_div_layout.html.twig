@@ -393,6 +393,9 @@
 {% block form_label %}
 {% spaceless %}
     {% if label is not sameas(false) %}
+        {% if not style %}
+            {% set style = bootstrap_get_style() %}
+        {% endif %}
         {% if label_col is not defined %}
             {% set label_col = 2 %}
         {% endif %}
