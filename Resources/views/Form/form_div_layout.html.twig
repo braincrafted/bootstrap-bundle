@@ -67,7 +67,7 @@
         <ul class="bc-collection list-unstyled">
             {% for field in form %}
                 <li>
-                    <div class="row">
+                    <div class="row{% if field.vars.errors|length %} has-error{% endif %}">
                         <div class="col-xs-{{ form.vars.widget_col }}">
                             {{ form_widget(field) }}
                             {{ form_errors(field) }}
@@ -445,7 +445,7 @@
         {% set widget_col = 10 %}
     {% endif %}
     {% if style == 'horizontal' %}
-        <div class="form-group row">
+        <div class="form-group row{% if errors|length %} has-error{% endif %}">
             {{ form_label(form) }}
             <div class="col-lg-{{ widget_col }}">
                 {{ form_widget(form) }}
@@ -529,7 +529,7 @@
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <ul>
+    <ul class="help-block">
         {% for error in errors %}
             <li>{{ error.message }}</li>
         {% endfor %}
