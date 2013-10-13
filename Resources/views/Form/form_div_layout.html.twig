@@ -55,7 +55,7 @@
         {% if style is defined %}
             {% set prototype_vars = prototype_vars|merge({'style': style}) %}
         {% endif %}
-        {% set prototype_html = '<div class="col-xs-' ~ form.vars.widget_col ~ '">' ~ form_widget(prototype, prototype_vars) ~ '</div>' %}
+        {% set prototype_html = '<div class="col-xs-' ~ form.vars.sub_widget_col ~ '">' ~ form_widget(prototype, prototype_vars) ~ '</div>' %}
         {% if form.vars.allow_delete %}
             {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text ~ '</a></div>' %}
         {% endif %}
@@ -68,7 +68,7 @@
             {% for field in form %}
                 <li>
                     <div class="row{% if field.vars.errors|length %} has-error{% endif %}">
-                        <div class="col-xs-{{ form.vars.widget_col }}">
+                        <div class="col-xs-{{ form.vars.sub_widget_col }}">
                             {{ form_widget(field) }}
                             {{ form_errors(field) }}
                         </div>

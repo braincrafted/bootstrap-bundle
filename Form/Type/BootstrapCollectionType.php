@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * MoneyType
+ * BootstrapCollectionType
  *
  * @package    BcBootstrapBundle
  * @subpackage Form
@@ -38,10 +38,14 @@ class BootstrapCollectionType extends AbstractType
                 'allow_delete'       => $options['allow_delete'],
                 'add_button_text'    => $options['add_button_text'],
                 'delete_button_text' => $options['delete_button_text'],
-                'widget_col'         => $options['widget_col'],
+                'sub_widget_col'     => $options['sub_widget_col'],
                 'button_col'         => $options['button_col']
             )
         );
+
+        if (false === $view->vars['allow_delete']) {
+            $view->vars['sub_widget_col'] += $view->vars['button_col'];
+        }
 
         if ($form->getConfig()->hasAttribute('prototype')) {
             $view->vars['prototype'] = $form->getConfig()->getAttribute('prototype')->createView($view);
@@ -67,7 +71,7 @@ class BootstrapCollectionType extends AbstractType
             'type'               => 'text',
             'add_button_text'    => 'Add',
             'delete_button_text' => 'Delete',
-            'widget_col'         => 10,
+            'sub_widget_col'     => 10,
             'button_col'         => 2,
             'options'            => array(),
         ));
