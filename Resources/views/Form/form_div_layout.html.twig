@@ -393,13 +393,11 @@
 {% block form_label %}
 {% spaceless %}
     {% if label is not sameas(false) %}
-        {% if not style %}
-            {% set style = bootstrap_get_style() %}
-        {% endif %}
         {% if label_col is not defined %}
             {% set label_col = 2 %}
         {% endif %}
-        {% if style is not defined %}
+    
+        {% if style is not defined or not style %}
             {% set style = bootstrap_get_style() %}
         {% elseif style == 'horizontal' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label col-lg-' ~ label_col)|trim }) %}
