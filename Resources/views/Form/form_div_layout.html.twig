@@ -393,15 +393,10 @@
 {% block form_label %}
 {% spaceless %}
     {% if label is not sameas(false) %}
-        {% if not style %}
-            {% set style = bootstrap_get_style() %}
-        {% endif %}
-        {% if label_col is not defined %}
-            {% set label_col = 2 %}
-        {% endif %}
-        {% if style is not defined %}
-            {% set style = bootstrap_get_style() %}
-        {% elseif style == 'horizontal' %}
+        {% set style = style|default(bootstrap_get_style()) %}
+        {% set label_col = label_col|default(2) %}
+
+        {% if style == 'horizontal' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label col-lg-' ~ label_col)|trim }) %}
         {% endif %}
 
@@ -435,15 +430,10 @@
 
 {% block form_row %}
 {% spaceless %}
-    {% if style is not defined %}
-        {% set style = bootstrap_get_style() %}
-    {% endif %}
-    {% if label_col is not defined %}
-        {% set label_col = 2 %}
-    {% endif %}
-    {% if widget_col is not defined %}
-        {% set widget_col = 10 %}
-    {% endif %}
+    {% set style = style|default(bootstrap_get_style()) %}
+    {% set label_col = label_col|default(2) %}
+    {% set widget_col = widget_col|default(10) %}
+
     {% if style == 'horizontal' %}
         <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             {{ form_label(form) }}
