@@ -46,8 +46,8 @@
         {% set listClass = 'nav-list' %}
     {% elseif options.type is defined and options.type == 'navbar' %}
         {% set listClass = 'navbar-nav' %}
-    {% elseif options.type is defined and options.type == 'navbar_justified' %}
-        {% set listClass = 'nav-justified' %}
+    {% elseif options.type is defined and options.type == 'navbar-right' %}
+        {% set listClass = 'navbar-nav navbar-right' %}
     {% endif %}
 
     {% if options.pull is defined and options.pull == 'right' %}
@@ -117,7 +117,7 @@
     {%- endif %}
     {%- if item.hasChildren and ((options.type is defined and options.type == 'list') or options.currentDepth is not sameas(1)) %}
         {%- set classes = classes|merge(['nav-header']) %}
-    {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar_justified'] %}
+    {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] %}
         {%- set classes = classes|merge(['dropdown']) %}
     {%- endif %}
 
@@ -135,7 +135,7 @@
 {# displaying the item #}
     <li{{ _self.attributes(attributes) }}>
         {%- if attributes.divider is defined and attributes.divider is not empty %}
-        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar_justified'] and options.currentDepth is sameas(1) %}
+        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] and options.currentDepth is sameas(1) %}
         {{ block('dropdownElement') }}
         {%- elseif item.uri is not empty and ((matcher is defined and not matcher.isCurrent(item)) or options.currentAsLink) %}
         {{ block('linkElement') }}
@@ -150,7 +150,7 @@
         {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
         {%- if item.hasChildren and options.type is defined and (options.type == 'list' or options.currentDepth is not sameas(1)) %}
             {{ block('listList') }}
-        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar_justified'] %}
+        {%- elseif item.hasChildren and options.type is defined and options.type in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] %}
             {{ block('dropdownList') }}
         {%- else %}
             {{ block('list') }}
