@@ -7,8 +7,6 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
 ## BraincraftedBootstrapBundle 2.0 is in an early development phase
 
-Do not use, there is still a lot of stuff missing.
-
 
 About
 -----
@@ -29,7 +27,7 @@ First you need to add `braincrafted/bootstrap-bundle` to `composer.json`:
         }
     }
 
-Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `1.3.*`.
+Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `2.0.*`.
 
 You also have to add `BraincraftedBootstrapBundle` to your `AppKernel.php`:
 
@@ -59,7 +57,7 @@ This bundle does no longer contain the asset files from Twitter Bootstrap (image
 
     {
        "require": {
-            "twbs/bootstrap": "2.3.*"
+            "twbs/bootstrap": "3.0.*"
         }
     }
 
@@ -99,6 +97,8 @@ Changelog
 - Remove `include_responsive` option because Bootstrap 3.0.0 no longer has a not responsive version
 - Added `boostrap_money` form type that uses Bootstraps prepend or append style to display the currency
 - `percent` form type uses Bootstraps append style to display the percent sign
+- Changed namespace back to `Braincrafted\Bundle\BootstrapBundle`
+- Support for custom `variables.less`
 
 ### Version 1.4.0
 
