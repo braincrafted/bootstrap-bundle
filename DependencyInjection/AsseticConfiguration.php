@@ -67,11 +67,16 @@ class AsseticConfiguration
      */
     protected function buildCssWithLess(array $config)
     {
-        $inputs = array(
-            $config['assets_dir'].'/less/bootstrap.less'
-        );
+        $bootstrapFile = $config['assets_dir'].'/less/bootstrap.less';
+        if (true === isset($config['customize_variables']['bootstrap_output'])
+            /*&& true === file_exists($config['customize_variables']['bootstrap_output'])*/) {
+            $bootstrapFile = $config['customize_variables']['bootstrap_output'];
+        }
 
-        $inputs[] = __DIR__.'/../Resources/less/form.less';
+        $inputs = array(
+            $bootstrapFile,
+            __DIR__.'/../Resources/less/form.less'
+        );
 
         return array(
             'inputs'  => $inputs,

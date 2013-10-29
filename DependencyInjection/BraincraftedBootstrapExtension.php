@@ -44,7 +44,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader(
             $container,
@@ -53,6 +53,12 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $loader->load('services/form.xml');
         $loader->load('services/twig.xml');
         $loader->load('services/session.xml');
+
+        if (true === isset($config['customize_variables'])) {
+            $container->setParameter('braincrafted_bootstrap.customize_variables', $config['customize_variables']);
+        }
+        $container->setParameter('braincrafted_bootstrap.assets_dir', $config['assets_dir']);
+        $container->setParameter('braincrafted_bootstrap.less_filter', $config['less_filter']);
     }
 
     /**
