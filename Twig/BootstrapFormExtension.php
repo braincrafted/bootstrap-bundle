@@ -1,10 +1,10 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
 use Symfony\Bridge\Twig\TokenParser\FormThemeTokenParser;
 use Symfony\Bridge\Twig\Form\TwigRendererInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\View\ChoiceView;
 /**
  * BootstrapFormExtension
  *
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -43,7 +43,7 @@ class BootstrapFormExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'bootstrap_form';
+        return 'braincrafted_bootstrap_form';
     }
 
     /**

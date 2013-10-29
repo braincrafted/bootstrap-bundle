@@ -1,10 +1,10 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Form\Extension;
+namespace Braincrafted\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormInterface;
 /**
  * TypeSetterExtension
  *
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage Form
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer

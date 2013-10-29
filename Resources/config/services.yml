@@ -1,40 +1,40 @@
 parameters:
 
 services:
-    bc_bootstrap.twig.icon_extension:
-        class: Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension
+    braincrafted_bootstrap.twig.icon_extension:
+        class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension
         tags:
             - { name: twig.extension }
-    bc_bootstrap.twig.label_extension:
-        class: Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension
+    braincrafted_bootstrap.twig.label_extension:
+        class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension
         tags:
             - { name: twig.extension }
-    bc_bootstrap.twig.badge_extension:
-        class: Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension
+    braincrafted_bootstrap.twig.badge_extension:
+        class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension
         tags:
             - { name: twig.extension }
-    bc_bootstrap.twig.form_extension:
-        class: Bc\Bundle\BootstrapBundle\Twig\BootstrapFormExtension
+    braincrafted_bootstrap.twig.form_extension:
+        class: Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension
         tags:
             - { name: twig.extension }
 
-    bc_bootstrap.flash:
-        class: Bc\Bundle\BootstrapBundle\Session\FlashMessage
+    braincrafted_bootstrap.flash:
+        class: Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage
         arguments:
             - @session
 
-    bc_bootstrap.form.type.collection:
-        class: Bc\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType
+    braincrafted_bootstrap.form.type.collection:
+        class: Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType
         tags:
-            - { name: form.type, alias: bc_collection }
+            - { name: form.type, alias: braincrafted_collection }
 
-    bc_bootstrap.form.type.money:
-        class: Bc\Bundle\BootstrapBundle\Form\Type\MoneyType
+    braincrafted_bootstrap.form.type.money:
+        class: Braincrafted\Bundle\BootstrapBundle\Form\Type\MoneyType
         tags:
             - { name: form.type, alias: money }
 
-    bc_bootstrap.form.extension.typesetter_extension:
-        class: Bc\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension
+    braincrafted_bootstrap.form.extension.typesetter_extension:
+        class: Braincrafted\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension
         tags:
             - { name: form.type_extension, alias: form }
 

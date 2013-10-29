@@ -1,11 +1,11 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\DependencyInjection;
+namespace Braincrafted\Bundle\BootstrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,9 +14,9 @@ use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * BcBootstrapExtension
+ * BraincraftedBootstrapExtension
  *
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage DependencyInjection
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -25,16 +25,16 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * @codeCoverageIgnore
  */
-class BcBootstrapExtension extends Extension implements PrependExtensionInterface
+class BraincraftedBootstrapExtension extends Extension implements PrependExtensionInterface
 {
     /** @var string */
-    private $formTemplate = 'BcBootstrapBundle:Form:form_div_layout.html.twig';
+    private $formTemplate = 'BraincraftedBootstrapBundle:Form:form_div_layout.html.twig';
 
     /** @var string */
-    private $menuTemplate = 'BcBootstrapBundle:Menu:menu.html.twig';
+    private $menuTemplate = 'BraincraftedBootstrapBundle:Menu:menu.html.twig';
 
     /** @var string */
-    private $paginationTemplate = 'BcBootstrapBundle:Pagination:pagination.html.twig';
+    private $paginationTemplate = 'BraincraftedBootstrapBundle:Pagination:pagination.html.twig';
 
     /**
      * {@inheritDoc}
@@ -62,25 +62,25 @@ class BcBootstrapExtension extends Extension implements PrependExtensionInterfac
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         // Configure Assetic if AsseticBundle is activated and the option
-        // "bc_bootstrap.auto_configure.assetic" is set to TRUE (default value).
+        // "braincrafted_bootstrap.auto_configure.assetic" is set to TRUE (default value).
         if (isset($bundles['AsseticBundle']) && $config['auto_configure']['assetic']) {
             $this->configureAsseticBundle($container, $config);
         }
 
         // Configure Twig if TwigBundle is activated and the option
-        // "bc_bootstrap.auto_configure.twig" is set to TRUE (default value).
+        // "braincrafted_bootstrap.auto_configure.twig" is set to TRUE (default value).
         if (isset($bundles['TwigBundle']) && $config['auto_configure']['twig']) {
             $this->configureTwigBundle($container);
         }
 
         // Configure KnpMenu if KnpMenuBundle and TwigBundle are activated and the option
-        // "bc_bootstrap.auto_configure.knp_menu" is set to TRUE (default value).
+        // "braincrafted_bootstrap.auto_configure.knp_menu" is set to TRUE (default value).
         if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle']) && $config['auto_configure']['knp_menu']) {
             $this->configureKnpMenuBundle($container);
         }
 
         // Configure KnpPaginiator if KnpPaginatorBundle and TwigBundle are activated and the option
-        // "bc_bootstrap.auto_configure.knp_paginator" is set to TRUE (default value).
+        // "braincrafted_bootstrap.auto_configure.knp_paginator" is set to TRUE (default value).
         if (isset($bundles['TwigBundle']) && isset($bundles['KnpPaginatorBundle']) && $config['auto_configure']['knp_paginator']) {
             $this->configureKnpPaginatorBundle($container);
         }

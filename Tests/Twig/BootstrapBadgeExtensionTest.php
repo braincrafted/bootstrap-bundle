@@ -1,19 +1,19 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Tests\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Tests\Twig;
 
-use Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension;
+use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension;
 
 /**
  * BootstrapBadgeExtensionTest
  *
  * @category   Test
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -35,7 +35,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFilter
      */
     public function testBadgeFilter()
     {
@@ -52,7 +52,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeSuccessFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeSuccessFilter
      */
     public function testBadgeSuccessFilter()
     {
@@ -63,7 +63,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeWarningFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeWarningFilter
      */
     public function testBadgeWarningFilter()
     {
@@ -74,7 +74,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeImportantFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeImportantFilter
      */
     public function testBadgeImportantFilter()
     {
@@ -85,7 +85,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInfoFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInfoFilter
      */
     public function testBadgeInfoFilter()
     {
@@ -96,7 +96,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInverseFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInverseFilter
      */
     public function testBadgeInverseFilter()
     {
@@ -107,7 +107,7 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getFilters
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getFilters
      */
     public function testGetFilters()
     {
@@ -119,13 +119,5 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($filters['badge_important']), '->getFilters() returns "badge_important" filter.');
         $this->assertTrue(isset($filters['badge_info']), '->getFilters() returns "badge_info" filter.');
         $this->assertTrue(isset($filters['badge_inverse']), '->getFilters() returns "badge_inverse" filter.');
-    }
-
-    /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getName
-     */
-    public function testGetName()
-    {
-        $this->assertEquals('bootstrap_badge_extension', $this->extension->getName(), '->getName() returns the name.');
     }
 }

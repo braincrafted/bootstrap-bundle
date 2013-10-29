@@ -1,13 +1,13 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Tests\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Tests\Twig;
 
-use Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
+use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
 
 /**
  * BootstrapIconExtensionTest
@@ -35,7 +35,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFilter
      */
     public function testIconFilter()
     {
@@ -52,7 +52,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
      */
     public function testParseIconsFilter()
     {
@@ -69,7 +69,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters
      */
     public function testGetFilters()
     {
@@ -77,13 +77,5 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $filters, '->getFilters() returns 2 filters.');
         $this->assertTrue(isset($filters['parse_icons']), '->getFilters() returns "parse_icons" filter.');
         $this->assertTrue(isset($filters['icon']), '->getFilters() returns "icon" filter.');
-    }
-
-    /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getName
-     */
-    public function testGetName()
-    {
-        $this->assertEquals('bootstrap_icon_extension', $this->extension->getName(), '->getName() returns the name.');
     }
 }

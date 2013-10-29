@@ -1,19 +1,19 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Tests\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Tests\Twig;
 
-use Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
+use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
 
 /**
  * BootstrapLabelExtensionTest
  *
  * @category   Test
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -35,7 +35,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelFilter
      */
     public function testLabelFilter()
     {
@@ -52,7 +52,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelSuccessFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelSuccessFilter
      */
     public function testLabelSuccessFilter()
     {
@@ -63,7 +63,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelWarningFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelWarningFilter
      */
     public function testLabelWarningFilter()
     {
@@ -74,7 +74,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelImportantFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelImportantFilter
      */
     public function testLabelImportantFilter()
     {
@@ -85,7 +85,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInfoFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInfoFilter
      */
     public function testLabelInfoFilter()
     {
@@ -96,7 +96,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInverseFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInverseFilter
      */
     public function testLabelInverseFilter()
     {
@@ -107,7 +107,7 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getFilters
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getFilters
      */
     public function testGetFilters()
     {
@@ -119,13 +119,5 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($filters['label_important']), '->getFilters() returns "label_important" filter.');
         $this->assertTrue(isset($filters['label_info']), '->getFilters() returns "label_info" filter.');
         $this->assertTrue(isset($filters['label_inverse']), '->getFilters() returns "label_inverse" filter.');
-    }
-
-    /**
-     * @covers Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getName
-     */
-    public function testGetName()
-    {
-        $this->assertEquals('bootstrap_label_extension', $this->extension->getName(), '->getName() returns the name.');
     }
 }

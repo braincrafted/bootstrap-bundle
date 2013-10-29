@@ -1,11 +1,11 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
 use Twig_Extension;
 use Twig_Filter_Method;
@@ -14,7 +14,7 @@ use Twig_Filter_Method;
  * BootstrapLabelExtension
  *
  * @category   TwigExtension
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
@@ -116,6 +116,6 @@ class BootstrapLabelExtension extends Twig_Extension
      */
     public function getName()
     {
-        return 'bootstrap_label_extension';
+        return 'braincrafted_bootstrap_label';
     }
 }

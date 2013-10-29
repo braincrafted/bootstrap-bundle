@@ -1,10 +1,10 @@
 <?php
 
-namespace Bc\Bundle\BootstrapBundle\Tests\Session;
+namespace Braincrafted\Bundle\BootstrapBundle\Tests\Session;
 
 use \Mockery as m;
 
-use Bc\Bundle\BootstrapBundle\Session\FlashMessage;
+use Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage;
 
 /**
  * FlashMessageTest
@@ -38,8 +38,8 @@ class FlashMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the alert() method.
      *
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::alert()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::alert()
      */
     public function testAlert()
     {
@@ -54,8 +54,8 @@ class FlashMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the error() method.
      *
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::error()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::error()
      */
     public function testError()
     {
@@ -70,8 +70,8 @@ class FlashMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the info() method.
      *
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::info()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::info()
      */
     public function testInfo()
     {
@@ -86,8 +86,8 @@ class FlashMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the success() method.
      *
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
-     * @covers Bc\Bundle\BootstrapBundle\Session\FlashMessage::success()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::success()
      */
     public function testSuccess()
     {
