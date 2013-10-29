@@ -162,8 +162,8 @@
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
-        {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
-        <div class="form-group">
+        {% set class = ' col-lg-' ~ widget_col ~ ' col-lg-offset-' ~ label_col %}
+        <div class="form-group row">
             <div class="{{ class }}">
     {% endif %}
     <div class="checkbox">
