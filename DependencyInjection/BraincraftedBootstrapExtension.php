@@ -13,6 +13,8 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
+use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\AsseticConfiguration;
+
 /**
  * BraincraftedBootstrapExtension
  *
@@ -28,13 +30,13 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class BraincraftedBootstrapExtension extends Extension implements PrependExtensionInterface
 {
     /** @var string */
-    private $formTemplate = 'BraincraftedBootstrapBundle:Form:form_div_layout.html.twig';
+    protected $formTemplate = 'BraincraftedBootstrapBundle:Form:form_div_layout.html.twig';
 
     /** @var string */
-    private $menuTemplate = 'BraincraftedBootstrapBundle:Menu:menu.html.twig';
+    protected $menuTemplate = 'BraincraftedBootstrapBundle:Menu:menu.html.twig';
 
     /** @var string */
-    private $paginationTemplate = 'BraincraftedBootstrapBundle:Pagination:pagination.html.twig';
+    protected $paginationTemplate = 'BraincraftedBootstrapBundle:Pagination:pagination.html.twig';
 
     /**
      * {@inheritDoc}
@@ -48,8 +50,8 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
-        $loader->load('services/twig.xml');
         $loader->load('services/form.xml');
+        $loader->load('services/twig.xml');
         $loader->load('services/session.xml');
     }
 
@@ -89,25 +91,19 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     }
 
     /**
-     * Configures the AsseticBundle.
-     *
      * @param ContainerBuilder $container The service container
      * @param array            $config    The bundle configuration
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    private function configureAsseticBundle(ContainerBuilder $container, array $config)
+    protected function configureAsseticBundle(ContainerBuilder $container, array $config)
     {
         foreach ($container->getExtensions() as $name => $extension) {
             switch ($name) {
                 case 'assetic':
                     $container->prependExtensionConfig(
                         $name,
-                        array(
-                            'assets'    => $this->buildAsseticConfig($config)
-                        )
+                        array('assets' => (new AsseticConfiguration)->build($config))
                     );
                     break;
             }
@@ -115,15 +111,11 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     }
 
     /**
-     * Configures the TwigBundle.
-     *
      * @param ContainerBuilder $container The service container
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    private function configureTwigBundle(ContainerBuilder $container)
+    protected function configureTwigBundle(ContainerBuilder $container)
     {
         foreach ($container->getExtensions() as $name => $extension) {
             switch ($name) {
@@ -138,15 +130,11 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     }
 
     /**
-     * Configures the KnpMenuBundle.
-     *
      * @param ContainerBuilder $container The service container
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    private function configureKnpMenuBundle(ContainerBuilder $container)
+    protected function configureKnpMenuBundle(ContainerBuilder $container)
     {
         foreach ($container->getExtensions() as $name => $extension) {
             switch ($name) {
@@ -161,15 +149,11 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     }
 
     /**
-     * Configures the KnpPaginatorBundle.
-     *
      * @param ContainerBuilder $container The service container
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    private function configureKnpPaginatorBundle(ContainerBuilder $container)
+    protected function configureKnpPaginatorBundle(ContainerBuilder $container)
     {
         foreach ($container->getExtensions() as $name => $extension) {
             switch ($name) {
@@ -181,78 +165,5 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
                     break;
             }
         }
-    }
-
-    private function buildAsseticConfig(array $config)
-    {
-        $output = array();
-
-        if ($config['less_filter'] !== 'none') {
-            $output['bootstrap_css'] = $this->buildAsseticBootstrapCssWithLessConfig($config);
-        } else {
-            $output['bootstrap_css'] = $this->buildAsseticBootstrapCssWithoutLessConfig($config);
-        }
-        $output['bootstrap_js'] = $this->buildAsseticBootstrapJsConfig($config);
-        $output['jquery'] = $this->buildAsseticJqueryConfig($config);
-
-        return $output;
-    }
-
-    private function buildAsseticBootstrapCssWithoutLessConfig(array $config)
-    {
-        $inputs = array(
-            $config['assets_dir'].'/docs/assets/css/bootstrap.css',
-        );
-
-        return array(
-            'inputs'        => $inputs,
-            'filters'       => array('cssrewrite'),
-            'output'        => $config['output_dir'].'/css/bootstrap.css'
-        );
-    }
-
-    private function buildAsseticBootstrapCssWithLessConfig(array $config)
-    {
-        $inputs = array(
-            $config['assets_dir'].'/less/bootstrap.less'
-        );
-
-        $inputs[] = __DIR__.'/../Resources/less/form.less';
-
-        return array(
-            'inputs'        => $inputs,
-            'filters'       => array($config['less_filter'], 'cssrewrite'),
-            'output'        => $config['output_dir'].'/css/bootstrap.css'
-        );
-    }
-
-    private function buildAsseticBootstrapJsConfig(array $config)
-    {
-        return array(
-            'inputs'        => array(
-                $config['assets_dir'].'/js/transition.js',
-                $config['assets_dir'].'/js/alert.js',
-                $config['assets_dir'].'/js/button.js',
-                $config['assets_dir'].'/js/carousel.js',
-                $config['assets_dir'].'/js/collapse.js',
-                $config['assets_dir'].'/js/dropdown.js',
-                $config['assets_dir'].'/js/modal.js',
-                $config['assets_dir'].'/js/tooltip.js',
-                $config['assets_dir'].'/js/popover.js',
-                $config['assets_dir'].'/js/scrollspy.js',
-                $config['assets_dir'].'/js/tab.js',
-                $config['assets_dir'].'/js/affix.js',
-                __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
-            ),
-            'output'        => $config['output_dir'].'/js/bootstrap.js'
-        );
-    }
-
-    private function buildAsseticJqueryConfig(array $config)
-    {
-        return array(
-            'inputs'        => array($config['jquery_path']),
-            'output'        => $config['output_dir'].'/js/jquery.js'
-        );
     }
 }
