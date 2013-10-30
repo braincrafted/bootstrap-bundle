@@ -1,0 +1,16 @@
+body {
+    padding-top: 70px;
+}
+
+.sidebar.affix {
+    position: fixed;
+    top: 70px;
+}
+
+.sidebar.affix-top {
+    position: relative;
+}
+
+.sidebar.affix-bottom {
+    position: absolute;
+}
