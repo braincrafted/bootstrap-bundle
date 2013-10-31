@@ -8,7 +8,7 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
 use Twig_Extension;
-use Twig_Filter_Method;
+use Twig_Function_Method;
 
 /**
  * BootstrapLabelExtension
@@ -26,15 +26,15 @@ class BootstrapLabelExtension extends Twig_Extension
     /**
      * {@inheritDoc}
      */
-    public function getFilters()
+    public function getFunctions()
     {
         return array(
-            'label'          => new Twig_Filter_Method($this, 'labelFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_success'  => new Twig_Filter_Method($this, 'labelSuccessFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_warning'  => new Twig_Filter_Method($this, 'labelWarningFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_important'=> new Twig_Filter_Method($this, 'labelImportantFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_info'     => new Twig_Filter_Method($this, 'labelInfoFilter', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_inverse'  => new Twig_Filter_Method($this, 'labelInverseFilter', array('pre_escape' => 'html', 'is_safe' => array('html')))
+            'label'          => new Twig_Function_Method($this, 'labelFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_primary'  => new Twig_Function_Method($this, 'labelPrimaryFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_success'  => new Twig_Function_Method($this, 'labelSuccessFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_info'     => new Twig_Function_Method($this, 'labelInfoFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_warning'  => new Twig_Function_Method($this, 'labelWarningFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'label_danger'=> new Twig_Function_Method($this, 'labelDangerFunction', array('pre_escape' => 'html', 'is_safe' => array('html')))
         );
     }
 
@@ -46,9 +46,14 @@ class BootstrapLabelExtension extends Twig_Extension
      *
      * @return string The HTML code of the label
      */
-    public function labelFilter($text, $type = null)
+    public function labelFunction($text, $type = 'default')
     {
         return sprintf('<span class="label%s">%s</span>', ($type ? ' label-' . $type : ''), $text);
+    }
+
+    public function labelPrimaryFunction($text)
+    {
+        return $this->labelFunction($text, 'primary');
     }
 
     /**
@@ -58,9 +63,9 @@ class BootstrapLabelExtension extends Twig_Extension
      *
      * @return string The HTML code of the label
      */
-    public function labelSuccessFilter($text)
+    public function labelSuccessFunction($text)
     {
-        return $this->labelFilter($text, 'success');
+        return $this->labelFunction($text, 'success');
     }
 
     /**
@@ -70,9 +75,9 @@ class BootstrapLabelExtension extends Twig_Extension
      *
      * @return string The HTML code of the label
      */
-    public function labelWarningFilter($text)
+    public function labelWarningFunction($text)
     {
-        return $this->labelFilter($text, 'warning');
+        return $this->labelFunction($text, 'warning');
     }
 
     /**
@@ -82,9 +87,9 @@ class BootstrapLabelExtension extends Twig_Extension
      *
      * @return string The HTML code of the label
      */
-    public function labelImportantFilter($text)
+    public function labelDangerFunction($text)
     {
-        return $this->labelFilter($text, 'important');
+        return $this->labelFunction($text, 'danger');
     }
 
     /**
@@ -94,21 +99,9 @@ class BootstrapLabelExtension extends Twig_Extension
      *
      * @return string The HTML code of the label
      */
-    public function labelInfoFilter($text)
+    public function labelInfoFunction($text)
     {
-        return $this->labelFilter($text, 'info');
-    }
-
-    /**
-     * Returns the HTML code for a inverse label.
-     *
-     * @param string $text The text of the label
-     *
-     * @return string The HTML code of the label
-     */
-    public function labelInverseFilter($text)
-    {
-        return $this->labelFilter($text, 'inverse');
+        return $this->labelFunction($text, 'info');
     }
 
     /**
