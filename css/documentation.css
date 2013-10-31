@@ -29,3 +29,8 @@ h3 {
 .sidebar.affix-bottom {
     position: absolute;
 }
+
+input#form_inline_email,
+input#form_inline_password {
+    width: 200px;
+}
