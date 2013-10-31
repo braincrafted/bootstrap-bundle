@@ -35,19 +35,14 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFunction
      */
     public function testIconFilter()
     {
         $this->assertEquals(
-            '<i class="icon-heart"></i>',
-            $this->extension->iconFilter('heart'),
-            '->iconFilter() returns the HTML code for the given icon.'
-        );
-        $this->assertEquals(
-            '<i class="icon-white icon-heart"></i>',
-            $this->extension->iconFilter('heart', 'white'),
-            '->iconFilter() returns the HTML code for the given icon in white.'
+            '<span class="glyphicon glyphicon-heart"></span>',
+            $this->extension->iconFunction('heart'),
+            '->iconFunction() returns the HTML code for the given icon.'
         );
     }
 
@@ -57,25 +52,9 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     public function testParseIconsFilter()
     {
         $this->assertEquals(
-            '<i class="icon-heart"></i> foobar',
+            '<span class="glyphicon glyphicon-heart"></span> foobar',
             $this->extension->parseIconsFilter('.icon-heart foobar'),
             '->parseIconsFilter() returns the HTML code with the replaced icons.'
         );
-        $this->assertEquals(
-            '<i class="icon-white icon-heart"></i> foobar',
-            $this->extension->parseIconsFilter('.icon-heart foobar', 'white'),
-            '->parseIconsFilter() returns the HTML code with the replaced icons in white.'
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters
-     */
-    public function testGetFilters()
-    {
-        $filters = $this->extension->getFilters();
-        $this->assertCount(2, $filters, '->getFilters() returns 2 filters.');
-        $this->assertTrue(isset($filters['parse_icons']), '->getFilters() returns "parse_icons" filter.');
-        $this->assertTrue(isset($filters['icon']), '->getFilters() returns "icon" filter.');
     }
 }

@@ -35,89 +35,74 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelFunction
      */
-    public function testLabelFilter()
+    public function testLabelFunction()
     {
         $this->assertEquals(
-            '<span class="label">Hello World</span>',
-            $this->extension->labelFilter('Hello World'),
-            '->labelFilter() returns the HTML code for the given label.'
+            '<span class="label label-default">Hello World</span>',
+            $this->extension->labelFunction('Hello World'),
+            '->labelFunction() returns the HTML code for the given label.'
         );
         $this->assertEquals(
             '<span class="label label-success">Hello World</span>',
-            $this->extension->labelFilter('Hello World', 'success'),
-            '->labelFilter() returns the HTML code for the given success label.'
+            $this->extension->labelFunction('Hello World', 'success'),
+            '->labelFunction() returns the HTML code for the given success label.'
         );
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelSuccessFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelSuccessFunction
      */
-    public function testLabelSuccessFilter()
+    public function testLabelSuccessFunction()
     {
         $this->assertEquals(
             '<span class="label label-success">Foobar</span>',
-            $this->extension->labelSuccessFilter('Foobar')
+            $this->extension->labelSuccessFunction('Foobar')
         );
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelWarningFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelWarningFunction
      */
-    public function testLabelWarningFilter()
+    public function testLabelWarningFunction()
     {
         $this->assertEquals(
             '<span class="label label-warning">Foobar</span>',
-            $this->extension->labelWarningFilter('Foobar')
+            $this->extension->labelWarningFunction('Foobar')
         );
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelImportantFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelDangerFunction
      */
-    public function testLabelImportantFilter()
+    public function testLabelDangerFunction()
     {
         $this->assertEquals(
-            '<span class="label label-important">Foobar</span>',
-            $this->extension->labelImportantFilter('Foobar')
+            '<span class="label label-danger">Foobar</span>',
+            $this->extension->labelDangerFunction('Foobar')
         );
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInfoFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInfoFunction
      */
-    public function testLabelInfoFilter()
+    public function testLabelInfoFunction()
     {
         $this->assertEquals(
             '<span class="label label-info">Foobar</span>',
-            $this->extension->labelInfoFilter('Foobar')
+            $this->extension->labelInfoFunction('Foobar')
         );
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInverseFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelPrimaryFunction
      */
-    public function testLabelInverseFilter()
+    public function testLabelPrimaryFunction()
     {
         $this->assertEquals(
-            '<span class="label label-inverse">Foobar</span>',
-            $this->extension->labelInverseFilter('Foobar')
+            '<span class="label label-primary">Foobar</span>',
+            $this->extension->labelPrimaryFunction('Foobar')
         );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getFilters
-     */
-    public function testGetFilters()
-    {
-        $filters = $this->extension->getFilters();
-        $this->assertCount(6, $filters, '->getFilters() returns 2 filters.');
-        $this->assertTrue(isset($filters['label']), '->getFilters() returns "label" filter.');
-        $this->assertTrue(isset($filters['label_success']), '->getFilters() returns "label_success" filter.');
-        $this->assertTrue(isset($filters['label_warning']), '->getFilters() returns "label_warning" filter.');
-        $this->assertTrue(isset($filters['label_important']), '->getFilters() returns "label_important" filter.');
-        $this->assertTrue(isset($filters['label_info']), '->getFilters() returns "label_info" filter.');
-        $this->assertTrue(isset($filters['label_inverse']), '->getFilters() returns "label_inverse" filter.');
     }
 }

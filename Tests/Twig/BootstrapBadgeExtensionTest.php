@@ -35,89 +35,14 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFunction
      */
-    public function testBadgeFilter()
+    public function testBadgeFunction()
     {
         $this->assertEquals(
             '<span class="badge">Hello World</span>',
-            $this->extension->badgeFilter('Hello World'),
-            '->badgeFilter() returns the HTML code for the given badge.'
+            $this->extension->badgeFunction('Hello World'),
+            '->badgeFunction() returns the HTML code for the given badge.'
         );
-        $this->assertEquals(
-            '<span class="badge badge-success">Hello World</span>',
-            $this->extension->badgeFilter('Hello World', 'success'),
-            '->badgeFilter() returns the HTML code for the given success badge.'
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeSuccessFilter
-     */
-    public function testBadgeSuccessFilter()
-    {
-        $this->assertEquals(
-            '<span class="badge badge-success">Foobar</span>',
-            $this->extension->badgeSuccessFilter('Foobar')
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeWarningFilter
-     */
-    public function testBadgeWarningFilter()
-    {
-        $this->assertEquals(
-            '<span class="badge badge-warning">Foobar</span>',
-            $this->extension->badgeWarningFilter('Foobar')
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeImportantFilter
-     */
-    public function testBadgeImportantFilter()
-    {
-        $this->assertEquals(
-            '<span class="badge badge-important">Foobar</span>',
-            $this->extension->badgeImportantFilter('Foobar')
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInfoFilter
-     */
-    public function testBadgeInfoFilter()
-    {
-        $this->assertEquals(
-            '<span class="badge badge-info">Foobar</span>',
-            $this->extension->badgeInfoFilter('Foobar')
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeInverseFilter
-     */
-    public function testBadgeInverseFilter()
-    {
-        $this->assertEquals(
-            '<span class="badge badge-inverse">Foobar</span>',
-            $this->extension->badgeInverseFilter('Foobar')
-        );
-    }
-
-    /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getFilters
-     */
-    public function testGetFilters()
-    {
-        $filters = $this->extension->getFilters();
-        $this->assertCount(6, $filters, '->getFilters() returns 2 filters.');
-        $this->assertTrue(isset($filters['badge']), '->getFilters() returns "badge" filter.');
-        $this->assertTrue(isset($filters['badge_success']), '->getFilters() returns "badge_success" filter.');
-        $this->assertTrue(isset($filters['badge_warning']), '->getFilters() returns "badge_warning" filter.');
-        $this->assertTrue(isset($filters['badge_important']), '->getFilters() returns "badge_important" filter.');
-        $this->assertTrue(isset($filters['badge_info']), '->getFilters() returns "badge_info" filter.');
-        $this->assertTrue(isset($filters['badge_inverse']), '->getFilters() returns "badge_inverse" filter.');
     }
 }
