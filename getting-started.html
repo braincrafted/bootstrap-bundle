@@ -51,6 +51,7 @@
                     <li><a href="#requirements">Requirements</a></li>
                     <li><a href="#installation">Installation</a></li>
                     <li><a href="#configuration">Configuration</a></li>
+                    <li><a href="#template">Basic template</a></li>
                     <li><a href="#customizing">Customizing</a></li>
                 </ul>
             </nav>
@@ -330,6 +331,39 @@ knp_paginator:
 
 </section>
             <section>
+    <div class="page-header">
+        <h2 id="template">Basic template</h2>
+    </div>
+
+    <p>In your template you need to include the CSS and JavaScript files from Bootstrap, that are generated with Assetic. You also need to include jQuery and you should also add HTML5 Shim and Respond.js. These are required to add support for HTML5 elements and media queries to IE8.</p>
+
+    <pre><code class="twig">&lt;!-- src/Acme/DemoBundle/Resources/views/layout.html.twig --&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+
+    &lt;title&gt;Bootstrap 101 Template&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;!-- Bootstrap --&gt;
+    &lt;link href=&quot;{{ asset('/css/bootstrap.css') }}&quot; rel=&quot;stylesheet&quot; media=&quot;screen&quot;&gt;
+
+    &lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
+
+    &lt;!-- jQuery (necessary for Bootstraps JavaScript plugins) --&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- Include all JavaScripts, compiled by Assetic --&gt;
+    &lt;script src=&quot;{{ asset('/js/bootstrap.js') }}&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+</section>            <section>
     <div class="page-header">
         <h2 id="customizing">Customizing</h2>
     </div>
