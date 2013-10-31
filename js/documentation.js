@@ -10,4 +10,6 @@ $(function() {
             $(this).css('width', width);
         });
     });
+
+    $('body').scrollspy({ target: '.sidebar' });
 });
