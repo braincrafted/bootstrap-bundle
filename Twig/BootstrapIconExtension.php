@@ -59,10 +59,11 @@ class BootstrapIconExtension extends Twig_Extension
      */
     public function parseIconsFilter($text)
     {
+        $that = $this;
         return preg_replace_callback(
             '/\.icon-([a-z0-9-]+)/',
-            function ($matches) {
-                return $this->iconFunction($matches[1]);
+            function ($matches) use ($that) {
+                return $that->iconFunction($matches[1]);
             },
             $text
         );
