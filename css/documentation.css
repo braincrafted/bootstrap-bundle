@@ -7,7 +7,12 @@ body {
     font-size: 85%;
 }
 
-.page-header h2 {
+h2 {
+    margin-top: -60px;
+    padding-top: 80px;
+}
+
+h3 {
     margin-top: -60px;
     padding-top: 80px;
 }
