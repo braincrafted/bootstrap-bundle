@@ -5,7 +5,7 @@
  */
 
 .bootstrap-time {
-    display: inline-block;
+    width: 100%;
     select {
         display: inline-block;
         width: auto;
@@ -13,11 +13,19 @@
 }
 
 .bootstrap-date {
-    display: inline-block;
+    width: 100%;
     select {
         display: inline-block;
         width: auto;
         margin-right: 5px;
+    }
+}
+
+.bootstrap-datetime {
+    .bootstrap-time,
+    .bootstrap-date {
+        display: inline-block;
+        width: auto;
     }
 }
 
@@ -36,6 +44,10 @@
             padding-left: 0;
         }
     }
+}
+
+
+form {
     .has-error {
         ul.help-block {
             list-style: none;
@@ -49,11 +61,3 @@
         }
     }
 }
-
-.row {
-    .checkbox {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-}
-
