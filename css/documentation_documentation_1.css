@@ -2,6 +2,11 @@ body {
     padding-top: 70px;
 }
 
+.page-header h2 {
+    margin-top: -60px;
+    padding-top: 80px;
+}
+
 .sidebar.affix {
     position: fixed;
     top: 70px;

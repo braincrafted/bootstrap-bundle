@@ -25,7 +25,7 @@
     
     
     <ul class="nav navbar-nav">
-                <li class="active first">        <a href="/getting-started.html">Getting started</a>                </li>
+                <li class="first">        <a href="/getting-started.html">Getting started</a>                </li>
 
         <li class="last">        <a href="/components.html">Components</a>                </li>
 
@@ -40,16 +40,51 @@
     <div class="row">
         <div class="col-lg-12">
             <h1>Getting Started</h1>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut minus deleniti facere eligendi quia iste facilis eius animi tempore! Magni laboriosam debitis voluptatibus ea molestiae nostrum reiciendis et repellat nam.</p>
+            <p class="lead">The section helps you through the installation and configuration process of BraincraftedBootstrapBundle and provides you with guides how to customize Bootstrap and extend the bundle.</p>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-3">Menu</div>
+        <div class="col-lg-3">
+            <nav class="sidebar" data-spy="affix" data-offset-top="130">
+                <ul class="sidebar nav nav-pills nav-stacked">
+                    <li><a href="#requirements">Requirements</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#configuration">Configuration</a></li>
+                    <li><a href="#extending">Extending</a></li>
+                </ul>
+            </nav>
+        </div>
         <div class="col-lg-9">
             <section>
     <div class="page-header">
-        <h2>Installation</h2>
+        <h2 id="requirements">Requirements</h2>
+    </div>
+
+    <p>BcBootstrapBundle has a few required dependencies:</p>
+
+    <ul>
+        <li><strong>PHP 5.3.3</strong> and up</li>
+        <li><strong>Symfony 2.3</strong> and up</li>
+        <li><strong>Twig 1.11</strong> and up</li>
+        <li><strong>AsseticBundle 2.3</strong> and up (optional, but highly recommended)</li>
+    </ul>
+
+    <p>If you don't use AsseticBundle for managing your assets you need to manually manage or use some other tool like Bower. While you can certainly do this, we can't help you setting the bundle up in this case.</p>
+
+    <p>The bundle also comes with support for various third party bundles:</p>
+
+    <ul>
+        <li><strong><a href="https://github.com/KnpLabs/KnpMenuBundle">KnpMenuBundle</a> 1.1.2</strong> and up</li>
+        <li><strong><a href="https://github.com/KnpLabs/KnpPaginatorBundle">KnpPaginatorBundle</a> 2.3.3</strong> and up</li>
+        <li><strong><a href="http://leafo.net/lessphp/">lessphp</a> 0.4.0</strong> and up (if you don't want to use the official <a href="http://lesscss.org">LESS</a> implementation in Node.js)</li>
+    </ul>
+
+</section>
+
+<section>
+    <div class="page-header">
+        <h2 id="installation">Installation</h2>
     </div>
 
     <p>BraincraftedBootstrapBundle should be installed using <a href="http://getcomposer.org">Composer</a>:</p>
@@ -159,9 +194,9 @@ braincrafted_bootstrap:
 
 </section>
 
-<section id="configuration">
+<section>
     <div class="page-header">
-        <h2>Configuration</h2>
+        <h2 id="configuration">Configuration</h2>
     </div>
 
     <p>BraincraftedBootstrapBundle can be configured using your projects <code>config.yml</code>. The following snippet shows all possible configuration options and their default values.</p>
@@ -186,7 +221,7 @@ braincrafted_bootstrap:
 
     <h3>Assetic Configuration</h3>
 
-    <p>If the option <code>braincrafted_bootstrap.auto_configure.assetic</code> is set to <code>true</code> the bundle configures Assetic for you. In case you want to adapt the configuration, you can use the default one.</p>
+    <p>If the option <code>braincrafted_bootstrap.auto_configure.assetic</code> is set to <code>true</code> the bundle configures Assetic for you. In case you want to adapt the configuration, you can base it on the default one.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 
@@ -218,11 +253,20 @@ assetic:
             output: js/bootstrap.js
         jquery:
             inputs:
-                - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+                - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
             output: js/jquery.js
     </code></pre>
 
-    <h3>Customizing Bootstrap</h3>
+</section>
+
+<section>
+    <div class="page-header">
+        <h2 id="customizing">Customizing</h2>
+    </div>
+
+    <p>BraincraftedBootstrapBundle gives you the ability to customize Bootstrap.</p>
+
+    <h3>Custom variables.less</h3>
 
     <p>Bootstraps has the ability to be modified by manipulating the <code>variables.less</code> file provided with the framework. However, since this bundle uses Composer to download and install Bootstrap we can not overwrite the <code>variables.less</code> file (every <code>composer update</code> would eliminate changes made to that file). It is required to build a custom <code>bootstrap.less</code> that includes the custom <code>variables.less</code> and all the other <code>.less</code> files from Bootstrap.</p>
 
@@ -242,7 +286,7 @@ braincrafted_bootstrap:
         variables_file: %kernel.root_dir%/Resources/less/variables.less
 </code></pre>
 
-    <p>It is also possible to use a file provided by a bundle. You can use the option <code>braincrafted_bootstrap.bootstrap_output</code> to configure where BraincraftedBootstrapBundle stores the generated <code>bootstrap.less</code> file. This defaults to <code>app/Resources/less/bootstrap.less</code>. The option <code>braincrafted_bootstrap.customize_variables.bootstrap_template</code> defines the template used to generate the file. You can use two variables <code>variables_file</code> and <code>assets_dir</code>. The later points to the value of the option <code>braincrafted_bootstrap.assets_dir</code>.</p>
+    <p>It is also possible to use a file provided by a bundle. You can use the option <code>braincrafted_bootstrap.bootstrap_output</code> to configure where BraincraftedBootstrapBundle stores the generated <code>bootstrap.less</code> file. This defaults to <code>app/Resources/less/bootstrap.less</code>. The option <code>braincrafted_bootstrap.customize_variables.bootstrap_template</code> defines the template used to generate the file. You can use two variables <code>variables_file</code> and <code>assets_dir</code> in this template. The later points to the value of the option <code>braincrafted_bootstrap.assets_dir</code>.</p>
 
     <p>After you configured the bundle with your customer <code>variables.less</code> file you need to generate the <code>bootstrap.less</code> file.</p>
 
@@ -265,7 +309,12 @@ assetic:
                 - cssrewrite
             output: css/bootstrap.css</code></pre>
 </section>
-        </div>
+
+<section>
+    <div class="page-header">
+        <h2 id="extending">Extending</h2>
+    </div>
+</section>        </div>
     </div>
 </div>
 
@@ -274,6 +323,7 @@ assetic:
 <script src="//code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.js"></script>
+<script src="/js/documentation.js"></script>
 
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
