@@ -27,7 +27,7 @@
         {% set attr = attr|merge({ 'placeholder': label}) %}
     {% endif %}
 
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
 
     {% if simple_col is defined %}
         </div>
@@ -103,6 +103,20 @@
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
 {% endspaceless %}
 {% endblock textarea_widget %}
+
+{% block file_widget %}
+{% spaceless %}
+    {% if simple_col is defined %}
+        <div class="col-lg-{{ simple_col }}">
+    {% endif %}
+
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+
+    {% if simple_col is defined %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock file_widget %}
 
 {% block choice_widget %}
 {% spaceless %}
