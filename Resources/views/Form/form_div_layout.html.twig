@@ -14,12 +14,18 @@
 
 {% block form_widget_simple %}
 {% spaceless %}
+    {% set style = style|default(bootstrap_get_style()) %}
+
     {% if simple_col is defined %}
         <div class="col-lg-{{ simple_col }}">
     {% endif %}
 
     {% set type = type|default('text') %}
     {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+
+    {% if style == 'inline' and attr.placeholder is empty %}
+        {% set attr = attr|merge({ 'placeholder': label}) %}
+    {% endif %}
 
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 
@@ -400,6 +406,8 @@
 
         {% if style == 'horizontal' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label col-lg-' ~ label_col)|trim }) %}
+        {% elseif style == 'inline' %}
+            {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' sr-only')|trim }) %}
         {% endif %}
 
         {% if not compound %}
@@ -444,14 +452,15 @@
                 {{ form_errors(form) }}
             </div>
         </div>
-
     {% else %}
-        <div>
+        <div class="form-group">
             {{ form_label(form) }}
             {{ form_errors(form) }}
             {{ form_widget(form) }}
         </div>
     {% endif %}
+
+    {% if style == 'inline' %}&nbsp;{% endif %}
 {% endspaceless %}
 {% endblock form_row %}
 
@@ -489,8 +498,12 @@
     {% endif %}
 
     {% if style is defined %}
-        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-horizontal')|trim }) %}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-' ~ style)|trim }) %}
         {{ bootstrap_set_style(style) }}
+    {% endif %}
+
+    {% if attr.role is not defined or attr.role is empty %}
+        {% set attr = attr|merge({ 'role': 'form' }) %}
     {% endif %}
 
     <form method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
