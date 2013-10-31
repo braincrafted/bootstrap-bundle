@@ -191,6 +191,29 @@ braincrafted_bootstrap:
 
     <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check the <a href="http://leafo.net/lessphp/">lessphp website</a> if a new version has been released.</p>
 
+    <h3 id="installing-glyphicons">Installing Glyphicons</h3>
+
+    <p>Bootstrap comes with support for Glyphicons. However, you need to copy the icon fonts into your <code>web/</code> directory, so that browsers can find it. BraincraftedBootstrapBundle comes with a command to copy the files for you</p>
+
+    <pre><code class="bash">php app/console braincrafted:bootstrap:install</code></pre>
+
+    <p>Since you need to do this everytime the font changes in Bootstrap, you can also configure a <code>ScriptHandler</code> in your <code>composer.json</code>. Now the icon fonts are copied into the web directory after Composer updated the packages.</p>
+
+    <pre><code class="json">{
+    ...
+    "scripts": {
+        "post-install-cmd": [
+            ...
+            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
+        ],
+        "post-update-cmd": [
+            ...
+            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
+        ]
+    }
+    ...
+}</code></pre>
+
 </section>
             <section>
     <div class="page-header">
