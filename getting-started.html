@@ -51,7 +51,7 @@
                     <li><a href="#requirements">Requirements</a></li>
                     <li><a href="#installation">Installation</a></li>
                     <li><a href="#configuration">Configuration</a></li>
-                    <li><a href="#extending">Extending</a></li>
+                    <li><a href="#customizing">Customizing</a></li>
                 </ul>
             </nav>
         </div>
@@ -223,6 +223,10 @@ braincrafted_bootstrap:
 
     <pre><code class="yaml"># app/config/config.yml
 
+braincrafted_bootstrap:
+    auto_configure:
+        assetic: false
+
 assetic:
     ...
     assets:
@@ -254,6 +258,52 @@ assetic:
                 - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
             output: js/jquery.js
     </code></pre>
+
+    <h3>Twig Configuration</h3>
+
+    <p>The option <code>braincrafted_bootstrap.auto_configure.twig</code> set to <code>TRUE</code> (the default value) will automatically configure Symfony to use the template provided with BraincraftedBootstrapBundle to render forms. You can turn auto configuration off and manually configure Twig if you want more control.</p>
+
+    <pre><code class="yaml"># app/config/config.yml
+
+braincrafted_bootstrap:
+    auto_configure:
+        twig: false
+
+twig:
+    form:
+        resources:
+            - BraincraftedBootstrapBundle:Form:form_div_layout.html.twig
+</code></pre>
+
+    <h3>KnpMenuBundle Configuration</h3>
+
+    <p>If the option <code>braincrafted_bootstrap.auto_configure.knp_menu</code> is set to <code>TRUE</code> (the default value) BraincraftedBootstrapBundle will automatically configure KnpMenuBundle to use Bootstrap. However, if you want more control you can manually configure KnpMenuBundle.</p>
+
+    <pre><code class="yaml"># app/config/config.yml
+
+braincrafted_bootstrap:
+    auto_configure:
+        knp_menu: false
+
+knp_menu:
+    twig:
+        template: BraincraftedBootstrapBundle:Menu:menu.html.twig
+</code></pre>
+
+    <h3>KnpPaginatorBundle Configuration</h3>
+
+    <p>Once again, if the option <code>braincrafted_bootstrap.auto_configure.knp_paginator</code> is set to <code>TRUE</code> (the default value), the bundle will be configured automatically. You can set the value to <code>false</code> to manually configure KnpPaginatorBundle.</p>
+
+    <pre><code class="yaml"># app/config/config.yml
+
+braincrafted_bootstrap:
+    auto_configure:
+        knp_paginator: false
+
+knp_paginator:
+    template:
+        pagination: BraincraftedBootstrapBundle:Pagination:pagination.html.twig
+</code></pre>
 
 </section>
             <section>
@@ -305,11 +355,35 @@ assetic:
                 - less
                 - cssrewrite
             output: css/bootstrap.css</code></pre>
-</section>
-            <section>
-    <div class="page-header">
-        <h2 id="extending">Extending</h2>
-    </div>
+
+    <h3>Custom Form Widgets</h3>
+
+    <p>If you want to overwrite only part of the form template provided by BraincraftedBootstrapBundle you can use the template inheritance of Twig do achieve this without duplicating code from the bundle.</p>
+
+    <pre><code class="yaml"># app/config/config.yml
+
+braincrafted_bootstrap:
+    auto_configure:
+        twig: false
+
+twig:
+    form:
+        resources:
+            - AcmeDemoBundle:Form:form_div_layout.html.twig
+</code></pre>
+
+    <pre><code class="twig">&lt;!-- src/Acme/DemoBundle/Resources/views/Form/form_div_layout.html.twig --&gt;
+
+{% extends 'BraincraftedBootstrapBundle:Form:form_div_layout.html.twig' %}
+
+&lt;!-- Custom code for the URL widget --&gt;
+{% block url_widget %}
+{% spaceless %}
+    {% set type = type|default('url') %}
+    {{ block('form_widget_simple') }}
+{% endspaceless %}
+{% endblock url_widget %}</code></pre>
+
 </section>
         </div>
     </div>
