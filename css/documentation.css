@@ -2,6 +2,11 @@ body {
     padding-top: 70px;
 }
 
+#footer {
+    margin-top: 30px;
+    font-size: 85%;
+}
+
 .page-header h2 {
     margin-top: -60px;
     padding-top: 80px;
