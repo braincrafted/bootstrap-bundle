@@ -23,7 +23,7 @@
     {% set type = type|default('text') %}
     {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
 
-    {% if style == 'inline' and attr.placeholder is empty %}
+    {% if style == 'inline' and (attr.placeholder is not defined or attr.placeholder is empty) %}
         {% if label is empty %}
             {% set attr = attr|merge({ 'placeholder': name|humanize }) %}
         {% else %}
