@@ -1,4 +1,4 @@
-BcBootstrapBundle
+[BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com)
 =================
 
 By [Florian Eckerstorfer](http://florianeckerstorfer.com)
@@ -6,19 +6,10 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
 
 
-Note
-----
-
-There is currently no stable release that supports Bootstrap 3.0. I'm working on a 2.0 release, which supports Bootstrap 3 and generally improves the bundle. However, it will take some time for get a stable release ready. Please be patient.
-
-In the meantime you can use the bundle, but you should have an understanding on how Symfony2 (especially configuration), Assetic and Composer works to get everything running.
-
 About
 -----
 
-BcBootstrapBundle is [Bootstrap, from Twitter](http://twitter.github.com/bootstrap/) encapsulated in a [Symfony2](http://symfony.com) bundle.
-
-This bundle is highly opiniated by how I use Twitter Bootstrap and Symfony.
+BraincraftedBootstrapBundle helps you integrate [Bootstrap](http://getbootstrap.com) in your [Symfony2](http://symfony.com) project.
 
 
 Installation
@@ -32,9 +23,9 @@ First you need to add `braincrafted/bootstrap-bundle` to `composer.json`:
         }
     }
 
-Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `1.3.*`.
+Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `2.0.*`.
 
-You also have to add `BcBootstrapBundle` to your `AppKernel.php`:
+You also have to add `BraincraftedBootstrapBundle` to your `AppKernel.php`:
 
     // app/AppKernel.php
     ...
@@ -45,7 +36,7 @@ You also have to add `BcBootstrapBundle` to your `AppKernel.php`:
         {
             $bundles = array(
                 ...
-                new Bc\Bundle\BootstrapBundle\BcBootstrapBundle()
+                new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle()
             );
             ...
 
@@ -54,40 +45,70 @@ You also have to add `BcBootstrapBundle` to your `AppKernel.php`:
         ...
     }
 
-
-Download Assets
----------------
-
-This bundle does no longer contain the asset files from Twitter Bootstrap (images, stylesheets and JavaScripts). The best way to include those assets is to add Twitter Bootstrap to your `composer.json`:
-
-    {
-       "require": {
-            "twbs/bootstrap": "3.0.*"
-        }
-    }
-
-You can find a detailed description in the documentation.
-
-
-More Information
-----------------
-
-Check out the [documentation](http://bootstrap.braincrafted.com) to find out how you can use BcBootstrapBundle in your Symfony2 project.
+Additionally you have to install Bootstrap and jQuery as dependencies and configure Assetic to compile the LESS files. You can find more information in the [Getting Started](http://bootstrap.braincrafted.com/getting-started.html) section of the documentation.
 
 
 Compatibility
 -------------
 
-- **BcBootstrapBundle v1.3.***
-    - Twitter Bootstrap v2.3.*
-    - Symfony 2.2.*
-- **BcBootstrapBundle v1.4.***
-    - Twitter Bootstrap v2.3.*
-    - Symfony 2.2.*
+This bundle has two main dependencies, Symfony and Bootstrap. The following table shows which version of BraincraftedBootstrapBundle is compatible with which version of Symfony and Bootstrap.
+
+<table>
+    <thead>
+        <tr>
+            <th>BootstrapBundle</th>
+            <th>Symfony</th>
+            <th>Bootstrap</th>
+            <th>jQuery</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>v1.3.*</strong></td>
+            <td>v2.2.*</td>
+            <td>v2.3.*</td>
+            <td>v1.9.*</td>
+        </tr>
+        <tr>
+            <td><strong>v1.4.*</strong></td>
+            <td>v2.2.*</td>
+            <td>v2.3.*</td>
+            <td>v1.9.*</td>
+        </tr>
+        <tr>
+            <td><strong>v2.0.*</strong></td>
+            <td>v2.3.*</td>
+            <td>v3.0.*</td>
+            <td>v1.10.*</td>
+        </tr>
+    </tbody>
+</table>
 
 
 Changelog
 ---------
+
+## Version 2.0.0
+
+- Updated to Symfony v2.3.6
+- Updated to Bootstrap v3.0.1
+- Updated to jQuery v1.10.2
+- Remove `include_responsive` option because Bootstrap 3.0 no longer has a non responsive version
+- Added `boostrap_money` form type that uses Bootstraps prepend or append style to display the currency
+- `percent` form type uses Bootstraps append style to display the percent sign
+- Changed namespace back to `Braincrafted\Bundle\BootstrapBundle`
+- Support for custom `variables.less`
+- Several Twig filters are now functions
+- Added `bootstrap_set_style` and `bootstrap_get_style` Twig functions to globally set the style of forms
+- Added command to generate custom `bootstrap.less` file
+- Added command to copy icon fonts into `web/` directory
+- Added Composer script handler for copying icon fonts
+- Pagination now supports disabled links
+- Added Twig function `badge`
+- Removed Twig filters `badge_*` (Bootstrap v3.0 does not include multiply badge styles)
+- Twig filters `label_*` are now Twig functions
+- Twig filter `icon` is now a Twig function
+- Added `bootstrap_collection` form type
 
 ### Version 1.4.0
 
@@ -100,6 +121,11 @@ Changelog
 - Improved code style (usage of PHP_CodeSniffer and PHPMD)
 - Support for `data-prototype` option in collection fields
 - Helper and template for flash messages
+
+### Version 1.2.0
+
+- Added support for Assetic
+
 
 License
 -------
