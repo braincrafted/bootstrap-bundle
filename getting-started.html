@@ -66,7 +66,7 @@
         <h2 id="requirements">Requirements</h2>
     </div>
 
-    <p>BcBootstrapBundle has a few required dependencies:</p>
+    <p>BraincraftedBootstrapBundle has a few required dependencies:</p>
 
     <ul>
         <li><strong>PHP 5.3.3</strong> and up</li>
@@ -81,9 +81,59 @@
 
     <ul>
         <li><strong><a href="https://github.com/KnpLabs/KnpMenuBundle">KnpMenuBundle</a> 1.1.2</strong> and up</li>
-        <li><strong><a href="https://github.com/KnpLabs/KnpPaginatorBundle">KnpPaginatorBundle</a> 2.3.3</strong> and up</li>
+        <li><strong><a href="https://github.com/KnpLabs/KnpPaginatorBundle">KnpPaginatorBundle</a></strong> <code>dev-master</code><sup>1</sup></li>
         <li><strong><a href="http://leafo.net/lessphp/">lessphp</a> 0.4.0</strong> and up (if you don't want to use the official <a href="http://lesscss.org">LESS</a> implementation in Node.js)</li>
     </ul>
+
+    <p>Since this bundle has two main and many additional dependencies, here is a table of compatibilities:</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>BootstrapBundle</th>
+                <th>Symfony</th>
+                <th>Bootstrap</th>
+                <th>jQuery</th>
+                <th>KnpMenu</th>
+                <th>KnpPaginator</th>
+                <th>lessphp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong><code>v1.3.*</code></strong></td>
+                <td><code>v2.2.*</code></td>
+                <td><code>v2.3.*</code></td>
+                <td><code>v1.9.*</code></td>
+                <td><code>v1.*</code></td>
+                <td><code>v2.*</code></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><strong><code>v1.4.*</code></strong></td>
+                <td><code>v2.2.*</code></td>
+                <td><code>v2.3.*</code></td>
+                <td><code>v1.9.*</code></td>
+                <td><code>v1.*</code></td>
+                <td><code>v2.*</code></td>
+                <td><code>v0.3.*</code></td>
+            </tr>
+            <tr>
+                <td><strong><code>v2.0.*</code></strong></td>
+                <td><code>v2.3.*</code><br><code>v2.4.*</code></td>
+                <td><code>v3.0.*</code></td>
+                <td><code>v1.10.*</code></td>
+                <td><code>v1.1.*</code><br><code>v2.0.0-alpha1</code><sup>2</sup></td>
+                <td><code>dev-master</code><sup>1</sup></td>
+                <td><code>v0.4.*</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <sup>1</sup> knplabs/knp-components currently has no release that is comptatible with Symfony 2.3.<br>
+        <sup>2</sup> The bundle works fine with <code>1.*</code> releases of KnpMenu, however, automatically matching the active element only works with <code>2.*</code> or <code>dev-master</code>.
+    </p>
 
 </section>
             <section>
@@ -202,7 +252,7 @@ braincrafted_bootstrap:
 
     <pre><code class="bash">php app/console braincrafted:bootstrap:install</code></pre>
 
-    <p>Since you need to do this everytime the font changes in Bootstrap, you can also configure a <code>ScriptHandler</code> in your <code>composer.json</code>. Now the icon fonts are copied into the web directory after Composer updated the packages.</p>
+    <p>Since you need to do this everytime the font changes in Bootstrap, you can also configure a <code>ScriptHandler</code> in your <code>composer.json</code>. Now the icon fonts are copied into the web directory after Composer updates the packages.</p>
 
     <pre><code class="json">{
     ...
