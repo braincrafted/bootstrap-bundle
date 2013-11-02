@@ -1,6 +1,6 @@
 {
     "name":         "braincrafted/bootstrap-bundle",
-    "description":  "Twitter Bootstrap for Symfony2",
+    "description":  "Bootstrap for Symfony2",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
     "license":      "MIT",
@@ -8,23 +8,19 @@
         {
             "name":     "Florian Eckerstorfer",
             "email":    "florian@eckerstorfer.co",
-            "homepage": "http://florianeckerstorfer.com"
+            "homepage": "http://florian.ec"
         }
     ],
     "require":      {
-        "php":              ">=5.3.3"
+        "php":              ">=5.3.3",
+        "symfony/symfony":  ">=2.3"
     },
     "require-dev": {
-        "knplabs/knp-menu":                     "dev-master",
-        "knplabs/knp-menu-bundle":              "dev-master",
-        "knplabs/knp-markdown-bundle":          "dev-master",
+        "knplabs/knp-menu":                     "~2.0@alpha",
+        "knplabs/knp-menu-bundle":              "~2.0@alpha",
         "knplabs/knp-paginator-bundle":         "dev-master",
         "phpunit/phpunit":                      "3.7.*",
-        "mockery/mockery":                      "dev-master@dev",
-        "instaclick/php-code-sniffer":          "dev-master",
-        "phpmd/phpmd":                          "1.4.*",
-        "nikic/php-parser":                     "dev-master",
-        "instaclick/symfony2-coding-standard":  "dev-master"
+        "mockery/mockery":                      "0.8.*"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
