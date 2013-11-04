@@ -129,6 +129,7 @@
     {% else %}
         {{ block('choice_widget_collapsed') }}
     {% endif %}
+    {{ form_errors(form) }}
 {% endspaceless %}
 {% endblock choice_widget %}
 
