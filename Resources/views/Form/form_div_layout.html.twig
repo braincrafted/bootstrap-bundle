@@ -477,12 +477,14 @@
         {% if style == 'horizontal' %}
             {{ form_label(form) }}
             <div class="col-lg-{{ widget_col }}">
-                {{ form_widget(form) }}
+                {{ block('form_input_group') }}
+                {{ block('form_help') }}
                 {{ form_errors(form) }}
             </div>
         {% else %}
             {{ form_label(form) }}
-            {{ form_widget(form) }}
+            {{ block('form_input_group') }}
+            {{ block('form_help') }}
             {{ form_errors(form) }}
         {% endif %}
     </div>
@@ -490,6 +492,47 @@
     {% if style == 'inline' %}&nbsp;{% endif %}
 {% endspaceless %}
 {% endblock form_row %}
+
+{% block form_input_group %}
+{% spaceless %}
+    {% if attr.input_group is defined and attr.input_group is not empty %}
+        {% set input_group = attr.input_group %}
+    {% endif %}
+    {% set input_group = input_group|default({}) %}
+    {% if input_group is not empty %}
+        {% set ig_size_class = '' %}
+        {% if input_group.size is defined and input_group.size == 'large' %}
+            {% set ig_size_class = ' input-group-lg' %}
+        {% endif  %}
+        {% if input_group.size is defined and input_group.size == 'small' %}
+            {% set ig_size_class = ' input-group-sm' %}
+        {% endif  %}
+        <div class="input-group{{ ig_size_class }}">
+            {% if input_group.prepend is defined and input_group.prepend is not empty %}
+                <span class="input-group-addon">{{ input_group.prepend }}</span>
+            {% endif %}
+            {{ form_widget(form) }}
+            {% if input_group.append is defined and input_group.append is not empty %}
+                <span class="input-group-addon">{{ input_group.append }}</span>
+            {% endif %}
+        </div>
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_input_group %}
+
+{% block form_help %}
+{% spaceless %}
+    {% if attr.help_text is defined and attr.help_text is not empty %}
+        {% set help_text = attr.help_text %}
+    {% endif %}
+    {% set help_text = help_text|default('') %}
+    {% if help_text is not empty %}
+        <span class="help-block">{{ help_text }}</span>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_help %}
 
 {% block button_row %}
 {% spaceless %}
