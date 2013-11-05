@@ -24,8 +24,6 @@ use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\AsseticConfiguration
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
- *
- * @codeCoverageIgnore
  */
 class BraincraftedBootstrapExtension extends Extension implements PrependExtensionInterface
 {
@@ -107,9 +105,10 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         foreach ($container->getExtensions() as $name => $extension) {
             switch ($name) {
                 case 'assetic':
+                    $asseticConfig = new AsseticConfiguration;
                     $container->prependExtensionConfig(
                         $name,
-                        array('assets' => (new AsseticConfiguration)->build($config))
+                        array('assets' => $asseticConfig->build($config))
                     );
                     break;
             }

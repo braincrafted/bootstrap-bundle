@@ -28,13 +28,15 @@ class BootstrapLabelExtension extends Twig_Extension
      */
     public function getFunctions()
     {
+        $options = array('pre_escape' => 'html', 'is_safe' => array('html'));
+
         return array(
-            'label'          => new Twig_Function_Method($this, 'labelFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_primary'  => new Twig_Function_Method($this, 'labelPrimaryFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_success'  => new Twig_Function_Method($this, 'labelSuccessFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_info'     => new Twig_Function_Method($this, 'labelInfoFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_warning'  => new Twig_Function_Method($this, 'labelWarningFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
-            'label_danger'=> new Twig_Function_Method($this, 'labelDangerFunction', array('pre_escape' => 'html', 'is_safe' => array('html')))
+            'label'          => new Twig_Function_Method($this, 'labelFunction', $options),
+            'label_primary'  => new Twig_Function_Method($this, 'labelPrimaryFunction', $options),
+            'label_success'  => new Twig_Function_Method($this, 'labelSuccessFunction', $options),
+            'label_info'     => new Twig_Function_Method($this, 'labelInfoFunction', $options),
+            'label_warning'  => new Twig_Function_Method($this, 'labelWarningFunction', $options),
+            'label_danger'   => new Twig_Function_Method($this, 'labelDangerFunction', $options)
         );
     }
 
@@ -51,6 +53,11 @@ class BootstrapLabelExtension extends Twig_Extension
         return sprintf('<span class="label%s">%s</span>', ($type ? ' label-' . $type : ''), $text);
     }
 
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
     public function labelPrimaryFunction($text)
     {
         return $this->labelFunction($text, 'primary');

@@ -98,6 +98,8 @@ class MoneyType extends BaseMoneyType
             return '{{ widget }} {{ tag_start }}'.$matches[2].'{{ tag_end }}';
         }
 
+        // @codeCoverageIgnoreStart
         return '{{ widget }}';
+        // @codeCoverageIgnoreEnd
     }
 }

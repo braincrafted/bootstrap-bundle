@@ -12,6 +12,11 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
 /**
  * BootstrapLabelExtensionTest
  *
+ * This test is only useful if you consider that it will be run by Travis on every supported PHP
+ * configuration. We live in a world where should not have too manually test every commit with every
+ * version of PHP. And I know exactly that I will commit short array syntax all the time and break
+ * compatibility with PHP 5.3
+ *
  * @category   Test
  * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
@@ -32,6 +37,14 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->extension = new BootstrapLabelExtension();
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getFunctions()
+     */
+    public function testGetFunctions()
+    {
+        $this->assertCount(6, $this->extension->getFunctions());
     }
 
     /**
@@ -104,5 +117,13 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
             '<span class="label label-primary">Foobar</span>',
             $this->extension->labelPrimaryFunction('Foobar')
         );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getName()
+     */
+    public function testGetName()
+    {
+        $this->assertEquals('braincrafted_bootstrap_label', $this->extension->getName());
     }
 }

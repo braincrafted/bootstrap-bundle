@@ -31,10 +31,16 @@ class BootstrapFormExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('bootstrap_set_style', [$this, 'setStyle']),
-            new \Twig_SimpleFunction('bootstrap_get_style', [$this, 'getStyle']),
-            'checkbox_row'  => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
-            'radio_row'  => new \Twig_Function_Node('Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('bootstrap_set_style', array($this, 'setStyle')),
+            new \Twig_SimpleFunction('bootstrap_get_style', array($this, 'getStyle')),
+            'checkbox_row'  => new \Twig_Function_Node(
+                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
+                array('is_safe' => array('html'))
+            ),
+            'radio_row'  => new \Twig_Function_Node(
+                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
+                array('is_safe' => array('html'))
+            ),
         );
     }
 

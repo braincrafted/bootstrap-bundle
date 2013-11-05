@@ -12,6 +12,11 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
 /**
  * BootstrapIconExtensionTest
  *
+ * This test is only useful if you consider that it will be run by Travis on every supported PHP
+ * configuration. We live in a world where should not have too manually test every commit with every
+ * version of PHP. And I know exactly that I will commit short array syntax all the time and break
+ * compatibility with PHP 5.3
+ *
  * @category   Test
  * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
@@ -32,6 +37,22 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->extension = new BootstrapIconExtension();
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters()
+     */
+    public function testGetFilters()
+    {
+        $this->assertCount(1, $this->extension->getFilters());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFunctions()
+     */
+    public function testGetFunctions()
+    {
+        $this->assertCount(1, $this->extension->getFunctions());
     }
 
     /**
@@ -56,5 +77,13 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
             $this->extension->parseIconsFilter('.icon-heart foobar'),
             '->parseIconsFilter() returns the HTML code with the replaced icons.'
         );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getName()
+     */
+    public function testGetName()
+    {
+        $this->assertEquals('braincrafted_bootstrap_icon', $this->extension->getName());
     }
 }

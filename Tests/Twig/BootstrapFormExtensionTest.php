@@ -7,10 +7,10 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Tests\Twig;
 
-use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension;
+use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension;
 
 /**
- * BootstrapBadgeExtensionTest
+ * BootstrapFormExtensionTest
  *
  * This test is only useful if you consider that it will be run by Travis on every supported PHP
  * configuration. We live in a world where should not have too manually test every commit with every
@@ -26,9 +26,9 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension;
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  * @group      unit
  */
-class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
+class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var BootstrapBadgeExtension */
+    /** @var BootstrapFormExtension */
     private $extension;
 
     /**
@@ -36,34 +36,32 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->extension = new BootstrapBadgeExtension();
+        $this->extension = new BootstrapFormExtension();
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getFunctions()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getFunctions()
      */
     public function testGetFunctions()
     {
-        $this->assertCount(1, $this->extension->getFunctions());
+        $this->assertCount(4, $this->extension->getFunctions());
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::badgeFunction
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setStyle()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getStyle()
      */
-    public function testBadgeFunction()
+    public function testSetStyleGetStyle()
     {
-        $this->assertEquals(
-            '<span class="badge">Hello World</span>',
-            $this->extension->badgeFunction('Hello World'),
-            '->badgeFunction() returns the HTML code for the given badge.'
-        );
+        $this->extension->setStyle('inline');
+        $this->assertEquals('inline', $this->extension->getStyle());
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension::getName()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getName()
      */
     public function testGetName()
     {
-        $this->assertEquals('braincrafted_bootstrap_badge', $this->extension->getName());
+        $this->assertEquals('braincrafted_bootstrap_form', $this->extension->getName());
     }
 }

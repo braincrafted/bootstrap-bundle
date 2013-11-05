@@ -58,9 +58,11 @@ class BootstrapCollectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $optionsNormalizer = function (Options $options, $value) {
+            // @codeCoverageIgnoreStart
             $value['block_name'] = 'entry';
 
             return $value;
+            // @codeCoverageIgnoreEnd
         };
 
         $resolver->setDefaults(array(
@@ -92,6 +94,6 @@ class BootstrapCollectionType extends AbstractType
      */
     public function getName()
     {
-        return 'braincrafted_collection';
+        return 'bootstrap_collection';
     }
 }
