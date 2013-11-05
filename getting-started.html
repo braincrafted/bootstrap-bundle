@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1>Getting Started</h1>
-            <p class="lead">The section helps you through the installation and configuration process of BraincraftedBootstrapBundle and provides you with guides how to customize Bootstrap and extend the bundle.</p>
+            <p class="lead">This section helps you through the installation and configuration process of BraincraftedBootstrapBundle and provides guides about how to customize Bootstrap and extend the bundle.</p>
         </div>
     </div>
 
@@ -85,7 +85,7 @@
         <li><strong>AsseticBundle 2.3</strong> and up (optional, but highly recommended)</li>
     </ul>
 
-    <p>If you don't use AsseticBundle for managing your assets you need to manually manage or use some other tool like Bower. While you can certainly do this, we can't help you setting the bundle up in this case.</p>
+    <p>If you don't use AsseticBundle for managing your assets, you need to manually manage them or use some other tool like Bower. While you can certainly do this, we can't help you setting up the bundle up in this case.</p>
 
     <p>The bundle also comes with support for various third party bundles:</p>
 
@@ -141,7 +141,7 @@
     </table>
 
     <p>
-        <sup>1</sup> knplabs/knp-components currently has no release that is comptatible with Symfony 2.3.<br>
+        <sup>1</sup> knplabs/knp-components currently has no release that is compatible with Symfony 2.3.<br>
         <sup>2</sup> The bundle works fine with <code>1.*</code> releases of KnpMenu, however, automatically matching the active element only works with <code>2.*</code> or <code>dev-master</code>.
     </p>
 
@@ -159,15 +159,15 @@
     }
 }</code></pre>
 
-    <p><span class="label label-warning">Warning</span> Version 2.0 is currently only an alpha release. If you use Composer you need to change the <code>minimum-stability</code> to include alpha releases. You can do this either globally by setting <a href="http://getcomposer.org/doc/04-schema.md#minimum-stability">the option</a> to <code>alpha</code> or you can change it just for BootstrapBundle:</p>
+    <p><span class="label label-warning">Warning</span> Version 2.0 is currently only an alpha release. If you use Composer you need to change the <code>minimum-stability</code> to include alpha releases. You can do this either globally by setting <a href="http://getcomposer.org/doc/04-schema.md#minimum-stability"><code>minimum-stability</code></a> to <code>alpha</code> or locally by appending <code>@alpha</code> to the version constraint:</p>
     <pre><code class="json">{
     "require": {
         "braincrafted/bootstrap-bundle": "~2.0@alpha"
     }
 }</code></pre>
-    <p>When a stable version of 2.0 is released you can remove the minimum stability.</p>
+    <p>Once a stable version of 2.0 is released, you can remove the <code>minimum-stability</code> setting.</p>
 
-    <p>By default BraincraftedBootstrapBundle <strong>does not include Bootstrap and jQuery</strong>. Some people want to use Composer for these dependencies, other people prefer tools designed for managing assets like Bower. If you want to use such a tool we assume you know how to use it. If you have no experience with these tools you probably want to stick with those from the PHP/Symfony2 world, that is, Composer. You can use the following code in your <code>composer.json</code> to include Bootstrap and jQuery into your Symfony2 project:</p>
+    <p>By default, BraincraftedBootstrapBundle <strong>does not include Bootstrap and jQuery</strong>. Some people want to use Composer for these dependencies, other people prefer tools designed for managing assets like Bower. If you want to use such a tool, we assume you know how to use it. If you have no experience with these tools, you probably want to stick with Composer. You can use the following code in your <code>composer.json</code> to include Bootstrap and jQuery in your Symfony2 project:</p>
 
     <pre><code class="json">{
     "repositories": [
@@ -209,7 +209,7 @@ class AppKernel extends Kernel
 
 </code></pre>
 
-    <p>BraincraftedBootstrapBundle highly recommends you to use Assetic for managing assets. If you do use Assetic for managing your assets you should now run the <code>dump</code> command.</p>
+    <p>BraincraftedBootstrapBundle highly recommends you to use Assetic for managing assets. If you do use Assetic for managing your assets, you should now run the <code>dump</code> command.</p>
 
     <pre><code>php app/console assetic:dump</code></pre>
 
@@ -217,17 +217,17 @@ class AppKernel extends Kernel
 
     <h3>Installing a LESS compiler</h3>
 
-    <p>As mentioned above you need either LESS or lessphp. Not both.</p>
+    <p>As mentioned above, it is sufficient to install either LESS or lessphp.</p>
 
     <p><span class="label label-primary">Don't forget</span> You have to install the library, configure Assetic to compile <code>.less</code> files using that library and you have to tell BraincraftedBootstrapBundle if you want to use <code>less</code> or <code>lessphp</code>.</p>
 
     <h4>LESS</h4>
 
-    <p>We highly recommend using the original version of LESS, since the developers of Bootstrap only use this version to compile the stylesheets and it can happen that Bootstrap does not compile with lessphp. To install LESS you need <a href="https://npmjs.org">NPM</a>.</p>
+    <p>We highly recommend using the original version of LESS, since the developers of Bootstrap only use this version to compile the stylesheets and it can happen that Bootstrap does not compile with lessphp. To install LESS, you need <a href="https://npmjs.org">NPM</a>.</p>
 
     <pre><code>npm install -g less</code></pre>
 
-    <p>You probably need to configure Assetic to use the installed binary. Please change the path to Node.js where you have installed Node.js on your system.</p>
+    <p>You probably need to configure Assetic to use the installed binary. Change the path to the location of Node.js on your system.</p>
 
     <pre><code># app/config/config.yml
 assetic:
@@ -262,7 +262,7 @@ assetic:
 braincrafted_bootstrap:
     less_filter: lessphp</code></pre>
 
-    <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check the <a href="http://leafo.net/lessphp/">lessphp website</a> if a new version has been released.</p>
+    <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check the <a href="http://leafo.net/lessphp/">lessphp website</a> whether a new version has been released.</p>
 
     <h3 id="installing-glyphicons">Installing Glyphicons</h3>
 
@@ -293,9 +293,9 @@ braincrafted_bootstrap:
         <h2 id="configuration">Configuration</h2>
     </div>
 
-    <p>BraincraftedBootstrapBundle can be configured using your projects <code>config.yml</code>. The following snippet shows all possible configuration options and their default values.</p>
+    <p>BraincraftedBootstrapBundle can be configured using your project's <code>config.yml</code>. The following snippet shows all possible configuration options and their default values.</p>
 
-    <p>The options under <code>auto_configure</code> are used to disable the auto configuration functionality of BraincraftedBootstrapBundle. For example, if you want to override the default Assetic configuration of the bundle you need to set the value to <code>false</code>.</p>
+    <p>The options under <code>auto_configure</code> are used to disable the auto configuration functionality of BraincraftedBootstrapBundle. For example, if you want to override the default Assetic configuration of the bundle, you need to set the value to <code>false</code>.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 braincrafted_bootstrap:
@@ -357,7 +357,7 @@ assetic:
 
     <h3>Twig Configuration</h3>
 
-    <p>The option <code>braincrafted_bootstrap.auto_configure.twig</code> set to <code>TRUE</code> (the default value) will automatically configure Symfony to use the template provided with BraincraftedBootstrapBundle to render forms. You can turn auto configuration off and manually configure Twig if you want more control.</p>
+    <p>If the option <code>braincrafted_bootstrap.auto_configure.twig</code> is set to <code>true</code> (the default value), your project will automatically use the form theme provided with BraincraftedBootstrapBundle. You can turn auto configuration off and manually configure Twig if you want to have more control.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 
@@ -373,7 +373,7 @@ twig:
 
     <h3>KnpMenuBundle Configuration</h3>
 
-    <p>If the option <code>braincrafted_bootstrap.auto_configure.knp_menu</code> is set to <code>TRUE</code> (the default value) BraincraftedBootstrapBundle will automatically configure KnpMenuBundle to use Bootstrap. However, if you want more control you can manually configure KnpMenuBundle.</p>
+    <p>If the option <code>braincrafted_bootstrap.auto_configure.knp_menu</code> is set to <code>true</code> (the default value) BraincraftedBootstrapBundle will automatically configure KnpMenuBundle to use Bootstrap. However, if you want more control you can manually configure KnpMenuBundle.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 
@@ -388,7 +388,7 @@ knp_menu:
 
     <h3>KnpPaginatorBundle Configuration</h3>
 
-    <p>Once again, if the option <code>braincrafted_bootstrap.auto_configure.knp_paginator</code> is set to <code>TRUE</code> (the default value), the bundle will be configured automatically. You can set the value to <code>false</code> to manually configure KnpPaginatorBundle.</p>
+    <p>Once again, if the option <code>braincrafted_bootstrap.auto_configure.knp_paginator</code> is set to <code>true</code> (the default value), the bundle will be configured automatically. You can set the value to <code>false</code> to manually configure KnpPaginatorBundle.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 
@@ -407,7 +407,7 @@ knp_paginator:
         <h2 id="template">Basic template</h2>
     </div>
 
-    <p>In your template you need to include the CSS and JavaScript files from Bootstrap, that are generated with Assetic. You also need to include jQuery and you should also add HTML5 Shim and Respond.js. These are required to add support for HTML5 elements and media queries to IE8.</p>
+    <p>In your template you need to include the CSS and JavaScript files from Bootstrap, that are generated with Assetic. You also need to include jQuery. To enable support for HTML5 elements and media queries to IE8, we recommend to add HTML5 Shim and Respond.js as well.</p>
 
     <pre><code class="twig">&lt;!-- src/Acme/DemoBundle/Resources/views/layout.html.twig --&gt;
 
@@ -444,11 +444,11 @@ knp_paginator:
 
     <h3>Custom variables.less</h3>
 
-    <p>Bootstraps has the ability to be modified by manipulating the <code>variables.less</code> file provided with the framework. However, since this bundle uses Composer to download and install Bootstrap we can not overwrite the <code>variables.less</code> file (every <code>composer update</code> would eliminate changes made to that file). It is required to build a custom <code>bootstrap.less</code> that includes the custom <code>variables.less</code> and all the other <code>.less</code> files from Bootstrap.</p>
+    <p>Bootstraps has the ability to be modified by manipulating the <code>variables.less</code> file provided with the framework. However, since this bundle uses Composer to download and install Bootstrap, we cannot overwrite the <code>variables.less</code> file (every <code>composer update</code> would eliminate changes made to that file). This it is necessary to build a custom <code>bootstrap.less</code> that includes the custom <code>variables.less</code> and all the other <code>.less</code> files from Bootstrap.</p>
 
     <p>BraincraftedBootstrapBundle helps you by generating a custom <code>bootstrap.less</code> and importing your <code>variables.less</code> and all LESS files from Bootstrap.</p>
 
-    <p>This feature is only activated when:</p>
+    <p>This feature is only activated if:</p>
 
     <ul>
         <li>The option <code>braincrafted_bootstrap.customize_variables.variables_file</code> is set to a value other than <code>NULL</code></li>
@@ -462,15 +462,15 @@ braincrafted_bootstrap:
         variables_file: %kernel.root_dir%/Resources/less/variables.less
 </code></pre>
 
-    <p>It is also possible to use a file provided by a bundle. You can use the option <code>braincrafted_bootstrap.bootstrap_output</code> to configure where BraincraftedBootstrapBundle stores the generated <code>bootstrap.less</code> file. This defaults to <code>app/Resources/less/bootstrap.less</code>. The option <code>braincrafted_bootstrap.customize_variables.bootstrap_template</code> defines the template used to generate the file. You can use two variables <code>variables_file</code> and <code>assets_dir</code> in this template. The later points to the value of the option <code>braincrafted_bootstrap.assets_dir</code>.</p>
+    <p>It is also possible to use a file provided by a bundle. You can use the option <code>braincrafted_bootstrap.bootstrap_output</code> to configure where BraincraftedBootstrapBundle stores the generated <code>bootstrap.less</code> file. The default location is <code>app/Resources/less/bootstrap.less</code>. The option <code>braincrafted_bootstrap.customize_variables.bootstrap_template</code> defines the template used to generate the file. You can use the variables <code>variables_file</code> and <code>assets_dir</code> in this template. The latter points to the value of the option <code>braincrafted_bootstrap.assets_dir</code>.</p>
 
-    <p>After you configured the bundle with your customer <code>variables.less</code> file you need to generate the <code>bootstrap.less</code> file.</p>
+    <p>After configuring the bundle with your customer <code>variables.less</code> file, you need to generate the <code>bootstrap.less</code> file.</p>
 
     <pre><code class="bash">$ php app/console braincrafted:bootstrap:generate</code></pre>
 
     <p>Now you can use <code>assetic:dump</code> to generate the CSS files.</p>
 
-    <p><span class="label label-warning">Warning</span> If you have a custom configuration of Assetic you need to change it in a way that the <code>bootstrap.less</code> file generated by the bundle is used.</p>
+    <p><span class="label label-warning">Warning</span> If you customized the configuration of Assetic you need to change it to use the <code>bootstrap.less</code> file generated by the bundle is used.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 
@@ -487,7 +487,7 @@ assetic:
 
     <h3>Custom Form Widgets</h3>
 
-    <p>If you want to overwrite only part of the form template provided by BraincraftedBootstrapBundle you can use the template inheritance of Twig do achieve this without duplicating code from the bundle.</p>
+    <p>If you want to overwrite only a part of the form template provided by BraincraftedBootstrapBundle, you can use template inheritance to achieve this without duplicating code from the bundle.</p>
 
     <pre><code class="yaml"># app/config/config.yml
 
