@@ -88,7 +88,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
-## Version 2.0.0
+### Version 2.0.0
 
 - Updated to Symfony v2.3.6
 - Updated to Bootstrap v3.0.1
@@ -108,7 +108,15 @@ Changelog
 - Removed Twig filters `badge_*` (Bootstrap v3.0 does not include multiply badge styles)
 - Twig filters `label_*` are now Twig functions
 - Twig filter `icon` is now a Twig function
-- Added `bootstrap_collection` form type
+- Added `braincrafted_collection` form type
+
+#### Version 2.0.0-alpha2
+
+- Fixed compatibility with PHP 5.3 (Fixes [#111](https://github.com/braincrafted/bootstrap-bundle/issues/111))
+- Renamed `braincrafted_collection` to `bootstrap_collection`
+- `widget_col`, `label_col` and `simple_col` can be defined in form builder (Fixes [#113](https://github.com/braincrafted/bootstrap-bundle/issues/113))
+- Add support for input groups
+- Fix bug with inline forms when no placeholder is defined
 
 ### Version 1.4.0
 
