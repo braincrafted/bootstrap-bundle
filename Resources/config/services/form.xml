@@ -12,7 +12,7 @@
     <services>
 
         <service id="braincrafted_bootstrap.form.type.collection" class="%braincrafted_bootstrap.form.type.collection.class%">
-            <tag name="form.type" alias="braincrafted_collection" />
+            <tag name="form.type" alias="bootstrap_collection" />
         </service>
 
         <service id="braincrafted_bootstrap.form.type.money" class="%braincrafted_bootstrap.form.type.money.class%">
