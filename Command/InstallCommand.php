@@ -2,15 +2,9 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Command;
 
-use Assetic\Asset\AssetCollectionInterface;
-use Assetic\Asset\AssetInterface;
-use Assetic\Util\VarUtils;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOException;

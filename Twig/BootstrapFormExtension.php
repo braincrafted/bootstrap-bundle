@@ -6,10 +6,6 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
-use Symfony\Bridge\Twig\TokenParser\FormThemeTokenParser;
-use Symfony\Bridge\Twig\Form\TwigRendererInterface;
-use Symfony\Component\Form\Extension\Core\View\ChoiceView;
-
 /**
  * BootstrapFormExtension
  *
