@@ -1,5 +1,5 @@
 {% if pageCount > 1 %}
-    {% if style == 'pager' %}
+    {% if style is defined and style == 'pager' %}
 
         {% set prev_label = prev_label|default('Previous') %}
         {% set next_label = next_label|default('Next') %}
