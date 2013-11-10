@@ -80,7 +80,7 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
         $this->container
             ->shouldReceive('getParameter')
             ->with('kernel.root_dir')
-            ->andReturn(__DIR__.'/invalid/app');
+            ->andReturn('/');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
