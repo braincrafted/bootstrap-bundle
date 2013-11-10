@@ -5,6 +5,7 @@ By [Florian Eckerstorfer](http://florianeckerstorfer.com)
 
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/badges/quality-score.png?s=28e07378182fddc3cdf2c764437a72b6eaf55a45)](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/)
+[![Code Coverage](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/badges/coverage.png?s=6258b68071860a349841a0450f39e7cc6ad5da23)](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/)
 
 
 About
