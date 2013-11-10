@@ -1,15 +1,33 @@
 <?php
 
+/**
+ * This file is part of BraincraftedBootstrapBundle.
+ *
+ * (c) 2012-2013 by Florian Eckerstorfer
+ */
+
 namespace Braincrafted\Bundle\BootstrapBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * GenerateCommand
+ *
+ * @package    BraincraftedBootstrapBundle
+ * @subpackage Command
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com BraincraftedBootstrapBundle
+ */
 class GenerateCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritDoc}
+     *
+     * @codeCoverageIgnore
      */
     protected function configure()
     {
