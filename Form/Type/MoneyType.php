@@ -69,7 +69,11 @@ class MoneyType extends BaseMoneyType
             // fields
             // the regex also considers non-break spaces (0xC2 or 0xA0 in UTF-8)
 
-            preg_match('/^([^\s\xc2\xa0]*)[\s\xc2\xa0]*123(?:[,.]0+)?[\s\xc2\xa0]*([^\s\xc2\xa0]*)$/u', $pattern, $matches);
+            preg_match(
+                '/^([^\s\xc2\xa0]*)[\s\xc2\xa0]*123(?:[,.]0+)?[\s\xc2\xa0]*([^\s\xc2\xa0]*)$/u',
+                $pattern,
+                $matches
+            );
 
             self::$patterns[$locale][$currency] = self::parsePatternMatches($matches);
         }

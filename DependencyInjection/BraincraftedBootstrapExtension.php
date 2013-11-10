@@ -71,25 +71,33 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
 
         // Configure Assetic if AsseticBundle is activated and the option
         // "braincrafted_bootstrap.auto_configure.assetic" is set to TRUE (default value).
-        if (isset($bundles['AsseticBundle']) && $config['auto_configure']['assetic']) {
+        if (true === isset($bundles['AsseticBundle']) && true === $config['auto_configure']['assetic']) {
             $this->configureAsseticBundle($container, $config);
         }
 
         // Configure Twig if TwigBundle is activated and the option
         // "braincrafted_bootstrap.auto_configure.twig" is set to TRUE (default value).
-        if (isset($bundles['TwigBundle']) && $config['auto_configure']['twig']) {
+        if (true === isset($bundles['TwigBundle']) && true === $config['auto_configure']['twig']) {
             $this->configureTwigBundle($container);
         }
 
         // Configure KnpMenu if KnpMenuBundle and TwigBundle are activated and the option
         // "braincrafted_bootstrap.auto_configure.knp_menu" is set to TRUE (default value).
-        if (isset($bundles['TwigBundle']) && isset($bundles['KnpMenuBundle']) && $config['auto_configure']['knp_menu']) {
+        if (
+            true === isset($bundles['TwigBundle']) &&
+            true === isset($bundles['KnpMenuBundle']) &&
+            true === $config['auto_configure']['knp_menu']
+        ) {
             $this->configureKnpMenuBundle($container);
         }
 
         // Configure KnpPaginiator if KnpPaginatorBundle and TwigBundle are activated and the option
         // "braincrafted_bootstrap.auto_configure.knp_paginator" is set to TRUE (default value).
-        if (isset($bundles['TwigBundle']) && isset($bundles['KnpPaginatorBundle']) && $config['auto_configure']['knp_paginator']) {
+        if (
+            true === isset($bundles['TwigBundle']) &&
+            true === isset($bundles['KnpPaginatorBundle']) &&
+            true === $config['auto_configure']['knp_paginator']
+        ) {
             $this->configureKnpPaginatorBundle($container);
         }
     }
@@ -102,7 +110,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function configureAsseticBundle(ContainerBuilder $container, array $config)
     {
-        foreach ($container->getExtensions() as $name => $extension) {
+        foreach (array_keys($container->getExtensions()) as $name) {
             switch ($name) {
                 case 'assetic':
                     $asseticConfig = new AsseticConfiguration;
@@ -122,7 +130,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function configureTwigBundle(ContainerBuilder $container)
     {
-        foreach ($container->getExtensions() as $name => $extension) {
+        foreach (array_keys($container->getExtensions()) as $name) {
             switch ($name) {
                 case 'twig':
                     $container->prependExtensionConfig(
@@ -141,7 +149,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function configureKnpMenuBundle(ContainerBuilder $container)
     {
-        foreach ($container->getExtensions() as $name => $extension) {
+        foreach (array_keys($container->getExtensions()) as $name) {
             switch ($name) {
                 case 'knp_menu':
                     $container->prependExtensionConfig(
@@ -160,7 +168,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function configureKnpPaginatorBundle(ContainerBuilder $container)
     {
-        foreach ($container->getExtensions() as $name => $extension) {
+        foreach (array_keys($container->getExtensions()) as $name) {
             switch ($name) {
                 case 'knp_paginator':
                     $container->prependExtensionConfig(

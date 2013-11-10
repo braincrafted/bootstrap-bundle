@@ -29,7 +29,11 @@ class BootstrapBadgeExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'badge' => new Twig_Function_Method($this, 'badgeFunction', array('pre_escape' => 'html', 'is_safe' => array('html'))),
+            'badge' => new Twig_Function_Method(
+                $this,
+                'badgeFunction',
+                array('pre_escape' => 'html', 'is_safe' => array('html'))
+            )
         );
     }
 
