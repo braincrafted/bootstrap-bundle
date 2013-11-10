@@ -30,6 +30,11 @@ class AsseticConfiguration
     {
         $output = array();
 
+        // Fix path in output dir
+        if ('/' !== substr($config['output_dir'], -1) && strlen($config['output_dir']) > 0) {
+            $config['output_dir'] .= '/';
+        }
+
         if ('none' !== $config['less_filter']) {
             $output['bootstrap_css'] = $this->buildCssWithLess($config);
         } else {
@@ -56,7 +61,7 @@ class AsseticConfiguration
         return array(
             'inputs'  => $inputs,
             'filters' => array('cssrewrite'),
-            'output'  => $config['output_dir'].'/css/bootstrap.css'
+            'output'  => $config['output_dir'].'css/bootstrap.css'
         );
     }
 
@@ -81,7 +86,7 @@ class AsseticConfiguration
         return array(
             'inputs'  => $inputs,
             'filters' => array($config['less_filter'], 'cssrewrite'),
-            'output'  => $config['output_dir'].'/css/bootstrap.css'
+            'output'  => $config['output_dir'].'css/bootstrap.css'
         );
     }
 
@@ -108,7 +113,7 @@ class AsseticConfiguration
                 $config['assets_dir'].'/js/affix.js',
                 __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
             ),
-            'output'        => $config['output_dir'].'/js/bootstrap.js'
+            'output'        => $config['output_dir'].'js/bootstrap.js'
         );
     }
 
@@ -121,7 +126,7 @@ class AsseticConfiguration
     {
         return array(
             'inputs' => array($config['jquery_path']),
-            'output' => $config['output_dir'].'/js/jquery.js'
+            'output' => $config['output_dir'].'js/jquery.js'
         );
     }
 }
