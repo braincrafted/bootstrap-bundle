@@ -86,8 +86,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         if (
             true === isset($bundles['TwigBundle']) &&
             true === isset($bundles['KnpMenuBundle']) &&
-            true === $config['auto_configure']['knp_menu']
-        ) {
+            true === $config['auto_configure']['knp_menu']) {
             $this->configureKnpMenuBundle($container);
         }
 
@@ -96,8 +95,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         if (
             true === isset($bundles['TwigBundle']) &&
             true === isset($bundles['KnpPaginatorBundle']) &&
-            true === $config['auto_configure']['knp_paginator']
-        ) {
+            true === $config['auto_configure']['knp_paginator']) {
             $this->configureKnpPaginatorBundle($container);
         }
     }
