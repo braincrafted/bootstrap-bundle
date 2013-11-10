@@ -1,6 +1,6 @@
 {
     "name":         "braincrafted/bootstrap-bundle",
-    "description":  "Bootstrap for Symfony2",
+    "description":  "BraincraftedBootstrapBundle integrates Bootstrap into Symfony2 by providing templates, Twig extensions, services and commands.",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
     "license":      "MIT",
@@ -12,21 +12,21 @@
         }
     ],
     "require":      {
-        "php":              ">=5.3.3",
-        "symfony/symfony":  ">=2.3"
+        "php":             ">=5.3.3",
+        "symfony/symfony": ">=2.3"
     },
     "require-dev": {
-        "knplabs/knp-menu":                     "~2.0@alpha",
-        "knplabs/knp-menu-bundle":              "~2.0@alpha",
-        "knplabs/knp-paginator-bundle":         "dev-master",
-        "phpunit/phpunit":                      "3.7.*",
-        "mockery/mockery":                      "0.8.*"
+        "knplabs/knp-menu":             "~2.0@alpha",
+        "knplabs/knp-menu-bundle":      "~2.0@alpha",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "phpunit/phpunit":              "3.7.*",
+        "mockery/mockery":              "0.8.*"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
         "knplabs/knp-menu":             "Required to use KnpMenuBundle.",
         "knplabs/knp-menu-bundle":      "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle.",
-        "twbs/bootstrap":            "Twitter Bootstrap provides the assets (images, CSS and JS)"
+        "twbs/bootstrap":               "Twitter Bootstrap provides the assets (images, CSS and JS)"
     },
     "autoload": {
         "psr-0": { "Braincrafted\\Bundle\\BootstrapBundle": "" }

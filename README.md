@@ -120,6 +120,14 @@ Changelog
 - Add support for input groups
 - Fix bug with inline forms when no placeholder is defined
 
+#### Version 2.0.0-alpha3
+
+- Fixed configuration of input groups in form builder (Fixes [#115](https://github.com/braincrafted/bootstrap-bundle/issues/115))
+- Pass `widget_col`, `label_col` and `simple_col` to from builder (Fixes [#113](https://github.com/braincrafted/bootstrap-bundle/issues/113))
+- Fixed trailing slash in `braincrafted_bootstrap.output_dir` option
+- Fixed undefined variable in pagination template
+- Better tested
+
 ### Version 1.4.0
 
 - Changed namespace to `Bc\Bundle\BootstrapBundle`
