@@ -83,8 +83,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
 
         // Configure KnpMenu if KnpMenuBundle and TwigBundle are activated and the option
         // "braincrafted_bootstrap.auto_configure.knp_menu" is set to TRUE (default value).
-        if (
-            true === isset($bundles['TwigBundle']) &&
+        if (true === isset($bundles['TwigBundle']) &&
             true === isset($bundles['KnpMenuBundle']) &&
             true === $config['auto_configure']['knp_menu']) {
             $this->configureKnpMenuBundle($container);
@@ -92,8 +91,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
 
         // Configure KnpPaginiator if KnpPaginatorBundle and TwigBundle are activated and the option
         // "braincrafted_bootstrap.auto_configure.knp_paginator" is set to TRUE (default value).
-        if (
-            true === isset($bundles['TwigBundle']) &&
+        if (true === isset($bundles['TwigBundle']) &&
             true === isset($bundles['KnpPaginatorBundle']) &&
             true === $config['auto_configure']['knp_paginator']) {
             $this->configureKnpPaginatorBundle($container);
