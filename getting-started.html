@@ -299,7 +299,7 @@ braincrafted_bootstrap:
 
     <pre><code class="yaml"># app/config/config.yml
 braincrafted_bootstrap:
-    output_dir: %kernel.root_dir%/../web
+    output_dir:
     assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
     jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
     less_filter: less # "less", "lessphp" or "none"
@@ -312,6 +312,8 @@ braincrafted_bootstrap:
         variables_file: ~
         bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig</code></pre>
+
+    <p>The option <code>braincrafted_bootstrap.output_dir</code> defines the directory where BootstrapBundle puts the Bootstrap asset files. This directory has to be relative to the Assetic output directory (configured with the <code>assetic.write_to</code> option). For example, if you want to have the Bootstrap assets in <code>web/bootstrap/(css|js)</code> set <code>braincrafted_bootstrap.output_dir</code> to <code>bootstrap</code>.</p>
 
     <h3>Assetic Configuration</h3>
 
