@@ -128,6 +128,15 @@ Changelog
 - Fixed undefined variable in pagination template
 - Better tested
 
+### Version 1.5.0
+
+- Works with new Bootstrap repository `twbs/bootstrap`
+- Basic support for Bootstrap v3.0
+- Allow override options in menus
+- Extend from base form layout
+- Fixed problems with removing elemnts in JavaScript collection form type
+- Various other bugfixes
+
 ### Version 1.4.0
 
 - Changed namespace to `Bc\Bundle\BootstrapBundle`
