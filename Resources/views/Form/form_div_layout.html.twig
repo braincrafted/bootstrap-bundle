@@ -206,32 +206,35 @@
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
         {% set class = ' col-lg-' ~ widget_col ~ ' col-lg-offset-' ~ label_col %}
-        <div class="form-group row">
+        <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
+    {% else %}
+        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
     {% endif %}
-    <div class="checkbox">
-        {% if label is not sameas(false) %}
-            {% if not compound %}
-                {% set label_attr = label_attr|merge({'for': id}) %}
-            {% endif %}
-            {% if required %}
-                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
-            {% endif %}
-            {% if label is empty %}
-                {% set label = name|humanize %}
-            {% endif %}
-            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        <div class="checkbox">
+            {% if label is not sameas(false) %}
+                {% if not compound %}
+                    {% set label_attr = label_attr|merge({'for': id}) %}
+                {% endif %}
+                {% if required %}
+                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+                {% endif %}
+                {% if label is empty %}
+                    {% set label = name|humanize %}
+                {% endif %}
+                <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                    {{ block('checkbox_widget') }}
+                    {{ label|trans({}, translation_domain) }}
+                </label>
+            {% else %}
                 {{ block('checkbox_widget') }}
-                {{ label|trans({}, translation_domain) }}
-            </label>
-        {% else %}
-            {{ block('checkbox_widget') }}
+            {% endif %}
+            {{ form_errors(form) }}
+        </div>
+        {% if align_with_widget is defined or attr.align_with_widget is defined %}
+            </div>
         {% endif %}
     </div>
-    {% if align_with_widget is defined or attr.align_with_widget is defined %}
-            </div>
-        </div>
-    {% endif %}
 
     {% if style == 'inline' %}&nbsp;{% endif %}
 {% endspaceless %}
@@ -252,29 +255,33 @@
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
         {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
-        <div class="form-group">
+        <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
+    {% else %}
+        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
     {% endif %}
-    <div class="radio">
-        {% if label is not sameas(false) %}
-            {% if not compound %}
-                {% set label_attr = label_attr|merge({'for': id}) %}
-            {% endif %}
-            {% if required %}
-                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
-            {% endif %}
-            {% if label is empty %}
-                {% set label = name|humanize %}
-            {% endif %}
-            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+
+        <div class="radio">
+            {% if label is not sameas(false) %}
+                {% if not compound %}
+                    {% set label_attr = label_attr|merge({'for': id}) %}
+                {% endif %}
+                {% if required %}
+                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+                {% endif %}
+                {% if label is empty %}
+                    {% set label = name|humanize %}
+                {% endif %}
+                <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                    {{ block('radio_widget') }}
+                    {{ label|trans({}, translation_domain) }}
+                </label>
+            {% else %}
                 {{ block('radio_widget') }}
-                {{ label|trans({}, translation_domain) }}
-            </label>
-        {% else %}
-            {{ block('radio_widget') }}
-        {% endif %}
+            {% endif %}
+            {{ form_errors(form) }}
+        </div>
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
-            </div>
         </div>
     {% endif %}
     </div>
