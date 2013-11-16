@@ -52,7 +52,6 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Braincrafted\Bundle\BootstrapBundle\Command\GenerateCommand::execute()
      * @covers Braincrafted\Bundle\BootstrapBundle\Command\GenerateCommand::executeGenerateBootstrap()
-     * @covers Braincrafted\Bundle\BootstrapBundle\Command\GenerateCommand::getRelativePath()
      */
     public function testExecute()
     {

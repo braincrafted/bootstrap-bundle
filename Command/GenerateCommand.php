@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\PathUtil;
+
 /**
  * GenerateCommand
  *
@@ -24,6 +26,19 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateCommand extends ContainerAwareCommand
 {
+    /** @var PathUtil */
+    private $pathUtil;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($name = null)
+    {
+        $this->pathUtil = new PathUtil;
+
+        parent::__construct($name);
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -70,11 +85,11 @@ class GenerateCommand extends ContainerAwareCommand
         // to the variables.less file.
         // Absolute path do not work in LESSs import statement, we have to calculate the relative ones
 
-        $lessDir = $this->getRelativePath(
+        $lessDir = $this->pathUtil->getRelativePath(
             dirname($config['bootstrap_output']),
             $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir')
         );
-        $variablesDir = $this->getRelativePath(
+        $variablesDir = $this->pathUtil->getRelativePath(
             dirname($config['bootstrap_output']),
             dirname($config['variables_file'])
         );
@@ -94,48 +109,5 @@ class GenerateCommand extends ContainerAwareCommand
             )
         );
         file_put_contents($config['bootstrap_output'], $content);
-    }
-
-    /**
-     * Returns the relative path $from to $to.
-     *
-     * @param string $from
-     * @param string $to
-     *
-     * @return string
-     *
-     * @link http://stackoverflow.com/a/2638272/776654
-     */
-    protected function getRelativePath($from, $to)
-    {
-         // some compatibility fixes for Windows paths
-        $from = is_dir($from) ? rtrim($from, '\/') . '/' : $from;
-        $to   = is_dir($to)   ? rtrim($to, '\/') . '/'   : $to;
-        $from = str_replace('\\', '/', $from);
-        $to   = str_replace('\\', '/', $to);
-
-        $from     = explode('/', $from);
-        $to       = explode('/', $to);
-        $relPath  = $to;
-
-        foreach ($from as $depth => $dir) {
-            // find first non-matching dir
-            if ($dir === $to[$depth]) {
-                // ignore this directory
-                array_shift($relPath);
-            } else {
-                // get number of remaining dirs to $from
-                $remaining = count($from) - $depth;
-                if ($remaining > 1) {
-                    // add traversals up to first matching dir
-                    $padLength = (count($relPath) + $remaining - 1) * -1;
-                    $relPath = array_pad($relPath, $padLength, '..');
-                    break;
-                } else {
-                    $relPath[0] = './' . $relPath[0];
-                }
-            }
-        }
-        return implode('/', $relPath);
     }
 }
