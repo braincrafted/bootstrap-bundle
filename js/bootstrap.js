@@ -1,5 +1,5 @@
 /* ========================================================================
- * Bootstrap: transition.js v3.0.0
+ * Bootstrap: transition.js v3.0.2
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -53,10 +53,10 @@
     $.support.transition = transitionEnd()
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.0.0
+ * Bootstrap: alert.js v3.0.2
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -152,10 +152,10 @@
 
   $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.0.0
+ * Bootstrap: button.js v3.0.2
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -262,10 +262,10 @@
     e.preventDefault()
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.0.0
+ * Bootstrap: carousel.js v3.0.2
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -480,10 +480,10 @@
     })
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.0.0
+ * Bootstrap: collapse.js v3.0.2
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -660,10 +660,10 @@
     $target.collapse(option)
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.0.0
+ * Bootstrap: dropdown.js v3.0.2
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -815,10 +815,10 @@
     .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.0.0
+ * Bootstrap: modal.js v3.0.2
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -1062,10 +1062,10 @@
     .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
     .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.0.0
+ * Bootstrap: tooltip.js v3.0.2
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -1449,10 +1449,10 @@
     return this
   }
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.0.0
+ * Bootstrap: popover.js v3.0.2
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -1567,10 +1567,10 @@
     return this
   }
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.0.0
+ * Bootstrap: scrollspy.js v3.0.2
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -1726,10 +1726,10 @@
     })
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.0.0
+ * Bootstrap: tab.js v3.0.2
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -1862,10 +1862,10 @@
     $(this).tab('show')
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.0.0
+ * Bootstrap: affix.js v3.0.2
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2013 Twitter, Inc.
@@ -1989,7 +1989,7 @@
     })
   })
 
-}(window.jQuery);
+}(jQuery);
 
 /* ==========================================================
  * bc-bootstrap-collection.js
