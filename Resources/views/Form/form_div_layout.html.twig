@@ -645,6 +645,10 @@
         {{ bootstrap_set_style(style) }}
     {% endif %}
 
+    {% if col_size is defined %}
+        {{ bootstrap_set_col_size(col_size) }}
+    {% endif %}
+
     {% if attr.role is not defined or attr.role is empty %}
         {% set attr = attr|merge({ 'role': 'form' }) %}
     {% endif %}
@@ -664,6 +668,9 @@
     </form>
     {% if bootstrap_get_style() %}
         {{ bootstrap_set_style('') }}
+    {% endif %}
+    {% if bootstrap_get_col_size() %}
+        {{ bootstrap_set_col_size('lg') }}
     {% endif %}
 {% endspaceless %}
 {% endblock form_end %}
