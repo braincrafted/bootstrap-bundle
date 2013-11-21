@@ -15,13 +15,14 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set style = style|default(bootstrap_get_style()) %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
     {% if attr.simple_col is defined and attr.simple_col is not empty %}
         {% set simple_col = attr.simple_col %}
     {% endif  %}
 
     {% if simple_col is defined %}
-        <div class="col-lg-{{ simple_col }}">
+        <div class="col-{{ col_size }}-{{ simple_col }}">
     {% endif %}
 
     {% set type = type|default('text') %}
@@ -114,12 +115,14 @@
 
 {% block file_widget %}
 {% spaceless %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
     {% if attr.simple_col is defined and attr.simple_col is not empty %}
         {% set simple_col = attr.simple_col %}
     {% endif  %}
 
     {% if simple_col is defined %}
-        <div class="col-lg-{{ simple_col }}">
+        <div class="col-{{ col_size }}-{{ simple_col }}">
     {% endif %}
 
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
@@ -193,6 +196,7 @@
 {% block checkbox_row %}
 {% spaceless %}
     {% set style = style|default(bootstrap_get_style()) %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
     {% if attr.label_col is defined and attr.label_col is not empty %}
         {% set label_col = attr.label_col %}
@@ -205,7 +209,7 @@
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
-        {% set class = ' col-lg-' ~ widget_col ~ ' col-lg-offset-' ~ label_col %}
+        {% set class = ' -col-' ~ col_size ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
         <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
     {% else %}
@@ -244,6 +248,8 @@
 {% spaceless %}
     {% set class = '' %}
 
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
     {% if attr.label_col is defined and attr.label_col is not empty %}
         {% set label_col = attr.label_col %}
     {% endif %}
@@ -254,7 +260,7 @@
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
-        {% set class = ' col-lg-' ~ widget_col ~ ' col-offset-' ~ label_col %}
+        {% set class = ' col-'~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
         <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
     {% else %}
@@ -453,6 +459,8 @@
 
 {% block form_label %}
 {% spaceless %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
     {% if attr.label_col is defined and attr.label_col is not empty %}
         {% set label_col = attr.label_col %}
     {% endif %}
@@ -466,7 +474,7 @@
 
         {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label')|trim }) %}
         {% if style == 'horizontal' %}
-            {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-lg-' ~ label_col)|trim }) %}
+            {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-' ~ col_size ~ '-' ~ label_col)|trim }) %}
         {% elseif style == 'inline' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' sr-only')|trim }) %}
         {% endif %}
@@ -502,6 +510,7 @@
 {% block form_row %}
 {% spaceless %}
     {% set style = style|default(bootstrap_get_style()) %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
     {% if attr.label_col is defined and attr.label_col is not empty %}
         {% set label_col = attr.label_col %}
@@ -521,7 +530,7 @@
     <div class="form-group{{ row_class }}{% if not form.vars.valid %} has-error{% endif %}">
         {% if style == 'horizontal' %}
             {{ form_label(form) }}
-            <div class="col-lg-{{ widget_col }}">
+            <div class="col-{{ col_size }}-{{ widget_col }}">
                 {{ block('form_input_group') }}
                 {{ block('form_help') }}
                 {{ form_errors(form) }}
@@ -582,6 +591,7 @@
 {% block button_row %}
 {% spaceless %}
     {% set style = style|default(bootstrap_get_style()) %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
     {% if attr.label_col is defined and attr.label_col is not empty %}
         {% set label_col = attr.label_col %}
@@ -595,7 +605,7 @@
 
     {% if style == 'horizontal' %}
     <div class="form-group">
-        <div class="col-lg-offset-{{ label_col }} col-lg-{{ widget_col }}">
+        <div class="col-{{ col_size }}-offset-{{ label_col }} col-{{ col_size }}-{{ widget_col }}">
     {% endif %}
 
     {{ form_widget(form) }}
