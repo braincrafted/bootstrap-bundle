@@ -44,7 +44,7 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFunctions()
     {
-        $this->assertCount(4, $this->extension->getFunctions());
+        $this->assertCount(6, $this->extension->getFunctions());
     }
 
     /**
@@ -55,6 +55,16 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->extension->setStyle('inline');
         $this->assertEquals('inline', $this->extension->getStyle());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setColSize()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getColSize()
+     */
+    public function testSetColSizeGetColSize()
+    {
+        $this->extension->setColSize('sm');
+        $this->assertEquals('sm', $this->extension->getColSize());
     }
 
     /**
