@@ -28,13 +28,13 @@ use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\AsseticConfiguration
 class BraincraftedBootstrapExtension extends Extension implements PrependExtensionInterface
 {
     /** @var string */
-    protected $formTemplate = 'BraincraftedBootstrapBundle:Form:form_div_layout.html.twig';
+    protected $formTemplate = 'BraincraftedBootstrapBundle:Form:bootstrap.html.twig';
 
     /** @var string */
-    protected $menuTemplate = 'BraincraftedBootstrapBundle:Menu:menu.html.twig';
+    protected $menuTemplate = 'BraincraftedBootstrapBundle:Menu:bootstrap.html.twig';
 
     /** @var string */
-    protected $paginationTemplate = 'BraincraftedBootstrapBundle:Pagination:pagination.html.twig';
+    protected $paginationTemplate = 'BraincraftedBootstrapBundle:Pagination:bootstrap.html.twig';
 
     /**
      * {@inheritDoc}
