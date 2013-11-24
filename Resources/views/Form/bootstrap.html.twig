@@ -110,9 +110,26 @@
 
 {% block textarea_widget %}
 {% spaceless %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
+    {% if attr.simple_col is defined and attr.simple_col is not empty %}
+        {% set simple_col = attr.simple_col %}
+    {% endif  %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
+
+    {% if simple_col is defined %}
+        <div class="col-{{ col_size }}-{{ simple_col }}">
+    {% endif %}
+
     {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
 
     <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+
+    {% if simple_col is defined %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock textarea_widget %}
 
