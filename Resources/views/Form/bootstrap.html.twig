@@ -20,6 +20,9 @@
     {% if attr.simple_col is defined and attr.simple_col is not empty %}
         {% set simple_col = attr.simple_col %}
     {% endif  %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
 
     {% if simple_col is defined %}
         <div class="col-{{ col_size }}-{{ simple_col }}">
@@ -121,6 +124,10 @@
         {% set simple_col = attr.simple_col %}
     {% endif  %}
 
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
+
     {% if simple_col is defined %}
         <div class="col-{{ col_size }}-{{ simple_col }}">
     {% endif %}
@@ -204,6 +211,9 @@
     {% if attr.widget_col is defined and attr.widget_col is not empty %}
         {% set widget_col = attr.widget_col %}
     {% endif %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
 
     {% set class = '' %}
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
@@ -255,6 +265,9 @@
     {% endif %}
     {% if attr.widget_col is defined and attr.widget_col is not empty %}
         {% set widget_col = attr.widget_col %}
+    {% endif %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
     {% endif %}
 
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
@@ -467,6 +480,9 @@
     {% if attr.widget_col is defined and attr.widget_col is not empty %}
         {% set widget_col = attr.widget_col %}
     {% endif %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
 
     {% if label is not sameas(false) %}
         {% set style = style|default(bootstrap_get_style()) %}
@@ -517,6 +533,9 @@
     {% endif %}
     {% if attr.widget_col is defined and attr.widget_col is not empty %}
         {% set widget_col = attr.widget_col %}
+    {% endif %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
     {% endif %}
 
     {% set label_col = label_col|default(2) %}
@@ -598,6 +617,9 @@
     {% endif %}
     {% if attr.widget_col is defined and attr.widget_col is not empty %}
         {% set widget_col = attr.widget_col %}
+    {% endif %}
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
     {% endif %}
 
     {% set label_col = label_col|default(2) %}
