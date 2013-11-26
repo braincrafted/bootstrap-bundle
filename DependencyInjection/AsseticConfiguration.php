@@ -55,7 +55,7 @@ class AsseticConfiguration
     protected function buildCssWithoutLess(array $config)
     {
         $inputs = array(
-            $config['assets_dir'].'/docs/assets/css/bootstrap.css',
+            $config['assets_dir'].'/dist/css/bootstrap.css',
         );
 
         return array(
