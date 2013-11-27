@@ -58,6 +58,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('kernel.root_dir')
             ->andReturn(__DIR__.'/fixtures/app');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.assets_dir')
+            ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -68,6 +72,33 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester->execute(array('command' => $command->getName()));
 
         $this->assertRegExp('/Copied Glyphicon fonts/', $commandTester->getDisplay());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::execute()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::getSrcDir()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::getDestDir()
+     */
+    public function testExecuteSrcNotExists()
+    {
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('kernel.root_dir')
+            ->andReturn(__DIR__.'/fixtures/app');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.assets_dir')
+            ->andReturn(__DIR__.'/invalid');
+
+        // mock the Kernel or create one depending on your needs
+        $application = new Application($this->kernel);
+        $application->add(new InstallCommand());
+
+        $command = $application->find('braincrafted:bootstrap:install');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute(array('command' => $command->getName()));
+
+        $this->assertRegExp('/does not exist/', $commandTester->getDisplay());
     }
 
     /**
