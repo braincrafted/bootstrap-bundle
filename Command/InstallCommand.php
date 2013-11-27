@@ -34,10 +34,19 @@ class InstallCommand extends ContainerAwareCommand
             $fs->mkdir($destDir);
         } catch (IOException $e) {
             $output->writeln(sprintf('<error>Could not create directory %s.</error>', $destDir));
+
             return;
         }
 
-        $finder->files()->in($this->getSrcDir());
+        $srcDir = $this->getSrcDir();
+        if (false === file_exists($srcDir)) {
+            $output->writeln(sprintf('<error>Fonts directory "%s" does not exist. Did you install twbs/bootstrap? '.
+                'If you used something other than Compoer you need to manually change the path in '.
+                '"braincrafted_bootstrap.assets_dir".</error>'));
+
+            return;
+        }
+        $finder->files()->in($srcDir);
 
         foreach ($finder as $file) {
             $dest = sprintf('%s/%s', $destDir, $file->getBaseName());
@@ -57,10 +66,7 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getSrcDir()
     {
-        return sprintf(
-            '%s/../vendor/twbs/bootstrap/fonts',
-            $this->getContainer()->getParameter('kernel.root_dir')
-        );
+        return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'));
     }
 
     /**
@@ -68,9 +74,6 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getDestDir()
     {
-        return sprintf(
-            '%s/../web/fonts',
-            $this->getContainer()->getParameter('kernel.root_dir')
-        );
+        return sprintf('%s/../web/fonts', $this->getContainer()->getParameter('kernel.root_dir'));
     }
 }
