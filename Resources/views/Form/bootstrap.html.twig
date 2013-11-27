@@ -172,9 +172,9 @@
     <div {{ block('widget_container_attributes') }}>
     {% for child in form %}
         {% if form.multiple is defined %}
-            {{ checkbox_row(child) }}
+            {{ checkbox_row(child, { 'no_form_group': true }) }}
         {% else %}
-            {{ radio_row(child) }}
+            {{ radio_row(child, { 'no_form_group': true }) }}
         {% endif %}
     {% endfor %}
     </div>
@@ -239,7 +239,7 @@
         {% set class = ' -col-' ~ col_size ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
         <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
-    {% else %}
+    {% elseif no_form_group is not defined or no_form_group == false %}
         <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
     {% endif %}
         <div class="checkbox">
@@ -262,10 +262,12 @@
             {% endif %}
             {{ form_errors(form) }}
         </div>
-        {% if align_with_widget is defined or attr.align_with_widget is defined %}
-            </div>
-        {% endif %}
-    </div>
+    {% if align_with_widget is defined or attr.align_with_widget is defined %}
+        </div>
+        </div>
+    {% elseif no_form_group is not defined or no_form_group == false %}
+        </div>
+    {% endif %}
 
     {% if style == 'inline' %}&nbsp;{% endif %}
 {% endspaceless %}
@@ -293,7 +295,7 @@
         {% set class = ' col-'~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
         <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
-    {% else %}
+    {% elseif no_form_group is not defined or no_form_group == false %}
         <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
     {% endif %}
 
@@ -319,8 +321,10 @@
         </div>
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
         </div>
+        </div>
+    {% elseif no_form_group is not defined or no_form_group == false %}
+        </div>
     {% endif %}
-    </div>
 {% endspaceless %}
 {% endblock radio_row %}
 
