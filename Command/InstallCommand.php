@@ -40,9 +40,12 @@ class InstallCommand extends ContainerAwareCommand
 
         $srcDir = $this->getSrcDir();
         if (false === file_exists($srcDir)) {
-            $output->writeln(sprintf('<error>Fonts directory "%s" does not exist. Did you install twbs/bootstrap? '.
+            $output->writeln(sprintf(
+                '<error>Fonts directory "%s" does not exist. Did you install twbs/bootstrap? '.
                 'If you used something other than Compoer you need to manually change the path in '.
-                '"braincrafted_bootstrap.assets_dir".</error>', $srcDir));
+                '"braincrafted_bootstrap.assets_dir".</error>',
+                $srcDir
+            ));
 
             return;
         }
