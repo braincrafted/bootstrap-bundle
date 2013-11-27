@@ -129,10 +129,18 @@ Changelog
 #### Version 2.0.0-alpha3
 
 - Fixed configuration of input groups in form builder (Fixes [#115](https://github.com/braincrafted/bootstrap-bundle/issues/115))
-- Pass `widget_col`, `label_col` and `simple_col` to form builder (Fixes [#113](https://github.com/braincrafted/bootstrap-bundle/issues/113))
 - Fixed trailing slash in `braincrafted_bootstrap.output_dir` option
 - Fixed undefined variable in pagination template
 - Better tested
+
+#### Version 2.0.0-beta1
+
+- Fixed duplicate `div.form-group` in `choice_widget_expanded` (Fixes [#131](https://github.com/braincrafted/bootstrap-bundle/issues/131))
+- Use correct assets when not using LESS (Fixes [#128](https://github.com/braincrafted/bootstrap-bundle/issues/128)) [[amcgowanca](https://github.com/amcgowanca)]
+- Add `col_size` option to set the column size for form widgets (Fixes [#127](https://github.com/braincrafted/bootstrap-bundle/issues/127))
+- Add support for `simple_col` options in `textarea_widget`
+- Renamed views
+- Add error messages in `checkbox_row` and `radio_widget` (Fixes [#118](https://github.com/braincrafted/bootstrap-bundle/issues/118))
 
 ### Version 1.5.0
 
