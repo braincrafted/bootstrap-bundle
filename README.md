@@ -19,34 +19,37 @@ Installation
 
 First you need to add `braincrafted/bootstrap-bundle` to `composer.json`:
 
-    {
-       "require": {
-            "braincrafted/bootstrap-bundle": "dev-master"
-        }
+```json
+{
+   "require": {
+        "braincrafted/bootstrap-bundle": "dev-master"
     }
+}
+```
 
 Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `2.0.*`.
 
 You also have to add `BraincraftedBootstrapBundle` to your `AppKernel.php`:
 
-    // app/AppKernel.php
+```php
+// app/AppKernel.php
+//...
+class AppKernel extends Kernel
+{
     ...
-    class AppKernel extends Kernel
+    public function registerBundles()
     {
-        ...
-        public function registerBundles()
-        {
-            $bundles = array(
-                ...
-                new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle()
-            );
+        $bundles = array(
             ...
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle()
+        );
+        //...
 
-            return $bundles;
-        }
-        ...
+        return $bundles;
     }
-
+    //...
+}
+```
 Additionally you have to install Bootstrap and jQuery as dependencies and configure Assetic to compile the LESS files. You can find more information in the [Getting Started](http://bootstrap.braincrafted.com/getting-started.html) section of the documentation.
 
 
