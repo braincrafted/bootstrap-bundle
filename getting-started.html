@@ -308,7 +308,7 @@ braincrafted_bootstrap:
         twig: true
         knp_menu: true
         knp_paginator: true
-    customize_variables:
+    customize:
         variables_file: ~
         bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig</code></pre>
@@ -385,7 +385,7 @@ braincrafted_bootstrap:
 
 knp_menu:
     twig:
-        template: BraincraftedBootstrapBundle:Menu:menu.html.twig
+        template: BraincraftedBootstrapBundle:Menu:bootstrap.html.twig
 </code></pre>
 
     <h3>KnpPaginatorBundle Configuration</h3>
@@ -400,7 +400,7 @@ braincrafted_bootstrap:
 
 knp_paginator:
     template:
-        pagination: BraincraftedBootstrapBundle:Pagination:pagination.html.twig
+        pagination: BraincraftedBootstrapBundle:Pagination:bootstrap.html.twig
 </code></pre>
 
 </section>
@@ -453,18 +453,18 @@ knp_paginator:
     <p>This feature is only activated if:</p>
 
     <ul>
-        <li>The option <code>braincrafted_bootstrap.customize_variables.variables_file</code> is set to a value other than <code>NULL</code></li>
+        <li>The option <code>braincrafted_bootstrap.customize.variables_file</code> is set to a value other than <code>NULL</code></li>
         <li>You use LESS, that is, the option <code>braincrafted_bootstrap.less_filter</code> is set to <code>less</code> or <code>lessphp</code></li>
     </ul>
 
     <pre><code class="yaml"># app/config/config.yml
 
 braincrafted_bootstrap:
-    customize_variables:
+    customize:
         variables_file: %kernel.root_dir%/Resources/less/variables.less
 </code></pre>
 
-    <p>It is also possible to use a file provided by a bundle. You can use the option <code>braincrafted_bootstrap.bootstrap_output</code> to configure where BraincraftedBootstrapBundle stores the generated <code>bootstrap.less</code> file. The default location is <code>app/Resources/less/bootstrap.less</code>. The option <code>braincrafted_bootstrap.customize_variables.bootstrap_template</code> defines the template used to generate the file. You can use the variables <code>variables_file</code> and <code>assets_dir</code> in this template. The latter points to the value of the option <code>braincrafted_bootstrap.assets_dir</code>.</p>
+    <p>It is also possible to use a file provided by a bundle. You can use the option <code>braincrafted_bootstrap.bootstrap_output</code> to configure where BraincraftedBootstrapBundle stores the generated <code>bootstrap.less</code> file. The default location is <code>app/Resources/less/bootstrap.less</code>. The option <code>braincrafted_bootstrap.customize.bootstrap_template</code> defines the template used to generate the file. You can use the variables <code>variables_file</code> and <code>assets_dir</code> in this template. The latter points to the value of the option <code>braincrafted_bootstrap.assets_dir</code>.</p>
 
     <p>After configuring the bundle with your customer <code>variables.less</code> file, you need to generate the <code>bootstrap.less</code> file.</p>
 
