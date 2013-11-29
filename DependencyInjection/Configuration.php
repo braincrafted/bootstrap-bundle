@@ -51,7 +51,7 @@ class Configuration implements ConfigurationInterface
                         ->thenInvalid('Invalid less filter "%s"')
                     ->end()
                 ->end()
-                ->arrayNode('customize_variables')
+                ->arrayNode('customize')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('variables_file')->end()
