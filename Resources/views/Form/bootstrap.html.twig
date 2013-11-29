@@ -77,7 +77,7 @@
         {% endif %}
         {% set prototype_html = '<div class="col-xs-' ~ form.vars.sub_widget_col ~ '">' ~ form_widget(prototype, prototype_vars) ~ '</div>' %}
         {% if form.vars.allow_delete %}
-            {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text ~ '</a></div>' %}
+            {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="__id__">' ~ form.vars.delete_button_text|trans({}, translation_domain) ~ '</a></div>' %}
         {% endif %}
         {% set prototype_html = '<div class="row">' ~ prototype_html ~ '</div>' %}
 
@@ -94,7 +94,7 @@
                         </div>
                         {% if form.vars.allow_delete %}
                             <div class="col-xs-{{ form.vars.button_col }}">
-                                <a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="{{ field.vars.id }}">{{ form.vars.delete_button_text }}</a>
+                                <a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="{{ field.vars.id }}">{{ form.vars.delete_button_text|trans({}, translation_domain) }}</a>
                             </div>
                         {% endif %}
                     </div>
@@ -102,7 +102,7 @@
             {% endfor %}
         </ul>
         {% if form.vars.allow_add %}
-            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}">{{ form.vars.add_button_text }}</a>
+            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}">{{ form.vars.add_button_text|trans({}, translation_domain) }}</a>
         {% endif %}
     </div>
 {% endspaceless %}
