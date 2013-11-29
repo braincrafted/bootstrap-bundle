@@ -57,7 +57,7 @@ class GenerateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $config = $this->getContainer()->getParameter('braincrafted_bootstrap.customize_variables');
+        $config = $this->getContainer()->getParameter('braincrafted_bootstrap.customize');
 
         if (false === isset($config['variables_file']) || null === $config['variables_file']) {
             $output->writeln('<error>Found no custom variables.less file.</error>');

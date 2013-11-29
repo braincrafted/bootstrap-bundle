@@ -52,8 +52,8 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $loader->load('services/twig.xml');
         $loader->load('services/session.xml');
 
-        if (true === isset($config['customize_variables'])) {
-            $container->setParameter('braincrafted_bootstrap.customize_variables', $config['customize_variables']);
+        if (true === isset($config['customize'])) {
+            $container->setParameter('braincrafted_bootstrap.customize', $config['customize']);
         }
         $container->setParameter('braincrafted_bootstrap.assets_dir', $config['assets_dir']);
         $container->setParameter('braincrafted_bootstrap.less_filter', $config['less_filter']);

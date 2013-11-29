@@ -57,7 +57,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.customize_variables')
+            ->with('braincrafted_bootstrap.customize')
             ->andReturn(array(
                 'variables_file'     => __DIR__.'/x/variables.less',
                 'bootstrap_output'   => __DIR__.'/bootstrap.less',
@@ -92,7 +92,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.customize_variables')
+            ->with('braincrafted_bootstrap.customize')
             ->andReturn(array('variables_file' => null));
 
         // mock the Kernel or create one depending on your needs
@@ -113,7 +113,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.customize_variables')
+            ->with('braincrafted_bootstrap.customize')
             ->andReturn(array('variables_file' => __DIR__.'/x/variables.less'));
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.less_filter')->andReturn('none');
 

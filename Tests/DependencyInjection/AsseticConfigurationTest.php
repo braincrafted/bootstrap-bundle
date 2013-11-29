@@ -29,7 +29,7 @@ class AsseticConfigurationTest extends \PHPUnit_Framework_TestCase
             'assets_dir'    => './assets',
             'output_dir'    => './web',
             'jquery_path'   => './assets/jquery.js',
-            'customize_variables' => array(
+            'customize' => array(
                 'variables_file'    => './assets/variables.less',
                 'bootstrap_output'  => './assets/bootstrap.less'
             )
