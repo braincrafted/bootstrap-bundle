@@ -766,7 +766,20 @@
 {% block form_rows %}
 {% spaceless %}
     {% for child in form %}
-        {{ form_row(child) }}
+        {% set childAttr = {} %}
+        {% if attr.col_size is defined %}
+            {% set childAttr = childAttr|merge({ 'col_size': attr.col_size }) %}
+        {% endif %}
+        {% if attr.widget_col is defined %}
+            {% set childAttr = childAttr|merge({ 'widget_col': attr.widget_col }) %}
+        {% endif %}
+        {% if attr.label_col is defined %}
+            {% set childAttr = childAttr|merge({ 'label_col': attr.label_col }) %}
+        {% endif %}
+        {% if attr.simple_col is defined %}
+            {% set childAttr = childAttr|merge({ 'simple_col': attr.simple_col }) %}
+        {% endif %}
+        {{ form_row(child, childAttr) }}
     {% endfor %}
 {% endspaceless %}
 {% endblock form_rows %}
