@@ -85,7 +85,7 @@ class AsseticConfiguration
 
         return array(
             'inputs'  => $inputs,
-            'filters' => array($config['less_filter'], 'cssrewrite'),
+            'filters' => array($config['less_filter']),
             'output'  => $config['output_dir'].'css/bootstrap.css'
         );
     }
