@@ -623,7 +623,7 @@
     {% endif %}
     {% set help_text = help_text|default('') %}
     {% if help_text is not empty %}
-        <span class="help-block">{{ help_text }}</span>
+        <span class="help-block">{{ help_text|trans({}, translation_domain) }}</span>
     {% endif %}
 {% endspaceless %}
 {% endblock form_help %}
@@ -744,7 +744,7 @@
     {% if errors|length > 0 %}
         <ul{% if not global_errors %} class="help-block"{% endif %}>
             {% for error in errors %}
-                <li>{{ error.message }}</li>
+                <li>{{ error.message|trans({}, translation_domain) }}</li>
             {% endfor %}
         </ul>
     {% endif %}
