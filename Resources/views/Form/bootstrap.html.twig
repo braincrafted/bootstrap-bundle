@@ -236,7 +236,7 @@
     {% if align_with_widget is defined or attr.align_with_widget is defined %}
         {% set widget_col = widget_col|default(10) %}
         {% set label_col = label_col|default(2) %}
-        {% set class = ' -col-' ~ col_size ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
+        {% set class = 'col-' ~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
         <div class="form-group row{% if not form.vars.valid %} has-error{% endif %}">
             <div class="{{ class }}">
     {% elseif no_form_group is not defined or no_form_group == false %}
