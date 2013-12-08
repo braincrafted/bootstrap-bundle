@@ -42,6 +42,10 @@ class BootstrapFormExtension extends \Twig_Extension
                 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 array('is_safe' => array('html'))
             ),
+            'global_form_errors'  => new \Twig_Function_Node(
+                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
+                array('is_safe' => array('html'))
+            )
         );
     }
 

@@ -725,28 +725,29 @@
 {% endblock form_enctype %}
 
 {% block global_form_errors %}
-    {% set style = style|default(bootstrap_get_style()) %}
     {% if errors|length > 0 %}
         {% set global_errors = true %}
-        {% if style == 'horizontal' or style == 'basic' or style == 'inline' %}
-            <div class="alert alert-danger">
-                {{ block('form_errors') }}
-            </div>
-        {% else %}
-            {{ block('form_errors') }}
-        {% endif %}
+        {{ block('form_errors') }}
     {% endif %}
 {% endblock global_form_errors %}
 
 {% block form_errors %}
 {% spaceless %}
     {% set global_errors = global_errors|default(false) %}
+    {% set style = style|default(bootstrap_get_style()) %}
+
     {% if errors|length > 0 %}
+        {% if global_errors %}
+            <div class="alert alert-danger">
+        {% endif %}
         <ul{% if not global_errors %} class="help-block"{% endif %}>
             {% for error in errors %}
                 <li>{{ error.message|trans({}, translation_domain) }}</li>
             {% endfor %}
         </ul>
+        {% if global_errors == true %}
+            </div>
+        {% endif %}
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
