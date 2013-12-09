@@ -145,6 +145,19 @@ Changelog
 - Renamed views
 - Add error messages in `checkbox_row` and `radio_widget` (Fixes [#118](https://github.com/braincrafted/bootstrap-bundle/issues/118))
 
+#### Version 2.0.0-beta2 (9 December 2013)
+
+- #133: Fix `label_col`, `widget_col`, `col_size` and `simple_col` options in collection widgets
+- #136: Added translation to `bootstrap_collection` widget
+- #137: Removed `cssrewrite` filter from default Assetic configuration
+- #139: Fix JavaScript for nested `bootstrap_collection` widgets (by [wizart](https://github.com/wizart))
+- #140: Improved dependency list in `composer.json` (by [hason](https://github.com/hason))
+- #142: Added translation for help block and error messages
+- #143: Added translation to flash message template (by [rdohms](https://github.com/rdohms))
+- #144: Fix class attribute for checkbox widget (by [squaye85](https://github.com/squaye85))
+- #145: Added possibility to style global error messages
+- Renamed `customize_variables` configuration option into `customize`
+
 ### Version 1.5.0
 
 - Works with new Bootstrap repository `twbs/bootstrap`
