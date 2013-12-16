@@ -44,7 +44,8 @@ class BootstrapCollectionTypeTest extends \PHPUnit_Framework_TestCase
             'add_button_text'       => 'Add',
             'delete_button_text'    => 'Delete',
             'sub_widget_col'        => 2,
-            'button_col'            => 2
+            'button_col'            => 2,
+            'prototype_name'        => '___name___'
         ));
     }
 
