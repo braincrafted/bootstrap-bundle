@@ -82,6 +82,7 @@
         {% set prototype_html = '<div class="row">' ~ prototype_html ~ '</div>' %}
 
         {% set attr = attr|merge({'data-prototype': prototype_html }) %}
+        {% set attr = attr|merge({'data-prototype-name': prototype_name }) %}
     {% endif %}
     <div {{ block('widget_container_attributes') }}>
         <ul class="bc-collection list-unstyled">
@@ -102,7 +103,7 @@
             {% endfor %}
         </ul>
         {% if form.vars.allow_add %}
-            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}">{{ form.vars.add_button_text|trans({}, translation_domain) }}</a>
+            <a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="{{ form.vars.id }}" data-prototype-name="{{ prototype_name }}">{{ form.vars.add_button_text|trans({}, translation_domain) }}</a>
         {% endif %}
     </div>
 {% endspaceless %}

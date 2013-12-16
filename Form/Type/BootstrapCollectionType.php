@@ -37,7 +37,8 @@ class BootstrapCollectionType extends AbstractType
                 'add_button_text'    => $options['add_button_text'],
                 'delete_button_text' => $options['delete_button_text'],
                 'sub_widget_col'     => $options['sub_widget_col'],
-                'button_col'         => $options['button_col']
+                'button_col'         => $options['button_col'],
+                'prototype_name'     => $options['prototype_name']
             )
         );
 
