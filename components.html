@@ -634,7 +634,8 @@ $builder->add(
 
     <div class="panel">
         <div class="panel-body disable-links">
-                
+            
+    
                 
         <ul class="pagination">
             
@@ -661,9 +662,10 @@ $builder->add(
 
     <div class="panel">
         <div class="panel-body disable-links">
+            
+    
                 
-                
-        <ul class="pagination">
+        <ul class="pagination my_pagination">
                             <li><a href="/components.html?page=1">First</a></li>
             
                             <li><a href="/components.html?page=1">Previous</a></li>
@@ -684,6 +686,34 @@ $builder->add(
         <div class="panel-footer">Pagination with custom labels</div>
     </div>
 
+    <p>You can also add a custom CSS class to the wrapping <code>ul</code>-element.</p>
+
+    <pre><code class="twig">{{ knp_pagination_render(pagination, "", {}, { "class": "my_pagination" }) }}</code></pre>
+
+    <div class="panel">
+        <div class="panel-body disable-links">
+            
+    
+                
+        <ul class="pagination my_pagination">
+            
+                            <li><a href="/components.html?page=1">&laquo;</a></li>
+            
+                                                <li><a href="/components.html?page=1">1</a></li>
+                
+                                                <li class="active"><span>2</span></li>
+                
+                                                <li><a href="/components.html?page=3">3</a></li>
+                
+            
+                            <li><a href="/components.html?page=3">&raquo;</a></li>
+            
+                    </ul>
+    
+        </div>
+        <div class="panel-footer">Pagination with custom class</div>
+    </div>
+
     <h3>Pager</h3>
 
     <p>Pager is an alternative style of pagination provided by Bootstrap. Instead of listing the available page numbers, only <i>Previous</i> and <i>Next</i> links are displayed. You can activate this kind of pagination by using the <code>pager</code> style.</p>
@@ -692,7 +722,8 @@ $builder->add(
 
     <div class="panel">
         <div class="panel-body disable-links">
-                
+            
+    
                         
         <ul class="pager">
                             <li class="disabled"><span>Previous</span></li>
@@ -709,7 +740,8 @@ $builder->add(
 
     <div class="panel">
         <div class="panel-body disable-links">
-                
+            
+    
                         
         <ul class="pager">
                             <li class="previous"><a href="/components.html?page=1">Previous</a></li>
@@ -726,7 +758,8 @@ $builder->add(
 
     <div class="panel">
         <div class="panel-body disable-links">
-                
+            
+    
                         
         <ul class="pager">
                             <li class="disabled"><span>&larr; Older</span></li>
