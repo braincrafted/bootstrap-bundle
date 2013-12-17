@@ -1,3 +1,5 @@
+{% set class = class|default('') %}
+
 {% if pageCount > 1 %}
     {% if style is defined and style == 'pager' %}
 
@@ -5,7 +7,7 @@
         {% set next_label = next_label|default('Next') %}
         {% set aligned = aligned|default(false) %}
 
-        <ul class="pager">
+        <ul class="pager{% if class is not empty %} {{ class }}{% endif %}">
             {% if previous is defined %}
                 <li{% if aligned %} class="previous"{% endif %}><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">{{ prev_label|raw }}</a></li>
             {% else %}
@@ -22,7 +24,7 @@
         {% set prev_label = prev_label|default('&laquo;') %}
         {% set next_label = next_label|default('&raquo;') %}
 
-        <ul class="pagination">
+        <ul class="pagination{% if class is not empty %} {{ class }}{% endif %}">
             {% if first_label is defined and first is defined and current != first %}
                 <li><a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{ first_label|raw }}</a></li>
             {% elseif last_label is defined %}
