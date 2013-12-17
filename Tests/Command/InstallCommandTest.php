@@ -62,6 +62,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.assets_dir')
             ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.output_dir')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -89,6 +93,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.assets_dir')
             ->andReturn(__DIR__.'/invalid');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.output_dir')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -112,6 +120,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('kernel.root_dir')
             ->andReturn('/');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.output_dir')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
