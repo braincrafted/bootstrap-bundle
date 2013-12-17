@@ -2025,7 +2025,8 @@
 
     CollectionAdd.prototype.addField = function (e) {
         var $this = $(this),
-            selector = $this.attr('data-collection')
+            selector = $this.attr('data-collection'),
+            prototypeName = $this.attr('data-prototype-name')
         ;
 
         e && e.preventDefault();
@@ -2040,11 +2041,12 @@
         // Check if an element with this ID already exists.
         // If it does, increase the count by one and try again
         var newName = newWidget.match(/id="(.*?)"/);
-        while ($('#' + newName[1].replace(/__name__/g, count)).size() > 0) {
+        var re = new RegExp(prototypeName, "g");
+        while ($('#' + newName[1].replace(re, count)).size() > 0) {
             count++;
         }
-        newWidget = newWidget.replace(/__name__/g, count);
-        newWidget = newWidget.replace(/__id__/g, newName[1].replace(/__name__/g, count));
+        newWidget = newWidget.replace(re, count);
+        newWidget = newWidget.replace(/__id__/g, newName[1].replace(re, count));
         var newLi = $('<li></li>').html(newWidget);
         newLi.appendTo(list);
     };

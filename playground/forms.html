@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Forms Playground &mdash; BraincraftedBootstrapBundle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap -->
+<link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="/css/documentation.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<header class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">BraincraftedBootstrapBundle</a>
+                
+    
+                    
+    
+    
+    <ul class="nav navbar-nav">
+                <li class="first">        <a href="/getting-started.html">Getting started</a>                </li>
+
+        <li>        <a href="/components.html">Components</a>                </li>
+
+        <li class="active last dropdown">        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Playground <b class="caret"></b></a>            <ul class="menu_level_1 dropdown-menu"><li class="active first last"><a href="/playground/forms.html">Forms</a></li></ul>    </li>
+
+
+    </ul>
+
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                You are browsing the documentation for <strong>BootstrapBundle v2.0</strong>, which will be released very soon. I have moved the documentation of <a href="http://bootstrap1.braincrafted.com">BraincraftedBootstrapBundle v1.4</a>.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Forms Playground</h1>
+            <p class="lead">BootstrapBundle is capable of rendering complex forms. Some of them are introduced on this page.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <nav class="sidebar" data-spy="affix" data-offset-top="130">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#bootstrap-collection">Bootstrap Collection</a></li>
+                    <li><a href="#sidebyside">Side-by-side Form</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-lg-9">
+            <section>
+    <div class="page-header">
+        <h2 id="bootstrap-collection">Bootstrap Collection</h2>
+    </div>
+
+    <p>Bootstrap collections are an extension of Symfonys default collection form type and add the JavaScript to make the form dynamic. They can be nested.</p>
+
+    <p><span class="label label-warning">Warning</span> The <code>prototype_name</code> of the subcollection must be different from the name of the parent collection.</p>
+
+    <pre><code class="php">$bcCollectionForm = $this->createFormBuilder([])
+    ->add('subcol', 'bootstrap_collection', array(
+        'type'               => 'bootstrap_collection',
+        'allow_add'          => true,
+        'allow_delete'       => true,
+        'add_button_text'    => 'Add Level 1',
+        'delete_button_text' => 'Delete Level 1',
+        'sub_widget_col'     => 9,
+        'button_col'         => 3,
+        'options'            => array(
+            'type'               => 'text',
+            'allow_add'          => true,
+            'allow_delete'       => true,
+            'add_button_text'    => 'Add Level 2',
+            'delete_button_text' => 'Delete Level 2',
+            'prototype_name'     => '__subname__',
+            'sub_widget_col'     => 8,
+            'button_col'         => 4
+        )
+    ))
+    ->setData(array(
+        'subcol' => array(
+            array('Answer 1a', 'Answer 1b'),
+            array('Answer 2a', 'Answer 2b')
+        )
+    ))
+    ->getForm();</code></pre>
+
+    <div class="panel">
+        <div class="panel-body">
+            <form  name="form" method="post" action="" class="form-horizontal" role="form"><div id="form"><div class="form-group row"><label class="control-label col-lg-2 required">Subcol</label><div class="col-lg-10"><div id="form_subcol"     data-prototype="&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-xs-9&quot;&gt;&lt;div id=&quot;form_subcol___name__&quot;     data-prototype=&quot;&amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;col-xs-8&amp;quot;&amp;gt;&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;form_subcol___name_____subname__&amp;quot; name=&amp;quot;form[subcol][__name__][__subname__]&amp;quot; required=&amp;quot;required&amp;quot;    class=&amp;quot;form-control&amp;quot; &amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;col-xs-4&amp;quot;&amp;gt;&amp;lt;a href=&amp;quot;#&amp;quot; class=&amp;quot;btn btn-danger btn-small&amp;quot; data-removefield=&amp;quot;collection&amp;quot; data-field=&amp;quot;__id__&amp;quot;&amp;gt;Delete Level 2&amp;lt;/a&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&quot; data-prototype-name=&quot;__subname__&quot;&gt;&lt;ul class=&quot;bc-collection list-unstyled&quot;&gt;&lt;/ul&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-primary btn-small&quot; data-addfield=&quot;collection&quot; data-collection=&quot;form_subcol___name__&quot; data-prototype-name=&quot;__subname__&quot;&gt;Add Level 2&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;col-xs-3&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-danger btn-small&quot; data-removefield=&quot;collection&quot; data-field=&quot;__id__&quot;&gt;Delete Level 1&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;" data-prototype-name="__name__"><ul class="bc-collection list-unstyled"><li><div class="row"><div class="col-xs-9"><div id="form_subcol_0"     data-prototype="&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-xs-8&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;form_subcol_0___subname__&quot; name=&quot;form[subcol][0][__subname__]&quot; required=&quot;required&quot;    class=&quot;form-control&quot; &gt;&lt;/div&gt;&lt;div class=&quot;col-xs-4&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-danger btn-small&quot; data-removefield=&quot;collection&quot; data-field=&quot;__id__&quot;&gt;Delete Level 2&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;" data-prototype-name="__subname__"><ul class="bc-collection list-unstyled"><li><div class="row"><div class="col-xs-8"><input type="text" id="form_subcol_0_0" name="form[subcol][0][0]" required="required"    class="form-control" value="Answer 1a" ></div><div class="col-xs-4"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_subcol_0_0">Delete Level 2</a></div></div></li><li><div class="row"><div class="col-xs-8"><input type="text" id="form_subcol_0_1" name="form[subcol][0][1]" required="required"    class="form-control" value="Answer 1b" ></div><div class="col-xs-4"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_subcol_0_1">Delete Level 2</a></div></div></li></ul><a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="form_subcol_0" data-prototype-name="__subname__">Add Level 2</a></div></div><div class="col-xs-3"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_subcol_0">Delete Level 1</a></div></div></li><li><div class="row"><div class="col-xs-9"><div id="form_subcol_1"     data-prototype="&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-xs-8&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;form_subcol_1___subname__&quot; name=&quot;form[subcol][1][__subname__]&quot; required=&quot;required&quot;    class=&quot;form-control&quot; &gt;&lt;/div&gt;&lt;div class=&quot;col-xs-4&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-danger btn-small&quot; data-removefield=&quot;collection&quot; data-field=&quot;__id__&quot;&gt;Delete Level 2&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;" data-prototype-name="__subname__"><ul class="bc-collection list-unstyled"><li><div class="row"><div class="col-xs-8"><input type="text" id="form_subcol_1_0" name="form[subcol][1][0]" required="required"    class="form-control" value="Answer 2a" ></div><div class="col-xs-4"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_subcol_1_0">Delete Level 2</a></div></div></li><li><div class="row"><div class="col-xs-8"><input type="text" id="form_subcol_1_1" name="form[subcol][1][1]" required="required"    class="form-control" value="Answer 2b" ></div><div class="col-xs-4"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_subcol_1_1">Delete Level 2</a></div></div></li></ul><a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="form_subcol_1" data-prototype-name="__subname__">Add Level 2</a></div></div><div class="col-xs-3"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_subcol_1">Delete Level 1</a></div></div></li></ul><a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="form_subcol" data-prototype-name="__name__">Add Level 1</a></div></div></div></div></form></div>
+        <div class="panel-footer">Nested Bootstrap Collection</div>
+    </div>
+
+</section>
+            
+<section>
+    <div class="page-header">
+        <h2 id="sidebyside">Side-by-side Forms</h2>
+    </div>
+
+    <p>You can mix the HTML and CSS structures provided by Bootstrap anytime with widgets and extensions provided by BootstrapBundle. For example, you can display two widgets side-by-side.</p>
+
+    <pre><code class="twig">&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-lg-6&quot;&gt;
+        {{ form_row(sidebysideForm.firstName, { 'style': 'horizontal', 'label_col': 4, 'widget_col': 8 }) }}
+    &lt;/div&gt;
+    &lt;div class=&quot;col-lg-6&quot;&gt;
+        {{ form_row(sidebysideForm.lastName, { 'style': 'horizontal', 'label_col': 4, 'widget_col': 8 }) }}
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group row"><label class="control-label col-lg-4 required" for="form_firstName">First name</label><div class="col-lg-8"><input type="text" id="form_firstName" name="form[firstName]" required="required"    row="" class="form-control" value="Florian" ></div></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group row"><label class="control-label col-lg-4 required" for="form_lastName">Last name</label><div class="col-lg-8"><input type="text" id="form_lastName" name="form[lastName]" required="required"    row="" class="form-control" value="Eckerstorfer" ></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">Form with two widgets displayed in the same row.</div>
+    </div>
+
+</section>        </div>
+    </div>
+</div>
+
+
+<footer id="footer" class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <p>BraincraftedBootstrapBundle is handcrafted by <a href="http://florian.ec">Florian Eckerstorfer</a> in Vienna.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript plugins (requires jQuery) -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.js"></script>
+<script src="/js/documentation.js"></script>
+
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
