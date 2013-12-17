@@ -44,7 +44,7 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFunctions()
     {
-        $this->assertCount(7, $this->extension->getFunctions());
+        $this->assertCount(13, $this->extension->getFunctions());
     }
 
     /**
@@ -65,6 +65,36 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->extension->setColSize('sm');
         $this->assertEquals('sm', $this->extension->getColSize());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setWidgetCol()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getWidgetCol()
+     */
+    public function testSetWidgetColGetWidgetCol()
+    {
+        $this->extension->setWidgetCol(5);
+        $this->assertEquals(5, $this->extension->getWidgetCol());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setLabelCol()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getLabelCol()
+     */
+    public function testSetLabelColGetLabelCol()
+    {
+        $this->extension->setLabelCol(4);
+        $this->assertEquals(4, $this->extension->getLabelCol());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setSimpleCol()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getSimpleCol()
+     */
+    public function testSetSimpleColGetSimpleCol()
+    {
+        $this->extension->setSimpleCol(8);
+        $this->assertEquals(8, $this->extension->getSimpleCol());
     }
 
     /**

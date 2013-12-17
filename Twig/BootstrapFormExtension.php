@@ -24,6 +24,15 @@ class BootstrapFormExtension extends \Twig_Extension
     /** @var string */
     private $colSize = 'lg';
 
+    /** @var integer */
+    private $widgetCol = 10;
+
+    /** @var integer */
+    private $labelCol = 2;
+
+    /** @var integer */
+    private $simpleCol = false;
+
     /**
      * {@inheritdoc}
      */
@@ -34,6 +43,12 @@ class BootstrapFormExtension extends \Twig_Extension
             new \Twig_SimpleFunction('bootstrap_get_style', array($this, 'getStyle')),
             new \Twig_SimpleFunction('bootstrap_set_col_size', array($this, 'setColSize')),
             new \Twig_SimpleFunction('bootstrap_get_col_size', array($this, 'getColSize')),
+            new \Twig_SimpleFunction('bootstrap_set_widget_col', array($this, 'setWidgetCol')),
+            new \Twig_SimpleFunction('bootstrap_get_widget_col', array($this, 'getWidgetCol')),
+            new \Twig_SimpleFunction('bootstrap_set_label_col', array($this, 'setLabelCol')),
+            new \Twig_SimpleFunction('bootstrap_get_label_col', array($this, 'getLabelCol')),
+            new \Twig_SimpleFunction('bootstrap_set_simple_col', array($this, 'setSimpleCol')),
+            new \Twig_SimpleFunction('bootstrap_get_simple_col', array($this, 'getSimpleCol')),
             'checkbox_row'  => new \Twig_Function_Node(
                 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 array('is_safe' => array('html'))
@@ -95,5 +110,65 @@ class BootstrapFormExtension extends \Twig_Extension
     public function getColSize()
     {
         return $this->colSize;
+    }
+
+    /**
+     * Sets the number of columns of widgets.
+     *
+     * @param integer $widgetCol Number of columns.
+     */
+    public function setWidgetCol($widgetCol)
+    {
+        $this->widgetCol = $widgetCol;
+    }
+
+    /**
+     * Returns the number of columns of widgets.
+     *
+     * @return integer Number of columns.
+     */
+    public function getWidgetCol()
+    {
+        return $this->widgetCol;
+    }
+
+    /**
+     * Sets the number of columns of labels.
+     *
+     * @param integer $labelCol Number of columns.
+     */
+    public function setLabelCol($labelCol)
+    {
+        $this->labelCol = $labelCol;
+    }
+
+    /**
+     * Returns the number of columns of labels.
+     *
+     * @return integer Number of columns.
+     */
+    public function getLabelCol()
+    {
+        return $this->labelCol;
+    }
+
+    /**
+     * Sets the number of columns of simple widgets.
+     *
+     * @param integer $simpleCol Number of columns.
+     */
+    public function setSimpleCol($simpleCol)
+    {
+        $this->simpleCol = $simpleCol;
+    }
+
+    /**
+     * Returns the number of columns of simple widgets.
+     *
+     * @return integer Number of columns.
+     */
+    public function getSimpleCol()
+    {
+        return $this->simpleCol;
     }
 }
