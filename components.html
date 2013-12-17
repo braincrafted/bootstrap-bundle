@@ -139,7 +139,7 @@
         <div class="panel-footer">Example of horizontal form</div>
     </div>
 
-    <p>Bootstrap uses its grid to determine the size of label and widget. You can pass the <code>label_col</code> and <code>widget_col</code> options to set the number of columns label and widget should have.</p>
+    <p>Bootstrap uses its grid to determine the size of label and widget. You can pass the <code>label_col</code> and <code>widget_col</code> options to set the number of columns label and widget should have. If you pass the option to <code>form</code> or <code>form_start</code> the options will affect the whole form. You can also use the Twig functions <code>bootstrap_set_widget_col()</code> and <code>bootstrap_set_label_col()</code>.</p>
 
     <div class="panel">
         <div class="panel-body">
@@ -157,13 +157,20 @@
     </div>
 
     <pre><code class="twig">{{ form_row(form.firstName, { 'label_col': 4, 'widget_col': 8}) }}
-{{ form_label(form.lastName, '', { 'label_col': 6, 'style': 'horizontal' }) }}</code></pre>
+{{ form_label(form.lastName, '', { 'label_col': 6, 'style': 'horizontal' }) }}
+{{ form(form, { 'label_col': 6, 'widget_col': 6 }) }}
+{{ form_start(form, { 'label_col': 6, 'widget_col': 6 }) }}
+{{ bootstrap_set_widget_col(6) }}
+{{ bootstrap_set_label_col(6) }}</code></pre>
 
     <pre><code class="php">$builder->add('firstName', 'text', array('attr' => array('label_col' => 4, 'widget_col' => 8)));</code></pre>
 
     <p>There is also an option <code>simple_col</code> which wraps the input field (i.e., the widget) in a <code>&lt;div&gt;</code> with the given size. This is useful when creating compound types and is used, for example, in the date widget provided by BraincraftedBootstrapBundle. If you render the form row instead of the widget use `label_col` and `widget_col` instead.</p>
 
-    <pre><code class="twig">{{ form_widget(form.firstName, { 'simple_col': 4 }) }}</code></pre>
+    <pre><code class="twig">{{ form_widget(form.firstName, { 'simple_col': 4 }) }}
+{{ form(form, { 'simple_col': 4 }) }}
+{{ form_start(form, { 'simple_col': 4 }) }}
+{{ bootstrap_set_simple_col(4) }}</code></pre>
 
     <pre><code class="php">$builder->add('firstName', 'text', array('attr' => array('simple_col' => 4)));</code></pre>
 
@@ -180,10 +187,6 @@
     <pre><code>{{ form(form, { 'style': 'horizontal', 'col_size': 'xs' }) }}
 {{ form_start(form, { 'style': 'horizontal', 'col_size': 'xs' }) }}
 {{ bootstrap_set_col_size('xs') }}</code></pre>
-
-    <p>If you don't want to add the <code>row</code> class to form groups you can set the <code>row</code> option to <code>false</code>. The default value is <code>true</code></p>
-
-    <pre><code class="twig">{{ form_row(form.firstName, { 'row': false }) }}</code></pre>
 
     <h4>Basic Form</h4>
 
