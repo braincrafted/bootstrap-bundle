@@ -1,17 +1,16 @@
 [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com)
 =================
 
-By [Florian Eckerstorfer](http://florianeckerstorfer.com)
+BraincraftedBootstrapBundle helps you integrate [Bootstrap](http://getbootstrap.com) in your [Symfony2](http://symfony.com) project.
 
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/badges/quality-score.png?s=28e07378182fddc3cdf2c764437a72b6eaf55a45)](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/)
 [![Code Coverage](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/badges/coverage.png?s=6258b68071860a349841a0450f39e7cc6ad5da23)](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/)
 
+[![Latest Stable Version](https://poser.pugx.org/braincrafted/bootstrap-bundle/v/stable.png)](https://packagist.org/packages/braincrafted/bootstrap-bundle)
+[![Total Downloads](https://poser.pugx.org/braincrafted/bootstrap-bundle/downloads.png)](https://packagist.org/packages/braincrafted/bootstrap-bundle)
 
-About
------
-
-BraincraftedBootstrapBundle helps you integrate [Bootstrap](http://getbootstrap.com) in your [Symfony2](http://symfony.com) project.
+Developed by [Florian Eckerstorfer](http://florian.ec) and many amazing [contributors](https://github.com/braincrafted/bootstrap-bundle/contributors).
 
 
 Installation
