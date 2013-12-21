@@ -26,6 +26,9 @@
     {% if attr.col_size is defined and attr.col_size is not empty %}
         {% set col_size = attr.col_size %}
     {% endif %}
+    {% if attr.style is defined and attr.style is not empty %}
+        {% set style = attr.style %}
+    {% endif %}
 
     {% if simple_col is defined and simple_col %}
         <div class="col-{{ col_size }}-{{ simple_col }}">
@@ -234,6 +237,9 @@
     {% endif %}
     {% if attr.col_size is defined and attr.col_size is not empty %}
         {% set col_size = attr.col_size %}
+    {% endif %}
+    {% if attr.style is defined and attr.style is not empty %}
+        {% set style = attr.style %}
     {% endif %}
 
     {% set class = '' %}
@@ -513,6 +519,10 @@
         {% set style = style|default(bootstrap_get_style()) %}
         {% set label_col = label_col|default(2) %}
 
+        {% if attr.style is defined and attr.style is not empty %}
+            {% set style = attr.style %}
+        {% endif %}
+
         {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label')|trim }) %}
         {% if style == 'horizontal' %}
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-' ~ col_size ~ '-' ~ label_col)|trim }) %}
@@ -561,6 +571,9 @@
     {% endif %}
     {% if attr.col_size is defined and attr.col_size is not empty %}
         {% set col_size = attr.col_size %}
+    {% endif %}
+    {% if attr.style is defined and attr.style is not empty %}
+        {% set style = attr.style %}
     {% endif %}
 
     {% set label_col = label_col|default(bootstrap_get_label_col()) %}
@@ -645,6 +658,9 @@
     {% endif %}
     {% if attr.col_size is defined and attr.col_size is not empty %}
         {% set col_size = attr.col_size %}
+    {% endif %}
+    {% if attr.style is defined and attr.style is not empty %}
+        {% set style = attr.style %}
     {% endif %}
 
     {% set label_col = label_col|default(bootstrap_get_label_col()) %}
@@ -760,6 +776,10 @@
 {% spaceless %}
     {% set global_errors = global_errors|default(false) %}
     {% set style = style|default(bootstrap_get_style()) %}
+
+    {% if attr.style is defined and attr.style is not empty %}
+        {% set style = attr.style %}
+    {% endif %}
 
     {% if errors|length > 0 %}
         {% if global_errors %}
