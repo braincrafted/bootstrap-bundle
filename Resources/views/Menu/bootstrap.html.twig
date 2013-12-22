@@ -136,13 +136,15 @@
     <li{{ _self.attributes(attributes) }}>
         {%- if attributes.divider is defined and attributes.divider is not empty %}
         {%- elseif item.hasChildren and options.style is defined and options.style in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] and options.currentDepth is sameas(1) and ((item.extras.dropdown is not defined and item.displayChildren is sameas(true) or item.extras.dropdown is defined and item.extras.dropdown is sameas(true) and item.displayChildren is sameas(true))) %}
-        {{ block('dropdownElement') }}
+            {{ block('dropdownElement') }}
+        {%- elseif item.hasChildren and options.style is defined and options.style in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] and options.currentDepth is sameas(1) and ((item.extras.dropdown is defined and item.extras.dropdown is sameas(false) or item.displayChildren(false) )) %}
+            {{ block('linkElement') }}
         {%- elseif item.uri is not empty and ((matcher is defined and not matcher.isCurrent(item)) or options.currentAsLink) %}
-        {{ block('linkElement') }}
+            {{ block('linkElement') }}
         {%- elseif item.uri is not empty and ((item.current is defined and not item.current) or options.currentAsLink) %}
-        {{ block('linkElement') }}
+            {{ block('linkElement') }}
         {%- else %}
-        {{ block('spanElement') }}
+            {{ block('spanElement') }}
         {%- endif %}
 {# render the list of children#}
         {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
