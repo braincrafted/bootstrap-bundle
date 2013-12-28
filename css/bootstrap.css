@@ -5984,7 +5984,7 @@ td.visible-print {
 .form-group .bc-collection li + li {
   margin-top: 10px;
 }
-.form-inline .form-group + .form-group {
+.form-inline .form-group {
   margin-left: 0;
   margin-right: 0;
 }
