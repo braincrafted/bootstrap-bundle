@@ -517,7 +517,7 @@
 
     {% if label is not sameas(false) %}
         {% set style = style|default(bootstrap_get_style()) %}
-        {% set label_col = label_col|default(2) %}
+        {% set label_col = label_col|default(bootstrap_get_label_col()) %}
 
         {% if attr.style is defined and attr.style is not empty %}
             {% set style = attr.style %}

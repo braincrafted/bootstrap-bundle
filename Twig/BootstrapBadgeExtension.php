@@ -41,7 +41,6 @@ class BootstrapBadgeExtension extends Twig_Extension
      * Returns the HTML code for a badge.
      *
      * @param string $text The text of the badge
-     * @param string $type The type of badge
      *
      * @return string The HTML code of the badge
      */
