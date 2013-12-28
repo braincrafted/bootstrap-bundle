@@ -825,6 +825,9 @@
         {% if attr.simple_col is defined %}
             {% set childAttr = childAttr|merge({ 'simple_col': attr.simple_col }) %}
         {% endif %}
+        {% if attr.style is defined %}
+            {% set childAttr = childAttr|merge({ 'style': attr.style }) %}
+        {% endif %}
         {{ form_row(child, childAttr) }}
     {% endfor %}
 {% endspaceless %}
@@ -839,8 +842,12 @@
 
 {% block widget_container_attributes %}
 {% spaceless %}
+    {% if attr.style == 'inline' or attr.style == 'horizontal' %}
+        {% set attr = attr|merge({ 'class': 'form-'~attr.style~attr.class|default('') }) %}
+        {% set attr = attr|merge({ 'style': null }) %}
+    {% endif %}
     {% if id is not empty %}id="{{ id }}" {% endif %}
-    {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
+    {% for attrname, attrvalue in attr %}{% if attrvalue is not null %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
 {% endspaceless %}
 {% endblock widget_container_attributes %}
 
