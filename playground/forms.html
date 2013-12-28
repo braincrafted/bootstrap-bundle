@@ -13,9 +13,10 @@
 <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 
 <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv-printshiv.min.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body>
@@ -29,11 +30,11 @@
     
     
     <ul class="nav navbar-nav">
-                <li class="first">        <a href="/getting-started.html">Getting started</a>                </li>
+                <li class="first">            <a href="/getting-started.html">Getting started</a>                </li>
 
-        <li>        <a href="/components.html">Components</a>                </li>
+        <li>            <a href="/components.html">Components</a>                </li>
 
-        <li class="active last dropdown">        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Playground <b class="caret"></b></a>            <ul class="menu_level_1 dropdown-menu"><li class="active first last"><a href="/playground/forms.html">Forms</a></li></ul>    </li>
+        <li class="active last dropdown">            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Playground <b class="caret"></b></a>            <ul class="menu_level_1 dropdown-menu"><li class="active first last"><a href="/playground/forms.html">Forms</a></li></ul>    </li>
 
 
     </ul>
@@ -66,6 +67,7 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#bootstrap-collection">Bootstrap Collection</a></li>
                     <li><a href="#sidebyside">Side-by-side Form</a></li>
+                    <li><a href="#inlinesub">Inline Subform</a></li>
                 </ul>
             </nav>
         </div>
@@ -133,19 +135,71 @@
 
     <div class="panel">
         <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group row"><label class="control-label col-lg-4 required" for="form_firstName">First name</label><div class="col-lg-8"><input type="text" id="form_firstName" name="form[firstName]" required="required"    row="" class="form-control" value="Florian" ></div></div>
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group row"><label class="control-label col-lg-4 required" for="form_firstName">First name</label><div class="col-lg-8"><input type="text" id="form_firstName" name="form[firstName]" required="required"    row="" class="form-control" value="Florian" ></div></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group row"><label class="control-label col-lg-4 required" for="form_lastName">Last name</label><div class="col-lg-8"><input type="text" id="form_lastName" name="form[lastName]" required="required"    row="" class="form-control" value="Eckerstorfer" ></div></div>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group row"><label class="control-label col-lg-4 required" for="form_lastName">Last name</label><div class="col-lg-8"><input type="text" id="form_lastName" name="form[lastName]" required="required"    row="" class="form-control" value="Eckerstorfer" ></div></div>
-                </div>
-            </div>
+            </form>
         </div>
         <div class="panel-footer">Form with two widgets displayed in the same row.</div>
     </div>
 
-</section>        </div>
+</section>            <section>
+    <div class="page-header">
+        <h2 id="inlinesub">Inline Subform</h2>
+    </div>
+
+    <p>The style of a subform can be different than the style of the parent form. This is most likely online useful if the parent form is <code>horizontal</code> and the subform is <code>inline</code> and not the other way around and only for simple subforms. You can always create custom complex form layouts by using Bootstrap HTML and CSS classes directly and by extending and overwriting the form blocks.</p>
+
+    <pre><code class="php">$this->createFormBuilder(array())
+    ->add('repcol', 'bootstrap_collection', array(
+        'type'               => 'repeated',
+        'allow_add'          => true,
+        'allow_delete'       => true,
+        'sub_widget_col'     => 9,
+        'button_col'         => 3,
+        'prototype_name'     => 'inlinep',
+        'options'            => array(
+            'type' => 'text',
+            'attr' => array('style' => 'inline')
+        )
+    ))
+    ->getForm();</code></pre>
+
+    <div class="panel">
+        <div class="panel-body">
+            <form  name="form" method="post" action="" class="form-horizontal" role="form"><div id="form"><div class="form-group row"><label class="control-label col-lg-2 required">Repcol</label><div class="col-lg-10"><div id="form_repcol"     data-prototype="&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-xs-9&quot;&gt;&lt;div id=&quot;form_repcol_inlinep&quot;     class=&quot;form-inline&quot;&gt;&lt;div class=&quot;form-group&quot;&gt;&lt;label class=&quot;control-label sr-only required&quot; for=&quot;form_repcol_inlinep_first&quot;&gt;First&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;form_repcol_inlinep_first&quot; name=&quot;form[repcol][inlinep][first]&quot; required=&quot;required&quot;    class=&quot;form-control&quot; placeholder=&quot;First&quot; &gt;&lt;/div&gt;
+
+    &amp;nbsp;
+                                                                                &lt;div class=&quot;form-group&quot;&gt;&lt;label class=&quot;control-label sr-only required&quot; for=&quot;form_repcol_inlinep_second&quot;&gt;Second&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;form_repcol_inlinep_second&quot; name=&quot;form[repcol][inlinep][second]&quot; required=&quot;required&quot;    class=&quot;form-control&quot; placeholder=&quot;Second&quot; &gt;&lt;/div&gt;
+
+    &amp;nbsp;
+        
+    &lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;col-xs-3&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-danger btn-small&quot; data-removefield=&quot;collection&quot; data-field=&quot;__id__&quot;&gt;Delete&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;" data-prototype-name="inlinep"><ul class="bc-collection list-unstyled"><li><div class="row"><div class="col-xs-9"><div id="form_repcol_0"     class="form-inline"><div class="form-group"><label class="control-label sr-only required" for="form_repcol_0_first">First</label><input type="text" id="form_repcol_0_first" name="form[repcol][0][first]" required="required"    class="form-control" placeholder="First" value="Hello" ></div>
+
+    &nbsp;
+                                                                                <div class="form-group"><label class="control-label sr-only required" for="form_repcol_0_second">Second</label><input type="text" id="form_repcol_0_second" name="form[repcol][0][second]" required="required"    class="form-control" placeholder="Second" value="Hello" ></div>
+
+    &nbsp;
+        
+    </div></div><div class="col-xs-3"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_repcol_0">Delete</a></div></div></li><li><div class="row"><div class="col-xs-9"><div id="form_repcol_1"     class="form-inline"><div class="form-group"><label class="control-label sr-only required" for="form_repcol_1_first">First</label><input type="text" id="form_repcol_1_first" name="form[repcol][1][first]" required="required"    class="form-control" placeholder="First" value="Hola" ></div>
+
+    &nbsp;
+                                                                                <div class="form-group"><label class="control-label sr-only required" for="form_repcol_1_second">Second</label><input type="text" id="form_repcol_1_second" name="form[repcol][1][second]" required="required"    class="form-control" placeholder="Second" value="Hola" ></div>
+
+    &nbsp;
+        
+    </div></div><div class="col-xs-3"><a href="#" class="btn btn-danger btn-small" data-removefield="collection" data-field="form_repcol_1">Delete</a></div></div></li></ul><a href="#" class="btn btn-primary btn-small" data-addfield="collection" data-collection="form_repcol" data-prototype-name="inlinep">Add</a></div></div></div></div></form></div>
+        <div class="panel-footer">Nested Bootstrap Collection</div>
+    </div>
+
+</section>
+        </div>
     </div>
 </div>
 
