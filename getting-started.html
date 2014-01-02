@@ -334,6 +334,7 @@ assetic:
         bootstrap_css:
             inputs:
                 - %kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less
+                - %kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/less/form.less
             filters:
                 - less
                 - cssrewrite
@@ -359,6 +360,8 @@ assetic:
                 - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
             output: js/jquery.js
     </code></pre>
+
+    <p><span class="label label-warning">Warning</span> If you don't use Assetic to compile the CSS code you have to manually include the styles from the <code>Resources/less/form.less</code> file that is bundles with BootstrapBundle.</p>
 
     <h3>Twig Configuration</h3>
 
