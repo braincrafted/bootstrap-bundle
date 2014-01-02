@@ -87,7 +87,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
         </tr>
         <tr>
             <td><strong>v2.0.*</strong></td>
-            <td>v2.3.*</td>
+            <td>v2.3.*<br>v2.4.*</td>
             <td>v3.0.*</td>
             <td>v1.10.*</td>
         </tr>
@@ -98,7 +98,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
-### Version 2.0.0
+### Version 2.0.0-alpha1
 
 - Updated to Symfony v2.3.6
 - Updated to Bootstrap v3.0.1
@@ -156,6 +156,18 @@ Changelog
 - #144: Fix class attribute for checkbox widget (by [squaye85](https://github.com/squaye85))
 - #145: Added possibility to style global error messages
 - Renamed `customize_variables` configuration option into `customize`
+
+#### Version 2.0.0-stable (2 January 2014)
+
+- #152: Add form name attribute (by [nonlux](https://github.com/nonlux))
+- #154: Fix Bootstrap Collection form type for nested types
+- #155: Use `braincrafted_bootstrap.output_dir` option when installing icon font
+- #52: Add class option for pagination
+- #148: Add `label_col` and `widget_col` option for the whole form (by [florianeckerstorfer](https://github.com/florianeckerstorfer) and [dirkluijk](https://github.com/dirkluijk))
+- #156: Add support for error messages with parameters (by [thanosp](https://github.com/thanosp))
+- #157: Use print shiv instead of standard shiv (by [mvrhov](https://github.com/mvrhov))
+- #161: Set `style` option in FormBuilder
+- #162: Set depth of navigation.
 
 ### Version 1.5.0
 
