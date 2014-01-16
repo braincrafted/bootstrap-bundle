@@ -166,9 +166,8 @@
 {% block dropdownElement %}
 {% spaceless %}
     {% set labelAttributes = item.labelAttributes %}
-    {% set labelAttributes = labelAttributes|merge({'class': (labelAttributes.class|default('') ~ ' dropdown-toggle')|trim}) %}
-    {% set labelAttributes = labelAttributes|merge({'data-toggle': 'dropdown'}) %}
-    <a href="#"{{ _self.attributes(labelAttributes) }}>{{ block('label') }} <b class="caret"></b></a>
+    {% set labelAttributes = labelAttributes|merge({'class': (labelAttributes.class|default('') ~ ' dropdown-link')|trim}) %}
+    <a href="{{ item.uri }}"{{ _self.attributes(labelAttributes) }}>{{ block('label') }}</a></li><li><a href="#" class="dropdown-toggle dropdown-caret" data-toggle="dropdown"><b class="caret"></b></a>
 {% endspaceless %}
 {% endblock dropdownElement %}
 
