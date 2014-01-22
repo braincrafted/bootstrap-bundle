@@ -60,13 +60,23 @@ class BootstrapIconExtension extends Twig_Extension
     public function parseIconsFilter($text)
     {
         $that = $this;
-        return preg_replace_callback(
+        $text = preg_replace_callback(
             '/\.icon-([a-z0-9-]+)/',
             function ($matches) use ($that) {
                 return $that->iconFunction($matches[1]);
             },
             $text
         );
+
+        $text = preg_replace_callback(
+            '/\.fa-icon-([a-z0-9-]+)/',
+            function ($matches) use ($that) {
+                return $that->faiconFunction($matches[1]);
+            },
+            $text
+        );
+
+        return $text;
     }
 
     /**
@@ -79,6 +89,18 @@ class BootstrapIconExtension extends Twig_Extension
     public function iconFunction($icon)
     {
         return sprintf('<span class="glyphicon glyphicon-%s"></span>', $icon);
+    }
+
+    /**
+     * Returns the HTML code for the given icon.
+     *
+     * @param string $icon  The name of the icon
+     *
+     * @return string The HTML code for the icon
+     */
+    public function faiconFunction($icon)
+    {
+        return sprintf('<i class="icon-%s"></i>', $icon);
     }
 
     /**
