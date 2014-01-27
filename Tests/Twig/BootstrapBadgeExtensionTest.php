@@ -57,6 +57,36 @@ class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
             $this->extension->badgeFunction('Hello World'),
             '->badgeFunction() returns the HTML code for the given badge.'
         );
+        
+        $this->assertEquals(
+            '<span class="badge badge-primary">Hello World</span>',
+            $this->extension->badgeFunction('Hello World', 'primary'),
+            '->badgeFunction() returns the HTML code for the given badge.'
+        );
+        
+        $this->assertEquals(
+            '<span class="badge badge-success">Hello World</span>',
+            $this->extension->badgeFunction('Hello World', 'success'),
+            '->badgeFunction() returns the HTML code for the given badge.'
+        );
+        
+        $this->assertEquals(
+            '<span class="badge badge-info">Hello World</span>',
+            $this->extension->badgeFunction('Hello World', 'info'),
+            '->badgeFunction() returns the HTML code for the given badge.'
+        );
+        
+        $this->assertEquals(
+            '<span class="badge badge-warning">Hello World</span>',
+            $this->extension->badgeFunction('Hello World', 'warning'),
+            '->badgeFunction() returns the HTML code for the given badge.'
+        );
+        
+        $this->assertEquals(
+            '<span class="badge badge-danger">Hello World</span>',
+            $this->extension->badgeFunction('Hello World', 'danger'),
+            '->badgeFunction() returns the HTML code for the given badge.'
+        );
     }
 
     /**
