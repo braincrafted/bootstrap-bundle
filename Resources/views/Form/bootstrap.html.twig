@@ -620,11 +620,11 @@
         {% endif  %}
         <div class="input-group{{ ig_size_class }}">
             {% if input_group.prepend is defined and input_group.prepend is not empty %}
-                <span class="input-group-addon">{{ input_group.prepend }}</span>
+                <span class="input-group-addon">{{ input_group.prepend|raw }}</span>
             {% endif %}
             {{ form_widget(form) }}
             {% if input_group.append is defined and input_group.append is not empty %}
-                <span class="input-group-addon">{{ input_group.append }}</span>
+                <span class="input-group-addon">{{ input_group.append|raw }}</span>
             {% endif %}
         </div>
     {% else %}
