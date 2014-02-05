@@ -6,6 +6,7 @@
     <parameters>
         <parameter key="braincrafted_bootstrap.form.type.collection.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType</parameter>
         <parameter key="braincrafted_bootstrap.form.type.money.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\MoneyType</parameter>
+        <parameter key="braincrafted_bootstrap.form.type.button_group.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\ButtonGroupType</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.typesetter_extension.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension</parameter>
     </parameters>
 
@@ -17,6 +18,10 @@
 
         <service id="braincrafted_bootstrap.form.type.money" class="%braincrafted_bootstrap.form.type.money.class%">
             <tag name="form.type" alias="money" />
+        </service>
+
+        <service id="braincrafted_bootstrap.form.type.button_group" class="%braincrafted_bootstrap.form.type.button_group.class%">
+            <tag name="form.type" alias="button_group" />
         </service>
 
         <service id="braincrafted_bootstrap.form.extension.typesetter_extension" class="%braincrafted_bootstrap.form.extension.typesetter_extension.class%">
