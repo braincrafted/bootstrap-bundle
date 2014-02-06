@@ -31,10 +31,10 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
 
         $input  = array(
-            'buttons' => [
-                'save' => ['type' => 'submit', 'options' => ['label' => 'button.save']],
-                'cancel' => ['type' => 'button', 'options' => ['label' => 'button.cancel']],
-            ]
+            'buttons' => array(
+                'save' => array('type' => 'submit', 'options' => array('label' => 'button.save')),
+                'cancel' => array('type' => 'button', 'options' => array('label' => 'button.cancel')),
+            )
         );
 
         $buttonBuilder = new ButtonBuilder('name');
@@ -59,10 +59,10 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
 
         $input  = array(
-            'buttons' => [
-                'save' => ['type' => 'text', 'options' => ['label' => 'button.save']],
-                'cancel' => ['type' => 'text', 'options' => ['label' => 'button.save']],
-            ]
+            'buttons' => array(
+                'save' => array('type' => 'text', 'options' => array('label' => 'button.save')),
+                'cancel' => array('type' => 'text', 'options' => array('label' => 'button.save')),
+            )
         );
 
         $inputBuilder = new FormBuilder(
