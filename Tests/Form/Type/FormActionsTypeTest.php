@@ -3,27 +3,27 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Tests\Type;
 
-use Braincrafted\Bundle\BootstrapBundle\Form\Type\ButtonGroupType;
+use Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType;
 use Mockery as m;
 use Symfony\Component\Form\ButtonBuilder;
 use Symfony\Component\Form\FormBuilder;
 
 /**
- * Class ButtonGroupTypeTest
+ * Class FormActionsTypeTest
  *
  * @group unit
  */
-class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
+class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var ButtonGroupType
+     * @var FormActionsType
      */
     protected $type;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->type = new ButtonGroupType();
+        $this->type = new FormActionsType();
     }
 
     public function testBuildForm()
@@ -47,7 +47,7 @@ class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
             ->with('buttons', m::hasValue($buttonBuilder->getForm()))
             ->once();
 
-        $this->type = new ButtonGroupType();
+        $this->type = new FormActionsType();
         $this->type->buildForm($builder, $input);
     }
 
@@ -65,7 +65,7 @@ class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $builder = new FormBuilder(
+        $inputBuilder = new FormBuilder(
             'name',
             '',
             m::mock('Symfony\Component\EventDispatcher\EventDispatcher'),
@@ -75,11 +75,11 @@ class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
         $builder->shouldReceive('create')
             ->with('save', 'text', m::any())
             ->once()
-            ->andReturn($builder);
+            ->andReturn($inputBuilder);
 
         $builder->shouldReceive('setAttribute')->never();
 
-        $this->type = new ButtonGroupType();
+        $this->type = new FormActionsType();
         $this->type->buildForm($builder, $input);
     }
 
@@ -88,7 +88,7 @@ class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
         $view    = m::mock('Symfony\Component\Form\FormView');
         $form    = m::mock('Symfony\Component\Form\FormInterface');
         $config  = m::mock('Symfony\Component\Form\FormConfigInterface');
-        $button = m::mock('Symfony\Component\Form\Button');
+        $button  = m::mock('Symfony\Component\Form\Button');
         $options = array();
 
         $buttons = array(
@@ -103,7 +103,7 @@ class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
 
         $button->shouldReceive('createView')->with($view)->andReturn($view);
 
-        $this->type = new ButtonGroupType();
+        $this->type = new FormActionsType();
         $this->type->buildView($view, $form, $options);
 
         $this->assertArrayHasKey('buttons', $view->vars);
@@ -126,6 +126,6 @@ class ButtonGroupTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetName()
     {
-        $this->assertEquals('button_group', $this->type->getName());
+        $this->assertEquals('form_actions', $this->type->getName());
     }
 }

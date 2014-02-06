@@ -4,20 +4,19 @@ namespace Braincrafted\Bundle\BootstrapBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ButtonBuilder;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class ButtonGroupType
+ * Class FormActionsType
  *
- * Adds support for groups of butttons to be printed in form actions in a single line, not one in each line
+ * Adds support for form actions, printing buttons in a single line, and correctly offset.
  *
  * @package Braincrafted\Bundle\BootstrapBundle\Form\Type
  */
-class ButtonGroupType extends AbstractType
+class FormActionsType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -57,7 +56,10 @@ class ButtonGroupType extends AbstractType
      * Adds a button
      *
      * @param FormBuilderInterface $builder
-     * @param array $button
+     * @param $name
+     * @param $config
+     * @throws \InvalidArgumentException
+     * @return ButtonBuilder
      */
     protected function createButton($builder, $name, $config)
     {
@@ -66,7 +68,7 @@ class ButtonGroupType extends AbstractType
 
         if (! $button instanceof ButtonBuilder) {
             throw new \InvalidArgumentException(
-                "The ButtonGroupType only accepts buttons, got type '{$config['type']}' for field '$name'"
+                "The FormActionsType only accepts buttons, got type '{$config['type']}' for field '$name'"
             );
         }
 
@@ -90,6 +92,6 @@ class ButtonGroupType extends AbstractType
      */
     public function getName()
     {
-        return 'button_group';
+        return 'form_actions';
     }
 }
