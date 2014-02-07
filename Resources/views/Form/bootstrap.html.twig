@@ -499,14 +499,10 @@
 {% endspaceless %}
 {% endblock reset_widget %}
 
-{% block button_group_widget %}
+{% block form_actions_widget %}
     {% for button in buttons %}
         {{ form_widget(button) }}&nbsp; {# this needs to be here due to https://github.com/twbs/bootstrap/issues/3245 #}
     {% endfor  %}
-{% endblock %}
-
-{% block button_group_row %}
-    {{ block('button_row')  }}
 {% endblock %}
 
 {# Labels #}
@@ -693,6 +689,10 @@
 {% block hidden_row %}
     {{ form_widget(form) }}
 {% endblock hidden_row %}
+
+{% block form_actions_row %}
+    {{ block('button_row')  }}
+{% endblock %}
 
 {# Misc #}
 
