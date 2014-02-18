@@ -27,7 +27,7 @@ class FormActionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($options['buttons'] as $name => $config) {
-            $this->addButton($builder, $name, $config)->getForm();
+            $this->addButton($builder, $name, $config);
         }
     }
 
@@ -59,16 +59,7 @@ class FormActionsType extends AbstractType
     protected function addButton($builder, $name, $config)
     {
         $options = (isset($config['options']))? $config['options'] : array();
-        $button = $builder->add($name, $config['type'], $options);
-
-        if (! $button instanceof ButtonBuilder) {
-            $builder->remove($name);
-            throw new \InvalidArgumentException(
-                "The FormActionsType only accepts buttons, got type '{$config['type']}' for field '$name'"
-            );
-        }
-
-        return $button;
+        $builder->add($name, $config['type'], $options);
     }
 
     /**

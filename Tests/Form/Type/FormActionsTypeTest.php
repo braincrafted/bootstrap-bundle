@@ -47,38 +47,6 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $this->type->buildForm($builder, $input);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testBuildFormWithNotButton()
-    {
-        $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
-
-        $input  = array(
-            'buttons' => array(
-                'save' => array('type' => 'text', 'options' => array('label' => 'button.save')),
-                'cancel' => array('type' => 'text', 'options' => array('label' => 'button.save')),
-            )
-        );
-
-        $inputBuilder = new FormBuilder(
-            'name',
-            '',
-            m::mock('Symfony\Component\EventDispatcher\EventDispatcher'),
-            m::mock('Symfony\Component\Form\FormFactoryInterface')
-        );
-
-        $builder->shouldReceive('add')
-            ->with('save', 'text', m::any())
-            ->once()
-            ->andReturn($inputBuilder);
-
-        $builder->shouldReceive('remove')->with('save');
-
-        $this->type = new FormActionsType();
-        $this->type->buildForm($builder, $input);
-    }
-
     public function testBuildView()
     {
         $view    = m::mock('Symfony\Component\Form\FormView');
