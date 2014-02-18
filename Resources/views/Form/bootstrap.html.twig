@@ -500,7 +500,7 @@
 {% endblock reset_widget %}
 
 {% block form_actions_widget %}
-    {% for button in buttons %}
+    {% for button in form.children %}
         {{ form_widget(button) }}&nbsp; {# this needs to be here due to https://github.com/twbs/bootstrap/issues/3245 #}
     {% endfor  %}
 {% endblock %}
