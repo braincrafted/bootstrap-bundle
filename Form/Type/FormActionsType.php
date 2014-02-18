@@ -44,11 +44,7 @@ class FormActionsType extends AbstractType
             return;
         }
 
-        $invalidFields = array_filter($form->all(), [$this, 'validateButton']);
-
-        if (count($invalidFields) !== $form->count()) {
-            throw new \InvalidArgumentException("Children of FormActionsType must be instances of the Button class");
-        }
+        array_map(array($this, 'validateButton'), $form->all());
     }
 
     /**
@@ -60,12 +56,13 @@ class FormActionsType extends AbstractType
      * @throws \InvalidArgumentException
      * @return ButtonBuilder
      */
-    protected function createButton($builder, $name, $config)
+    protected function addButton($builder, $name, $config)
     {
         $options = (isset($config['options']))? $config['options'] : array();
         $button = $builder->add($name, $config['type'], $options);
 
         if (! $button instanceof ButtonBuilder) {
+            $builder->remove($name);
             throw new \InvalidArgumentException(
                 "The FormActionsType only accepts buttons, got type '{$config['type']}' for field '$name'"
             );
@@ -78,11 +75,13 @@ class FormActionsType extends AbstractType
      * Validates if child is a Button
      *
      * @param FormInterface $field
-     * @return bool
+     * @throws \InvalidArgumentException
      */
     protected function validateButton(FormInterface $field)
     {
-        return ($field instanceof Button);
+        if (!$field instanceof Button) {
+            throw new \InvalidArgumentException("Children of FormActionsType must be instances of the Button class");
+        }
     }
 
     /**
