@@ -3,6 +3,7 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Button;
 use Symfony\Component\Form\ButtonBuilder;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -25,12 +26,9 @@ class FormActionsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $buttons = array();
         foreach ($options['buttons'] as $name => $config) {
-            $buttons[] = $this->createButton($builder, $name, $config)->getForm();
+            $this->addButton($builder, $name, $config)->getForm();
         }
-
-        $builder->setAttribute('buttons', $buttons);
     }
 
     /**
@@ -42,16 +40,11 @@ class FormActionsType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (! $form->getConfig()->hasAttribute('buttons')) {
+        if ($form->count() == 0) {
             return;
         }
 
-        $view->vars['buttons'] = array_map(
-            function ($button) use ($view) {
-                return $button->createView($view);
-            },
-            $form->getConfig()->getAttribute('buttons')
-        );
+        array_map(array($this, 'validateButton'), $form->all());
     }
 
     /**
@@ -63,18 +56,32 @@ class FormActionsType extends AbstractType
      * @throws \InvalidArgumentException
      * @return ButtonBuilder
      */
-    protected function createButton($builder, $name, $config)
+    protected function addButton($builder, $name, $config)
     {
         $options = (isset($config['options']))? $config['options'] : array();
-        $button = $builder->create($name, $config['type'], $options);
+        $button = $builder->add($name, $config['type'], $options);
 
         if (! $button instanceof ButtonBuilder) {
+            $builder->remove($name);
             throw new \InvalidArgumentException(
                 "The FormActionsType only accepts buttons, got type '{$config['type']}' for field '$name'"
             );
         }
 
         return $button;
+    }
+
+    /**
+     * Validates if child is a Button
+     *
+     * @param FormInterface $field
+     * @throws \InvalidArgumentException
+     */
+    protected function validateButton(FormInterface $field)
+    {
+        if (!$field instanceof Button) {
+            throw new \InvalidArgumentException("Children of FormActionsType must be instances of the Button class");
+        }
     }
 
     /**

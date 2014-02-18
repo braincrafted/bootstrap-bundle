@@ -38,14 +38,10 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         );
 
         $buttonBuilder = new ButtonBuilder('name');
-        $builder->shouldReceive('create')
+        $builder->shouldReceive('add')
             ->with(m::anyOf('save', 'cancel'), m::anyOf('submit', 'button'), m::hasKey('label'))
             ->twice()
             ->andReturn($buttonBuilder);
-
-        $builder->shouldReceive('setAttribute')
-            ->with('buttons', m::hasValue($buttonBuilder->getForm()))
-            ->once();
 
         $this->type = new FormActionsType();
         $this->type->buildForm($builder, $input);
@@ -72,12 +68,12 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
             m::mock('Symfony\Component\Form\FormFactoryInterface')
         );
 
-        $builder->shouldReceive('create')
+        $builder->shouldReceive('add')
             ->with('save', 'text', m::any())
             ->once()
             ->andReturn($inputBuilder);
 
-        $builder->shouldReceive('setAttribute')->never();
+        $builder->shouldReceive('remove')->with('save');
 
         $this->type = new FormActionsType();
         $this->type->buildForm($builder, $input);
@@ -87,7 +83,6 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
     {
         $view    = m::mock('Symfony\Component\Form\FormView');
         $form    = m::mock('Symfony\Component\Form\FormInterface');
-        $config  = m::mock('Symfony\Component\Form\FormConfigInterface');
         $button  = m::mock('Symfony\Component\Form\Button');
         $options = array();
 
@@ -96,17 +91,35 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
             $button
         );
 
-        $form->shouldReceive('getConfig')->andReturn($config);
-
-        $config->shouldReceive('hasAttribute')->with('buttons')->andReturn(true)->once();
-        $config->shouldReceive('getAttribute')->with('buttons')->andReturn($buttons)->once();
-
-        $button->shouldReceive('createView')->with($view)->andReturn($view);
+        $form->shouldReceive('count')->andReturn(2)->once();
+        $form->shouldReceive('all')->andReturn($buttons)->once();
 
         $this->type = new FormActionsType();
         $this->type->buildView($view, $form, $options);
+    }
 
-        $this->assertArrayHasKey('buttons', $view->vars);
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testBuildViewWithBadField()
+    {
+        $view    = m::mock('Symfony\Component\Form\FormView');
+        $form    = m::mock('Symfony\Component\Form\FormInterface');
+        $button  = m::mock('Symfony\Component\Form\Button');
+        $input   = m::mock('Symfony\Component\Form\FormInterface');
+        $options = array();
+
+        $buttons = array(
+            $button,
+            $button,
+            $input
+        );
+
+        $form->shouldReceive('count')->andReturn(2)->once();
+        $form->shouldReceive('all')->andReturn($buttons)->once();
+
+        $this->type = new FormActionsType();
+        $this->type->buildView($view, $form, $options);
     }
 
     public function testSetDefaultOptions()
