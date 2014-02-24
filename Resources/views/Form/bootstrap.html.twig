@@ -481,7 +481,11 @@
     {% else %}
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-default')|trim }) %}
     {% endif %}
-    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+    {% if attr.icon is defined and attr.icon != '' %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}><i class="{{ attr.icon }}"></i> {{ label|trans({}, translation_domain) }}</button>
+    {% else %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+    {% endif %}
 {% endspaceless %}
 {% endblock button_widget %}
 
