@@ -34,6 +34,8 @@
     {% set listClass = '' %}
     {% if options.style is defined and options.style == 'tabs' %}
         {% set listClass = 'nav-tabs' %}
+    {% if options.style is defined and options.style == 'stacked-tabs' %}
+        {% set listClass = 'nav-tabs nav-stacked' %}
     {% elseif options.style is defined and options.style == 'justified-tabs' %}
         {% set listClass = 'nav-tabs nav-justified' %}
     {% elseif options.style is defined and options.style == 'pills' %}
