@@ -81,4 +81,13 @@ class FlashMessage
     {
         $this->session->getFlashBag()->add('success', $message);
     }
+    
+    /**
+     * Resets the flash bag.
+     * 
+     *  @return void
+     */
+    public function reset(){
+    	$this->session->getFlashBag()->clear();
+    }
 }
