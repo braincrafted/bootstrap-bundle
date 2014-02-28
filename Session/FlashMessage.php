@@ -87,7 +87,8 @@ class FlashMessage
      * 
      *  @return void
      */
-    public function reset(){
-    	$this->session->getFlashBag()->clear();
+    public function reset()
+    {
+        $this->session->getFlashBag()->clear();
     }
 }
