@@ -47,7 +47,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="alert alert-warning">
-                You are browsing the documentation for <strong>BootstrapBundle v2.0</strong>, which will be released very soon. I have moved the documentation of <a href="http://bootstrap1.braincrafted.com">BraincraftedBootstrapBundle v1.4</a>.
+                You are browsing the documentation for <strong>BootstrapBundle v2.0</strong>, if you haven't upgraded yet you can still browse the documentation for <a href="http://bootstrap1.braincrafted.com">BraincraftedBootstrapBundle v1.4</a>.
             </div>
         </div>
     </div>
@@ -162,14 +162,6 @@
         "braincrafted/bootstrap-bundle": "~2.0"
     }
 }</code></pre>
-
-    <p><span class="label label-warning">Warning</span> Version 2.0 is currently only an alpha release. If you use Composer you need to change the <code>minimum-stability</code> to include alpha releases. You can do this either globally by setting <a href="http://getcomposer.org/doc/04-schema.md#minimum-stability"><code>minimum-stability</code></a> to <code>alpha</code> or locally by appending <code>@alpha</code> to the version constraint:</p>
-    <pre><code class="json">{
-    "require": {
-        "braincrafted/bootstrap-bundle": "~2.0@alpha"
-    }
-}</code></pre>
-    <p>Once a stable version of 2.0 is released, you can remove the <code>minimum-stability</code> setting.</p>
 
     <p>By default, BraincraftedBootstrapBundle <strong>does not include Bootstrap and jQuery</strong>. Some people want to use Composer for these dependencies, other people prefer tools designed for managing assets like Bower. If you want to use such a tool, we assume you know how to use it. If you have no experience with these tools, you probably want to stick with Composer. You can use the following code in your <code>composer.json</code> to include Bootstrap and jQuery in your Symfony2 project:</p>
 
@@ -438,7 +430,7 @@ knp_paginator:
     &lt;h1&gt;Hello, world!&lt;/h1&gt;
 
     &lt;!-- jQuery (necessary for Bootstraps JavaScript plugins) --&gt;
-    &lt;script src=&quot;/js/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;{{ asset('js/jquery.js') }}&quot;&gt;&lt;/script&gt;
     &lt;!-- Include all JavaScripts, compiled by Assetic --&gt;
     &lt;script src=&quot;{{ asset('js/bootstrap.js') }}&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
