@@ -27,9 +27,10 @@
                 
     
                     
+        
     
     
-    <ul class="nav navbar-nav">
+    <ul class="navbar-nav nav">
                 <li class="active first">            <a href="/getting-started.html">Getting started</a>                </li>
 
         <li>            <a href="/components.html">Components</a>                </li>
@@ -426,7 +427,7 @@ knp_paginator:
     &lt;title&gt;Bootstrap 101 Template&lt;/title&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
     &lt;!-- Bootstrap --&gt;
-    &lt;link href=&quot;{{ asset('/css/bootstrap.css') }}&quot; rel=&quot;stylesheet&quot; media=&quot;screen&quot;&gt;
+    &lt;link href=&quot;{{ asset('css/bootstrap.css') }}&quot; rel=&quot;stylesheet&quot; media=&quot;screen&quot;&gt;
 
     &lt;!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries --&gt;
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
@@ -437,13 +438,14 @@ knp_paginator:
     &lt;h1&gt;Hello, world!&lt;/h1&gt;
 
     &lt;!-- jQuery (necessary for Bootstraps JavaScript plugins) --&gt;
-    &lt;script src=&quot;https://code.jquery.com/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/js/jquery.js&quot;&gt;&lt;/script&gt;
     &lt;!-- Include all JavaScripts, compiled by Assetic --&gt;
-    &lt;script src=&quot;{{ asset('/js/bootstrap.js') }}&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;{{ asset('js/bootstrap.js') }}&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-</section>            <section>
+</section>
+            <section>
     <div class="page-header">
         <h2 id="customizing">Customizing</h2>
     </div>

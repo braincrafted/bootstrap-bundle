@@ -27,9 +27,10 @@
                 
     
                     
+        
     
     
-    <ul class="nav navbar-nav">
+    <ul class="navbar-nav nav">
                 <li class="first">            <a href="/getting-started.html">Getting started</a>                </li>
 
         <li class="active">            <a href="/components.html">Components</a>                </li>
@@ -136,7 +137,9 @@
                     Checkbox
                 </label></div></div><div class="form-group"><div class="radio"><label for="form_radio" class="required"><input type="radio" id="form_radio" name="form[radio]" required="required" value="1" />
                     Radio
-                </label></div></div><div class="form-group row"><label class="control-label col-lg-2 required" for="form_repeated_first">First</label><div class="col-lg-10"><input type="email" id="form_repeated_first" name="form[repeated][first]" required="required"    class="form-control" ></div></div><div class="form-group row"><label class="control-label col-lg-2 required" for="form_repeated_second">Second</label><div class="col-lg-10"><input type="email" id="form_repeated_second" name="form[repeated][second]" required="required"    class="form-control" ></div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="button" id="form_button" name="form[button]"    class="btn btn-default">Button</button></div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="submit" id="form_submit" name="form[submit]"    class="btn btn-primary">Submit</button></div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="reset" id="form_reset" name="form[reset]"    class="btn btn-default">Reset</button></div></div></div></form></div>
+                </label></div></div><div class="form-group row"><label class="control-label col-lg-2 required" for="form_repeated_first">First</label><div class="col-lg-10"><input type="email" id="form_repeated_first" name="form[repeated][first]" required="required"    class="form-control" ></div></div><div class="form-group row"><label class="control-label col-lg-2 required" for="form_repeated_second">Second</label><div class="col-lg-10"><input type="email" id="form_repeated_second" name="form[repeated][second]" required="required"    class="form-control" ></div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="button" id="form_actions_button" name="form[actions][button]"    class="btn btn-default">Button</button>&nbsp;             <button type="submit" id="form_actions_submit" name="form[actions][submit]"    class="btn btn-primary">Submit</button>&nbsp;             <button type="reset" id="form_actions_reset" name="form[actions][reset]"    class="btn btn-default">Reset</button>&nbsp;     
+
+            </div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="button" id="form_button" name="form[button]"    class="btn btn-default">Button</button></div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="submit" id="form_submit" name="form[submit]"    class="btn btn-primary">Submit</button></div></div><div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="reset" id="form_reset" name="form[reset]"    class="btn btn-default">Reset</button></div></div></div></form></div>
         <div class="panel-footer">Example of horizontal form</div>
     </div>
 
@@ -332,6 +335,30 @@ $builder->add(
         <div class="panel-footer">Example</div>
     </div>
 
+    <h4>Form Actions</h4>
+
+    <p>By default buttons will be printed each in the own <code>form_group</code>, this means they will show up one per line. In order to get all the buttons to show up in the same line you can use the <code>form_actions</code> type.</p>
+
+    <p>It takes two syntaxes, you can either add buttons using the <code>buttons</code> option, or by adding the buttons as children of the <code>form_actions</code> type, see the examples below:</p>
+
+    <pre><code class="php">$form = $this->createFormBuilder(array())
+    ->add('actions', 'form_actions', [
+        'buttons' => [
+            'save' => ['type' => 'submit', 'options' => ['label' => 'button.save']],
+            'cancel' => ['type' => 'button', 'options' => ['label' => 'button.cancel']],
+        ]
+    ])
+    ->getForm();</code></pre>
+
+    <p>or</p>
+    
+    <pre><code class="php">$form = $this->createFormBuilder(array())
+        ->add('actions', 'form_actions');
+
+    $form->get('actions')->add('save', 'submit', ['label' => 'button.save']);
+    $form->get('actions')->add('cancel', 'button', ['label' => 'button.cancel']);
+    $form->getForm();</code></pre>
+
     <h3>Form errors</h3>
 
     <p>BraincraftedBootstrapBundle automatically styles error messages in forms.</p>
@@ -397,7 +424,8 @@ $builder->add(
         <div class="panel-footer">Example of inline form with global errors</div>
     </div>
 
-</section>            <section>
+</section>
+            <section>
     <div class="page-header">
         <h2 id="menus">Menus</h2>
     </div>
@@ -415,9 +443,10 @@ $builder->add(
                     
     
                     
+        
     
     
-    <ul class="nav nav-tabs">
+    <ul class="nav-tabs nav">
                 <li class="active first">            <a href="#menus-tabs">Home</a>                </li>
 
         <li>            <a href="#menus-tabs">Profile</a>                </li>
@@ -442,9 +471,10 @@ $builder->add(
                     
     
                     
+        
     
     
-    <ul class="nav nav-tabs nav-justified">
+    <ul class="nav-tabs nav-justified nav">
                 <li class="first">            <a href="#menus-tabs">Home</a>                </li>
 
         <li>            <a href="#menus-tabs">Profile</a>                </li>
@@ -469,9 +499,10 @@ $builder->add(
                     
     
                     
+        
     
     
-    <ul class="nav nav-pills">
+    <ul class="nav-pills nav">
                 <li class="active first">            <a href="#menus-pills">Home</a>                </li>
 
         <li>            <a href="#menus-pills">Profile</a>                </li>
@@ -496,9 +527,10 @@ $builder->add(
                     
     
                     
+        
     
     
-    <ul class="nav nav-pills nav-stacked">
+    <ul class="nav-pills nav-stacked nav">
                 <li class="active first">            <a href="#menus-pills">Home</a>                </li>
 
         <li>            <a href="#menus-pills">Profile</a>                </li>
@@ -521,9 +553,10 @@ $builder->add(
                     
     
                     
+        
     
     
-    <ul class="nav nav-pills nav-justified">
+    <ul class="nav-pills nav-justified nav">
                 <li class="active first">            <a href="#menus-pills">Home</a>                </li>
 
         <li>            <a href="#menus-pills">Profile</a>                </li>
@@ -591,9 +624,10 @@ $builder->add(
                             
     
                     
+        
     
     
-    <ul class="nav navbar-nav">
+    <ul class="navbar-nav nav">
                 <li class="active first">            <a href="#navbars">Link 1</a>                </li>
 
         <li>            <a href="#navbars">Link 2</a>                </li>
@@ -612,9 +646,10 @@ $builder->add(
                             
     
                     
+        
     
     
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="navbar-nav navbar-right nav">
                 <li class="first">            <a href="#navbars">Link</a>                </li>
 
         <li class="last dropdown">            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>            <ul class="menu_level_1 dropdown-menu"><li class="first"><a href="#navbars">Action</a></li><li><a href="#navbars">Another action</a></li><li><a href="#navbars">Something elese here</a></li><li class="last"><a href="#navbars">Separated link</a></li></ul>    </li>
