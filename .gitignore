@@ -1,6 +1,7 @@
-vendor/
-Resources/docs/code-coverage
-phpunit.xml
-
-Resources/public/js/bootstrap.compiled*.js
-Resources/public/css/bootstrap.compiled*.css
+/build/
+/vendor/
+/Resources/docs/code-coverage
+/phpunit.xml
+/composer.lock
+*.sublime-project
+*.sublime-workspace

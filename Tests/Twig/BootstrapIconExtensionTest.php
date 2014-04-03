@@ -1,16 +1,21 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Tests\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Tests\Twig;
 
-use Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
+use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
 
 /**
  * BootstrapIconExtensionTest
+ *
+ * This test is only useful if you consider that it will be run by Travis on every supported PHP
+ * configuration. We live in a world where should not have too manually test every commit with every
+ * version of PHP. And I know exactly that I will commit short array syntax all the time and break
+ * compatibility with PHP 5.3
  *
  * @category   Test
  * @package    BraincraftedBootstrapBundle
@@ -19,10 +24,11 @@ use Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ * @group      unit
  */
 class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension */
+    /** @var BootstrapIconExtension */
     private $extension;
 
     /**
@@ -34,55 +40,50 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::iconFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters()
+     */
+    public function testGetFilters()
+    {
+        $this->assertCount(1, $this->extension->getFilters());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFunctions()
+     */
+    public function testGetFunctions()
+    {
+        $this->assertCount(1, $this->extension->getFunctions());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFunction
      */
     public function testIconFilter()
     {
         $this->assertEquals(
-            '<i class="icon-heart"></i>',
-            $this->extension->iconFilter('heart'),
-            '->iconFilter() returns the HTML code for the given icon.'
-        );
-        $this->assertEquals(
-            '<i class="icon-white icon-heart"></i>',
-            $this->extension->iconFilter('heart', 'white'),
-            '->iconFilter() returns the HTML code for the given icon in white.'
+            '<span class="glyphicon glyphicon-heart"></span>',
+            $this->extension->iconFunction('heart'),
+            '->iconFunction() returns the HTML code for the given icon.'
         );
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
      */
     public function testParseIconsFilter()
     {
         $this->assertEquals(
-            '<i class="icon-heart"></i> foobar',
+            '<span class="glyphicon glyphicon-heart"></span> foobar',
             $this->extension->parseIconsFilter('.icon-heart foobar'),
             '->parseIconsFilter() returns the HTML code with the replaced icons.'
         );
-        $this->assertEquals(
-            '<i class="icon-white icon-heart"></i> foobar',
-            $this->extension->parseIconsFilter('.icon-heart foobar', 'white'),
-            '->parseIconsFilter() returns the HTML code with the replaced icons in white.'
-        );
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::getFilters
-     */
-    public function testGetFilters()
-    {
-        $filters = $this->extension->getFilters();
-        $this->assertCount(2, $filters, '->getFilters() returns 2 filters.');
-        $this->assertTrue(isset($filters['parse_icons']), '->getFilters() returns "parse_icons" filter.');
-        $this->assertTrue(isset($filters['icon']), '->getFilters() returns "icon" filter.');
-    }
-
-    /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapIconExtension::getName
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getName()
      */
     public function testGetName()
     {
-        $this->assertEquals('bootstrap_icon_extension', $this->extension->getName(), '->getName() returns the name.');
+        $this->assertEquals('braincrafted_bootstrap_icon', $this->extension->getName());
     }
 }

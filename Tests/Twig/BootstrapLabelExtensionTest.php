@@ -1,28 +1,34 @@
 <?php
 /**
- * This file is part of BcBootstrapBundle.
+ * This file is part of BraincraftedBootstrapBundle.
  *
  * (c) 2012-2013 by Florian Eckerstorfer
  */
 
-namespace Bc\Bundle\BootstrapBundle\Tests\Twig;
+namespace Braincrafted\Bundle\BootstrapBundle\Tests\Twig;
 
-use Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
+use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
 
 /**
  * BootstrapLabelExtensionTest
  *
+ * This test is only useful if you consider that it will be run by Travis on every supported PHP
+ * configuration. We live in a world where should not have too manually test every commit with every
+ * version of PHP. And I know exactly that I will commit short array syntax all the time and break
+ * compatibility with PHP 5.3
+ *
  * @category   Test
- * @package    BcBootstrapBundle
+ * @package    BraincraftedBootstrapBundle
  * @subpackage Twig
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2012-2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
+ * @group      unit
  */
 class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension */
+    /** @var BootstrapLabelExtension */
     private $extension;
 
     /**
@@ -34,42 +40,90 @@ class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension::labelFilter
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getFunctions()
      */
-    public function testLabelFilter()
+    public function testGetFunctions()
+    {
+        $this->assertCount(6, $this->extension->getFunctions());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelFunction
+     */
+    public function testLabelFunction()
     {
         $this->assertEquals(
-            '<span class="label">Hello World</span>',
-            $this->extension->labelFilter('Hello World'),
-            '->labelFilter() returns the HTML code for the given label.'
+            '<span class="label label-default">Hello World</span>',
+            $this->extension->labelFunction('Hello World'),
+            '->labelFunction() returns the HTML code for the given label.'
         );
         $this->assertEquals(
             '<span class="label label-success">Hello World</span>',
-            $this->extension->labelFilter('Hello World', 'success'),
-            '->labelFilter() returns the HTML code for the given success label.'
+            $this->extension->labelFunction('Hello World', 'success'),
+            '->labelFunction() returns the HTML code for the given success label.'
         );
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension::getFilters
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelSuccessFunction
      */
-    public function testGetFilters()
+    public function testLabelSuccessFunction()
     {
-        $filters = $this->extension->getFilters();
-        $this->assertCount(6, $filters, '->getFilters() returns 2 filters.');
-        $this->assertTrue(isset($filters['label']), '->getFilters() returns "label" filter.');
-        $this->assertTrue(isset($filters['label_success']), '->getFilters() returns "label_success" filter.');
-        $this->assertTrue(isset($filters['label_warning']), '->getFilters() returns "label_warning" filter.');
-        $this->assertTrue(isset($filters['label_important']), '->getFilters() returns "label_important" filter.');
-        $this->assertTrue(isset($filters['label_info']), '->getFilters() returns "label_info" filter.');
-        $this->assertTrue(isset($filters['label_inverse']), '->getFilters() returns "label_inverse" filter.');
+        $this->assertEquals(
+            '<span class="label label-success">Foobar</span>',
+            $this->extension->labelSuccessFunction('Foobar')
+        );
     }
 
     /**
-     * @covers Braincrafted\BootstrapBundle\Twig\BootstrapLabelExtension::getName
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelWarningFunction
+     */
+    public function testLabelWarningFunction()
+    {
+        $this->assertEquals(
+            '<span class="label label-warning">Foobar</span>',
+            $this->extension->labelWarningFunction('Foobar')
+        );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelDangerFunction
+     */
+    public function testLabelDangerFunction()
+    {
+        $this->assertEquals(
+            '<span class="label label-danger">Foobar</span>',
+            $this->extension->labelDangerFunction('Foobar')
+        );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelInfoFunction
+     */
+    public function testLabelInfoFunction()
+    {
+        $this->assertEquals(
+            '<span class="label label-info">Foobar</span>',
+            $this->extension->labelInfoFunction('Foobar')
+        );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::labelPrimaryFunction
+     */
+    public function testLabelPrimaryFunction()
+    {
+        $this->assertEquals(
+            '<span class="label label-primary">Foobar</span>',
+            $this->extension->labelPrimaryFunction('Foobar')
+        );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension::getName()
      */
     public function testGetName()
     {
-        $this->assertEquals('bootstrap_label_extension', $this->extension->getName(), '->getName() returns the name.');
+        $this->assertEquals('braincrafted_bootstrap_label', $this->extension->getName());
     }
 }
