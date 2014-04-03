@@ -88,8 +88,8 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
         <tr>
             <td><strong>v2.0.*</strong></td>
             <td>v2.3.*<br>v2.4.*</td>
-            <td>v3.0.*</td>
-            <td>v1.10.*</td>
+            <td>v3.0.*<br>v3.1.*</td>
+            <td>v1.10.*<br>v1.11.*</td>
         </tr>
     </tbody>
 </table>
@@ -97,6 +97,18 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 
 Changelog
 ---------
+
+### Version 2.0.1 (3 April 2014)
+
+- #168 Removed CSS class `row` from form-group
+- #182 Added support for form actions (row with multiple buttons) (by [rdohms](https://github.com/rdohms))
+- #187 Made default button class changable (by [sandello-alkr](https://github.com/sandello-alkr))
+- #188 Added icons to form buttons (by [mvrhov](https://github.com/mvrhov))
+- #190 Added support for stacked tabs (by [aur1mas](https://github.com/aur1mas))
+- #192 Added method to reset flash bag (by [JulienRamel](https://github.com/JulienRamel))
+- #196 Removed CSS class `nav` from child elements (by [dylanschoenmakers](https://github.com/dylanschoenmakers))
+- #198 Added parsing of icons in prepend and append input groups (by [yvh](https://github.com/yvh))
+- Fixed `file` form type (by [hsz](https://github.com/hsz))
 
 ### Version 2.0.0-alpha1
 
