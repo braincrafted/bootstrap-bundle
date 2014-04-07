@@ -840,8 +840,8 @@
 
 {% block widget_attributes %}
 {% spaceless %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
-    {% for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% elseif attrname in ['input_group'] %}{% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
+    {% if id is not empty %}id="{{ id }}" {% endif %}name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% for attrname, attrvalue in attr %}{% if attrvalue is iterable %}{% set attrvalue = attrvalue|join(',') %}{% endif %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% elseif attrname in ['input_group'] %}{% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
 {% endspaceless %}
 {% endblock widget_attributes %}
 
@@ -852,13 +852,13 @@
         {% set attr = attr|merge({ 'style': null }) %}
     {% endif %}
     {% if id is not empty %}id="{{ id }}" {% endif %}
-    {% for attrname, attrvalue in attr %}{% if attrvalue is not null %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
+    {% for attrname, attrvalue in attr %}{% if attrvalue is not null %}{% if attrvalue is iterable %}{% set attrvalue = attrvalue|join(',') %}{% endif %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
 {% endspaceless %}
 {% endblock widget_container_attributes %}
 
 {% block button_attributes %}
 {% spaceless %}
     id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
-    {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
+    {% for attrname, attrvalue in attr %}{% if attrvalue is iterable %}{% set attrvalue = attrvalue|join(',') %}{% endif %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
 {% endspaceless %}
 {% endblock button_attributes %}
