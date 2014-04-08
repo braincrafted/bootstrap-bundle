@@ -247,10 +247,10 @@
         {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
         {% set class = 'col-' ~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
-        <div class="form-group {% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group {% if not form.vars.valid or form.vars.errors|length > 0 %} has-error{% endif %}">
             <div class="{{ class }}">
     {% elseif no_form_group is not defined or no_form_group == false %}
-        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group{% if not form.vars.valid or form.vars.errors|length > 0 %} has-error{% endif %}">
     {% endif %}
         <div class="checkbox">
             {% if label is not sameas(false) %}
@@ -303,10 +303,10 @@
         {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
         {% set class = ' col-'~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
-        <div class="form-group {% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group {% if not form.vars.valid or form.vars.errors|length > 0 %} has-error{% endif %}">
             <div class="{{ class }}">
     {% elseif no_form_group is not defined or no_form_group == false %}
-        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group{% if not form.vars.valid or form.vars.errors|length > 0 %} has-error{% endif %}">
     {% endif %}
 
         <div class="radio">
@@ -585,7 +585,7 @@
     {% set label_col = label_col|default(bootstrap_get_label_col()) %}
     {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
 
-    <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+    <div class="form-group{% if not form.vars.valid or form.vars.errors|length > 0 %} has-error{% endif %}">
         {% if style == 'horizontal' %}
             {{ form_label(form) }}
             <div class="col-{{ col_size }}-{{ widget_col }}">
