@@ -8,12 +8,14 @@
         <parameter key="braincrafted_bootstrap.twig.label_extension.class">Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension</parameter>
         <parameter key="braincrafted_bootstrap.twig.badge_extension.class">Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension</parameter>
         <parameter key="braincrafted_bootstrap.twig.form_extension.class">Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension</parameter>
+        <parameter key="braincrafted_bootstrap.icon_prefix" />
     </parameters>
 
     <services>
 
         <service id="braincrafted_bootstrap.twig.icon_extension" class="%braincrafted_bootstrap.twig.icon_extension.class%">
             <tag name="twig.extension" />
+            <argument>%braincrafted_bootstrap.icon_prefix%</argument>
         </service>
 
         <service id="braincrafted_bootstrap.twig.label_extension" class="%braincrafted_bootstrap.twig.label_extension.class%">

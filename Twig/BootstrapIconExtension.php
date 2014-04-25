@@ -23,6 +23,16 @@ use Twig_Function_Method;
 class BootstrapIconExtension extends Twig_Extension
 {
     /**
+     * @var string
+     */
+    private $iconPrefix;
+
+    public function __construct($iconPrefix)
+    {
+        $this->iconPrefix = $iconPrefix;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getFilters()
@@ -78,7 +88,7 @@ class BootstrapIconExtension extends Twig_Extension
      */
     public function iconFunction($icon)
     {
-        return sprintf('<span class="glyphicon glyphicon-%s"></span>', $icon);
+        return sprintf('<span class="%1$s %1$s-%2$s"></span>', $this->iconPrefix, $icon);
     }
 
     /**
