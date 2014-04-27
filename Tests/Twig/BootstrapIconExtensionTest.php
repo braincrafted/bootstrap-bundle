@@ -28,23 +28,12 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
  */
 class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var BootstrapIconExtension */
-    private $extension;
-
-    /**
-     * Set up
-     */
-    public function setUp()
-    {
-        $this->extension = new BootstrapIconExtension();
-    }
-
     /**
      * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters()
      */
     public function testGetFilters()
     {
-        $this->assertCount(1, $this->extension->getFilters());
+        $this->assertCount(1, $this->getIconExtension()->getFilters());
     }
 
     /**
@@ -52,7 +41,7 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFunctions()
     {
-        $this->assertCount(1, $this->extension->getFunctions());
+        $this->assertCount(1, $this->getIconExtension()->getFunctions());
     }
 
     /**
@@ -62,8 +51,13 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             '<span class="glyphicon glyphicon-heart"></span>',
-            $this->extension->iconFunction('heart'),
+            $this->getIconExtension('glyphicon')->iconFunction('heart'),
             '->iconFunction() returns the HTML code for the given icon.'
+        );
+        $this->assertEquals(
+            '<span class="fa fa-heart"></span>',
+            $this->getIconExtension('fa')->iconFunction('heart'),
+            '->iconFunction() uses the iconPrefix passed into the IconExtension constructor.'
         );
     }
 
@@ -74,8 +68,14 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             '<span class="glyphicon glyphicon-heart"></span> foobar',
-            $this->extension->parseIconsFilter('.icon-heart foobar'),
+            $this->getIconExtension('glyphicon')->parseIconsFilter('.icon-heart foobar'),
             '->parseIconsFilter() returns the HTML code with the replaced icons.'
+        );
+
+        $this->assertEquals(
+            '<span class="fa fa-heart"></span> foobar',
+            $this->getIconExtension('fa')->parseIconsFilter('.icon-heart foobar'),
+            '->parseIconsFilter() uses the iconPrefix passed into the IconExtension constructor.'
         );
     }
 
@@ -84,6 +84,11 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals('braincrafted_bootstrap_icon', $this->extension->getName());
+        $this->assertEquals('braincrafted_bootstrap_icon', $this->getIconExtension()->getName());
+    }
+
+    private function getIconExtension($iconPrefix = null)
+    {
+        return new BootstrapIconExtension($iconPrefix);
     }
 }
