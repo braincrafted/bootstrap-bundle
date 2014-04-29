@@ -77,9 +77,16 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getDestDir()
     {
+        $outputDir = $this->getContainer()->getParameter('braincrafted_bootstrap.output_dir');
+        if (strlen($outputDir) > 0 && '/' !== substr($outputDir, -1)) {
+            $outputDir .= '/';
+        }
+
+        'sass' !== $this->getContainer()->getParameter('kernel.less_filter')?$result = $outputDir."fonts":$result = $outputDir."css/bootstrap";
         return sprintf(
-            '%s/../web/css/bootstrap',
-            $this->getContainer()->getParameter('kernel.root_dir')
+            '%s/../web/%s',
+            $this->getContainer()->getParameter('kernel.root_dir'),
+            $result
         );
     }
 }
