@@ -48,7 +48,7 @@ class GenerateCommand extends ContainerAwareCommand
     {
         $this
             ->setName('braincrafted:bootstrap:generate')
-            ->setDescription('Generates a custom bootstrap.scss')
+            ->setDescription('Generates a custom bootstrap.less')
         ;
     }
 
@@ -60,19 +60,19 @@ class GenerateCommand extends ContainerAwareCommand
         $config = $this->getContainer()->getParameter('braincrafted_bootstrap.customize');
 
         if (false === isset($config['variables_file']) || null === $config['variables_file']) {
-            $output->writeln('<error>Found no custom variables.scss file.</error>');
+            $output->writeln('<error>Found no custom variables.less file.</error>');
 
             return;
         }
 
-        // $filter = $this->getContainer()->getParameter('braincrafted_bootstrap.less_filter');
-        // if ('less' !== $filter && 'lessphp' !== $filter) {
-        //     $output->writeln(
-        //         '<error>Bundle must be configured with "less" or "lessphp" to generated bootstrap.less</error>'
-        //     );
+        $filter = $this->getContainer()->getParameter('braincrafted_bootstrap.less_filter');
+        if ('less' !== $filter && 'lessphp' !== $filter) {
+            $output->writeln(
+                '<error>Bundle must be configured with "less" or "lessphp" to generated bootstrap.less</error>'
+            );
 
-        //     return;
-        // }
+            return;
+        }
 
         $output->writeln('<comment>Found custom variables file. Generating...</comment>');
         $this->executeGenerateBootstrap($config);
@@ -105,8 +105,7 @@ class GenerateCommand extends ContainerAwareCommand
             $config['bootstrap_template'],
             array(
                 'variables_file' => $variablesFile,
-                'assets_dir'     => $lessDir,
-                'bc_form'      => __DIR__.'../Resources/sass/form'
+                'assets_dir'     => $lessDir
             )
         );
         file_put_contents($config['bootstrap_output'], $content);

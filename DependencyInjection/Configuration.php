@@ -61,7 +61,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue('%kernel.root_dir%/Resources/sass/bootstrap.scss')
                         ->end()
                         ->scalarNode('bootstrap_template')
-                            ->defaultValue('BraincraftedBootstrapBundle:Bootstrap:bootstrap.sass.twig')
+                            ->defaultValue('BraincraftedBootstrapBundle:Bootstrap:bootstrap.scss.twig')
                         ->end()
                     ->end()
                 ->end()
