@@ -69,7 +69,7 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getSrcDir()
     {
-        return sprintf('%s../fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'));
+        return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'));
     }
 
     /**
