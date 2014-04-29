@@ -121,3 +121,4 @@
     $(document).on('click.removefield.data-api', removeField, CollectionRemove.prototype.removeField);
 
  }(window.jQuery);
+ 
