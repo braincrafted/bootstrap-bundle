@@ -101,6 +101,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.output_dir')
             ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -127,6 +131,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.output_dir')
+            ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
