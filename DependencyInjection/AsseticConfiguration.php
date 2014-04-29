@@ -35,10 +35,12 @@ class AsseticConfiguration
             $config['output_dir'] .= '/';
         }
 
-        if ('none' !== $config['less_filter']) {
-            $output['bootstrap_css'] = $this->buildCssWithLess($config);
-        } else {
-            $output['bootstrap_css'] = $this->buildCssWithoutLess($config);
+        if('sass' !== $config['less_filter']) {
+            if ('none' !== $config['less_filter']) {
+                $output['bootstrap_css'] = $this->buildCssWithLess($config);
+            } else {
+                $output['bootstrap_css'] = $this->buildCssWithoutLess($config);
+            }
         }
 
         $output['bootstrap_js'] = $this->buildJs($config);
@@ -97,20 +99,21 @@ class AsseticConfiguration
      */
     protected function buildJs(array $config)
     {
+        'sass' !== $config['less_filter']?$path = "/js":$path = "../javascripts/bootstrap"; 
         return array(
             'inputs'  => array(
-                $config['assets_dir'].'/js/transition.js',
-                $config['assets_dir'].'/js/alert.js',
-                $config['assets_dir'].'/js/button.js',
-                $config['assets_dir'].'/js/carousel.js',
-                $config['assets_dir'].'/js/collapse.js',
-                $config['assets_dir'].'/js/dropdown.js',
-                $config['assets_dir'].'/js/modal.js',
-                $config['assets_dir'].'/js/tooltip.js',
-                $config['assets_dir'].'/js/popover.js',
-                $config['assets_dir'].'/js/scrollspy.js',
-                $config['assets_dir'].'/js/tab.js',
-                $config['assets_dir'].'/js/affix.js',
+                $config['assets_dir'].$path.'/transition.js',
+                $config['assets_dir'].$path.'/alert.js',
+                $config['assets_dir'].$path.'/button.js',
+                $config['assets_dir'].$path.'/carousel.js',
+                $config['assets_dir'].$path.'/collapse.js',
+                $config['assets_dir'].$path.'/dropdown.js',
+                $config['assets_dir'].$path.'/modal.js',
+                $config['assets_dir'].$path.'/tooltip.js',
+                $config['assets_dir'].$path.'/popover.js',
+                $config['assets_dir'].$path.'/scrollspy.js',
+                $config['assets_dir'].$path.'/tab.js',
+                $config['assets_dir'].$path.'/affix.js',
                 __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
             ),
             'output'        => $config['output_dir'].'js/bootstrap.js'
