@@ -99,7 +99,7 @@ class AsseticConfiguration
      */
     protected function buildJs(array $config)
     {
-        'sass' !== $config['less_filter']?$path = "/js":$path = "/javascripts/bootstrap";
+        $path = 'sass' !== $config['less_filter']?"/js":"/javascripts/bootstrap";
         return array(
             'inputs'  => array(
                 $config['assets_dir'].$path.'/transition.js',
