@@ -32,7 +32,8 @@ class AsseticConfigurationTest extends \PHPUnit_Framework_TestCase
             'customize' => array(
                 'variables_file'    => './assets/variables.less',
                 'bootstrap_output'  => './assets/bootstrap.less'
-            )
+            ),
+            'icon_prefix'   => 'glyphicon'
         ));
     }
 
@@ -48,7 +49,8 @@ class AsseticConfigurationTest extends \PHPUnit_Framework_TestCase
             'less_filter'   => 'none',
             'assets_dir'    => './assets',
             'output_dir'    => './web',
-            'jquery_path'   => './assets/jquery.js'
+            'jquery_path'   => './assets/jquery.js',
+            'icon_prefix'   => 'glyphicon'
         ));
     }
 }

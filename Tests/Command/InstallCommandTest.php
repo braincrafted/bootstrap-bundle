@@ -66,6 +66,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.output_dir')
             ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('glyphicon');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -75,7 +79,45 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
 
-        $this->assertRegExp('/Copied Glyphicon fonts/', $commandTester->getDisplay());
+        $this->assertRegExp('/Copied icon fonts/', $commandTester->getDisplay());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::execute()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::getSrcDir()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::getDestDir()
+     */
+    public function testExecuteFontAwesome()
+    {
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('kernel.root_dir')
+            ->andReturn(__DIR__.'/fixtures/app');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->never();
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.output_dir')
+            ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('fa');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.fontawesome_dir')
+            ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
+
+        // mock the Kernel or create one depending on your needs
+        $application = new Application($this->kernel);
+        $application->add(new InstallCommand());
+
+        $command = $application->find('braincrafted:bootstrap:install');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute(array('command' => $command->getName()));
+
+        $this->assertRegExp('/Copied icon fonts/', $commandTester->getDisplay());
     }
 
     /**
@@ -97,6 +139,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.output_dir')
             ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('glyphicon');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -124,6 +170,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.output_dir')
             ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('glyphicon');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
