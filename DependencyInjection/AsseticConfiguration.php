@@ -57,6 +57,9 @@ class AsseticConfiguration
         $inputs = array(
             $config['assets_dir'].'/dist/css/bootstrap.css',
         );
+        if ('fa' === $config['icon_prefix']) {
+            $inputs[] = $config['fontawesome_dir'].'/css/font-awesome.css';
+        }
 
         return array(
             'inputs'  => $inputs,
@@ -82,6 +85,9 @@ class AsseticConfiguration
             $bootstrapFile,
             __DIR__.'/../Resources/less/form.less'
         );
+        if ('fa' === $config['icon_prefix']) {
+            $inputs[] = $config['fontawesome_dir'].'/less/font-awesome.less';
+        }
 
         return array(
             'inputs'  => $inputs,

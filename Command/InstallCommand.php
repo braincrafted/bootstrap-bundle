@@ -42,8 +42,8 @@ class InstallCommand extends ContainerAwareCommand
         if (false === file_exists($srcDir)) {
             $output->writeln(sprintf(
                 '<error>Fonts directory "%s" does not exist. Did you install twbs/bootstrap? '.
-                'If you used something other than Compoer you need to manually change the path in '.
-                '"braincrafted_bootstrap.assets_dir".</error>',
+                'If you used something other than Composer you need to manually change the path in '.
+                '"braincrafted_bootstrap.assets_dir". If you want to use Font Awesome you need to install the font and change the option "braincrafted_bootstrap.fontawesome_dir".</error>',
                 $srcDir
             ));
 
@@ -61,7 +61,7 @@ class InstallCommand extends ContainerAwareCommand
             }
         }
 
-        $output->writeln(sprintf('Copied Glyphicon fonts to <comment>%s</comment>.', $destDir));
+        $output->writeln(sprintf('Copied icon fonts to <comment>%s</comment>.', $destDir));
     }
 
     /**
@@ -69,6 +69,10 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getSrcDir()
     {
+        if ('fa' === $this->getContainer()->getParameter('braincrafted_bootstrap.icon_prefix')) {
+            return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.fontawesome_dir'));
+        }
+
         return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'));
     }
 
