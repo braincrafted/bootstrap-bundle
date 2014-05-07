@@ -1,0 +1,8 @@
+{
+    "name":"braincrafted-bootstrap-bundle",
+    "dependencies": {
+        "jquery": "1.*",
+        "bootstrap": "latest",
+        "fontawesome":"master"
+    }
+}
