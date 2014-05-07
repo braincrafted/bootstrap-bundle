@@ -858,7 +858,7 @@
 
 {% block button_attributes %}
 {% spaceless %}
-    id="{%- if attr.id is defined %}{{ attr.id }}{% else %}{{ id }}{% endif %}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
+    {%- if attr.id is not defined %}id="{{ id }}" {% endif %}name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
     {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
 {% endspaceless %}
 {% endblock button_attributes %}
