@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Braincrafted\Bundle\BootstrapBundle\Tests\Type;
 
 use Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType;
 use Mockery as m;
 use Symfony\Component\Form\ButtonBuilder;
-use Symfony\Component\Form\FormBuilder;
 
 /**
  * Class FormActionsTypeTest

@@ -57,6 +57,7 @@ class InstallCommand extends ContainerAwareCommand
                 $fs->copy($file, $dest);
             } catch (IOException $e) {
                 $output->writeln(sprintf('<error>Could not copy %s</error>', $file->getBaseName()));
+
                 return;
             }
         }
