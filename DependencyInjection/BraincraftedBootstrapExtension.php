@@ -13,8 +13,6 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\AsseticConfiguration;
-
 /**
  * BraincraftedBootstrapExtension
  *
@@ -41,7 +39,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
+        $configuration = new Configuration(array_key_exists('SpBowerBundle', $container->getParameter('kernel.bundles')));
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader(
@@ -70,7 +68,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $bundles = $container->getParameter('kernel.bundles');
 
         $configs = $container->getExtensionConfig($this->getAlias());
-        $config = $this->processConfiguration(new Configuration(), $configs);
+        $config = $this->processConfiguration(new Configuration(array_key_exists('SpBowerBundle', $bundles)), $configs);
 
         // Configure Assetic if AsseticBundle is activated and the option
         // "braincrafted_bootstrap.auto_configure.assetic" is set to TRUE (default value).
@@ -112,7 +110,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         foreach (array_keys($container->getExtensions()) as $name) {
             switch ($name) {
                 case 'assetic':
-                    $asseticConfig = new AsseticConfiguration;
+                    $asseticConfig = new AsseticConfiguration();
                     $container->prependExtensionConfig(
                         $name,
                         array('assets' => $asseticConfig->build($config))

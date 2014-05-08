@@ -22,6 +22,13 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    protected $bowerSupported;
+
+    public function __construct($bowerSupported=false)
+    {
+        $this->bowerSupported = $bowerSupported;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -35,17 +42,20 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('braincrafted_bootstrap');
 
+        $assetsDir = $this->bowerSupported?'@BraincraftedBootstrapBundle/Resources/public/components/bootstrap':'%kernel.root_dir%/../vendor/twbs/bootstrap';
+        $jqueryPath = $this->bowerSupported?'@BraincraftedBootstrapBundle/Resources/public/components/jquery/dist/jquery.js': '%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.0.js';
+
         $rootNode
             ->children()
                 ->scalarNode('output_dir')->defaultValue('')->end()
                 ->scalarNode('assets_dir')
-                    ->defaultValue('%kernel.root_dir%/../vendor/twbs/bootstrap')
+                    ->defaultValue($assetsDir)
                 ->end()
                 ->scalarNode('fontawesome_dir')
                     ->defaultValue('%kernel.root_dir%/../vendor/fortawesome/font-awesome')
                 ->end()
                 ->scalarNode('jquery_path')
-                    ->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.0.js')
+                    ->defaultValue($jqueryPath)
                 ->end()
                 ->scalarNode('less_filter')
                     ->defaultValue('less')
@@ -82,4 +92,5 @@ class Configuration implements ConfigurationInterface
 
         return $treeBuilder;
     }
+
 }

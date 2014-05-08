@@ -83,7 +83,7 @@ class AsseticConfiguration
 
         $inputs = array(
             $bootstrapFile,
-            __DIR__.'/../Resources/less/form.less'
+            '@BraincraftedBootstrapBundle/Resources/less/form.less'
         );
         if ('fa' === $config['icon_prefix']) {
             $inputs[] = $config['fontawesome_dir'].'/less/font-awesome.less';
@@ -117,7 +117,7 @@ class AsseticConfiguration
                 $config['assets_dir'].'/js/scrollspy.js',
                 $config['assets_dir'].'/js/tab.js',
                 $config['assets_dir'].'/js/affix.js',
-                __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
+               '@BraincraftedBootstrapBundle/Resources/js/bc-bootstrap-collection.js'
             ),
             'output'        => $config['output_dir'].'js/bootstrap.js'
         );
