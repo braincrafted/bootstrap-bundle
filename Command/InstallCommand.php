@@ -73,7 +73,16 @@ class InstallCommand extends ContainerAwareCommand
             return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.fontawesome_dir'));
         }
 
-        return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'));
+        return sprintf(
+            '%s/%s',
+            $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'),
+            (
+                // Sass version stores fonts in a different directory
+                'sass' === $this->getContainer()->getParameter('braincrafted_bootstrap.less_filter') ?
+                'fonts/bootstrap' :
+                'fonts'
+            )
+        );
     }
 
     /**

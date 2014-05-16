@@ -22,6 +22,30 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    /** @var string */
+    const DEFAULT_ASSETS_DIR = '%kernel.root_dir%/../vendor/twbs/bootstrap';
+
+    /** @var string */
+    const DEFAULT_ASSETS_DIR_SASS = '%kernel.root_dir%/../vendor/twbs/bootstrap-sass/vendor/assets';
+
+    /** @var string */
+    const DEFAULT_FONTAWESOME_DIR = '%kernel.root_dir%/../vendor/fortawesome/font-awesome';
+
+    /** @var string */
+    const DEFAULT_BOOTSTRAP_OUTPUT = '%kernel.root_dir%/Resources/less/bootstrap.less';
+
+    /** @var string */
+    const DEFAULT_BOOTSTRAP_OUTPUT_SASS = '%kernel.root_dir%/Resources/sass/bootstrap.scss';
+
+    /** @var string */
+    const DEFAULT_BOOTSTRAP_TEMPLATE = 'BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig';
+
+    /** @var string */
+    const DEFAULT_BOOTSTRAP_TEMPLATE_SASS = 'BraincraftedBootstrapBundle:Bootstrap:bootstrap.scss.twig';
+
+    /** @var string */
+    const DEFAULT_JQUERY_PATH = '%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.0.js';
+
     /**
      * {@inheritDoc}
      */
@@ -39,18 +63,19 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('output_dir')->defaultValue('')->end()
                 ->scalarNode('assets_dir')
-                    ->defaultValue('%kernel.root_dir%/../vendor/twbs/bootstrap')
+                    ->defaultValue(self::DEFAULT_ASSETS_DIR)
                 ->end()
                 ->scalarNode('fontawesome_dir')
-                    ->defaultValue('%kernel.root_dir%/../vendor/fortawesome/font-awesome')
+                    ->defaultValue(self::DEFAULT_FONTAWESOME_DIR)
                 ->end()
                 ->scalarNode('jquery_path')
-                    ->defaultValue('%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.0.js')
+                    ->defaultValue(self::DEFAULT_JQUERY_PATH)
                 ->end()
+                // TODO for v3.0: Rename to css_preprocessor
                 ->scalarNode('less_filter')
                     ->defaultValue('less')
                     ->validate()
-                        ->ifNotInArray(array('less', 'lessphp', 'none'))
+                        ->ifNotInArray(array('less', 'lessphp', 'sass', 'none'))
                         ->thenInvalid('Invalid less filter "%s"')
                     ->end()
                 ->end()
@@ -62,10 +87,10 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('variables_file')->end()
                         ->scalarNode('bootstrap_output')
-                            ->defaultValue('%kernel.root_dir%/Resources/less/bootstrap.less')
+                            ->defaultValue(self::DEFAULT_BOOTSTRAP_OUTPUT)
                         ->end()
                         ->scalarNode('bootstrap_template')
-                            ->defaultValue('BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig')
+                            ->defaultValue(self::DEFAULT_BOOTSTRAP_TEMPLATE)
                         ->end()
                     ->end()
                 ->end()
