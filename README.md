@@ -98,6 +98,16 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
+### Version 2.1.0-alpha1 (16 May 2014)
+
+- [#203](https://github.com/braincrafted/bootstrap-bundle/issues/203) Add support for `bootstrap-sass` (by [sandello-alkr](https://github.com/sandello-alkr) and [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#160](https://github.com/braincrafted/bootstrap-bundle/issues/160) Add support for Font Awesome (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#229](https://github.com/braincrafted/bootstrap-bundle/pull/229) Fix `bootstrap.js` path in default layout (by [nonlux](https://github.com/nonlux))
+- [#221](https://github.com/braincrafted/bootstrap-bundle/issues/221) Fix generated key for nested collections (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#220](https://github.com/braincrafted/bootstrap-bundle/pull/220) Add option to configure icon prefix (by [llwt](https://github.com/llwt))
+- [#206](https://github.com/braincrafted/bootstrap-bundle/issues/206) Use `raw` filter for form labels (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#209](https://github.com/braincrafted/bootstrap-bundle/issues/209) Fixed compatibility issues with KnpMenu (by [mbutkereit](https://github.com/mbutkereit))
+
 ### Version 2.0.1 (3 April 2014)
 
 - #168 Removed CSS class `row` from form-group
