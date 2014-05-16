@@ -35,7 +35,9 @@ class AsseticConfiguration
             $config['output_dir'] .= '/';
         }
 
-        if ('none' !== $config['less_filter']) {
+        if ('sass' === $config['less_filter']) {
+            $output['bootstrap_css'] = $this->buildCssWithSass($config);
+        } elseif ('none' !== $config['less_filter']) {
             $output['bootstrap_css'] = $this->buildCssWithLess($config);
         } else {
             $output['bootstrap_css'] = $this->buildCssWithoutLess($config);
@@ -101,22 +103,51 @@ class AsseticConfiguration
      *
      * @return array
      */
+    protected function buildCssWithSass(array $config)
+    {
+        $bootstrapFile = $config['assets_dir'].'/stylesheets/bootstrap.scss';
+        if (true === isset($config['customize']['variables_file']) &&
+            null !== $config['customize']['variables_file']) {
+            $bootstrapFile = $config['customize']['bootstrap_output'];
+        }
+
+        $inputs = array(
+            $bootstrapFile,
+            __DIR__.'/../Resources/sass/form.scss'
+        );
+        if ('fa' === $config['icon_prefix']) {
+            $inputs[] = $config['fontawesome_dir'].'/scss/font-awesome.scss';
+        }
+
+        return array(
+            'inputs'  => $inputs,
+            'filters' => array($config['less_filter']),
+            'output'  => $config['output_dir'].'css/bootstrap.css'
+        );
+    }
+
+    /**
+     * @param array $config
+     *
+     * @return array
+     */
     protected function buildJs(array $config)
     {
+        $path = 'sass' !== $config['less_filter']?"/js":"/javascripts/bootstrap";
         return array(
             'inputs'  => array(
-                $config['assets_dir'].'/js/transition.js',
-                $config['assets_dir'].'/js/alert.js',
-                $config['assets_dir'].'/js/button.js',
-                $config['assets_dir'].'/js/carousel.js',
-                $config['assets_dir'].'/js/collapse.js',
-                $config['assets_dir'].'/js/dropdown.js',
-                $config['assets_dir'].'/js/modal.js',
-                $config['assets_dir'].'/js/tooltip.js',
-                $config['assets_dir'].'/js/popover.js',
-                $config['assets_dir'].'/js/scrollspy.js',
-                $config['assets_dir'].'/js/tab.js',
-                $config['assets_dir'].'/js/affix.js',
+                $config['assets_dir'].$path.'/transition.js',
+                $config['assets_dir'].$path.'/alert.js',
+                $config['assets_dir'].$path.'/button.js',
+                $config['assets_dir'].$path.'/carousel.js',
+                $config['assets_dir'].$path.'/collapse.js',
+                $config['assets_dir'].$path.'/dropdown.js',
+                $config['assets_dir'].$path.'/modal.js',
+                $config['assets_dir'].$path.'/tooltip.js',
+                $config['assets_dir'].$path.'/popover.js',
+                $config['assets_dir'].$path.'/scrollspy.js',
+                $config['assets_dir'].$path.'/tab.js',
+                $config['assets_dir'].$path.'/affix.js',
                 __DIR__.'/../Resources/js/bc-bootstrap-collection.js'
             ),
             'output'        => $config['output_dir'].'js/bootstrap.js'

@@ -70,6 +70,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
             ->andReturn('glyphicon');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -108,6 +112,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.fontawesome_dir')
             ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -143,6 +151,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
             ->andReturn('glyphicon');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -174,6 +186,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
             ->andReturn('glyphicon');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
+            ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
