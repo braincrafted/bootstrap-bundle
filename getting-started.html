@@ -96,7 +96,7 @@
     <ul>
         <li><strong><a href="https://github.com/KnpLabs/KnpMenuBundle">KnpMenuBundle</a> 1.1.2</strong> and up</li>
         <li><strong><a href="https://github.com/KnpLabs/KnpPaginatorBundle">KnpPaginatorBundle</a></strong> <code>dev-master</code><sup>1</sup></li>
-        <li><strong><a href="http://leafo.net/lessphp/">lessphp</a> 0.4.0</strong> and up (if you don't want to use the official <a href="http://lesscss.org">LESS</a> implementation in Node.js)</li>
+        <li><strong><a href="https://github.com/leafo/lessphp">leafo/lessphp</a> 0.4.*</strong> or <strong><a href="http://lessphp.gpeasy.com">oyejorge/less.php</a> 1.5.*</strong> and up (if you don't want to use the official <a href="http://lesscss.org">LESS</a> implementation in Node.js). See below for more information on version compatibility.</li>
     </ul>
 
     <p>Since this bundle has two main and many additional dependencies, here is a table of compatibilities:</p>
@@ -110,7 +110,7 @@
                 <th>jQuery</th>
                 <th>KnpMenu</th>
                 <th>KnpPaginator</th>
-                <th>lessphp</th>
+                <th>lessphp<br>less.php</th>
             </tr>
         </thead>
         <tbody>
@@ -130,23 +130,24 @@
                 <td><code>v1.9.*</code></td>
                 <td><code>v1.*</code></td>
                 <td><code>v2.*</code></td>
-                <td><code>v0.3.*</code></td>
+                <td><code>v0.3.*</code><br>-</td>
             </tr>
             <tr>
-                <td><strong><code>v2.0.*</code></strong></td>
+                <td><strong><code>v2.0.*</code><br><code>v2.1.*</code></strong></td>
                 <td><code>v2.3.*</code><br><code>v2.4.*</code></td>
                 <td><code>v3.0.*</code><br><code>v3.1.*</code></td>
                 <td><code>v1.10.*</code><br><code>v1.11.*</code></td>
                 <td><code>v1.1.*</code><br><code>v2.0.0-alpha1</code><sup>2</sup></td>
                 <td><code>dev-master</code><sup>1</sup></td>
-                <td><code>v0.4.*</code></td>
+                <td>-<br><code>v1.5.*</code><sup>3</sup></td>
             </tr>
         </tbody>
     </table>
 
     <p>
         <sup>1</sup> knplabs/knp-components currently has no release that is compatible with Symfony 2.3.<br>
-        <sup>2</sup> The bundle works fine with <code>1.*</code> releases of KnpMenu, however, automatically matching the active element only works with <code>2.*</code> or <code>dev-master</code>.
+        <sup>2</sup> The bundle works fine with <code>1.*</code> releases of KnpMenu, however, automatically matching the active element only works with <code>2.*</code> or <code>dev-master</code>.<br>
+        <sup>3</sup> <code>leafo/lessphp</code> does no longer compile recent versions of Bootstrap 3. Instead you can use <code>oyejorge/less.php</code>.
     </p>
 
 </section>
@@ -236,9 +237,13 @@ assetic:
 braincrafted_bootstrap:
     less_filter: less</code></pre>
 
-    <h4>lessphp</h4>
+    <h4>lessphp <span class="label label-danger">Deprecated</span></h4>
 
-    <p>Although it is not recommended to use lessphp, you can use it and install it via Composer.</p>
+    <div class="alert alert-danger">
+        lessphp does no longer compile recent versions of Bootstrap. If you absolutely don't want to use the Less compiler written in Node.js (or the Sass port of Bootstrap) you should use less.php (see below).
+    </div>
+
+    <p>Although it is not recommended to use <code>leafo/lessphp</code>, you can use it and install it via Composer.</p>
 
     <pre><code class="json">{
   "require": {
@@ -248,7 +253,7 @@ braincrafted_bootstrap:
 
     <p>And add the following section to your config.</p>
 
-    <pre><code class="yamnl"># app/config/config.yml
+    <pre><code class="yaml"># app/config/config.yml
 assetic:
     filters:
         lessphp:
@@ -259,6 +264,47 @@ braincrafted_bootstrap:
     less_filter: lessphp</code></pre>
 
     <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check the <a href="http://leafo.net/lessphp/">lessphp website</a> whether a new version has been released.</p>
+
+    <h4>less.php</h4>
+
+    <p>Although it is not recommended to use <code>oyejorge/less.php</code>, you can use it and install it via Composer.</p>
+
+    <pre><code class="json">{
+  "require": {
+    "oyejorge/less.php": "~1.5",
+  }
+}</code></pre>
+
+    <p>And add the following section to your config.</p>
+
+    <pre><code class="yaml"># app/config/config.yml
+assetic:
+    filters:
+        lessphp:
+             file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
+             apply_to: "\.less$"
+        cssrewrite: ~
+braincrafted_bootstrap:
+    less_filter: lessphp</code></pre>
+
+    <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check the <a href="http://lessphp.gpeasy.com">less.php website</a> whether a new version has been released.</p>
+
+    <h3 id="installing-sass-compiler">Installing a Sass compiler</h3>
+
+    <p>Starting with Version 2.1 BootstrapBundle supports <a href="https://github.com/twbs/bootstrap-sass">bootstrap-sass</a>, the official Sass port of Bootstrap.</p>
+
+    <p>If you change the config value of <code>less_filter</code> to <code>sass</code> BootstrapBundle will automatically use the appropriate default values for the other configuration options.</p>
+
+    <pre><code class="yaml"># app/config/config.yml
+assetic:
+    filters:
+        sass:
+            bin: /usr/local/bin/sass
+            apply_to: "\.scss$"
+braincrafted_bootstrap:
+    less_filter: sass</code></pre>
+
+    <p><span class="info">The name of the configuration value <code>less_filter</code> will be changed in Version 3.0 of BootstrapBundle.</span></p>
 
     <h3 id="installing-glyphicons">Installing Glyphicons</h3>
 
@@ -298,7 +344,7 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
     jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
-    less_filter: less # "less", "lessphp" or "none"
+    less_filter: less # "less", "lessphp", "sass" or "none"
     auto_configure:
         assetic: true
         twig: true
@@ -308,6 +354,8 @@ braincrafted_bootstrap:
         variables_file: ~
         bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig</code></pre>
+    icon_prefix: glyphicon
+    fontawesome_dir: %kernel.root_dir%/../vendor/fortawesome/font-awesome
 
     <p>The option <code>braincrafted_bootstrap.output_dir</code> defines the directory where BootstrapBundle puts the Bootstrap asset files. This directory has to be relative to the Assetic output directory (configured with the <code>assetic.write_to</code> option). For example, if you want to have the Bootstrap assets in <code>web/bootstrap/(css|js)</code> set <code>braincrafted_bootstrap.output_dir</code> to <code>bootstrap</code>.</p>
 
@@ -326,7 +374,7 @@ assetic:
     assets:
         bootstrap_css:
             inputs:
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less
                 - %kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/less/form.less
             filters:
                 - less
@@ -334,18 +382,18 @@ assetic:
             output: css/bootstrap.css
         bootstrap_js:
             inputs:
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/transition.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/alert.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/button.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/carousel.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/collapse.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/dropdown.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/modal.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/tooltip.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/popover.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/scrollspy.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/tab.js
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/affix.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js
                 - %kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/js/bc-bootstrap-collection.js
             output: js/bootstrap.js
         jquery:
@@ -524,7 +572,7 @@ twig:
 <footer id="footer" class="container">
     <div class="row">
         <div class="col-lg-12">
-            <p>BraincraftedBootstrapBundle is handcrafted by <a href="http://florian.ec">Florian Eckerstorfer</a> in Vienna.</p>
+            <p>BraincraftedBootstrapBundle is handcrafted by <a href="https://florian.ec">Florian Eckerstorfer</a> in Vienna.</p>
         </div>
     </div>
 </footer>

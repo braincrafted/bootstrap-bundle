@@ -1,0 +1,36 @@
+body {
+    padding-top: 70px;
+}
+
+#footer {
+    margin-top: 30px;
+    font-size: 85%;
+}
+
+h2 {
+    margin-top: -60px;
+    padding-top: 80px;
+}
+
+h3 {
+    margin-top: -60px;
+    padding-top: 80px;
+}
+
+.sidebar.affix {
+    position: fixed;
+    top: 70px;
+}
+
+.sidebar.affix-top {
+    position: relative;
+}
+
+.sidebar.affix-bottom {
+    position: absolute;
+}
+
+input#form_inline_email,
+input#form_inline_password {
+    width: 200px;
+}
