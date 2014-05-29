@@ -86,7 +86,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
             <td>v1.9.*</td>
         </tr>
         <tr>
-            <td><strong>v2.0.*</strong></td>
+            <td><strong>v2.0.*</strong><br><strong>v2.1.*</strong></td>
             <td>v2.3.*<br>v2.4.*</td>
             <td>v3.0.*<br>v3.1.*</td>
             <td>v1.10.*<br>v1.11.*</td>
@@ -97,6 +97,13 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 
 Changelog
 ---------
+
+### Version 2.1.0-beta1 (29 May 2014)
+
+- [#238](https://github.com/braincrafted/bootstrap-bundle/pull/238) Add empty `value` field when `empty_value` is not null in choice field
+- [#239](https://github.com/braincrafted/bootstrap-bundle/pull/239) Removed translation_domain from error messages
+- [#214](https://github.com/braincrafted/bootstrap-bundle/pull/214) Check for `preSubmit` errors (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#240](https://github.com/braincrafted/bootstrap-bundle/pull/240) Include `head` block in default layout
 
 ### Version 2.1.0-alpha1 (16 May 2014)
 
