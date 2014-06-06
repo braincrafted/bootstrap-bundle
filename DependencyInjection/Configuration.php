@@ -46,6 +46,9 @@ class Configuration implements ConfigurationInterface
     /** @var string */
     const DEFAULT_JQUERY_PATH = '%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.0.js';
 
+    /** @var string */
+    const DEFAULT_FONTS_DIR = '%kernel.root_dir%/../web/fonts';
+
     /**
      * {@inheritDoc}
      */
@@ -70,6 +73,9 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('jquery_path')
                     ->defaultValue(self::DEFAULT_JQUERY_PATH)
+                ->end()
+                ->scalarNode('fonts_dir')
+                    ->defaultValue(self::DEFAULT_FONTS_DIR)
                 ->end()
                 // TODO for v3.0: Rename to css_preprocessor
                 ->scalarNode('less_filter')

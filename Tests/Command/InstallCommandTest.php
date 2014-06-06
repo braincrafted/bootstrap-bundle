@@ -56,16 +56,8 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn(__DIR__.'/fixtures/app');
-        $this->container
-            ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.assets_dir')
             ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
-        $this->container
-            ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
-            ->andReturn('');
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
@@ -74,6 +66,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.less_filter')
             ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn(__DIR__.'/fixtures/web/fonts');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -95,15 +91,8 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn(__DIR__.'/fixtures/app');
-        $this->container
-            ->shouldReceive('getParameter')
-            ->never();
-        $this->container
-            ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
-            ->andReturn('');
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn(__DIR__.'/fixtures/web/fonts');
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
@@ -137,16 +126,12 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn(__DIR__.'/fixtures/app');
-        $this->container
-            ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.assets_dir')
             ->andReturn(__DIR__.'/invalid');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
-            ->andReturn('');
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn(__DIR__.'/fixtures/web/fonts');
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
@@ -176,12 +161,8 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn('/');
-        $this->container
-            ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
-            ->andReturn('');
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn('/../fonts');
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
