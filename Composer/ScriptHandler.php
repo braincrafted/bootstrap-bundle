@@ -33,13 +33,15 @@ class ScriptHandler
     public static function install(CommandEvent $event)
     {
         $options = self::getOptions($event);
-        $appDir = $options['symfony-app-dir'];
+        $consolePathOptionsKey = array_key_exists('symfony-bin-dir', $options) ? 'symfony-bin-dir' : 'symfony-app-dir'; 
+        $consolePath = $options[$consolePathOptionsKey];
 
-        if (!is_dir($appDir)) {
+        if (!is_dir($consolePath)) {
             printf(
-                'The symfony-app-dir (%s) specified in composer.json was not found in %s, can not build bootstrap '.
+                'The %s (%s) specified in composer.json was not found in %s, can not build bootstrap '.
                 'file.%s',
-                $appDir,
+                $consolePathOptionsKey,
+                $consolePath,
                 getcwd(),
                 PHP_EOL
             );
@@ -47,13 +49,13 @@ class ScriptHandler
             return;
         }
 
-        static::executeCommand($event, $appDir, 'braincrafted:bootstrap:install', $options['process-timeout']);
+        static::executeCommand($event, $consolePath, 'braincrafted:bootstrap:install', $options['process-timeout']);
     }
 
-    protected static function executeCommand(CommandEvent $event, $appDir, $cmd, $timeout = 300)
+    protected static function executeCommand(CommandEvent $event, $consolePath, $cmd, $timeout = 300)
     {
         $php = escapeshellarg(self::getPhp());
-        $console = escapeshellarg($appDir.'/console');
+        $console = escapeshellarg($consolePath.'/console');
         if ($event->getIO()->isDecorated()) {
             $console .= ' --ansi';
         }
