@@ -60,6 +60,11 @@ class BootstrapFormExtension extends \Twig_Extension
             'global_form_errors'  => new \Twig_Function_Node(
                 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 array('is_safe' => array('html'))
+            ),
+            'form-control-static'   => new Twig_Function_Method(
+                $this,
+                'formControlStaticFunction',
+                array('is_safe' => array('html'))
             )
         );
     }
@@ -170,5 +175,13 @@ class BootstrapFormExtension extends \Twig_Extension
     public function getSimpleCol()
     {
         return $this->simpleCol;
+    }
+
+    public function formControlStaticFunction($label, $value)
+    {
+        return  sprintf(
+            '<div class="form-group"><label class="col-sm-%s control-label">%s</label><div class="col-sm-%s"><p class="form-control-static">%s</p></div></div>',
+            $this->getLabelCol(), $label, $this->getWidgetCol(), $value
+        );
     }
 }
