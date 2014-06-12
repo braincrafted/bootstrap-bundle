@@ -61,7 +61,7 @@ class BootstrapFormExtension extends \Twig_Extension
                 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
                 array('is_safe' => array('html'))
             ),
-            'form-control-static'   => new Twig_Function_Method(
+            'form_control_static'   => new \Twig_Function_Method(
                 $this,
                 'formControlStaticFunction',
                 array('is_safe' => array('html'))
