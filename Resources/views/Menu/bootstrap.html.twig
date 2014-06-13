@@ -60,7 +60,7 @@
         {% set listClass = (listClass|default('') ~ 'pull-left')|trim %}
     {% endif %}
     
-    {% set listClass = (item.parent is null) ? listClass ~ ' nav' : listClass %}
+    {% set listClass = (options.currentDepth == 0) ? listClass ~ ' nav' : listClass %}
 
     {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
