@@ -44,7 +44,7 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFunctions()
     {
-        $this->assertCount(13, $this->extension->getFunctions());
+        $this->assertCount(14, $this->extension->getFunctions());
     }
 
     /**
