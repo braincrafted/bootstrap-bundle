@@ -495,7 +495,7 @@
 
 {% block button_widget %}
     {% spaceless %}
-        {% if label is empty %}
+        {% if label is empty and label != false %}
             {% set label = name|humanize %}
         {% endif %}
         {% if type is defined and type == 'submit' %}
