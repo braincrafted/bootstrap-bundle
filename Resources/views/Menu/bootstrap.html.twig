@@ -24,7 +24,6 @@
     {% set options = options|merge({'currentClass': 'active'}) %}
     {% set options = options|merge({'ancestorClass': 'active'}) %}
 {% endif %}
-
 {% set listAttributes = item.childrenAttributes %}
 {{ block('list') -}}
 {% endblock %}
