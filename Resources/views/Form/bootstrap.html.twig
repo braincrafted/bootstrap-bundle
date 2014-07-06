@@ -596,6 +596,9 @@
         {% endif %}
         {% if attr.widget_col is defined and attr.widget_col is not empty %}
             {% set widget_col = attr.widget_col %}
+            {% if label is sameas(false) and label_col is defined %}
+                {% set widget_col = widget_col + label_col %}
+            {% endif %}
         {% endif %}
         {% if attr.col_size is defined and attr.col_size is not empty %}
             {% set col_size = attr.col_size %}
