@@ -874,7 +874,7 @@
 {% block widget_container_attributes %}
     {% spaceless %}
         {% if attr.style is defined and (attr.style == 'inline' or attr.style == 'horizontal') %}
-            {% set attr = attr|merge({ 'class': 'form-'~attr.style~attr.class|default('') }) %}
+            {% set attr = attr|merge({ 'class': ('form-'~attr.style~' '~attr.class|default(''))|trim }) %}
             {% set attr = attr|merge({ 'style': null }) %}
         {% endif %}
         {% if id is not empty %}id="{{ id }}" {% endif %}
