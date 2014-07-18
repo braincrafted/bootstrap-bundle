@@ -35,7 +35,7 @@ class AsseticConfiguration
             $config['output_dir'] .= '/';
         }
 
-        if ('sass' === $config['less_filter']) {
+        if (in_array($config['less_filter'], array('sass', 'scssphp'))) {
             $output['bootstrap_css'] = $this->buildCssWithSass($config);
         } elseif ('none' !== $config['less_filter']) {
             $output['bootstrap_css'] = $this->buildCssWithLess($config);
@@ -133,7 +133,7 @@ class AsseticConfiguration
      */
     protected function buildJs(array $config)
     {
-        $path = 'sass' !== $config['less_filter']?"/js":"/javascripts/bootstrap";
+        $path = !in_array($config['less_filter'], array('sass', 'scssphp')) ? "/js" : "/javascripts/bootstrap";
         return array(
             'inputs'  => array(
                 $config['assets_dir'].$path.'/transition.js',

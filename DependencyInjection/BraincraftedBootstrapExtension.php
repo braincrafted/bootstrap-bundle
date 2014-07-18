@@ -113,7 +113,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function processSassConfiguration(array $config)
     {
-        if ('sass' === $config['less_filter']) {
+        if (in_array($config['less_filter'], array('sass', 'scssphp'))) {
             if ($config['assets_dir'] === Configuration::DEFAULT_ASSETS_DIR) {
                 $config['assets_dir'] = Configuration::DEFAULT_ASSETS_DIR_SASS;
             }
