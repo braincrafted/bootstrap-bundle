@@ -736,7 +736,7 @@
         {% endif %}
 
         {% if form.vars.errors|length > 0 %}
-            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' has-error')|trim }) %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' has-global-errors')|trim }) %}
         {% endif %}
 
         {% if col_size is defined %}
