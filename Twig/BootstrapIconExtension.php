@@ -89,6 +89,7 @@ class BootstrapIconExtension extends Twig_Extension
     public function iconFunction($icon)
     {
         $icon = str_replace('+', ' '.$this->iconPrefix.'-', $icon);
+        
         return sprintf('<span class="%1$s %1$s-%2$s"></span>', $this->iconPrefix, $icon);
     }
 
