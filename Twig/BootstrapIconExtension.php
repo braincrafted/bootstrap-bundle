@@ -71,7 +71,7 @@ class BootstrapIconExtension extends Twig_Extension
     {
         $that = $this;
         return preg_replace_callback(
-            '/\.icon-([a-z0-9-]+)/',
+            '/\.icon-([a-z0-9+-]+)/',
             function ($matches) use ($that) {
                 return $that->iconFunction($matches[1]);
             },
@@ -88,6 +88,8 @@ class BootstrapIconExtension extends Twig_Extension
      */
     public function iconFunction($icon)
     {
+        $icon = str_replace('+', ' '.$this->iconPrefix.'-', $icon);
+        
         return sprintf('<span class="%1$s %1$s-%2$s"></span>', $this->iconPrefix, $icon);
     }
 
