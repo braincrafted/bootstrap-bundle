@@ -283,6 +283,8 @@
             <div class="checkbox">{{ checkboxdata|raw }}</div>
         {% endif %}
 
+        {{ block('form_help') }}
+
         {% if align_with_widget is defined or attr.align_with_widget is defined %}
             </div>
             </div>
@@ -350,6 +352,7 @@
             <div class="radio">{{ radiodata|raw }}</div>
         {% endif %}
 
+        {{ block('form_help') }}
 
         {% if align_with_widget is defined or attr.align_with_widget is defined %}
             </div>
