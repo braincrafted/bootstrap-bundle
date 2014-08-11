@@ -26,10 +26,12 @@ class BootstrapIconExtension extends Twig_Extension
      * @var string
      */
     private $iconPrefix;
+    private $iconTag;
 
-    public function __construct($iconPrefix)
+    public function __construct($iconPrefix, $iconTag='span')
     {
         $this->iconPrefix = $iconPrefix;
+        $this->iconTag = $iconTag;
     }
 
     /**
@@ -90,7 +92,7 @@ class BootstrapIconExtension extends Twig_Extension
     {
         $icon = str_replace('+', ' '.$this->iconPrefix.'-', $icon);
         
-        return sprintf('<span class="%1$s %1$s-%2$s"></span>', $this->iconPrefix, $icon);
+        return sprintf('<%1$s class="%2$s %2$s-%3$s"></%1$s>', $this->iconTag, $this->iconPrefix, $icon);
     }
 
     /**
