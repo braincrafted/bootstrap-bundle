@@ -63,6 +63,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $container->setParameter('braincrafted_bootstrap.output_dir', $config['output_dir']);
         $container->setParameter('braincrafted_bootstrap.less_filter', $config['less_filter']);
         $container->setParameter('braincrafted_bootstrap.icon_prefix', $config['icon_prefix']);
+        $container->setParameter('braincrafted_bootstrap.icon_tag', $config['icon_tag']);
     }
 
     /**

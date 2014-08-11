@@ -16,6 +16,7 @@
         <service id="braincrafted_bootstrap.twig.icon_extension" class="%braincrafted_bootstrap.twig.icon_extension.class%">
             <tag name="twig.extension" />
             <argument>%braincrafted_bootstrap.icon_prefix%</argument>
+            <argument>%braincrafted_bootstrap.icon_tag%</argument>
         </service>
 
         <service id="braincrafted_bootstrap.twig.label_extension" class="%braincrafted_bootstrap.twig.label_extension.class%">
