@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
-class InputGroupBtnExtension extends AbstractTypeExtension
+class InputGroupButtonExtension extends AbstractTypeExtension
 {
     /**
      * @var ButtonBuilder
@@ -36,11 +36,11 @@ class InputGroupBtnExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if ($this->prependedButtonBuilder !== null) {
-            $view->vars['input_group_btn_prepend'] = $this->prependedButtonBuilder->getForm()->createView();
+            $view->vars['input_group_button_prepend'] = $this->prependedButtonBuilder->getForm()->createView();
         }
 
         if ($this->appendedButtonBuilder !== null) {
-            $view->vars['input_group_btn_append'] = $this->appendedButtonBuilder->getForm()->createView();
+            $view->vars['input_group_button_append'] = $this->appendedButtonBuilder->getForm()->createView();
         }
     }
 
@@ -53,13 +53,19 @@ class InputGroupBtnExtension extends AbstractTypeExtension
             return;
         }
 
-        if (isset($options['attr']['input_group']['btn_prepend'])) {
-            $this->prependedButtonBuilder = $this->addButton($builder, $options['attr']['input_group']['btn_prepend']);
+        if (isset($options['attr']['input_group']['button_prepend'])) {
+            $this->prependedButtonBuilder = $this->addButton(
+                $builder,
+                $options['attr']['input_group']['button_prepend']
+            );
         }
 
 
-        if (isset($options['attr']['input_group']['btn_append'])) {
-            $this->appendedButtonBuilder = $this->addButton($builder, $options['attr']['input_group']['btn_append']);
+        if (isset($options['attr']['input_group']['button_append'])) {
+            $this->appendedButtonBuilder = $this->addButton(
+                $builder,
+                $options['attr']['input_group']['button_append']
+            );
         }
 
     }

@@ -651,12 +651,12 @@
                 {% if input_group.prepend is defined and input_group.prepend is not empty %}
                     <span class="input-group-addon">{{ input_group.prepend|raw|parse_icons }}</span>
                 {% endif %}
-                {% if input_group.btn_prepend is defined and input_group.btn_prepend is not empty %}
-                    <span class="input-group-btn">{{ form_widget(input_group_btn_prepend) }}</span>
+                {% if input_group.button_prepend is defined and input_group.button_prepend is not empty %}
+                    <span class="input-group-btn">{{ form_widget(input_group_button_prepend) }}</span>
                 {% endif %}
                 {{ form_widget(form) }}
-                {% if input_group.btn_append is defined and input_group.btn_append is not empty %}
-                    <span class="input-group-btn">{{ form_widget(input_group_btn_append) }}</span>
+                {% if input_group.button_append is defined and input_group.button_append is not empty %}
+                    <span class="input-group-btn">{{ form_widget(input_group_button_append) }}</span>
                 {% endif %}
                 {% if input_group.append is defined and input_group.append is not empty %}
                     <span class="input-group-addon">{{ input_group.append|raw|parse_icons }}</span>

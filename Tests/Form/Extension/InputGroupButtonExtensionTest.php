@@ -4,13 +4,13 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Tests\Form\Extension;
 
 use \Mockery as m;
-use Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupBtnExtension;
+use Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension;
 use Symfony\Component\Form\FormView;
 
-class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
+class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var InputGroupBtnExtension
+     * @var InputGroupButtonExtension
      */
     private $extension;
 
@@ -19,7 +19,7 @@ class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->extension = new InputGroupBtnExtension();
+        $this->extension = new InputGroupButtonExtension();
     }
 
     public function testBuildView()
@@ -27,8 +27,8 @@ class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
         $optionsBoth = array(
             'attr' => array(
                 'input_group' => array(
-                    'btn_prepend' => array('name' => 'prepend', 'type' => 'submit', 'options' => array()),
-                    'btn_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
+                    'button_prepend' => array('name' => 'prepend', 'type' => 'submit', 'options' => array()),
+                    'button_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
                 )
             ),
         );
@@ -56,10 +56,10 @@ class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->extension->buildView($view, $type, array());
 
-        $this->assertArrayHasKey('input_group_btn_prepend', $view->vars);
-        $this->assertArrayHasKey('input_group_btn_append', $view->vars);
-        $this->assertEquals('prepend', $view->vars['input_group_btn_prepend']);
-        $this->assertEquals('append', $view->vars['input_group_btn_append']);
+        $this->assertArrayHasKey('input_group_button_prepend', $view->vars);
+        $this->assertArrayHasKey('input_group_button_append', $view->vars);
+        $this->assertEquals('prepend', $view->vars['input_group_button_prepend']);
+        $this->assertEquals('append', $view->vars['input_group_button_append']);
     }
 
     /**
@@ -70,11 +70,11 @@ class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
 
-        if (isset($options['attr']['input_group']['btn_prepend'])) {
+        if (isset($options['attr']['input_group']['button_prepend'])) {
             $builder->shouldReceive('create')->with('prepend', 'submit', array())->once();
         }
 
-        if (isset($options['attr']['input_group']['btn_append'])) {
+        if (isset($options['attr']['input_group']['button_append'])) {
             $builder->shouldReceive('create')->with('append', 'submit', array())->once();
         }
 
@@ -86,8 +86,8 @@ class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
         $optionsBoth = array(
             'attr' => array(
                 'input_group' => array(
-                    'btn_prepend' => array('name' => 'prepend', 'type' => 'submit', 'options' => array()),
-                    'btn_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
+                    'button_prepend' => array('name' => 'prepend', 'type' => 'submit', 'options' => array()),
+                    'button_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
                 )
             ),
         );
@@ -95,7 +95,7 @@ class InputGroupBtnExtensionTest extends \PHPUnit_Framework_TestCase
         $optionsOne = array(
             'attr' => array(
                 'input_group' => array(
-                    'btn_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
+                    'button_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
                 )
             ),
         );
