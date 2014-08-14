@@ -7,6 +7,7 @@
         <parameter key="braincrafted_bootstrap.form.type.collection.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType</parameter>
         <parameter key="braincrafted_bootstrap.form.type.money.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\MoneyType</parameter>
         <parameter key="braincrafted_bootstrap.form.type.form_actions.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType</parameter>
+        <parameter key="braincrafted_bootstrap.form.type.form_static_control.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\FormStaticControlType</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.typesetter_extension.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.static_control.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\StaticControlExtension</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.input_group_button.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension</parameter>
@@ -24,6 +25,10 @@
 
         <service id="braincrafted_bootstrap.form.type.form_actions" class="%braincrafted_bootstrap.form.type.form_actions.class%">
             <tag name="form.type" alias="form_actions" />
+        </service>
+
+        <service id="braincrafted_bootstrap.form.type.form_control_static" class="%braincrafted_bootstrap.form.type.form_static_control.class%">
+            <tag name="form.type" alias="bs_static" />
         </service>
 
         <service id="braincrafted_bootstrap.form.extension.typesetter_extension" class="%braincrafted_bootstrap.form.extension.typesetter_extension.class%">
