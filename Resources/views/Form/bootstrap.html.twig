@@ -894,9 +894,7 @@
     {% endspaceless %}
 {% endblock widget_container_attributes %}
 
-{% block button_attributes %}
-    {% spaceless %}
+{% block button_attributes -%}
         id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
-        {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
-    {% endspaceless %}
+        {%- for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
 {% endblock button_attributes %}
