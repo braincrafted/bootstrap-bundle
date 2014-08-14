@@ -35,7 +35,6 @@
         {% endif %}
 
         {% set type = type|default('text') %}
-        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
 
         {% if style == 'inline' and (attr.placeholder is not defined or attr.placeholder is empty)  and label != false %}
             {% if label is empty %}
@@ -45,8 +44,13 @@
             {% endif %}
         {% endif %}
 
-        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
-
+        {% if static_control is defined and static_control == true %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control-static')|trim }) %}
+            <p id="{{ id }}" {%- for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ value }}</p>
+        {%- else -%}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+        {%- endif %}
         {% if simple_col is defined %}
             </div>
         {% endif %}
