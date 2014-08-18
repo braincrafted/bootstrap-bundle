@@ -48,11 +48,13 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
         $builder->shouldReceive('create')->with('prepend', m::any(), m::any())->andReturn($buttonBuilderPrepend);
         $builder->shouldReceive('create')->with('append', m::any(), m::any())->andReturn($buttonBuilderAppend);
+        $builder->shouldReceive('getName')->andReturn('input_name');
 
         $this->extension->buildForm($builder, $optionsBoth);
 
         $view = new FormView();
         $type = m::mock('Symfony\Component\Form\FormInterface');
+        $type->shouldReceive('getName')->andReturn('input_name');
 
         $this->extension->buildView($view, $type, array());
 
@@ -68,14 +70,17 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildForm($options)
     {
+        $button = m::mock('\Symfony\Component\Form\ButtonBuilder');
+
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
+        $builder->shouldReceive('getName')->andReturn('input_name');
 
         if (isset($options['attr']['input_group']['button_prepend'])) {
-            $builder->shouldReceive('create')->with('prepend', 'submit', array())->once();
+            $builder->shouldReceive('create')->with('prepend', 'submit', array())->andReturn($button)->once();
         }
 
         if (isset($options['attr']['input_group']['button_append'])) {
-            $builder->shouldReceive('create')->with('append', 'submit', array())->once();
+            $builder->shouldReceive('create')->with('append', 'submit', array())->andReturn($button)->once();
         }
 
         $this->extension->buildForm($builder, $options);

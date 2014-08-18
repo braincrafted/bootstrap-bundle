@@ -8,17 +8,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+/**
+ * Class InputGroupButtonExtension
+ *
+ * Handles prepended and appended buttons to input fields.
+ * Buttons are created and stored during the BuildForm phase and rendered during the buildView Phase.
+ *
+ * Known issues:
+ * - since at build time the form parent is unavailable, two forms with fields of the same name, with buttons attached
+ * may cause conflict.
+ *
+ * @package Braincrafted\Bundle\BootstrapBundle\Form\Extension
+ */
 class InputGroupButtonExtension extends AbstractTypeExtension
 {
     /**
-     * @var ButtonBuilder
+     * @var array
      */
-    protected $prependedButtonBuilder;
-
-    /**
-     * @var ButtonBuilder
-     */
-    protected $appendedButtonBuilder;
+    protected $buttons = array();
 
     /**
      * Returns the name of the type being extended.
@@ -35,12 +42,19 @@ class InputGroupButtonExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if ($this->prependedButtonBuilder !== null) {
-            $view->vars['input_group_button_prepend'] = $this->prependedButtonBuilder->getForm()->createView();
+
+        if (!isset($this->buttons[$form->getName()])) {
+            return;
         }
 
-        if ($this->appendedButtonBuilder !== null) {
-            $view->vars['input_group_button_append'] = $this->appendedButtonBuilder->getForm()->createView();
+        $storedButtons = $this->buttons[$form->getName()];
+
+        if (isset($storedButtons['prepend']) && $storedButtons['prepend'] !== null) {
+            $view->vars['input_group_button_prepend'] = $storedButtons['prepend']->getForm()->createView();
+        }
+
+        if (isset($storedButtons['append']) && $storedButtons['append'] !== null) {
+            $view->vars['input_group_button_append'] = $storedButtons['append']->getForm()->createView();
         }
     }
 
@@ -54,20 +68,26 @@ class InputGroupButtonExtension extends AbstractTypeExtension
         }
 
         if (isset($options['attr']['input_group']['button_prepend'])) {
-            $this->prependedButtonBuilder = $this->addButton(
+            $this->storeButton(
+                $this->addButton(
+                    $builder,
+                    $options['attr']['input_group']['button_prepend']
+                ),
                 $builder,
-                $options['attr']['input_group']['button_prepend']
+                'prepend'
             );
         }
-
 
         if (isset($options['attr']['input_group']['button_append'])) {
-            $this->appendedButtonBuilder = $this->addButton(
+            $this->storeButton(
+                $this->addButton(
+                    $builder,
+                    $options['attr']['input_group']['button_append']
+                ),
                 $builder,
-                $options['attr']['input_group']['button_append']
+                'append'
             );
         }
-
     }
 
     /**
@@ -77,9 +97,25 @@ class InputGroupButtonExtension extends AbstractTypeExtension
      * @param array $config
      * @return ButtonBuilder
      */
-    protected function addButton($builder, $config)
+    protected function addButton(FormBuilderInterface $builder, $config)
     {
         $options = (isset($config['options']))? $config['options'] : array();
         return $builder->create($config['name'], $config['type'], $options);
+    }
+
+    /**
+     * Stores a button for later rendering
+     *
+     * @param ButtonBuilder $buttonBuilder
+     * @param FormBuilderInterface $form
+     * @param string $position
+     */
+    protected function storeButton(ButtonBuilder $buttonBuilder, FormBuilderInterface $form, $position)
+    {
+        if (!isset($this->buttons[$form->getName()])) {
+            $this->buttons[$form->getName()] = array();
+        }
+
+        $this->buttons[$form->getName()][$position] = $buttonBuilder;
     }
 }
