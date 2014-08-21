@@ -98,6 +98,31 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
+### Version 2.1.0-beta2 (21 August 2014)
+
+- [#237](https://github.com/braincrafted/bootstrap-bundle/issues/237) Pass `label_attr` to `checkbox_row` and `radio_row` in `choice_widget_expanded` (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#241](https://github.com/braincrafted/bootstrap-bundle/pull/241) Remove wrong button spacing when collection is empty (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#241](https://github.com/braincrafted/bootstrap-bundle/issues/242) Make `web` directory configurable in `install` command (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#245](https://github.com/braincrafted/bootstrap-bundle/issues/245) Add support for `symfony-bin-dir` (by [nifr](https://github.com/nifr))
+- [#249](https://github.com/braincrafted/bootstrap-bundle/pull/249) Add `nav` class based on depth (by [bkosborne](https://github.com/bkosborne))
+- [#251](https://github.com/braincrafted/bootstrap-bundle/pull/251) Add support for static form controls (by [bdm-benzor](https://github.com/bdm-benzor))
+- [#252](https://github.com/braincrafted/bootstrap-bundle/pull/252) Fix behaviour when `label = false` (by [rdohms](https://github.com/rdohms))
+- [#254](https://github.com/braincrafted/bootstrap-bundle/pull/254) Remove whitespace in menu root block (by [dirkluijk](https://github.com/dirkluijk))
+- [#260](https://github.com/braincrafted/bootstrap-bundle/pull/260) Updated default jQuery path (by [sprankhub](https://github.com/sprankhub))
+- [#263](https://github.com/braincrafted/bootstrap-bundle/pull/264) Fixed global error CSS class (by [althaus](https://github.com/althaus))
+- [#266](https://github.com/braincrafted/bootstrap-bundle/pull/266) Fix column size of label is `false` (by [jeroenvds](https://github.com/jeroenvds))
+- [#274](https://github.com/braincrafted/bootstrap-bundle/pull/274) Added missing space in `bootstrap-collection (by [bdm-benzor](https://github.com/bdm-benzor))
+- [#275](https://github.com/braincrafted/bootstrap-bundle/pull/275) Add help text to single checkbox and radio (by [bostaf](https://github.com/bostaf))
+- [#276](https://github.com/braincrafted/bootstrap-bundle/pull/276) Add support for `leafo/scssphp` (by [stefanosala](https://github.com/stefanosala))
+- [#279](https://github.com/braincrafted/bootstrap-bundle/issues/279) Do not render value in `file` widget (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#281](https://github.com/braincrafted/bootstrap-bundle/pull/281) Add additional CSS classes to icons (by [wodka](https://github.com/wodka))
+- [#283](https://github.com/braincrafted/bootstrap-bundle/pull/283) Make icon tag configurable (by [wodka](https://github.com/wodka))
+- [#286](https://github.com/braincrafted/bootstrap-bundle/pull/286) Add support for form actions (by [derpue](https://github.com/derpue))
+- [#287](https://github.com/braincrafted/bootstrap-bundle/pull/287) Add support for input group buttons (by [rdohms](https://github.com/rdohms))
+- [#289](https://github.com/braincrafted/bootstrap-bundle/pull/289) Removed trailing whitespace for checkbox and radio widget (by [morticue](https://github.com/morticue))
+- [#290](https://github.com/braincrafted/bootstrap-bundle/pull/290) Add form type for static control (by [derpue](https://github.com/derpue))
+
+
 ### Version 2.1.0-beta1 (29 May 2014)
 
 - [#238](https://github.com/braincrafted/bootstrap-bundle/pull/238) Add empty `value` field when `empty_value` is not null in choice field
