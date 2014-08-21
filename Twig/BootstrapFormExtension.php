@@ -19,7 +19,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 class BootstrapFormExtension extends \Twig_Extension
 {
     /** @var string */
-    private $style;
+    private $formStyle;
 
     /** @var string */
     private $colSize = 'lg';
@@ -39,8 +39,8 @@ class BootstrapFormExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('bootstrap_set_style', array($this, 'setStyle')),
-            new \Twig_SimpleFunction('bootstrap_get_style', array($this, 'getStyle')),
+            new \Twig_SimpleFunction('bootstrap_set_form_style', array($this, 'setFormStyle')),
+            new \Twig_SimpleFunction('bootstrap_get_form_style', array($this, 'getFormStyle')),
             new \Twig_SimpleFunction('bootstrap_set_col_size', array($this, 'setColSize')),
             new \Twig_SimpleFunction('bootstrap_get_col_size', array($this, 'getColSize')),
             new \Twig_SimpleFunction('bootstrap_set_widget_col', array($this, 'setWidgetCol')),
@@ -78,23 +78,23 @@ class BootstrapFormExtension extends \Twig_Extension
     }
 
     /**
-     * Sets the style.
+     * Sets the formStyle.
      *
-     * @param string $style Name of the style
+     * @param string $formStyle Name of the formStyle
      */
-    public function setStyle($style)
+    public function setFormStyle($formStyle)
     {
-        $this->style = $style;
+        $this->formStyle = $formStyle;
     }
 
     /**
-     * Returns the style.
+     * Returns the formStyle.
      *
      * @return string Name of the style
      */
-    public function getStyle()
+    public function getFormStyle()
     {
-        return $this->style;
+        return $this->formStyle;
     }
 
     /**
