@@ -179,9 +179,9 @@
         <div {{ block('widget_container_attributes') }}>
             {% for child in form %}
                 {% if form.multiple is defined %}
-                    {{ checkbox_row(child, { 'no_form_group': true, 'inline' : (attr.inline is defined and attr.inline) }) }}
+                    {{ checkbox_row(child, { 'no_form_group': true, 'inline' : (attr.inline is defined and attr.inline), 'label_attr': label_attr }) }}
                 {% else %}
-                    {{ radio_row(child, { 'no_form_group': true, 'inline' : (attr.inline is defined and attr.inline)  }) }}
+                    {{ radio_row(child, { 'no_form_group': true, 'inline' : (attr.inline is defined and attr.inline), 'label_attr': label_attr  }) }}
                 {% endif %}
             {% endfor %}
         </div>
@@ -269,7 +269,7 @@
             {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ block('checkbox_widget') }}
-            {{ label|trans({}, translation_domain)|raw }}
+            {{ label|trans({}, translation_domain)|raw -}}
             </label>
         {% else %}
             {{ block('checkbox_widget') }}
@@ -338,7 +338,7 @@
             {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ block('radio_widget') }}
-            {{ label|trans({}, translation_domain)|raw }}
+            {{ label|trans({}, translation_domain)|raw -}}
             </label>
         {% else %}
             {{ block('radio_widget') }}
@@ -502,11 +502,15 @@
             {% set label = name|humanize %}
         {% endif %}
         {% if type is defined and type == 'submit' %}
-            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-'~attr.type|default('primary'))|trim }) %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-'~button_class|default('primary'))|trim }) %}
         {% else %}
-            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-'~attr.type|default('default'))|trim }) %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-'~button_class|default('default'))|trim }) %}
         {% endif %}
-        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if attr.icon is defined and attr.icon != '' %}{{ icon(attr.icon) }}{% endif %}{{ label|trans({}, translation_domain) }}</button>
+        {% if as_link is defined and as_link == true %}
+            <a {{ block('button_attributes') }}>{% if attr.icon is defined and attr.icon != '' %}{{ icon(attr.icon) }}{% endif %}{{ label|trans({}, translation_domain) }}</a>
+        {% else %}
+            <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if attr.icon is defined and attr.icon != '' %}{{ icon(attr.icon) }}{% endif %}{{ label|trans({}, translation_domain) }}</button>
+        {% endif %}
     {% endspaceless %}
 {% endblock button_widget %}
 
@@ -894,9 +898,7 @@
     {% endspaceless %}
 {% endblock widget_container_attributes %}
 
-{% block button_attributes %}
-    {% spaceless %}
+{% block button_attributes -%}
         id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
-        {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
-    {% endspaceless %}
+        {%- for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
 {% endblock button_attributes %}
