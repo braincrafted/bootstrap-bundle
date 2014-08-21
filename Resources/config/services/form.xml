@@ -9,6 +9,7 @@
         <parameter key="braincrafted_bootstrap.form.type.form_actions.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.typesetter_extension.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.input_group_button.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension</parameter>
+        <parameter key="braincrafted_bootstrap.form.extension.field_opt.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\FieldOptExtension</parameter>
     </parameters>
 
     <services>
@@ -31,6 +32,10 @@
 
         <service id="braincrafted_bootstrap.form.extension.input_group_button" class="%braincrafted_bootstrap.form.extension.input_group_button.class%">
             <tag name="form.type_extension" alias="text" />
+        </service>
+
+        <service id="braincrafted_bootstrap.form.extension.field_opt" class="%braincrafted_bootstrap.form.extension.field_opt.class%">
+            <tag name="form.type_extension" alias="form" />
         </service>
 
     </services>
