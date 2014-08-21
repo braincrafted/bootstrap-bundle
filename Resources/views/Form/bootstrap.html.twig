@@ -269,7 +269,7 @@
             {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ block('checkbox_widget') }}
-            {{ label|trans({}, translation_domain)|raw }}
+            {{ label|trans({}, translation_domain)|raw -}}
             </label>
         {% else %}
             {{ block('checkbox_widget') }}
@@ -338,7 +338,7 @@
             {% endif %}
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{ block('radio_widget') }}
-            {{ label|trans({}, translation_domain)|raw }}
+            {{ label|trans({}, translation_domain)|raw -}}
             </label>
         {% else %}
             {{ block('radio_widget') }}
