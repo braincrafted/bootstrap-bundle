@@ -231,5 +231,3 @@ License
 - The CSS and Javascript files from Twitter Bootstrap are licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0) for all versions before 3.1
 - The CSS and Javascript files from Twitter Bootstrap are licensed under the [MIT License](http://opensource.org/licenses/MIT) for 3.1 and after
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/braincrafted/bootstrap-bundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
