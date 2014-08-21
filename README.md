@@ -82,7 +82,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
         <tr>
             <td><strong>v1.5.*</strong></td>
             <td>v2.2.*</td>
-            <td>v2.3.*</td>
+            <td>v3.0.* (very basic)</td>
             <td>v1.9.*</td>
         </tr>
         <tr>
