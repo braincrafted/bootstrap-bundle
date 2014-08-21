@@ -9,8 +9,7 @@ php:
   - hhvm
 
 before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar --prefer-source --dev install
+  - composer --prefer-source install
   - cp phpunit.xml.dist phpunit.xml
 
 script:
