@@ -39,7 +39,18 @@ class BootstrapExtension extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(['bootstrap' => []]);
+        $resolver->setDefaults(['bootstrap' => [
+            'form_style'        => null,
+            'widget_col'        => 10,
+            'label_col'         => 2,
+            'col_size'          => 'lg',
+            'simple_col'        => false,
+            'inline'            => false,
+            'align_with_widget' => true,
+            'icon'              => null,
+            'input_group'       => null,
+            'help_text'         => null,
+        ]]);
     }
 
     /**

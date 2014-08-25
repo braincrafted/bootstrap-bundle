@@ -8,11 +8,11 @@
         {
             "name":     "Florian Eckerstorfer",
             "email":    "florian@eckerstorfer.co",
-            "homepage": "http://florian.ec"
+            "homepage": "https://florian.ec"
         }
     ],
     "require":      {
-        "php":                      ">=5.3.3",
+        "php":                      ">=5.5",
         "symfony/framework-bundle": "~2.3",
         "symfony/twig-bundle":      "~2.3",
         "symfony/form":             "~2.3",

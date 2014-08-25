@@ -25,10 +25,10 @@ class BootstrapFormExtension extends \Twig_Extension
     private $colSize = 'lg';
 
     /** @var integer */
-    private $widgetCol = 10;
+    private $widgetCol;
 
     /** @var integer */
-    private $labelCol = 2;
+    private $labelCol;
 
     /** @var integer */
     private $simpleCol = false;

@@ -20,14 +20,14 @@
         {% if simple_col is not defined and bootstrap_get_simple_col() %}
             {% set simple_col = bootstrap_get_simple_col() %}
         {% endif %}
-        {% if opt.simple_col is defined and opt.simple_col is not empty %}
-            {% set simple_col = opt.simple_col %}
+        {% if bootstrap.simple_col is defined and bootstrap.simple_col is not empty %}
+            {% set simple_col = bootstrap.simple_col %}
         {% endif  %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
-        {% if opt.form_style is defined and opt.form_style is not empty %}
-            {% set form_style = opt.form_style %}
+        {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
+            {% set form_style = bootstrap.form_style %}
         {% endif %}
 
         {% if simple_col is defined and simple_col %}
@@ -123,11 +123,11 @@
     {% spaceless %}
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.simple_col is defined and opt.simple_col is not empty %}
-            {% set simple_col = opt.simple_col %}
+        {% if bootstrap.simple_col is defined and bootstrap.simple_col is not empty %}
+            {% set simple_col = bootstrap.simple_col %}
         {% endif  %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
 
         {% if simple_col is defined %}
@@ -148,12 +148,12 @@
     {% spaceless %}
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.simple_col is defined and opt.simple_col is not empty %}
-            {% set simple_col = opt.simple_col %}
+        {% if bootstrap.simple_col is defined and bootstrap.simple_col is not empty %}
+            {% set simple_col = bootstrap.simple_col %}
         {% endif  %}
 
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
 
         {% if simple_col is defined %}
@@ -183,9 +183,9 @@
         <div {{ block('widget_container_attributes') }}>
             {% for child in form %}
                 {% if form.multiple is defined %}
-                    {{ checkbox_row(child, { 'no_form_group': true, 'inline' : (opt.inline is defined and opt.inline), 'label_attr': label_attr }) }}
+                    {{ checkbox_row(child, { 'no_form_group': true, 'inline' : (bootstrap.inline is defined and bootstrap.inline), 'label_attr': label_attr }) }}
                 {% else %}
-                    {{ radio_row(child, { 'no_form_group': true, 'inline' : (opt.inline is defined and opt.inline), 'label_attr': label_attr  }) }}
+                    {{ radio_row(child, { 'no_form_group': true, 'inline' : (bootstrap.inline is defined and bootstrap.inline), 'label_attr': label_attr  }) }}
                 {% endif %}
             {% endfor %}
         </div>
@@ -233,21 +233,21 @@
         {% set form_style = form_style|default(bootstrap_get_form_style()) %}
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.label_col is defined and opt.label_col is not empty %}
-            {% set label_col = opt.label_col %}
+        {% if bootstrap.label_col is defined and bootstrap.label_col is not empty %}
+            {% set label_col = bootstrap.label_col %}
         {% endif %}
-        {% if opt.widget_col is defined and opt.widget_col is not empty %}
-            {% set widget_col = opt.widget_col %}
+        {% if bootstrap.widget_col is defined and bootstrap.widget_col is not empty %}
+            {% set widget_col = bootstrap.widget_col %}
         {% endif %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
-        {% if opt.form_style is defined and opt.form_style is not empty %}
-            {% set form_style = opt.form_style %}
+        {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
+            {% set form_style = bootstrap.form_style %}
         {% endif %}
 
         {% set class = '' %}
-        {% if align_with_widget is defined or opt.align_with_widget is defined %}
+        {% if align_with_widget is defined or bootstrap.align_with_widget is defined %}
             {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
             {% set label_col = label_col|default(bootstrap_get_label_col()) %}
             {% set class = 'col-' ~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
@@ -289,7 +289,7 @@
 
         {{ block('form_help') }}
 
-        {% if align_with_widget is defined or opt.align_with_widget is defined %}
+        {% if align_with_widget is defined or bootstrap.align_with_widget is defined %}
             </div>
             </div>
         {% elseif no_form_group is not defined or no_form_group == false %}
@@ -306,17 +306,17 @@
 
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.label_col is defined and opt.label_col is not empty %}
-            {% set label_col = opt.label_col %}
+        {% if bootstrap.label_col is defined and bootstrap.label_col is not empty %}
+            {% set label_col = bootstrap.label_col %}
         {% endif %}
-        {% if opt.widget_col is defined and opt.widget_col is not empty %}
-            {% set widget_col = opt.widget_col %}
+        {% if bootstrap.widget_col is defined and bootstrap.widget_col is not empty %}
+            {% set widget_col = bootstrap.widget_col %}
         {% endif %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
 
-        {% if align_with_widget is defined or opt.align_with_widget is defined %}
+        {% if align_with_widget is defined or bootstrap.align_with_widget is defined %}
             {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
             {% set label_col = label_col|default(bootstrap_get_label_col()) %}
             {% set class = ' col-'~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
@@ -358,7 +358,7 @@
 
         {{ block('form_help') }}
 
-        {% if align_with_widget is defined or opt.align_with_widget is defined %}
+        {% if align_with_widget is defined or bootstrap.align_with_widget is defined %}
             </div>
             </div>
         {% elseif no_form_group is not defined or no_form_group == false %}
@@ -512,15 +512,15 @@
         {% endif %}
         {% if as_link is defined and as_link == true %}
             <a {{ block('button_attributes') }}>
-                {% if opt.icon is defined and opt.icon != '' %}
-                    {{ icon(opt.icon) }}
+                {% if bootstrap.icon is defined and bootstrap.icon != '' %}
+                    {{ icon(bootstrap.icon) }}
                 {% endif %}
                 {{ label|trans({}, translation_domain) }}
             </a>
         {% else %}
             <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-                {% if opt.icon is defined and opt.icon != '' %}
-                    {{ icon(opt.icon) }}
+                {% if bootstrap.icon is defined and bootstrap.icon != '' %}
+                    {{ icon(bootstrap.icon) }}
                 {% endif %}
                 {{ label|trans({}, translation_domain) }}
             </button>
@@ -559,22 +559,22 @@
     {% spaceless %}
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.label_col is defined and opt.label_col is not empty %}
-            {% set label_col = opt.label_col %}
+        {% if bootstrap.label_col is defined and bootstrap.label_col is not empty %}
+            {% set label_col = bootstrap.label_col %}
         {% endif %}
-        {% if opt.widget_col is defined and opt.widget_col is not empty %}
-            {% set widget_col = opt.widget_col %}
+        {% if bootstrap.widget_col is defined and bootstrap.widget_col is not empty %}
+            {% set widget_col = bootstrap.widget_col %}
         {% endif %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
 
         {% if label is not sameas(false) %}
             {% set form_style = form_style|default(bootstrap_get_form_style()) %}
             {% set label_col = label_col|default(bootstrap_get_label_col()) %}
 
-            {% if opt.form_style is defined and opt.form_style is not empty %}
-                {% set form_style = opt.form_style %}
+            {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
+                {% set form_style = bootstrap.form_style %}
             {% endif %}
 
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label')|trim }) %}
@@ -617,20 +617,20 @@
         {% set form_style = form_style|default(bootstrap_get_form_style()) %}
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.label_col is defined and opt.label_col is not empty %}
-            {% set label_col = opt.label_col %}
+        {% if bootstrap.label_col is defined and bootstrap.label_col is not empty %}
+            {% set label_col = bootstrap.label_col %}
         {% endif %}
-        {% if opt.widget_col is defined and opt.widget_col is not empty %}
-            {% set widget_col = opt.widget_col %}
+        {% if bootstrap.widget_col is defined and bootstrap.widget_col is not empty %}
+            {% set widget_col = bootstrap.widget_col %}
             {% if label is sameas(false) and label_col is defined %}
                 {% set widget_col = widget_col + label_col %}
             {% endif %}
         {% endif %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
-        {% if opt.form_style is defined and opt.form_style is not empty %}
-            {% set form_style = opt.form_style %}
+        {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
+            {% set form_style = bootstrap.form_style %}
         {% endif %}
 
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
@@ -658,8 +658,8 @@
 
 {% block form_input_group %}
     {% spaceless %}
-        {% if opt.input_group is defined and opt.input_group is not empty %}
-            {% set input_group = opt.input_group %}
+        {% if bootstrap.input_group is defined and bootstrap.input_group is not empty %}
+            {% set input_group = bootstrap.input_group %}
         {% endif %}
         {% set input_group = input_group|default({}) %}
         {% if input_group is not empty %}
@@ -693,8 +693,8 @@
 
 {% block form_help %}
     {% spaceless %}
-        {% if opt.help_text is defined and opt.help_text is not empty %}
-            {% set help_text = opt.help_text %}
+        {% if bootstrap.help_text is defined and bootstrap.help_text is not empty %}
+            {% set help_text = bootstrap.help_text %}
         {% endif %}
         {% set help_text = help_text|default('') %}
         {% if help_text is not empty %}
@@ -708,17 +708,17 @@
         {% set form_style = form_style|default(bootstrap_get_form_style()) %}
         {% set col_size = col_size|default(bootstrap_get_col_size()) %}
 
-        {% if opt.label_col is defined and opt.label_col is not empty %}
-            {% set label_col = opt.label_col %}
+        {% if bootstrap.label_col is defined and bootstrap.label_col is not empty %}
+            {% set label_col = bootstrap.label_col %}
         {% endif %}
-        {% if opt.widget_col is defined and opt.widget_col is not empty %}
-            {% set widget_col = opt.widget_col %}
+        {% if bootstrap.widget_col is defined and bootstrap.widget_col is not empty %}
+            {% set widget_col = bootstrap.widget_col %}
         {% endif %}
-        {% if opt.col_size is defined and opt.col_size is not empty %}
-            {% set col_size = opt.col_size %}
+        {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
+            {% set col_size = bootstrap.col_size %}
         {% endif %}
-        {% if opt.form_style is defined and opt.form_style is not empty %}
-            {% set form_style = opt.form_style %}
+        {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
+            {% set form_style = bootstrap.form_style %}
         {% endif %}
 
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
@@ -843,8 +843,8 @@
         {% set global_errors = global_errors|default(false) %}
         {% set form_style = form_style|default(bootstrap_get_form_style()) %}
 
-        {% if opt.form_style is defined and opt.form_style is not empty %}
-            {% set form_style = opt.form_style %}
+        {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
+            {% set form_style = bootstrap.form_style %}
         {% endif %}
 
         {% if errors|length > 0 %}
@@ -879,20 +879,20 @@
     {% spaceless %}
         {% for child in form %}
             {% set childAttr = {} %}
-            {% if opt.col_size is defined %}
-                {% set childAttr = childAttr|merge({ 'col_size': opt.col_size }) %}
+            {% if bootstrap.col_size is defined %}
+                {% set childAttr = childAttr|merge({ 'col_size': bootstrap.col_size }) %}
             {% endif %}
-            {% if opt.widget_col is defined %}
-                {% set childAttr = childAttr|merge({ 'widget_col': opt.widget_col }) %}
+            {% if bootstrap.widget_col is defined %}
+                {% set childAttr = childAttr|merge({ 'widget_col': bootstrap.widget_col }) %}
             {% endif %}
-            {% if opt.label_col is defined %}
-                {% set childAttr = childAttr|merge({ 'label_col': opt.label_col }) %}
+            {% if bootstrap.label_col is defined %}
+                {% set childAttr = childAttr|merge({ 'label_col': bootstrap.label_col }) %}
             {% endif %}
-            {% if opt.simple_col is defined %}
-                {% set childAttr = childAttr|merge({ 'simple_col': opt.simple_col }) %}
+            {% if bootstrap.simple_col is defined %}
+                {% set childAttr = childAttr|merge({ 'simple_col': bootstrap.simple_col }) %}
             {% endif %}
-            {% if opt.form_style is defined %}
-                {% set childAttr = childAttr|merge({ 'form_style': opt.form_style }) %}
+            {% if bootstrap.form_style is defined %}
+                {% set childAttr = childAttr|merge({ 'form_style': bootstrap.form_style }) %}
             {% endif %}
             {{ form_row(child, childAttr) }}
         {% endfor %}
@@ -908,8 +908,8 @@
 
 {% block widget_container_attributes %}
     {% spaceless %}
-        {% if opt.form_style is defined and (opt.form_style == 'inline' or opt.form_style == 'horizontal') %}
-            {% set attr = attr|merge({ 'class': ('form-'~opt.form_style~' '~attr.class|default(''))|trim }) %}
+        {% if bootstrap.form_style is defined and (bootstrap.form_style == 'inline' or bootstrap.form_style == 'horizontal') %}
+            {% set attr = attr|merge({ 'class': ('form-'~bootstrap.form_style~' '~attr.class|default(''))|trim }) %}
             {% set attr = attr|merge({ 'form_style': null }) %}
         {% endif %}
         {% if id is not empty %}id="{{ id }}" {% endif %}
