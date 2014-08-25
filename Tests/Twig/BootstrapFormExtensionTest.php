@@ -48,13 +48,13 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setStyle()
-     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getStyle()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::setFormStyle()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::getFormStyle()
      */
     public function testSetStyleGetStyle()
     {
-        $this->extension->setStyle('inline');
-        $this->assertEquals('inline', $this->extension->getStyle());
+        $this->extension->setFormStyle('inline');
+        $this->assertEquals('inline', $this->extension->getFormStyle());
     }
 
     /**
