@@ -26,7 +26,7 @@ First you need to add `braincrafted/bootstrap-bundle` to `composer.json`:
 }
 ```
 
-Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `2.0.*`.
+Please note that `dev-master` points to the latest release. If you want to use the latest development version please use `dev-develop`. Of course you can also use an explicit version number, e.g., `2.1.*`.
 
 You also have to add `BraincraftedBootstrapBundle` to your `AppKernel.php`:
 
@@ -91,12 +91,22 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
             <td>v3.0.*<br>v3.1.*</td>
             <td>v1.10.*<br>v1.11.*</td>
         </tr>
+        <tr>
+            <td><strong>v2.1.*</strong></td>
+            <td>v2.3.*<br>v2.4.*<br>v2.5.*</td>
+            <td>v3.0.*<br>v3.1.*<br>v3.2.*<br>sass v3.2.*</td>
+            <td>v1.10.*<br>v1.11.*</td>
+        </tr>
     </tbody>
 </table>
 
 
 Changelog
 ---------
+
+### Version 2.1.0 (31 August 2014)
+
+- [#298](https://github.com/braincrafted/bootstrap-bundle/pull/298) Fixed path to assets dir in bootstrap-sass v3.2 (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
 
 ### Version 2.1.0-beta2 (21 August 2014)
 
