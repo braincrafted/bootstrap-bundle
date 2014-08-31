@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
     const DEFAULT_ASSETS_DIR = '%kernel.root_dir%/../vendor/twbs/bootstrap';
 
     /** @var string */
-    const DEFAULT_ASSETS_DIR_SASS = '%kernel.root_dir%/../vendor/twbs/bootstrap-sass/vendor/assets';
+    const DEFAULT_ASSETS_DIR_SASS = '%kernel.root_dir%/../vendor/twbs/bootstrap-sass/assets';
 
     /** @var string */
     const DEFAULT_FONTAWESOME_DIR = '%kernel.root_dir%/../vendor/fortawesome/font-awesome';
