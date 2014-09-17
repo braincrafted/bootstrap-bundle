@@ -13,6 +13,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 use Braincrafted\Bundle\BootstrapBundle\Command\GenerateCommand;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * GenerateCommandTest
@@ -65,6 +67,10 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
             ));
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.less_filter')->andReturn('less');
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.assets_dir')->andReturn(__DIR__);
+        if (Kernel::VERSION_ID >= 20500) {
+            $this->container->shouldReceive('enterScope')->with('request');
+            $this->container->shouldReceive('set')->withArgs(array('request', new Request(), 'request'));
+        }
 
         $this->twig
             ->shouldReceive('render')
