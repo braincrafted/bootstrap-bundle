@@ -13,6 +13,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Braincrafted\Bundle\BootstrapBundle\Util\PathUtil;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * GenerateCommand
@@ -100,8 +102,15 @@ class GenerateCommand extends ContainerAwareCommand
             basename($config['variables_file'])
         );
 
+        $container = $this->getContainer();
+
+        if (Kernel::VERSION_ID >= 20500) {
+            $container->enterScope('request');
+            $container->set('request', new Request(), 'request');
+        }
+
         // We can now use Twig to render the bootstrap.less file and save it
-        $content = $this->getContainer()->get('twig')->render(
+        $content = $container->get('twig')->render(
             $config['bootstrap_template'],
             array(
                 'variables_file' => $variablesFile,

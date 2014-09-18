@@ -13,6 +13,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 use Braincrafted\Bundle\BootstrapBundle\Command\GenerateCommand;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * GenerateCommandTest
@@ -28,6 +31,21 @@ use Braincrafted\Bundle\BootstrapBundle\Command\GenerateCommand;
  */
 class GenerateCommandTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var m\Mock|\Twig_Environment
+     */
+    private $twig;
+
+    /**
+     * @var m\Mock|ContainerInterface
+     */
+    private $container;
+
+    /**
+     * @var m\Mock|KernelInterface
+     */
+    private $kernel;
+
     public function setUp()
     {
         $this->twig = m::mock('\Twig_Environment');
@@ -65,6 +83,17 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
             ));
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.less_filter')->andReturn('less');
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.assets_dir')->andReturn(__DIR__);
+
+        if (Kernel::VERSION_ID >= 20500) {
+            $this->container->shouldReceive('enterScope')->with('request');
+            $this->container->shouldReceive('set')->withArgs(
+                array(
+                    'request',
+                    \Mockery::type('Symfony\Component\HttpFoundation\Request'),
+                    'request'
+                )
+            );
+        }
 
         $this->twig
             ->shouldReceive('render')
