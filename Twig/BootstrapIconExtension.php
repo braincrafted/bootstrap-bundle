@@ -23,6 +23,18 @@ use Twig_Function_Method;
 class BootstrapIconExtension extends Twig_Extension
 {
     /**
+     * @var string
+     */
+    private $iconPrefix;
+    private $iconTag;
+
+    public function __construct($iconPrefix, $iconTag='span')
+    {
+        $this->iconPrefix = $iconPrefix;
+        $this->iconTag = $iconTag;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getFilters()
@@ -61,7 +73,7 @@ class BootstrapIconExtension extends Twig_Extension
     {
         $that = $this;
         return preg_replace_callback(
-            '/\.icon-([a-z0-9-]+)/',
+            '/\.icon-([a-z0-9+-]+)/',
             function ($matches) use ($that) {
                 return $that->iconFunction($matches[1]);
             },
@@ -78,7 +90,9 @@ class BootstrapIconExtension extends Twig_Extension
      */
     public function iconFunction($icon)
     {
-        return sprintf('<span class="glyphicon glyphicon-%s"></span>', $icon);
+        $icon = str_replace('+', ' '.$this->iconPrefix.'-', $icon);
+        
+        return sprintf('<%1$s class="%2$s %2$s-%3$s"></%1$s>', $this->iconTag, $this->iconPrefix, $icon);
     }
 
     /**

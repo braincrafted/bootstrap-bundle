@@ -42,8 +42,8 @@ class InstallCommand extends ContainerAwareCommand
         if (false === file_exists($srcDir)) {
             $output->writeln(sprintf(
                 '<error>Fonts directory "%s" does not exist. Did you install twbs/bootstrap? '.
-                'If you used something other than Compoer you need to manually change the path in '.
-                '"braincrafted_bootstrap.assets_dir".</error>',
+                'If you used something other than Composer you need to manually change the path in '.
+                '"braincrafted_bootstrap.assets_dir". If you want to use Font Awesome you need to install the font and change the option "braincrafted_bootstrap.fontawesome_dir".</error>',
                 $srcDir
             ));
 
@@ -61,7 +61,7 @@ class InstallCommand extends ContainerAwareCommand
             }
         }
 
-        $output->writeln(sprintf('Copied Glyphicon fonts to <comment>%s</comment>.', $destDir));
+        $output->writeln(sprintf('Copied icon fonts to <comment>%s</comment>.', $destDir));
     }
 
     /**
@@ -69,7 +69,20 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getSrcDir()
     {
-        return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'));
+        if ('fa' === $this->getContainer()->getParameter('braincrafted_bootstrap.icon_prefix')) {
+            return sprintf('%s/fonts', $this->getContainer()->getParameter('braincrafted_bootstrap.fontawesome_dir'));
+        }
+
+        return sprintf(
+            '%s/%s',
+            $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir'),
+            (
+                // Sass version stores fonts in a different directory
+                in_array($this->getContainer()->getParameter('braincrafted_bootstrap.less_filter'), array('sass', 'scssphp')) ?
+                'fonts/bootstrap' :
+                'fonts'
+            )
+        );
     }
 
     /**
@@ -77,15 +90,6 @@ class InstallCommand extends ContainerAwareCommand
      */
     protected function getDestDir()
     {
-        $outputDir = $this->getContainer()->getParameter('braincrafted_bootstrap.output_dir');
-        if (strlen($outputDir) > 0 && '/' !== substr($outputDir, -1)) {
-            $outputDir .= '/';
-        }
-
-        return sprintf(
-            '%s/../web/%sfonts',
-            $this->getContainer()->getParameter('kernel.root_dir'),
-            $outputDir
-        );
+        return $this->getContainer()->getParameter('braincrafted_bootstrap.fonts_dir');
     }
 }

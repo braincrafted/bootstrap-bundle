@@ -56,15 +56,54 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn(__DIR__.'/fixtures/app');
-        $this->container
-            ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.assets_dir')
             ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('glyphicon');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
+            ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn(__DIR__.'/fixtures/web/fonts');
+
+        // mock the Kernel or create one depending on your needs
+        $application = new Application($this->kernel);
+        $application->add(new InstallCommand());
+
+        $command = $application->find('braincrafted:bootstrap:install');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute(array('command' => $command->getName()));
+
+        $this->assertRegExp('/Copied icon fonts/', $commandTester->getDisplay());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::execute()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::getSrcDir()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand::getDestDir()
+     */
+    public function testExecuteFontAwesome()
+    {
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn(__DIR__.'/fixtures/web/fonts');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('fa');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.fontawesome_dir')
+            ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
@@ -75,7 +114,7 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
 
-        $this->assertRegExp('/Copied Glyphicon fonts/', $commandTester->getDisplay());
+        $this->assertRegExp('/Copied icon fonts/', $commandTester->getDisplay());
     }
 
     /**
@@ -87,15 +126,19 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn(__DIR__.'/fixtures/app');
-        $this->container
-            ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.assets_dir')
             ->andReturn(__DIR__.'/invalid');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn(__DIR__.'/fixtures/web/fonts');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('glyphicon');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
@@ -118,11 +161,15 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
     {
         $this->container
             ->shouldReceive('getParameter')
-            ->with('kernel.root_dir')
-            ->andReturn('/');
+            ->with('braincrafted_bootstrap.fonts_dir')
+            ->andReturn('/../fonts');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.output_dir')
+            ->with('braincrafted_bootstrap.icon_prefix')
+            ->andReturn('glyphicon');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.less_filter')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs

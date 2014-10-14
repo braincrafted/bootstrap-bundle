@@ -1,3 +1,5 @@
+{% extends 'knp_menu_base.html.twig' %}
+
 {% macro attributes(attributes) %}
 {% for name, value in attributes %}
     {%- if value is not none and value is not sameas(false) -%}
@@ -22,18 +24,19 @@
     {% set options = options|merge({'currentClass': 'active'}) %}
     {% set options = options|merge({'ancestorClass': 'active'}) %}
 {% endif %}
-
 {% set listAttributes = item.childrenAttributes %}
 {{ block('list') -}}
 {% endblock %}
 
 {% block list %}
 {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
-    {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' nav')|trim}) %}
+    {% set listAttributes = listAttributes|merge({'class': listAttributes.class|default('')|trim}) %}
 
     {% set listClass = '' %}
     {% if options.style is defined and options.style == 'tabs' %}
         {% set listClass = 'nav-tabs' %}
+    {% elseif options.style is defined and options.style == 'stacked-tabs' %}
+        {% set listClass = 'nav-tabs nav-stacked' %}
     {% elseif options.style is defined and options.style == 'justified-tabs' %}
         {% set listClass = 'nav-tabs nav-justified' %}
     {% elseif options.style is defined and options.style == 'pills' %}
@@ -55,6 +58,8 @@
     {% elseif options.pull is defined and options.pull == 'left' %}
         {% set listClass = (listClass|default('') ~ 'pull-left')|trim %}
     {% endif %}
+    
+    {% set listClass = (options.currentDepth == 0) ? listClass ~ ' nav' : listClass %}
 
     {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 

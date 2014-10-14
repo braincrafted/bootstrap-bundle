@@ -42,7 +42,9 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $config = $this->processSassConfiguration(
+            $this->processConfiguration($configuration, $configs)
+        );
 
         $loader = new Loader\XmlFileLoader(
             $container,
@@ -56,8 +58,12 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
             $container->setParameter('braincrafted_bootstrap.customize', $config['customize']);
         }
         $container->setParameter('braincrafted_bootstrap.assets_dir', $config['assets_dir']);
+        $container->setParameter('braincrafted_bootstrap.fontawesome_dir', $config['fontawesome_dir']);
+        $container->setParameter('braincrafted_bootstrap.fonts_dir', $config['fonts_dir']);
         $container->setParameter('braincrafted_bootstrap.output_dir', $config['output_dir']);
         $container->setParameter('braincrafted_bootstrap.less_filter', $config['less_filter']);
+        $container->setParameter('braincrafted_bootstrap.icon_prefix', $config['icon_prefix']);
+        $container->setParameter('braincrafted_bootstrap.icon_tag', $config['icon_tag']);
     }
 
     /**
@@ -68,7 +74,9 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $bundles = $container->getParameter('kernel.bundles');
 
         $configs = $container->getExtensionConfig($this->getAlias());
-        $config = $this->processConfiguration(new Configuration(), $configs);
+        $config = $this->processSassConfiguration(
+            $this->processConfiguration(new Configuration(), $configs)
+        );
 
         // Configure Assetic if AsseticBundle is activated and the option
         // "braincrafted_bootstrap.auto_configure.assetic" is set to TRUE (default value).
@@ -97,6 +105,28 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
             true === $config['auto_configure']['knp_paginator']) {
             $this->configureKnpPaginatorBundle($container);
         }
+    }
+
+    /**
+     * @param array $config
+     *
+     * @return array
+     */
+    protected function processSassConfiguration(array $config)
+    {
+        if (in_array($config['less_filter'], array('sass', 'scssphp'))) {
+            if ($config['assets_dir'] === Configuration::DEFAULT_ASSETS_DIR) {
+                $config['assets_dir'] = Configuration::DEFAULT_ASSETS_DIR_SASS;
+            }
+            if ($config['customize']['bootstrap_output'] === Configuration::DEFAULT_BOOTSTRAP_OUTPUT) {
+                $config['customize']['bootstrap_output'] = Configuration::DEFAULT_BOOTSTRAP_OUTPUT_SASS;
+            }
+            if ($config['customize']['bootstrap_template'] === Configuration::DEFAULT_BOOTSTRAP_TEMPLATE) {
+                $config['customize']['bootstrap_template'] = Configuration::DEFAULT_BOOTSTRAP_TEMPLATE_SASS;
+            }
+        }
+
+        return $config;
     }
 
     /**
