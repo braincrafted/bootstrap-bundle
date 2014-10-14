@@ -50,6 +50,7 @@
         newWidget = newWidget.replace(/__id__/g, newName[1].replace(re, count));
         var newLi = $('<li></li>').html(newWidget);
         newLi.appendTo(list);
+        $this.trigger('bc-collection-field-added');
     };
 
     CollectionRemove.prototype.removeField = function (e) {
@@ -58,7 +59,8 @@
         ;
 
         e && e.preventDefault();
-
+        
+        $this.trigger('bc-collection-field-removed');
         var listElement = $this.closest('li').remove();
     }
 
