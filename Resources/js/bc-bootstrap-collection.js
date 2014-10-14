@@ -59,7 +59,7 @@
         ;
 
         e && e.preventDefault();
-        
+
         $this.trigger('bc-collection-field-removed');
         var listElement = $this.closest('li').remove();
     }
