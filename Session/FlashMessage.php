@@ -38,8 +38,6 @@ class FlashMessage
      * Sets an alert message.
      *
      * @param string $message The message
-     *
-     * @return void
      */
     public function alert($message)
     {
@@ -47,23 +45,29 @@ class FlashMessage
     }
 
     /**
-     * Sets an error message.
+     * Alias for `danger()`.
      *
      * @param string $message The message
-     *
-     * @return void
      */
     public function error($message)
     {
-        $this->session->getFlashBag()->add('error', $message);
+        $this->danger($message);
+    }
+
+    /**
+     * Sets a danger message.
+     *
+     * @param $message
+     */
+    public function danger($message)
+    {
+        $this->session->getFlashBag()->add('danger', $message);
     }
 
     /**
      * Sets an info message.
      *
      * @param string $message The message
-     *
-     * @return void
      */
     public function info($message)
     {
@@ -74,18 +78,14 @@ class FlashMessage
      * Sets a success message.
      *
      * @param string $message The message
-     *
-     * @return void
      */
     public function success($message)
     {
         $this->session->getFlashBag()->add('success', $message);
     }
-    
+
     /**
      * Resets the flash bag.
-     * 
-     *  @return void
      */
     public function reset()
     {
