@@ -12,7 +12,7 @@
     </div>
 {% endfor %}
 
-{% for flashMessage in app.session.flashbag.get('error') %}
+{% for flashMessage in app.session.flashbag.get('danger') %}
     <div class="alert alert-danger">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
         {{ flashMessage|trans({}, translation_domain) }}

@@ -13,10 +13,10 @@ use Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage;
  */
 class FlashMessageTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Symfony\Component\HttpFoundation\Session\SessionInterface */
+    /** @var \Symfony\Component\HttpFoundation\Session\SessionInterface|\Mockery\MockInterface */
     private $session;
 
-    /** @var \Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface */
+    /** @var \Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface|\Mockery\MockInterface */
     private $flashBag;
 
     /** @var FlashMessage */
@@ -61,10 +61,26 @@ class FlashMessageTest extends \PHPUnit_Framework_TestCase
     {
         $this->flashBag
             ->shouldReceive('add')
-            ->with('error', 'Foobar Error')
+            ->with('danger', 'Foobar Error')
             ->once();
 
         $this->flash->error('Foobar Error');
+    }
+
+    /**
+     * Tests the danger() method.
+     *
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::__construct()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage::danger()
+     */
+    public function testDanger()
+    {
+        $this->flashBag
+            ->shouldReceive('add')
+            ->with('danger', 'Foobar Error')
+            ->once();
+
+        $this->flash->danger('Foobar Error');
     }
 
     /**
