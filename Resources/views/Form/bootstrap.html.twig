@@ -748,6 +748,7 @@
 
 {% block form_start %}
     {% spaceless %}
+        {{ bootstrap_backup_form_settings() }}
         {% set method = method|upper %}
         {% if method in ["GET", "POST"] %}
             {% set form_method = method %}
@@ -812,6 +813,7 @@
         {% if bootstrap_get_simple_col() %}
             {{ bootstrap_set_simple_col(false) }}
         {% endif %}
+    {{ bootstrap_restore_form_settings() }}
     {% endspaceless %}
 {% endblock form_end %}
 

@@ -44,7 +44,7 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFunctions()
     {
-        $this->assertCount(14, $this->extension->getFunctions());
+        $this->assertCount(16, $this->extension->getFunctions());
     }
 
     /**
@@ -95,6 +95,41 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->extension->setSimpleCol(8);
         $this->assertEquals(8, $this->extension->getSimpleCol());
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::backupFormSettings()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapFormExtension::restoreFormSettings()
+     */
+    public function testBackupFormSettingsRestoreFormSettings()
+    {
+        $this->extension->setStyle('horizontal');
+        $this->extension->setColSize('sm');
+        $this->extension->setWidgetCol(1);
+        $this->extension->setLabelCol(2);
+        $this->extension->setSimpleCol(3);
+
+        $this->extension->backupFormSettings();
+
+        $this->extension->setStyle('inline');
+        $this->extension->setColSize('lg');
+        $this->extension->setWidgetCol(4);
+        $this->extension->setLabelCol(5);
+        $this->extension->setSimpleCol(6);
+
+        $this->extension->restoreFormSettings();
+
+        $this->assertEquals('horizontal', $this->extension->getStyle());
+        $this->assertEquals('sm', $this->extension->getColSize());
+        $this->assertEquals(1, $this->extension->getWidgetCol());
+        $this->assertEquals(2, $this->extension->getLabelCol());
+        $this->assertEquals(3, $this->extension->getSimpleCol());
+
+        try {
+            $this->extension->restoreFormSettings();
+            $this->fail('Expected UnderflowException not thrown');
+        } catch (\UnderflowException $e) {
+        }
     }
 
     /**
