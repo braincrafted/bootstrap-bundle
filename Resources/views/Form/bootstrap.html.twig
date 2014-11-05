@@ -660,7 +660,7 @@
             {% if input_group.size is defined and input_group.size == 'small' %}
                 {% set ig_size_class = ' input-group-sm' %}
             {% endif  %}
-            <div class="input-group{{ ig_size_class }}">
+            <label class="input-group{{ ig_size_class }}">
                 {% if input_group.prepend is defined and input_group.prepend is not empty %}
                     <span class="input-group-addon">{{ input_group.prepend|raw|parse_icons }}</span>
                 {% endif %}
@@ -674,7 +674,7 @@
                 {% if input_group.append is defined and input_group.append is not empty %}
                     <span class="input-group-addon">{{ input_group.append|raw|parse_icons }}</span>
                 {% endif %}
-            </div>
+            </label>
         {% else %}
             {{ form_widget(form) }}
         {% endif %}
