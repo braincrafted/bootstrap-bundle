@@ -569,7 +569,8 @@
 
             {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label')|trim }) %}
             {% if style == 'horizontal' %}
-                {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-' ~ col_size ~ '-' ~ label_col)|trim }) %}
+                {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' pull-right')|trim }) %}
+                {% set label_container_attr = { 'class': ('col-' ~ col_size ~ '-' ~ label_col) } %}
             {% elseif style == 'inline' %}
                 {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' sr-only')|trim }) %}
             {% endif %}
@@ -583,7 +584,14 @@
             {% if label is empty %}
                 {% set label = name|humanize %}
             {% endif %}
-            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain)|raw }}</label>
+
+            {% if label_container_attr is defined %}
+                <div{% for attrname, attrvalue in label_container_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {% endif %}
+                    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain)|raw }}</label>
+            {% if label_container_attr is defined %}
+                </div>
+            {% endif %}
         {% endif %}
     {% endspaceless %}
 {% endblock form_label %}
