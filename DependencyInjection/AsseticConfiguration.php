@@ -105,7 +105,7 @@ class AsseticConfiguration
      */
     protected function buildCssWithSass(array $config)
     {
-        $bootstrapFile = $config['assets_dir'].'/stylesheets/bootstrap.scss';
+        $bootstrapFile = $config['assets_dir'].'/stylesheets/_bootstrap.scss';
         if (true === isset($config['customize']['variables_file']) &&
             null !== $config['customize']['variables_file']) {
             $bootstrapFile = $config['customize']['bootstrap_output'];
