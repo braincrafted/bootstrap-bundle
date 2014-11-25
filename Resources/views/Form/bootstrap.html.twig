@@ -182,7 +182,7 @@
     {% spaceless %}
         <div {{ block('widget_container_attributes') }}>
             {% for child in form %}
-                {% if form.multiple is defined %}
+                {% if multiple %}
                     {{ checkbox_row(child, { 'no_form_group': true, 'inline' : (attr.inline is defined and attr.inline), 'label_attr': label_attr }) }}
                 {% else %}
                     {{ radio_row(child, { 'no_form_group': true, 'inline' : (attr.inline is defined and attr.inline), 'label_attr': label_attr  }) }}
