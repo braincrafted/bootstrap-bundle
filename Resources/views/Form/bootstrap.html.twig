@@ -517,13 +517,15 @@
 
 {% block button_widget %}
     {% spaceless %}
-        {% if label_format is defined and label_format is not empty and label is not sameas(false) %}
-            {% set label = label_format|replace({
-                '%name%': name,
-                '%id%': id,
-            }) %}
-        {% elseif label is empty and label is not sameas(false) %}
-            {% set label = name|humanize %}
+        {% if label is not sameas(false) %}
+            {% if label_format is defined and label_format is not empty %}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {% elseif label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
         {% endif %}
         {% if type is defined and type == 'submit' %}
             {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' btn btn-'~button_class|default('primary'))|trim }) %}
