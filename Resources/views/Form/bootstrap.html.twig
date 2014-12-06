@@ -23,9 +23,11 @@
         {% if bootstrap.simple_col is defined and bootstrap.simple_col is not empty %}
             {% set simple_col = bootstrap.simple_col %}
         {% endif  %}
+
         {% if bootstrap.col_size is defined and bootstrap.col_size is not empty %}
             {% set col_size = bootstrap.col_size %}
         {% endif %}
+
         {% if bootstrap.form_style is defined and bootstrap.form_style is not empty %}
             {% set form_style = bootstrap.form_style %}
         {% endif %}
@@ -765,29 +767,29 @@
             {% set form_method = "POST" %}
         {% endif %}
 
-        {% if form_style is defined %}
-            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-' ~ form_style)|trim }) %}
-            {{ bootstrap_set_form_style(form_style) }}
+        {% if bootstrap.form_style is defined %}
+            {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-' ~ bootstrap.form_style)|trim }) %}
+            {{ bootstrap_set_form_style(bootstrap.form_style) }}
         {% endif %}
 
         {% if form.vars.errors|length > 0 %}
             {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' has-global-errors')|trim }) %}
         {% endif %}
 
-        {% if col_size is defined %}
-            {{ bootstrap_set_col_size(col_size) }}
+        {% if bootstrap.col_size is defined %}
+            {{ bootstrap_set_col_size(bootstrap.col_size) }}
         {% endif %}
 
-        {% if widget_col is defined %}
-            {{ bootstrap_set_widget_col(widget_col) }}
+        {% if bootstrap.widget_col is defined %}
+            {{ bootstrap_set_widget_col(bootstrap.widget_col) }}
         {% endif %}
 
-        {% if label_col is defined %}
-            {{ bootstrap_set_label_col(label_col) }}
+        {% if bootstrap.label_col is defined %}
+            {{ bootstrap_set_label_col(bootstrap.label_col) }}
         {% endif %}
 
-        {% if simple_col is defined %}
-            {{ bootstrap_set_simple_col(simple_col) }}
+        {% if bootstrap.simple_col is defined %}
+            {{ bootstrap_set_simple_col(bootstrap.simple_col) }}
         {% endif %}
 
         {% if attr.role is not defined or attr.role is empty %}
