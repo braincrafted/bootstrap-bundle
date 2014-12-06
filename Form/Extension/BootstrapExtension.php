@@ -27,11 +27,27 @@ use Symfony\Component\Form\FormInterface;
 class BootstrapExtension extends AbstractTypeExtension
 {
     /**
+     * @var array
+     */
+    private $bootstrapDefault = [
+        'form_style'        => null,
+        'widget_col'        => 10,
+        'label_col'         => 2,
+        'col_size'          => 'lg',
+        'simple_col'        => false,
+        'inline'            => false,
+        'align_with_widget' => true,
+        'icon'              => null,
+        'input_group'       => null,
+        'help_text'         => null,
+    ];
+
+    /**
      * {@inheritDoc}
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['bootstrap'] = $form->getConfig()->getOption('bootstrap');
+        $view->vars['bootstrap'] = array_merge($this->bootstrapDefault, $form->getConfig()->getOption('bootstrap'));
     }
 
     /**
@@ -39,18 +55,7 @@ class BootstrapExtension extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(['bootstrap' => [
-            'form_style'        => null,
-            'widget_col'        => 10,
-            'label_col'         => 2,
-            'col_size'          => 'lg',
-            'simple_col'        => false,
-            'inline'            => false,
-            'align_with_widget' => true,
-            'icon'              => null,
-            'input_group'       => null,
-            'help_text'         => null,
-        ]]);
+        $resolver->setDefaults(['bootstrap' => $this->bootstrapDefault]);
     }
 
     /**
