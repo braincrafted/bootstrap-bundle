@@ -9,6 +9,16 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOException;
 
+/**
+ * InstallCommand
+ *
+ * @package    BraincraftedBootstrapBundle
+ * @subpackage Command
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2012-2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://bootstrap.braincrafted.com BraincraftedBootst
+ */
 class InstallCommand extends ContainerAwareCommand
 {
     /**
@@ -57,6 +67,7 @@ class InstallCommand extends ContainerAwareCommand
                 $fs->copy($file, $dest);
             } catch (IOException $e) {
                 $output->writeln(sprintf('<error>Could not copy %s</error>', $file->getBaseName()));
+
                 return;
             }
         }

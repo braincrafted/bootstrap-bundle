@@ -59,6 +59,7 @@ class PathUtil
                 }
             }
         }
+
         return implode('/', $relPath);
     }
 }

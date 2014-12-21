@@ -33,7 +33,7 @@ class ScriptHandler
     public static function install(CommandEvent $event)
     {
         $options = self::getOptions($event);
-        $consolePathOptionsKey = array_key_exists('symfony-bin-dir', $options) ? 'symfony-bin-dir' : 'symfony-app-dir'; 
+        $consolePathOptionsKey = array_key_exists('symfony-bin-dir', $options) ? 'symfony-bin-dir' : 'symfony-app-dir';
         $consolePath = $options[$consolePathOptionsKey];
 
         if (!is_dir($consolePath)) {

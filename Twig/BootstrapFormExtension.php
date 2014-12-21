@@ -135,7 +135,7 @@ class BootstrapFormExtension extends \Twig_Extension
     /**
      * Returns the number of columns of widgets.
      *
-     * @return integer Number of columns.
+     * @return integer Number of columns.Class
      */
     public function getWidgetCol()
     {
@@ -224,6 +224,12 @@ class BootstrapFormExtension extends \Twig_Extension
         $this->simpleCol = $settings['simpleCol'];
     }
 
+    /**
+     * @param string $label
+     * @param string $value
+     *
+     * @return string
+     */
     public function formControlStaticFunction($label, $value)
     {
         return  sprintf(

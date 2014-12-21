@@ -34,9 +34,9 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      *
-     * @param FormView $view
+     * @param FormView      $view
      * @param FormInterface $form
-     * @param array $options
+     * @param array         $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -51,8 +51,9 @@ class FormActionsType extends AbstractType
      * Adds a button
      *
      * @param FormBuilderInterface $builder
-     * @param $name
-     * @param $config
+     * @param string               $name
+     * @param array                $config
+     *
      * @throws \InvalidArgumentException
      * @return ButtonBuilder
      */
@@ -66,6 +67,7 @@ class FormActionsType extends AbstractType
      * Validates if child is a Button
      *
      * @param FormInterface $field
+     *
      * @throws \InvalidArgumentException
      */
     protected function validateButton(FormInterface $field)
