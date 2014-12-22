@@ -57,7 +57,7 @@ class FlashMessage
     /**
      * Sets a danger message.
      *
-     * @param $message
+     * @param string $message
      */
     public function danger($message)
     {

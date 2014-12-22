@@ -20,24 +20,31 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class FormStaticControlType extends AbstractType
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            #'mapped'         => false,
+            //'mapped'         => false,
             'required'       => false,
             'disabled'      => true,
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
         return 'text';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'bs_static';
     }
-
 }

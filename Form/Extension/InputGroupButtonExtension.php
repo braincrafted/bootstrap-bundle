@@ -94,21 +94,23 @@ class InputGroupButtonExtension extends AbstractTypeExtension
      * Adds a button
      *
      * @param FormBuilderInterface $builder
-     * @param array $config
+     * @param array                $config
+     *
      * @return ButtonBuilder
      */
     protected function addButton(FormBuilderInterface $builder, $config)
     {
         $options = (isset($config['options']))? $config['options'] : array();
+
         return $builder->create($config['name'], $config['type'], $options);
     }
 
     /**
      * Stores a button for later rendering
      *
-     * @param ButtonBuilder $buttonBuilder
+     * @param ButtonBuilder        $buttonBuilder
      * @param FormBuilderInterface $form
-     * @param string $position
+     * @param string               $position
      */
     protected function storeButton(ButtonBuilder $buttonBuilder, FormBuilderInterface $form, $position)
     {

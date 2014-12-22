@@ -26,9 +26,17 @@ class BootstrapIconExtension extends Twig_Extension
      * @var string
      */
     private $iconPrefix;
+
+    /**
+     * @var string
+     */
     private $iconTag;
 
-    public function __construct($iconPrefix, $iconTag='span')
+    /**
+     * @param string $iconPrefix
+     * @param string $iconTag
+     */
+    public function __construct($iconPrefix, $iconTag = 'span')
     {
         $this->iconPrefix = $iconPrefix;
         $this->iconTag = $iconTag;
@@ -65,13 +73,14 @@ class BootstrapIconExtension extends Twig_Extension
     /**
      * Parses the given string and replaces all occurrences of .icon-[name] with the corresponding icon.
      *
-     * @param string $text  The text to parse
+     * @param string $text The text to parse
      *
      * @return string The HTML code with the icons
      */
     public function parseIconsFilter($text)
     {
         $that = $this;
+
         return preg_replace_callback(
             '/\.icon-([a-z0-9+-]+)/',
             function ($matches) use ($that) {
@@ -84,14 +93,14 @@ class BootstrapIconExtension extends Twig_Extension
     /**
      * Returns the HTML code for the given icon.
      *
-     * @param string $icon  The name of the icon
+     * @param string $icon The name of the icon
      *
      * @return string The HTML code for the icon
      */
     public function iconFunction($icon)
     {
         $icon = str_replace('+', ' '.$this->iconPrefix.'-', $icon);
-        
+
         return sprintf('<%1$s class="%2$s %2$s-%3$s"></%1$s>', $this->iconTag, $this->iconPrefix, $icon);
     }
 
