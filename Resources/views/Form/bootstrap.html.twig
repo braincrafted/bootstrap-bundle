@@ -905,7 +905,7 @@
             {% set attr = attr|merge({ 'style': null }) %}
         {% endif %}
         {% if id is not empty %}id="{{ id }}" {% endif %}
-        {% for attrname, attrvalue in attr %}{% if attrvalue is not null %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
+        {% for attrname, attrvalue in attr %}{% if attrvalue is not null and (attrvalue is not iterable) %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
     {% endspaceless %}
 {% endblock widget_container_attributes %}
 
