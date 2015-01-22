@@ -714,17 +714,17 @@
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
         {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
 
-        {% if style == 'horizontal' %}
-            <div class="form-group">
-            <div class="col-{{ col_size }}-offset-{{ label_col }} col-{{ col_size }}-{{ widget_col }}">
-        {% endif %}
+        <div class="form-group">
+            {% if style == 'horizontal' %}
+                <div class="col-{{ col_size }}-offset-{{ label_col }} col-{{ col_size }}-{{ widget_col }}">
+            {% endif %}
 
-        {{ form_widget(form) }}
+            {{ form_widget(form) }}
 
-        {% if style == 'horizontal' %}
-            </div>
-            </div>
-        {% endif %}
+            {% if style == 'horizontal' %}
+                </div>
+            {% endif %}
+        </div>
     {% endspaceless %}
 {% endblock button_row %}
 
