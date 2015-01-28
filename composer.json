@@ -14,7 +14,7 @@
     "require":      {
         "php":                      ">=5.3.3",
         "symfony/framework-bundle": "~2.3",
-        "symfony/twig-bundle":      "~2.3",
+        "symfony/twig-bundle":      "~2.6",
         "symfony/form":             "~2.3",
         "symfony/console":          "~2.3",
         "symfony/finder":           "~2.3"
