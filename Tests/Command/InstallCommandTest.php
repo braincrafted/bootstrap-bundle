@@ -162,7 +162,7 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.fonts_dir')
-            ->andReturn('/../fonts');
+            ->andReturn('');
         $this->container
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.icon_prefix')
@@ -171,6 +171,10 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.less_filter')
             ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.assets_dir')
+            ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
