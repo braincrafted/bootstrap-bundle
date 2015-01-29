@@ -8,6 +8,9 @@ php:
   - 5.6
   - hhvm
 
+before_install:
+  - composer self-update
+
 before_script:
   - composer --prefer-source install
   - cp phpunit.xml.dist phpunit.xml
