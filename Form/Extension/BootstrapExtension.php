@@ -29,7 +29,7 @@ class BootstrapExtension extends AbstractTypeExtension
     /**
      * @var array
      */
-    private $bootstrapDefault = [
+    private $bootstrapDefault = array(
         'form_style'        => null,
         'widget_col'        => 10,
         'label_col'         => 2,
@@ -40,7 +40,7 @@ class BootstrapExtension extends AbstractTypeExtension
         'icon'              => null,
         'input_group'       => null,
         'help_text'         => null,
-    ];
+    );
 
     /**
      * {@inheritDoc}
@@ -55,7 +55,7 @@ class BootstrapExtension extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(['bootstrap' => $this->bootstrapDefault]);
+        $resolver->setDefaults(array('bootstrap' => $this->bootstrapDefault));
     }
 
     /**
