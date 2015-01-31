@@ -104,6 +104,22 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
+### Version 2.1.1 (31 January 2015)
+
+- [#301](https://github.com/braincrafted/bootstrap-bundle/pull/301) Fix generate command for Symfony v2.5 (by [mumia](https://github.com/mumia))
+- [#311](https://github.com/braincrafted/bootstrap-bundle/issues/311) Trigger event on Add and Remove in collection (by [tiagobrito](https://github.com/tiagobrito))
+- [#315](https://github.com/braincrafted/bootstrap-bundle/pull/315) Add `danger()` method to FlashMessage (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#316](https://github.com/braincrafted/bootstrap-bundle/pull/316) Fix nested subform settings (by [vith](https://github.com/vith))
+- [#320](https://github.com/braincrafted/bootstrap-bundle/pull/320) Adjust path to `bootstrap.scss` (by [mioduszewski](https://github.com/mioduszewski))
+- [#328](https://github.com/braincrafted/bootstrap-bundle/pull/328) Add the parse_icons function for bootstrap_collection buttons (by [kamiramix](https://github.com/kamiramix))
+- [#329](https://github.com/braincrafted/bootstrap-bundle/pull/329) Remove invalid statement (by [KatharinaSt](https://github.com/KatharinaSt))
+- [#337](https://github.com/braincrafted/bootstrap-bundle/pull/337) Invalid class name `.btn-small` (by [tmilos](https://github.com/tmilos))
+- [#342](https://github.com/braincrafted/bootstrap-bundle/pull/342) Minor PHPCS fixes (by [acrobat](https://github.com/acrobat))
+- [#344](https://github.com/braincrafted/bootstrap-bundle/pull/344) Exclude iterable attribute values from displaying (by [b-b3rn4rd](https://github.com/b-b3rn4rd))
+- [#345](https://github.com/braincrafted/bootstrap-bundle/pull/345) Add dismissible alert styling (by [althaus](https://github.com/althaus))
+- [#350](https://github.com/braincrafted/bootstrap-bundle/issues/350) Fix inline style does not display placeholder when label is empty (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#309](https://github.com/braincrafted/bootstrap-bundle/issues/309) Include default variables files at top (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+
 ### Version 2.1.0 (31 August 2014)
 
 - [#298](https://github.com/braincrafted/bootstrap-bundle/pull/298) Fixed path to assets dir in bootstrap-sass v3.2 (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
