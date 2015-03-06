@@ -212,7 +212,7 @@ class BootstrapFormExtension extends \Twig_Extension
     public function restoreFormSettings()
     {
         if (count($this->settingsStack) < 1) {
-            return;
+            throw new \UnderflowException("No settings on the stack to restore");
         }
 
         $settings = array_pop($this->settingsStack);
