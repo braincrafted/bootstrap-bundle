@@ -125,11 +125,8 @@ class BootstrapFormExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $this->extension->getLabelCol());
         $this->assertEquals(3, $this->extension->getSimpleCol());
 
-        try {
-            $this->extension->restoreFormSettings();
-            $this->fail('Expected UnderflowException not thrown');
-        } catch (\UnderflowException $e) {
-        }
+        // Nothing happens if we try to restore form settings but none exist
+        $this->extension->restoreFormSettings();
     }
 
     /**

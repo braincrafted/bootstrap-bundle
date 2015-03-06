@@ -207,12 +207,11 @@ class BootstrapFormExtension extends \Twig_Extension
      *
      * @internal Should only be used at the end of form_end.
      * @see backupFormSettings
-     * @throws \UnderflowException
      */
     public function restoreFormSettings()
     {
         if (count($this->settingsStack) < 1) {
-            throw new \UnderflowException("No settings on the stack to restore");
+            return;
         }
 
         $settings = array_pop($this->settingsStack);
