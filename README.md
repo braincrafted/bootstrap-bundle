@@ -104,6 +104,11 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
+### Version 2.1.2 (6 March 2015)
+
+- When restoring form settings, don't throw an exception if there are no settings to restore (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#356](https://github.com/braincrafted/bootstrap-bundle/pull/356) Add missing `responsive-embed.less` (by [blaues0cke](https://github.com/blaues0cke))
+
 ### Version 2.1.1 (31 January 2015)
 
 - [#301](https://github.com/braincrafted/bootstrap-bundle/pull/301) Fix generate command for Symfony v2.5 (by [mumia](https://github.com/mumia))
