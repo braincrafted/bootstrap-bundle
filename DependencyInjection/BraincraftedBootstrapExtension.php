@@ -162,7 +162,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
                 case 'twig':
                     $container->prependExtensionConfig(
                         $name,
-                        array('form_themes'  => array($this->formTemplate))
+                        array('form'  => array('resources' => array($this->formTemplate)))
                     );
                     break;
             }
