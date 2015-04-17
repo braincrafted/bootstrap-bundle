@@ -28,11 +28,15 @@ class AsseticConfiguration
      */
     public function build(array $config)
     {
-        $output = array();
-
         // Fix path in output dir
         if ('/' !== substr($config['output_dir'], -1) && strlen($config['output_dir']) > 0) {
             $config['output_dir'] .= '/';
+        }
+
+        if ('fa' === $config['icon_prefix']) {
+            $output = $this->buildFontAwesomeFonts($config);
+        } else {
+            $output = array();
         }
 
         if (in_array($config['less_filter'], array('sass', 'scssphp'))) {
@@ -166,5 +170,27 @@ class AsseticConfiguration
             'inputs' => array($config['jquery_path']),
             'output' => $config['output_dir'].'js/jquery.js'
         );
+    }
+
+    /**
+     * @param array $config
+     *
+     * @return array
+     */
+    protected function buildFontAwesomeFonts(array $config)
+    {
+        $output = array(
+            'fontawesome_otf' => array(
+                'inputs' => array($config['fontawesome_dir'] . '/fonts/FontAwesome.otf'),
+                'output' => $config['fonts_dir'] . 'fonts/FontAwesome.otf',
+            )
+        );
+        foreach (array('eot', 'svg', 'ttf', 'woff', 'woff2') as $extension) {
+            $output['fontawesome_' . $extension] = array(
+                'inputs' => array($config['fontawesome_dir'] . '/fonts/fontawesome-webfont.' . $extension),
+                'output' => $config['fonts_dir'] . 'fonts/fontawesome-webfont.' . $extension,
+            );
+        }
+        return $output;
     }
 }
