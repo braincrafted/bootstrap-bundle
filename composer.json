@@ -25,7 +25,8 @@
         "knplabs/knp-menu-bundle":      "~2.0@alpha",
         "knplabs/knp-paginator-bundle": "dev-master",
         "phpunit/phpunit":              "3.7.*",
-        "mockery/mockery":              "0.9.*"
+        "mockery/mockery":              "0.9.*",
+        "fortawesome/font-awesome":     "*"
     },
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
