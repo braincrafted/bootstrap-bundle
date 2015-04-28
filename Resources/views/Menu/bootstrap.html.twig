@@ -83,7 +83,9 @@
 {% block listList %}
 {% spaceless %}
     {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
-        {{ block('children') }}
+        <ul{{ _self.attributes(listAttributes) }}>
+            {{ block('children') }}
+        </ul>
     {% endif %}
 {% endspaceless %}
 {% endblock listList %}
