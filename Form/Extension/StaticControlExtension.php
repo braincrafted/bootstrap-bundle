@@ -3,7 +3,7 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,11 +29,12 @@ class StaticControlExtension extends AbstractTypeExtension
     }
 
     /**
+     * Add the static_control option
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array('static_control'));
+        $resolver->setDefined(array('static_control'));
     }
 
     /**

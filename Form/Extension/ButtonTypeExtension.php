@@ -3,7 +3,7 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
@@ -29,11 +29,13 @@ class ButtonTypeExtension extends AbstractTypeExtension
     }
 
     /**
+     * Add the button_class option
+     * Add the as_link option
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array('button_class', 'as_link'));
+        $resolver->setDefined(array('button_class', 'as_link'));
     }
 
     /**

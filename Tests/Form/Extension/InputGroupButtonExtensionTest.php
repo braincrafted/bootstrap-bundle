@@ -65,7 +65,7 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupBtnExtension::buildForm()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension::buildForm()
      * @dataProvider provideForform
      */
     public function testBuildForm($options)
@@ -121,7 +121,7 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupBtnExtension::getExtendedType()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension::getExtendedType()
      */
     public function testGetExtendedType()
     {
