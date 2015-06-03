@@ -222,7 +222,9 @@
                     {{ block('choice_widget_options') }}
                 </optgroup>
             {% else %}
-                <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+                {% set id = null %}
+                {% set attr = (attribute(choice, 'attr') is defined) ? choice.attr : [] %}
+                <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}{{ block('widget_container_attributes') }}>{{ choice.label|trans({}, translation_domain) }}</option>
             {% endif %}
         {% endfor %}
     {% endspaceless %}
