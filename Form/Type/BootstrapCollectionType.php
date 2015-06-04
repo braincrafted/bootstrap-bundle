@@ -10,7 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * BootstrapCollectionType
@@ -54,7 +54,7 @@ class BootstrapCollectionType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $optionsNormalizer = function (Options $options, $value) {
             // @codeCoverageIgnoreStart
@@ -77,7 +77,7 @@ class BootstrapCollectionType extends AbstractType
             'options'            => array(),
         ));
 
-        $resolver->setNormalizers(array('options' => $optionsNormalizer));
+        $resolver->setNormalizer('options', $optionsNormalizer);
     }
 
     /**

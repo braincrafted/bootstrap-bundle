@@ -90,7 +90,7 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $this->type->buildView($view, $form, $options);
     }
 
-    public function testSetDefaultOptions()
+    public function testConfigureOptions()
     {
 
         $defaults = array(
@@ -99,10 +99,10 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
             'mapped'         => false,
         );
 
-        $resolver = m::mock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
+        $resolver = m::mock('Symfony\Component\OptionsResolver\OptionsResolver');
         $resolver->shouldReceive('setDefaults')->with($defaults)->once();
 
-        $this->type->setDefaultOptions($resolver);
+        $this->type->configureOptions($resolver);
     }
 
     public function testGetName()

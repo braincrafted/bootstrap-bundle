@@ -50,15 +50,15 @@ class BootstrapCollectionTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType::setDefaultOptions()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType::configureOptions()
      */
-    public function testSetDefaultOptions()
+    public function testConfigureOptions()
     {
-        $resolver = m::mock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
+        $resolver = m::mock('Symfony\Component\OptionsResolver\OptionsResolver');
         $resolver->shouldReceive('setDefaults');
-        $resolver->shouldReceive('setNormalizers');
+        $resolver->shouldReceive('setNormalizer');
 
-        $this->type->setDefaultOptions($resolver);
+        $this->type->configureOptions($resolver);
     }
 
     /**
