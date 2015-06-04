@@ -20,7 +20,7 @@
         "symfony/finder":           "~2.7"
     },
     "require-dev": {
-        "symfony/assetic-bundle":       "~2.7",
+        "symfony/assetic-bundle":       "~2.6",
         "knplabs/knp-menu":             "~2.0@alpha",
         "knplabs/knp-menu-bundle":      "~2.0@alpha",
         "knplabs/knp-paginator-bundle": "dev-master",
