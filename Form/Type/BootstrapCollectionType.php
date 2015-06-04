@@ -77,7 +77,7 @@ class BootstrapCollectionType extends AbstractType
             'options'            => array(),
         ));
 
-        $resolver->setNormalizers(array('options' => $optionsNormalizer));
+        $resolver->setNormalizer('options', $optionsNormalizer);
     }
 
     /**
