@@ -54,7 +54,7 @@ class ScriptHandler
 
     protected static function executeCommand(CommandEvent $event, $consolePath, $cmd, $timeout = 300)
     {
-        $php = escapeshellarg(self::getPhp());
+        $php = escapeshellarg(self::getPhp(false));
         $console = escapeshellarg($consolePath.'/console');
         if ($event->getIO()->isDecorated()) {
             $console .= ' --ansi';
@@ -86,10 +86,10 @@ class ScriptHandler
         return $options;
     }
 
-    protected static function getPhp()
+    protected static function getPhp($includeArgs = true)
     {
         $phpFinder = new PhpExecutableFinder;
-        if (!$phpPath = $phpFinder->find()) {
+        if (!$phpPath = $phpFinder->find($includeArgs)) {
             throw new \RuntimeException(
                 'The php executable could not be found, add it to your PATH environment variable and try again'
             );
