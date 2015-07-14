@@ -56,7 +56,7 @@ class BootstrapButtonExtensionTest extends \PHPUnit_Framework_TestCase
     public function testButtonFunctionWithDefaults()
     {
         $this->assertEquals(
-            '<button  class="btn btn-default btn-md " type="submit" > </button>',
+            '<button class="btn btn-default btn-md" type="submit"></button>',
             $this->extension->buttonFunction(),
             '->buttonFunction() returns the HTML code for the given button.'
         );
@@ -91,7 +91,7 @@ class BootstrapButtonExtensionTest extends \PHPUnit_Framework_TestCase
     public function testButtonLinkFunctionWithDefaults()
     {
         $this->assertEquals(
-            '<a  href="#" class="btn btn-default btn-md " > </a>',
+            '<a href="#" class="btn btn-default btn-md"></a>',
             $this->extension->buttonLinkFunction(),
             '->buttonFunction() returns the HTML code for the given button.'
         );

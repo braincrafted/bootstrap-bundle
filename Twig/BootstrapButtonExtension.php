@@ -62,12 +62,17 @@ class BootstrapButtonExtension extends \Twig_Extension
     {
         $options = array_merge($this->buttonDefaults, $options);
 
-        $id         = $options['id'] ? "id=\"{$options['id']}\"" : '';
-        $class      = "class=\"btn btn-{$options['type']} btn-{$options['size']} {$options['class']}\"";
-        $buttonType = $options['submit'] ? 'type="submit"' : 'type="button"';
-        $icon       = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']) : '';
-        $title      = $options['tooltip'] ? "title=\"{$options['tooltip']}\"" : '';
-        $button     = "<button $id $class $buttonType $title>{$icon} {$options['label']}</button>";
+        if ($options['class']) {
+            $options['class'] = ' '.$options['class'];
+        }
+
+        $id         = $options['id'] ? " id=\"{$options['id']}\"" : '';
+        $class      = " class=\"btn btn-{$options['type']} btn-{$options['size']}{$options['class']}\"";
+        $buttonType = $options['submit'] ? ' type="submit"' : ' type="button"';
+        $title      = $options['tooltip'] ? " title=\"{$options['tooltip']}\"" : '';
+        $icon       = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
+
+        $button     = "<button{$id}{$class}{$buttonType}{$title}>{$icon}{$options['label']}</button>";
 
         return $button;
     }
@@ -80,12 +85,17 @@ class BootstrapButtonExtension extends \Twig_Extension
     {
         $options = array_merge($this->buttonLinkDefaults, $options);
 
-        $href   = "href=\"{$options['url']}\"";
-        $id     = $options['id'] ? "id=\"{$options['id']}\"" : '';
-        $class  = "class=\"btn btn-{$options['type']} btn-{$options['size']} {$options['class']}\"";
-        $icon   = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']) : '';
-        $title  = $options['tooltip'] ? "title=\"{$options['tooltip']}\"" : '';
-        $button = "<a $id $href $class $title>{$icon} {$options['label']}</a>";
+        if ($options['class']) {
+            $options['class'] = ' '.$options['class'];
+        }
+
+        $href   = " href=\"{$options['url']}\"";
+        $id     = $options['id'] ? " id=\"{$options['id']}\"" : '';
+        $class  = " class=\"btn btn-{$options['type']} btn-{$options['size']}{$options['class']}\"";
+        $icon   = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
+        $title  = $options['tooltip'] ? " title=\"{$options['tooltip']}\"" : '';
+
+        $button = "<a{$id}{$href}{$class}{$title}>{$icon}{$options['label']}</a>";
 
         return $button;
     }
