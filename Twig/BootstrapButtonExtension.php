@@ -13,24 +13,8 @@ class BootstrapButtonExtension extends \Twig_Extension
      */
     private $iconExtension;
 
-    private $buttonDefaults = array(
-        'id'        => null,
+    private $defaults = array(
         'label'     => '',
-        'tooltip'   => '',
-        'class'     => '',
-        'icon'      => false,
-        'type'      => 'default',
-        'size'      => 'md',
-        'submit'    => true,
-        'attr'      => array(),
-    );
-
-    private $buttonLinkDefaults = array(
-        'id'        => null,
-        'url'       => '#',
-        'label'     => '',
-        'tooltip'   => '',
-        'class'     => '',
         'icon'      => false,
         'type'      => 'default',
         'size'      => 'md',
@@ -62,20 +46,15 @@ class BootstrapButtonExtension extends \Twig_Extension
      */
     public function buttonFunction(array $options = array())
     {
-        $options = array_merge($this->buttonDefaults, $options);
+        $options = array_merge($this->defaults, $options);
 
-        if ($options['class']) {
-            $options['class'] = ' '.$options['class'];
-        }
+        $options['attr']['class'] = "btn btn-{$options['type']} btn-{$options['size']}" . (isset($options['attr']['class']) ? ' '.$options['attr']['class'] : '');
+        $options['attr']['type'] = isset($options['submit']) && $options['submit'] ? 'submit' : 'button';
 
-        $id         = $options['id'] ? " id=\"{$options['id']}\"" : '';
-        $class      = " class=\"btn btn-{$options['type']} btn-{$options['size']}{$options['class']}\"";
-        $buttonType = $options['submit'] ? ' type="submit"' : ' type="button"';
-        $title      = $options['tooltip'] ? " title=\"{$options['tooltip']}\"" : '';
         $icon       = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
         $attr       = $options['attr'] ? $this->attributes($options['attr']) : '';
 
-        $button     = "<button{$id}{$class}{$buttonType}{$title}{$attr}>{$icon}{$options['label']}</button>";
+        $button     = "<button{$attr}>{$icon}{$options['label']}</button>";
 
         return $button;
     }
@@ -86,20 +65,15 @@ class BootstrapButtonExtension extends \Twig_Extension
      */
     public function buttonLinkFunction(array $options = array())
     {
-        $options = array_merge($this->buttonLinkDefaults, $options);
+        $options = array_merge($this->defaults, $options);
 
-        if ($options['class']) {
-            $options['class'] = ' '.$options['class'];
-        }
+        $options['attr']['class'] = "btn btn-{$options['type']} btn-{$options['size']}" . (isset($options['attr']['class']) ? ' '.$options['attr']['class'] : '');
+        $options['attr']['href'] = (isset($options['attr']['href']) ? $options['attr']['href'] : '#');
 
-        $href   = " href=\"{$options['url']}\"";
-        $id     = $options['id'] ? " id=\"{$options['id']}\"" : '';
-        $class  = " class=\"btn btn-{$options['type']} btn-{$options['size']}{$options['class']}\"";
         $icon   = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
-        $title  = $options['tooltip'] ? " title=\"{$options['tooltip']}\"" : '';
         $attr   = $options['attr'] ? $this->attributes($options['attr']) : '';
 
-        $button = "<a{$id}{$href}{$class}{$title}{$attr}>{$icon}{$options['label']}</a>";
+        $button = "<a{$attr}>{$icon}{$options['label']}</a>";
 
         return $button;
     }
