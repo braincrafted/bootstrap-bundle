@@ -22,6 +22,7 @@ class BootstrapButtonExtension extends \Twig_Extension
         'type'      => 'default',
         'size'      => 'md',
         'submit'    => true,
+        'attr'      => array(),
     );
 
     private $buttonLinkDefaults = array(
@@ -33,6 +34,7 @@ class BootstrapButtonExtension extends \Twig_Extension
         'icon'      => false,
         'type'      => 'default',
         'size'      => 'md',
+        'attr'      => array(),
     );
 
     /**
@@ -71,8 +73,9 @@ class BootstrapButtonExtension extends \Twig_Extension
         $buttonType = $options['submit'] ? ' type="submit"' : ' type="button"';
         $title      = $options['tooltip'] ? " title=\"{$options['tooltip']}\"" : '';
         $icon       = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
+        $attr       = $options['attr'] ? $this->attributes($options['attr']) : '';
 
-        $button     = "<button{$id}{$class}{$buttonType}{$title}>{$icon}{$options['label']}</button>";
+        $button     = "<button{$id}{$class}{$buttonType}{$title}{$attr}>{$icon}{$options['label']}</button>";
 
         return $button;
     }
@@ -94,10 +97,20 @@ class BootstrapButtonExtension extends \Twig_Extension
         $class  = " class=\"btn btn-{$options['type']} btn-{$options['size']}{$options['class']}\"";
         $icon   = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
         $title  = $options['tooltip'] ? " title=\"{$options['tooltip']}\"" : '';
+        $attr   = $options['attr'] ? $this->attributes($options['attr']) : '';
 
-        $button = "<a{$id}{$href}{$class}{$title}>{$icon}{$options['label']}</a>";
+        $button = "<a{$id}{$href}{$class}{$title}{$attr}>{$icon}{$options['label']}</a>";
 
         return $button;
+    }
+
+    private function attributes(array $attributes)
+    {
+        $result = '';
+        array_walk($attributes, function($value, $attr) use (&$result) {
+            $result .= " $attr=\"$value\"";
+        });
+        return $result;
     }
 
     /**

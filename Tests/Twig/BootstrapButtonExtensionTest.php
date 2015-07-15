@@ -76,10 +76,13 @@ class BootstrapButtonExtensionTest extends \PHPUnit_Framework_TestCase
             'type'      => 'success',
             'size'      => 'sm',
             'submit'    => false,
+            'attr'      => array(
+                'data-confirm' => 'Are you sure?'
+            ),
         );
 
         $this->assertEquals(
-            '<button id="test_button" class="btn btn-success btn-sm my-class" type="button" title="Test"><i class="fa fa-check"></i> Test</button>',
+            '<button id="test_button" class="btn btn-success btn-sm my-class" type="button" title="Test" data-confirm="Are you sure?"><i class="fa fa-check"></i> Test</button>',
             $this->extension->buttonFunction($options),
             '->buttonFunction() returns the HTML code for the given button.'
         );
@@ -111,10 +114,13 @@ class BootstrapButtonExtensionTest extends \PHPUnit_Framework_TestCase
             'icon'      => 'check',
             'type'      => 'success',
             'size'      => 'sm',
+            'attr'      => array(
+                'data-confirm' => 'Are you sure?'
+            ),
         );
 
         $this->assertEquals(
-            '<a id="test_button" href="example.com" class="btn btn-success btn-sm my-class" title="Test"><i class="fa fa-check"></i> Test</a>',
+            '<a id="test_button" href="example.com" class="btn btn-success btn-sm my-class" title="Test" data-confirm="Are you sure?"><i class="fa fa-check"></i> Test</a>',
             $this->extension->buttonLinkFunction($options),
             '->buttonFunction() returns the HTML code for the given button.'
         );
