@@ -68,7 +68,7 @@ class BootstrapButtonExtension extends \Twig_Extension
         $options = array_merge($this->defaults, $options);
 
         $options['attr']['class'] = "btn btn-{$options['type']} btn-{$options['size']}" . (isset($options['attr']['class']) ? ' '.$options['attr']['class'] : '');
-        $options['attr']['href'] = (isset($options['attr']['href']) ? $options['attr']['href'] : '#');
+        $options['attr']['href'] = (isset($options['url']) ? $options['url'] : '#');
 
         $icon   = $options['icon'] ? $this->iconExtension->iconFunction($options['icon']).' ' : '';
         $attr   = $options['attr'] ? $this->attributes($options['attr']) : '';
