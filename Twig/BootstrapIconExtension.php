@@ -82,9 +82,9 @@ class BootstrapIconExtension extends Twig_Extension
         $that = $this;
 
         return preg_replace_callback(
-            '/\.icon-([a-z0-9+-]+)/',
+            '/\.([a-z]+)-([a-z0-9+-]+)/',
             function ($matches) use ($that) {
-                return $that->iconFunction($matches[1]);
+                return $that->iconFunction($matches[2], $matches[1]);
             },
             $text
         );
@@ -94,14 +94,16 @@ class BootstrapIconExtension extends Twig_Extension
      * Returns the HTML code for the given icon.
      *
      * @param string $icon The name of the icon
+     * @param string $iconSet The icon-set name
      *
      * @return string The HTML code for the icon
      */
-    public function iconFunction($icon)
+    public function iconFunction($icon, $iconSet = 'icon')
     {
-        $icon = str_replace('+', ' '.$this->iconPrefix.'-', $icon);
+        if ($iconSet == 'icon') $iconSet = $this->iconPrefix;
+        $icon = str_replace('+', ' '.$iconSet.'-', $icon);
 
-        return sprintf('<%1$s class="%2$s %2$s-%3$s"></%1$s>', $this->iconTag, $this->iconPrefix, $icon);
+        return sprintf('<%1$s class="%2$s %2$s-%3$s"></%1$s>', $this->iconTag, $iconSet, $icon);
     }
 
     /**
