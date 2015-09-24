@@ -62,6 +62,23 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::iconFunction
+     */
+    public function testIconFilterWithDifferntPrefix()
+    {
+        $this->assertEquals(
+            '<span class="glyphicon glyphicon-heart"></span>',
+            $this->getIconExtension('default')->iconFunction('heart', 'glyphicon'),
+            '->iconFunction() returns the HTML code for the given icon.'
+        );
+        $this->assertEquals(
+            '<span class="fa fa-heart"></span>',
+            $this->getIconExtension('default')->iconFunction('heart', 'fa'),
+            '->iconFunction() uses the iconPrefix passed into the IconExtension constructor.'
+        );
+    }
+
+    /**
      * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
      */
     public function testParseIconsFilter()
@@ -75,6 +92,24 @@ class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             '<span class="fa fa-heart"></span> foobar',
             $this->getIconExtension('fa')->parseIconsFilter('.icon-heart foobar'),
+            '->parseIconsFilter() uses the iconPrefix passed into the IconExtension constructor.'
+        );
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::parseIconsFilter
+     */
+    public function testParseIconsFilterWithDifferntPrefix()
+    {
+        $this->assertEquals(
+            '<span class="glyphicon glyphicon-heart"></span> foobar',
+            $this->getIconExtension('default')->parseIconsFilter('.glyphicon-heart foobar'),
+            '->parseIconsFilter() returns the HTML code with the replaced icons.'
+        );
+
+        $this->assertEquals(
+            '<span class="fa fa-heart"></span> foobar',
+            $this->getIconExtension('default')->parseIconsFilter('.fa-heart foobar'),
             '->parseIconsFilter() uses the iconPrefix passed into the IconExtension constructor.'
         );
     }
