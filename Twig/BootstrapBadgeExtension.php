@@ -8,7 +8,7 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
 use Twig_Extension;
-use Twig_Function_Method;
+use Twig_SimpleFunction;
 
 /**
  * BootstrapLabelExtension
@@ -29,9 +29,9 @@ class BootstrapBadgeExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'badge' => new Twig_Function_Method(
-                $this,
-                'badgeFunction',
+            new Twig_SimpleFunction(
+                'badge',
+                array($this, 'badgeFunction'),
                 array('pre_escape' => 'html', 'is_safe' => array('html'))
             )
         );

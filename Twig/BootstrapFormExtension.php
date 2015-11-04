@@ -6,6 +6,10 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
+use Twig_Extension;
+use Twig_SimpleFunction;
+
+
 /**
  * BootstrapFormExtension
  *
@@ -16,7 +20,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Twig;
  * @license    http://opensource.org/licenses/MIT The MIT License
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  */
-class BootstrapFormExtension extends \Twig_Extension
+class BootstrapFormExtension extends Twig_Extension
 {
     /** @var string */
     private $style;
@@ -42,33 +46,36 @@ class BootstrapFormExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('bootstrap_set_style', array($this, 'setStyle')),
-            new \Twig_SimpleFunction('bootstrap_get_style', array($this, 'getStyle')),
-            new \Twig_SimpleFunction('bootstrap_set_col_size', array($this, 'setColSize')),
-            new \Twig_SimpleFunction('bootstrap_get_col_size', array($this, 'getColSize')),
-            new \Twig_SimpleFunction('bootstrap_set_widget_col', array($this, 'setWidgetCol')),
-            new \Twig_SimpleFunction('bootstrap_get_widget_col', array($this, 'getWidgetCol')),
-            new \Twig_SimpleFunction('bootstrap_set_label_col', array($this, 'setLabelCol')),
-            new \Twig_SimpleFunction('bootstrap_get_label_col', array($this, 'getLabelCol')),
-            new \Twig_SimpleFunction('bootstrap_set_simple_col', array($this, 'setSimpleCol')),
-            new \Twig_SimpleFunction('bootstrap_get_simple_col', array($this, 'getSimpleCol')),
-            new \Twig_SimpleFunction('bootstrap_backup_form_settings', array($this, 'backupFormSettings')),
-            new \Twig_SimpleFunction('bootstrap_restore_form_settings', array($this, 'restoreFormSettings')),
-            'checkbox_row'  => new \Twig_Function_Node(
-                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
-                array('is_safe' => array('html'))
+            new Twig_SimpleFunction('bootstrap_set_style', array($this, 'setStyle')),
+            new Twig_SimpleFunction('bootstrap_get_style', array($this, 'getStyle')),
+            new Twig_SimpleFunction('bootstrap_set_col_size', array($this, 'setColSize')),
+            new Twig_SimpleFunction('bootstrap_get_col_size', array($this, 'getColSize')),
+            new Twig_SimpleFunction('bootstrap_set_widget_col', array($this, 'setWidgetCol')),
+            new Twig_SimpleFunction('bootstrap_get_widget_col', array($this, 'getWidgetCol')),
+            new Twig_SimpleFunction('bootstrap_set_label_col', array($this, 'setLabelCol')),
+            new Twig_SimpleFunction('bootstrap_get_label_col', array($this, 'getLabelCol')),
+            new Twig_SimpleFunction('bootstrap_set_simple_col', array($this, 'setSimpleCol')),
+            new Twig_SimpleFunction('bootstrap_get_simple_col', array($this, 'getSimpleCol')),
+            new Twig_SimpleFunction('bootstrap_backup_form_settings', array($this, 'backupFormSettings')),
+            new Twig_SimpleFunction('bootstrap_restore_form_settings', array($this, 'restoreFormSettings')),
+            new Twig_SimpleFunction(
+                'checkbox_row',
+                null,
+                array('is_safe' => array('html'), 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode')
             ),
-            'radio_row'  => new \Twig_Function_Node(
-                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
-                array('is_safe' => array('html'))
+            new Twig_SimpleFunction(
+                'radio_row',
+                null,
+                array('is_safe' => array('html'), 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode')
             ),
-            'global_form_errors'  => new \Twig_Function_Node(
-                'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode',
-                array('is_safe' => array('html'))
+            new Twig_SimpleFunction(
+                'global_form_errors',
+                null,
+                array('is_safe' => array('html'), 'node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode')
             ),
-            'form_control_static'   => new \Twig_Function_Method(
-                $this,
-                'formControlStaticFunction',
+            new Twig_SimpleFunction(
+                'form_control_static',
+                array($this, 'formControlStaticFunction'),
                 array('is_safe' => array('html'))
             )
         );
