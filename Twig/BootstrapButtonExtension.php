@@ -6,7 +6,10 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Twig;
 
-class BootstrapButtonExtension extends \Twig_Extension
+use Twig_Extension;
+use Twig_SimpleFunction;
+
+class BootstrapButtonExtension extends Twig_Extension
 {
     /**
      * @var BootstrapIconExtension
@@ -35,8 +38,8 @@ class BootstrapButtonExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('button', array($this, 'buttonFunction'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFunction('button_link', array($this, 'buttonLinkFunction'), array('is_safe' => array('html'))),
+            new Twig_SimpleFunction('button', array($this, 'buttonFunction'), array('is_safe' => array('html'))),
+            new Twig_SimpleFunction('button_link', array($this, 'buttonLinkFunction'), array('is_safe' => array('html'))),
         );
     }
 
