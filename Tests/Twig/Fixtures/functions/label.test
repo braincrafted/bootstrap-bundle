@@ -1,0 +1,16 @@
+--TEST--
+"label" functions
+--TEMPLATE--
+{{ label('Default') }}
+{{ label_success('Success') }}
+{{ label_primary('Primary') }}
+{{ label_warning('Warning') }}
+{{ label_danger('Danger') }}
+--DATA--
+return array();
+--EXPECT--
+<span class="label label-default">Default</span>
+<span class="label label-success">Success</span>
+<span class="label label-primary">Primary</span>
+<span class="label label-warning">Warning</span>
+<span class="label label-danger">Danger</span>

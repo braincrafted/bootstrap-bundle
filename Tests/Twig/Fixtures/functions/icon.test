@@ -1,0 +1,8 @@
+--TEST--
+"icon" function
+--TEMPLATE--
+{{ icon('camera') }}
+--DATA--
+return array();
+--EXPECT--
+<span class="fa fa-camera"></span>
