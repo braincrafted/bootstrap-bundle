@@ -1,9 +1,9 @@
 --TEST--
-"icon" function
+"parse_icons" filter
 --TEMPLATE--
-{{ icon('camera') }}
-{{ icon('camera+fw') }}
-{{ icon('camera', 'glyphicon') }}
+{{ '.icon-camera'|parse_icons }}
+{{ '.icon-camera+fw'|parse_icons }}
+{{ '.glyphicon-camera'|parse_icons }}
 --DATA--
 return array();
 --EXPECT--

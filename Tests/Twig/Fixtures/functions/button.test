@@ -1,0 +1,10 @@
+--TEST--
+"button" function
+--TEMPLATE--
+{{ button() }}
+{{ button({'label':'Test', 'icon':'check', 'type':'success', 'size':'sm', 'submit':true, 'attr':{'id':'test_button', 'class':'my-class', 'title':'Test', 'data-confirm':'Are you sure?'} }) }}
+--DATA--
+return array();
+--EXPECT--
+<button class="btn btn-default btn-md" type="button"></button>
+<button id="test_button" class="btn btn-success btn-sm my-class" title="Test" data-confirm="Are you sure?" type="submit"><span class="fa fa-check"></span> Test</button>
