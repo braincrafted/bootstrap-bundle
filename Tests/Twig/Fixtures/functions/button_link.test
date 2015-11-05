@@ -1,0 +1,10 @@
+--TEST--
+"button_link" function
+--TEMPLATE--
+{{ button_link() }}
+{{ button_link({'label':'Test', 'icon':'check', 'url':'example.com', 'type':'success', 'size':'sm', 'attr':{'id':'test_button', 'class':'my-class', 'title':'Test', 'data-confirm':'Are you sure?'} }) }}
+--DATA--
+return array();
+--EXPECT--
+<a class="btn btn-default btn-md" href="#"></a>
+<a id="test_button" class="btn btn-success btn-sm my-class" title="Test" data-confirm="Are you sure?" href="example.com"><span class="fa fa-check"></span> Test</a>
