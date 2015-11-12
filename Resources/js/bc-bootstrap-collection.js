@@ -50,19 +50,20 @@
         newWidget = newWidget.replace(/__id__/g, newName[1].replace(re, count));
         var newLi = $('<li></li>').html(newWidget);
         newLi.appendTo(list);
-        $this.trigger('bc-collection-field-added');
+        $this.trigger('bc-collection-field-added', [newLi, collection]);
     };
 
     CollectionRemove.prototype.removeField = function (e) {
         var $this = $(this),
+            li = $this.closest('li'),
             selector = $this.attr('data-field')
         ;
 
         e && e.preventDefault();
 
-        $this.trigger('bc-collection-field-removed');
-        var listElement = $this.closest('li').remove();
-    }
+        $this.trigger('bc-collection-field-removed', [li]);
+        var listElement = li.remove();
+    };
 
 
     /* COLLECTION PLUGIN DEFINITION
@@ -86,7 +87,7 @@
     };
 
     $.fn.removeField = function (option) {
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this),
                 data = $this.data('removefield')
             ;
@@ -109,11 +110,11 @@
     $.fn.addField.noConflict = function () {
         $.fn.addField = oldAdd;
         return this;
-    }
+    };
     $.fn.removeField.noConflict = function () {
         $.fn.removeField = oldRemove;
         return this;
-    }
+    };
 
 
     /* COLLECTION DATA-API
@@ -122,5 +123,4 @@
     $(document).on('click.addfield.data-api', addField, CollectionAdd.prototype.addField);
     $(document).on('click.removefield.data-api', removeField, CollectionRemove.prototype.removeField);
 
- }(window.jQuery);
- 
+}(window.jQuery);
