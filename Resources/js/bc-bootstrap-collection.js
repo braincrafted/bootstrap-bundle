@@ -61,9 +61,10 @@
 
         e && e.preventDefault();
 
-        // $this.trigger('bc-collection-field-removed');
+        $this.trigger('bc-collection-field-removed');
+        $this.trigger('bc-collection-field-removed-before');
         var listElement = $this.closest('li').remove();
-        parent.trigger('bc-collection-field-removed');
+        parent.trigger('bc-collection-field-removed-after');
     }
 
 
