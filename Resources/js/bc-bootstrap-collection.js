@@ -55,13 +55,15 @@
 
     CollectionRemove.prototype.removeField = function (e) {
         var $this = $(this),
-            selector = $this.attr('data-field')
+            selector = $this.attr('data-field'),
+            parent = $this.closest('li').parent()
         ;
 
         e && e.preventDefault();
 
-        $this.trigger('bc-collection-field-removed');
+        // $this.trigger('bc-collection-field-removed');
         var listElement = $this.closest('li').remove();
+        parent.trigger('bc-collection-field-removed');
     }
 
 
