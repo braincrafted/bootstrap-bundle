@@ -36,7 +36,7 @@
 
         {% set type = type|default('text') %}
 
-        {% if style == 'inline' and (attr.placeholder is not defined or attr.placeholder is empty)  and label is not same(false) %}
+        {% if style == 'inline' and (attr.placeholder is not defined or attr.placeholder is empty)  and label is not same as (false) %}
             {% if label is empty %}
                 {% set attr = attr|merge({ 'placeholder': name|humanize }) %}
             {% else %}
@@ -258,7 +258,7 @@
         {% endif %}
 
         {%set checkboxdata %}
-        {% if label is not same(false) %}
+        {% if label is not same as (false) %}
             {% if not compound %}
                 {% set label_attr = label_attr|merge({'for': id}) %}
             {% endif %}
@@ -327,7 +327,7 @@
         {% endif %}
 
         {%set radiodata %}
-        {% if label is not same(false) %}
+        {% if label is not same as (false) %}
             {% if not compound %}
                 {% set label_attr = label_attr|merge({'for': id}) %}
             {% endif %}
@@ -502,7 +502,7 @@
 
 {% block button_widget %}
     {% spaceless %}
-        {% if label is empty and label is not same(false) %}
+        {% if label is empty and label is not same as (false) %}
             {% set label = name|humanize %}
         {% endif %}
         {% if type is defined and type == 'submit' %}
@@ -559,7 +559,7 @@
             {% set col_size = attr.col_size %}
         {% endif %}
 
-        {% if label is not same(false) %}
+        {% if label is not same as (false) %}
             {% set style = style|default(bootstrap_get_style()) %}
             {% set label_col = label_col|default(bootstrap_get_label_col()) %}
 
@@ -612,7 +612,7 @@
         {% endif %}
         {% if attr.widget_col is defined and attr.widget_col is not empty %}
             {% set widget_col = attr.widget_col %}
-            {% if label is same(false) and label_col is defined %}
+            {% if label is same as (false) and label_col is defined %}
                 {% set widget_col = widget_col + label_col %}
             {% endif %}
         {% endif %}
