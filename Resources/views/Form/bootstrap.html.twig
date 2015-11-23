@@ -36,7 +36,7 @@
 
         {% set type = type|default('text') %}
 
-        {% if style == 'inline' and (attr.placeholder is not defined or attr.placeholder is empty)  and label is not sameas(false) %}
+        {% if style == 'inline' and (attr.placeholder is not defined or attr.placeholder is empty)  and label is not same(false) %}
             {% if label is empty %}
                 {% set attr = attr|merge({ 'placeholder': name|humanize }) %}
             {% else %}
@@ -258,7 +258,7 @@
         {% endif %}
 
         {%set checkboxdata %}
-        {% if label is not sameas(false) %}
+        {% if label is not same(false) %}
             {% if not compound %}
                 {% set label_attr = label_attr|merge({'for': id}) %}
             {% endif %}
