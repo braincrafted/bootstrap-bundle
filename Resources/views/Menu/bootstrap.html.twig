@@ -8,6 +8,8 @@
 {%- endfor -%}
 {% endmacro %}
 
+{% from _self import attributes as attributes %}
+
 {% block compressed_root %}
 {% spaceless %}
 {{ block('root') }}
@@ -63,7 +65,7 @@
 
     {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
-    <ul{{ _self.attributes(listAttributes) }}>
+    <ul{{ attributes(listAttributes) }}>
         {{ block('children') }}
     </ul>
 {% endif %}
@@ -73,7 +75,7 @@
 {% spaceless %}
     {% if item.hasChildren and options.depth is not same(0) and ((item.extras.dropdown is not defined and item.displayChildren is same(true) or item.extras.dropdown is defined and item.extras.dropdown is same(true) and item.displayChildren is same(true))) %}
         {% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' dropdown-menu')|trim}) %}
-        <ul{{ _self.attributes(listAttributes) }}>
+        <ul{{ attributes(listAttributes) }}>
         {{ block('children') }}
         </ul>
     {% endif %}
@@ -83,7 +85,7 @@
 {% block listList %}
 {% spaceless %}
     {% if item.hasChildren and options.depth is not same(0) and item.displayChildren %}
-        <ul{{ _self.attributes(listAttributes) }}>
+        <ul{{ attributes(listAttributes) }}>
             {{ block('children') }}
         </ul>
     {% endif %}
@@ -140,7 +142,7 @@
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- endif %}
 {# displaying the item #}
-    <li{{ _self.attributes(attributes) }}>
+    <li{{ attributes(attributes) }}>
         {%- if attributes.divider is defined and attributes.divider is not empty %}
         {%- elseif item.hasChildren and options.style is defined and options.style in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] and options.currentDepth is same(1) and ((item.extras.dropdown is not defined and item.displayChildren is same(true) or item.extras.dropdown is defined and item.extras.dropdown is same(true) and item.displayChildren is same(true))) %}
             {{ block('dropdownElement') }}
@@ -168,14 +170,14 @@
 {% endif %}
 {% endblock %}
 
-{% block linkElement %}<a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
+{% block linkElement %}<a href="{{ item.uri }}"{{ attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
 
 {% block dropdownElement %}
 {% spaceless %}
     {% set labelAttributes = item.labelAttributes %}
     {% set labelAttributes = labelAttributes|merge({'class': (labelAttributes.class|default('') ~ ' dropdown-toggle')|trim}) %}
     {% set labelAttributes = labelAttributes|merge({'data-toggle': 'dropdown'}) %}
-    <a href="#"{{ _self.attributes(labelAttributes) }}>{{ block('label') }} <b class="caret"></b></a>
+    <a href="#"{{ attributes(labelAttributes) }}>{{ block('label') }} <b class="caret"></b></a>
 {% endspaceless %}
 {% endblock dropdownElement %}
 
@@ -184,6 +186,6 @@
 {% endspaceless %}
 {% endblock dividerElement %}
 
-{% block spanElement %}<span{{ _self.attributes(item.labelAttributes) }}>{{ block('label') }}</span>{% endblock %}
+{% block spanElement %}<span{{ attributes(item.labelAttributes) }}>{{ block('label') }}</span>{% endblock %}
 
 {% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw|parse_icons }}{% else %}{{ item.label|parse_icons }}{% endif %}{% endblock %}
