@@ -34,7 +34,7 @@
 
         var collection = $('#'+selector),
             list = collection.find('> ul'),
-            count = list.find('> li').size()
+            count = list.find('> li').length
         ;
 
         var newWidget = collection.attr('data-prototype');
@@ -43,7 +43,7 @@
         // If it does, increase the count by one and try again
         var newName = newWidget.match(/id="(.*?)"/);
         var re = new RegExp(prototypeName, "g");
-        while ($('#' + newName[1].replace(re, count)).size() > 0) {
+        while ($('#' + newName[1].replace(re, count)).length > 0) {
             count++;
         }
         newWidget = newWidget.replace(re, count);
