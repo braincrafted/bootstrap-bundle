@@ -13,7 +13,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Braincrafted\Bundle\BootstrapBundle\Util\PathUtil;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -29,9 +28,6 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class GenerateCommand extends ContainerAwareCommand
 {
-    const TWBS_BOOTSTRAP_LESS      =   '/../vendor/twbs/bootstrap/less/bootstrap.less';
-    const TWBS_COPYRIGHT_HEADER    =   '/../vendor/twbs/bootstrap/dist/css/bootstrap.css';
-
     /** @var PathUtil */
     private $pathUtil;
 
@@ -80,30 +76,21 @@ class GenerateCommand extends ContainerAwareCommand
             return;
         }
 
-        if (false === (new Filesystem())->exists($this->getContainer()->get('kernel')->getRootDir() . self::TWBS_BOOTSTRAP_LESS)) {
-            $output->writeln(
-                '<error>Required budle "twbs/bootstrap" not found in composer.json, please run "composer require twbs/bootstrap && composer update"</error>'
-            );
-
-            return;
-        }
-
         $output->writeln('<comment>Found custom variables file. Generating...</comment>');
-        $this->executeGenerateBootstrap($config, $output);
+        $this->executeGenerateBootstrap($config);
         $output->writeln(sprintf('Saved to <info>%s</info>', $config['bootstrap_output']));
     }
 
-    protected function executeGenerateBootstrap(array $config, OutputInterface $output)
+    protected function executeGenerateBootstrap(array $config)
     {
         // In the template for bootstrap.less we need the path where Bootstraps .less files are stored and the path
         // to the variables.less file.
         // Absolute path do not work in LESSs import statement, we have to calculate the relative ones
 
         $lessDir = $this->pathUtil->getRelativePath(
-                dirname($config['bootstrap_output']),
-                $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir')
-            ) . 'less/';
-
+            dirname($config['bootstrap_output']),
+            $this->getContainer()->getParameter('braincrafted_bootstrap.assets_dir')
+        );
         $variablesDir = $this->pathUtil->getRelativePath(
             dirname($config['bootstrap_output']),
             dirname($config['variables_file'])
@@ -122,31 +109,14 @@ class GenerateCommand extends ContainerAwareCommand
             $container->set('request', new Request(), 'request');
         }
 
-        // Load the content from the original twbs bootstrap.less file
-        // and make some modifications and save it to our custom
-        // bootstrap less file.
-
-        $content = $this->_getCopyrightHeader($output) . "\xA";
-        $content .= file_get_contents($this->getContainer()->get('kernel')->getRootDir() . self::TWBS_BOOTSTRAP_LESS);
-        $content = str_replace('@import "', '@import "' . $lessDir, $content);
-        $content = str_replace('variables.less";', 'variables.less";' . "\xA" . '@import "' . $variablesFile . '";', $content);
-
+        // We can now use Twig to render the bootstrap.less file and save it
+        $content = $container->get('twig')->render(
+            $config['bootstrap_template'],
+            array(
+                'variables_file' => $variablesFile,
+                'assets_dir'     => $lessDir
+            )
+        );
         file_put_contents($config['bootstrap_output'], $content);
-    }
-
-    private function _getCopyrightHeader(OutputInterface $output) {
-        $copyrightFile = $this->getContainer()->get('kernel')->getRootDir() . self::TWBS_COPYRIGHT_HEADER;
-        $content = file_get_contents($copyrightFile);
-        preg_match_all('/^\/\*!.+copyright.+\*\/$/imsU', $content, $matches);
-
-        if (!isset($matches[0][0])) {
-            $output->writeln(
-                '<comment>Unable to fetch copyright header from ' . $copyrightFile . ', please add it manually.</comment>'
-            );
-
-            return;
-        }
-
-        return $matches[0][0];
     }
 }
