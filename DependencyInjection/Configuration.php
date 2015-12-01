@@ -38,9 +38,6 @@ class Configuration implements ConfigurationInterface
     const DEFAULT_BOOTSTRAP_OUTPUT_SASS = '%kernel.root_dir%/Resources/sass/bootstrap.scss';
 
     /** @var string */
-    const DEFAULT_BOOTSTRAP_TEMPLATE = 'BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig';
-
-    /** @var string */
     const DEFAULT_BOOTSTRAP_TEMPLATE_SASS = 'BraincraftedBootstrapBundle:Bootstrap:bootstrap.scss.twig';
 
     /** @var string */
@@ -97,9 +94,6 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('variables_file')->end()
                         ->scalarNode('bootstrap_output')
                             ->defaultValue(self::DEFAULT_BOOTSTRAP_OUTPUT)
-                        ->end()
-                        ->scalarNode('bootstrap_template')
-                            ->defaultValue(self::DEFAULT_BOOTSTRAP_TEMPLATE)
                         ->end()
                     ->end()
                 ->end()

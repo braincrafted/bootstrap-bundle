@@ -17,7 +17,8 @@
         "symfony/twig-bundle":      "~2.6",
         "symfony/form":             "~2.6",
         "symfony/console":          "~2.6",
-        "symfony/finder":           "~2.6"
+        "symfony/finder":           "~2.6",
+        "twbs/bootstrap":           "3.0.*"
     },
     "require-dev": {
         "symfony/assetic-bundle":       "~2.6",
@@ -30,8 +31,7 @@
     "suggest":      {
         "knplabs/knp-paginator-bundle": "BraincraftedBootstrapBundle styles the pagination provided by KnpPaginatorBundle.",
         "knplabs/knp-menu":             "Required to use KnpMenuBundle.",
-        "knplabs/knp-menu-bundle":      "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle.",
-        "twbs/bootstrap":               "Twitter Bootstrap provides the assets (images, CSS and JS)"
+        "knplabs/knp-menu-bundle":      "BraincraftedBootstrapBundle styles the menus provided by KnpMenuBundle."
     },
     "autoload": {
         "psr-0": { "Braincrafted\\Bundle\\BootstrapBundle": "" }
