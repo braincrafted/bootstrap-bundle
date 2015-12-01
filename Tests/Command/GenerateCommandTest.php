@@ -32,11 +32,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
 class GenerateCommandTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var m\Mock|\Twig_Environment
-     */
-    private $twig;
-
-    /**
      * @var m\Mock|ContainerInterface
      */
     private $container;
@@ -48,10 +43,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->twig = m::mock('\Twig_Environment');
-
         $this->container = m::mock('Symfony\Component\DependencyInjection\ContainerInterface');
-        $this->container->shouldReceive('get')->with('twig')->andReturn($this->twig);
 
         $this->kernel = m::mock('Symfony\Component\HttpKernel\KernelInterface');
         $this->kernel->shouldReceive('getName')->andReturn('app');
@@ -78,11 +70,13 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
             ->with('braincrafted_bootstrap.customize')
             ->andReturn(array(
                 'variables_file'     => __DIR__.'/x/variables.less',
-                'bootstrap_output'   => __DIR__.'/bootstrap.less',
-                'bootstrap_template' => __DIR__.'/bootstrap.html.twig'
+                'bootstrap_output'   => __DIR__.'/bootstrap.less'
             ));
+
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.less_filter')->andReturn('less');
+        $this->container->shouldReceive('getParameter')->with('kernel.root_dir')->andReturn(dirname(__FILE__) . '/..');
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.assets_dir')->andReturn(__DIR__);
+
 
         if (Kernel::VERSION_ID >= 20500) {
             $this->container->shouldReceive('enterScope')->with('request');
@@ -95,13 +89,6 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
             );
         }
 
-        $this->twig
-            ->shouldReceive('render')
-            ->with(__DIR__.'/bootstrap.html.twig', array(
-                'variables_file'    => './x/variables.less',
-                'assets_dir'        => ''
-            ));
-
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
         $application->add(new GenerateCommand());
@@ -109,7 +96,6 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
         $command = $application->find('braincrafted:bootstrap:generate');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array('command' => $command->getName()));
-
         $this->assertRegExp('/Found custom variables file/', $commandTester->getDisplay());
         $this->assertRegExp('/bootstrap\.less/', $commandTester->getDisplay());
     }
