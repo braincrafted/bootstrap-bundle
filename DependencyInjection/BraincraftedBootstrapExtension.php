@@ -61,14 +61,9 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $container->setParameter('braincrafted_bootstrap.fontawesome_dir', $config['fontawesome_dir']);
         $container->setParameter('braincrafted_bootstrap.fonts_dir', $config['fonts_dir']);
         $container->setParameter('braincrafted_bootstrap.output_dir', $config['output_dir']);
-<<<<<<< HEAD
 
         // changed from css_preprocessor to css_preprocessor for 3.0
         $container->setParameter('braincrafted_bootstrap.css_preprocessor', $config['css_preprocessor']);
-
-=======
-        $container->setParameter('braincrafted_bootstrap.less_filter', $config['less_filter']);
->>>>>>> parent of 05e684e... naming changes according to symfony 3.0
         $container->setParameter('braincrafted_bootstrap.icon_prefix', $config['icon_prefix']);
         $container->setParameter('braincrafted_bootstrap.icon_tag', $config['icon_tag']);
     }
@@ -121,12 +116,8 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function processSassConfiguration(array $config)
     {
-<<<<<<< HEAD
         // changed from css_preprocessor to css_preprocessor for 3.0
         if (in_array($config['css_preprocessor'], array('sass', 'scssphp'))) {
-=======
-        if (in_array($config['less_filter'], array('sass', 'scssphp'))) {
->>>>>>> parent of 05e684e... naming changes according to symfony 3.0
             if ($config['assets_dir'] === Configuration::DEFAULT_ASSETS_DIR) {
                 $config['assets_dir'] = Configuration::DEFAULT_ASSETS_DIR_SASS;
             }
