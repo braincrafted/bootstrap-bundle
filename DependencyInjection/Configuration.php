@@ -77,7 +77,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('fonts_dir')
                     ->defaultValue(self::DEFAULT_FONTS_DIR)
                 ->end()
-                // renamed from less_filter to css_preprocessor
+                // renamed from css_preprocessor to css_preprocessor
                 ->scalarNode('css_preprocessor')
                     ->defaultValue('less')
                     ->validate()

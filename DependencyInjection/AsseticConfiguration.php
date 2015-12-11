@@ -35,7 +35,7 @@ class AsseticConfiguration
             $config['output_dir'] .= '/';
         }
 
-        // changed from less_filter to css_preprocessor for 3.0
+        // changed from css_preprocessor to css_preprocessor for 3.0
         if (in_array($config['css_preprocessor'], array('sass', 'scssphp'))) {
             $output['bootstrap_css'] = $this->buildCssWithSass($config);
         } elseif ('none' !== $config['css_preprocessor']) {
@@ -94,7 +94,7 @@ class AsseticConfiguration
 
         return array(
             'inputs'  => $inputs,
-            'filters' => array($config['less_filter']),
+            'filters' => array($config['css_preprocessor']),
             'output'  => $config['output_dir'].'css/bootstrap.css'
         );
     }
@@ -122,7 +122,7 @@ class AsseticConfiguration
 
         return array(
             'inputs'  => $inputs,
-            'filters' => array($config['less_filter']),
+            'filters' => array($config['css_preprocessor']),
             'output'  => $config['output_dir'].'css/bootstrap.css'
         );
     }
@@ -134,7 +134,7 @@ class AsseticConfiguration
      */
     protected function buildJs(array $config)
     {
-        $path = !in_array($config['less_filter'], array('sass', 'scssphp')) ? "/js" : "/javascripts/bootstrap";
+        $path = !in_array($config['css_preprocessor'], array('sass', 'scssphp')) ? "/js" : "/javascripts/bootstrap";
 
         return array(
             'inputs'  => array(

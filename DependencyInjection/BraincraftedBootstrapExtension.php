@@ -62,7 +62,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
         $container->setParameter('braincrafted_bootstrap.fonts_dir', $config['fonts_dir']);
         $container->setParameter('braincrafted_bootstrap.output_dir', $config['output_dir']);
 
-        // changed from less_filter to css_preprocessor for 3.0
+        // changed from css_preprocessor to css_preprocessor for 3.0
         $container->setParameter('braincrafted_bootstrap.css_preprocessor', $config['css_preprocessor']);
 
         $container->setParameter('braincrafted_bootstrap.icon_prefix', $config['icon_prefix']);
@@ -117,7 +117,7 @@ class BraincraftedBootstrapExtension extends Extension implements PrependExtensi
      */
     protected function processSassConfiguration(array $config)
     {
-        // changed from less_filter to css_preprocessor for 3.0
+        // changed from css_preprocessor to css_preprocessor for 3.0
         if (in_array($config['css_preprocessor'], array('sass', 'scssphp'))) {
             if ($config['assets_dir'] === Configuration::DEFAULT_ASSETS_DIR) {
                 $config['assets_dir'] = Configuration::DEFAULT_ASSETS_DIR_SASS;
