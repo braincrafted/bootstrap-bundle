@@ -33,7 +33,7 @@ class MoneyType extends BaseMoneyType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'money';
     }

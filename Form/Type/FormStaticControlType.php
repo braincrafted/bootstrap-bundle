@@ -43,7 +43,7 @@ class FormStaticControlType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'bs_static';
     }

@@ -35,10 +35,14 @@ class AsseticConfiguration
             $config['output_dir'] .= '/';
         }
 
+<<<<<<< HEAD
         // changed from css_preprocessor to css_preprocessor for 3.0
         if (in_array($config['css_preprocessor'], array('sass', 'scssphp'))) {
+=======
+        if (in_array($config['less_filter'], array('sass', 'scssphp'))) {
+>>>>>>> parent of 05e684e... naming changes according to symfony 3.0
             $output['bootstrap_css'] = $this->buildCssWithSass($config);
-        } elseif ('none' !== $config['css_preprocessor']) {
+        } elseif ('none' !== $config['less_filter']) {
             $output['bootstrap_css'] = $this->buildCssWithLess($config);
         } else {
             $output['bootstrap_css'] = $this->buildCssWithoutLess($config);

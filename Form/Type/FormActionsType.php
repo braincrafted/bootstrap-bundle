@@ -92,7 +92,7 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'form_actions';
     }

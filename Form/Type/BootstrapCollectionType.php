@@ -91,7 +91,7 @@ class BootstrapCollectionType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'bootstrap_collection';
     }
