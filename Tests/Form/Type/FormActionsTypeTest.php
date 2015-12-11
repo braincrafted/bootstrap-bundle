@@ -90,6 +90,9 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $this->type->buildView($view, $form, $options);
     }
 
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType::configureOptions()
+     */
     public function testConfigureOptions()
     {
 
@@ -105,8 +108,11 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $this->type->configureOptions($resolver);
     }
 
-    public function testGetName()
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType::getBlockPrefix()
+     */
+    public function testGetBlockPrefix()
     {
-        $this->assertEquals('form_actions', $this->type->getName());
+        $this->assertEquals('form_actions', $this->type->getBlockPrefix());
     }
 }

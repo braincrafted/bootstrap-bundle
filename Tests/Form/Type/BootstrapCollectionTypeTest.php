@@ -70,10 +70,10 @@ class BootstrapCollectionTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType::getName()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType::getBlockPrefix()
      */
-    public function testGetName()
+    public function testGetBlockPrefix()
     {
-        $this->assertEquals('bootstrap_collection', $this->type->getName());
+        $this->assertEquals('bootstrap_collection', $this->type->getBlockPrefix());
     }
 }

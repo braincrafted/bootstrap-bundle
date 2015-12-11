@@ -63,10 +63,10 @@ class MoneyTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\MoneyType::getName()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\MoneyType::getBlockPrefix()
      */
-    public function testGetName()
+    public function testGetBlockPrefix()
     {
-        $this->assertEquals('money', $this->type->getName());
+        $this->assertEquals('money', $this->type->getBlockPrefix());
     }
 }

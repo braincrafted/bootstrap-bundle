@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 /**
  * StaticControlExtension
  *
@@ -58,6 +60,12 @@ class StaticControlExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
+
+        // if higher than 5.2 - return class
+        if(PHP_VERSION_ID > 50520) {
+            return FormType::class;
+        }
+
         return 'form';
     }
 }

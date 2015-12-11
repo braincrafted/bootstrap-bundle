@@ -67,7 +67,7 @@ class GenerateCommand extends ContainerAwareCommand
             return;
         }
 
-        $filter = $this->getContainer()->getParameter('braincrafted_bootstrap.less_filter');
+        $filter = $this->getContainer()->getParameter('braincrafted_bootstrap.css_preprocessor');
         if ('less' !== $filter && 'lessphp' !== $filter) {
             $output->writeln(
                 '<error>Bundle must be configured with "less" or "lessphp" to generated bootstrap.less</error>'
