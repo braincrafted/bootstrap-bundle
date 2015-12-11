@@ -10,6 +10,8 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
+
 /**
  * TypeSetterExtension
  *
@@ -27,7 +29,7 @@ class TypeSetterExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['original_type'] = $form->getConfig()->getType()->getName();
+        $view->vars['original_type'] = LegacyFormHelper::isLegacy() ? $form->getConfig()->getType()->getName() : $form->getConfig()->getType()->getBlockPrefix();
     }
 
     /**
@@ -35,6 +37,7 @@ class TypeSetterExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return "form";
+        // map old class to new one using LegacyFormHelper
+        return LegacyFormHelper::getType('form');
     }
 }

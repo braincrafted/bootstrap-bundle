@@ -92,8 +92,17 @@ class FormActionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'form_actions';
+    }
+
+    /**
+     * Backward compatibility for SF < 3.0
+     *
+     * @return null|string
+     */
+    public function getName() {
+        return $this->getBlockPrefix();
     }
 }

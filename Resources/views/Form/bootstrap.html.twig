@@ -197,8 +197,8 @@
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
 
         <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-            {% if empty_value is not none %}
-                <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% endif %} value="">{{ empty_value|trans({}, translation_domain) }}</option>
+            {% if placeholder is not none %}
+                <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% endif %} value="">{{ placeholder|trans({}, translation_domain) }}</option>
             {% endif %}
             {% if preferred_choices|length > 0 %}
                 {% set options = preferred_choices %}
@@ -893,7 +893,7 @@
 
 {% block widget_attributes %}
     {% spaceless %}
-        id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+        id="{{ id }}" name="{{ full_name }}" {% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}
         {% for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% elseif attrname in ['input_group'] %}{% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
     {% endspaceless %}
 {% endblock widget_attributes %}

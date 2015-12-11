@@ -64,7 +64,7 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->andReturn('glyphicon');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.less_filter')
+            ->with('braincrafted_bootstrap.css_preprocessor')
             ->andReturn('');
         $this->container
             ->shouldReceive('getParameter')
@@ -103,7 +103,7 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->andReturn(__DIR__.'/fixtures/vendor/twbs/bootstrap');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.less_filter')
+            ->with('braincrafted_bootstrap.css_preprocessor')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
@@ -138,7 +138,7 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->andReturn('glyphicon');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.less_filter')
+            ->with('braincrafted_bootstrap.css_preprocessor')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs
@@ -169,7 +169,15 @@ class InstallCommandTest extends \PHPUnit_Framework_TestCase
             ->andReturn('glyphicon');
         $this->container
             ->shouldReceive('getParameter')
-            ->with('braincrafted_bootstrap.less_filter')
+            ->with('braincrafted_bootstrap.css_preprocessor')
+            ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.assets_dir')
+            ->andReturn('');
+        $this->container
+            ->shouldReceive('getParameter')
+            ->with('braincrafted_bootstrap.fontawesome_dir')
             ->andReturn('');
 
         // mock the Kernel or create one depending on your needs

@@ -7,6 +7,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * FormStaticControlType
@@ -37,13 +38,23 @@ class FormStaticControlType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        // map old class to new one using LegacyFormHelper
+        return LegacyFormHelper::getType('text');
+    }
+
+    /**
+     * Backward compatibility for SF < 3.0
+     *
+     * @return null|string
+     */
+    public function getName() {
+        return $this->getBlockPrefix();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'bs_static';
     }

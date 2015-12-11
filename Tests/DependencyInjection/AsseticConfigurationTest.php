@@ -25,7 +25,7 @@ class AsseticConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $this->asseticConfig->build(array(
-            'less_filter'   => 'less',
+            'css_preprocessor'   => 'less',
             'assets_dir'    => './assets',
             'output_dir'    => './web',
             'jquery_path'   => './assets/jquery.js',
@@ -46,7 +46,7 @@ class AsseticConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testBuildWithoutLess()
     {
         $this->asseticConfig->build(array(
-            'less_filter'   => 'none',
+            'css_preprocessor'   => 'none',
             'assets_dir'    => './assets',
             'output_dir'    => './web',
             'jquery_path'   => './assets/jquery.js',

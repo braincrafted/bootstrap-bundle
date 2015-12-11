@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
+
 /**
  * Class InputGroupButtonExtension
  *
@@ -34,7 +36,8 @@ class InputGroupButtonExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'text';
+        // map old class to new one using LegacyFormHelper
+        return LegacyFormHelper::getType('text');
     }
 
     /**
@@ -100,6 +103,7 @@ class InputGroupButtonExtension extends AbstractTypeExtension
      */
     protected function addButton(FormBuilderInterface $builder, $config)
     {
+
         $options = (isset($config['options']))? $config['options'] : array();
 
         return $builder->create($config['name'], $config['type'], $options);
@@ -114,6 +118,7 @@ class InputGroupButtonExtension extends AbstractTypeExtension
      */
     protected function storeButton(ButtonBuilder $buttonBuilder, FormBuilderInterface $form, $position)
     {
+
         if (!isset($this->buttons[$form->getName()])) {
             $this->buttons[$form->getName()] = array();
         }

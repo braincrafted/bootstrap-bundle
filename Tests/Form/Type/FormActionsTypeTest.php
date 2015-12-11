@@ -8,6 +8,8 @@ use Mockery as m;
 use Symfony\Component\Form\ButtonBuilder;
 use Symfony\Component\Form\FormBuilder;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
+
 /**
  * Class FormActionsTypeTest
  *
@@ -30,16 +32,18 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
     {
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
 
-        $input  = array(
+        // map old class to new one using LegacyFormHelper
+        $input = array(
             'buttons' => array(
-                'save' => array('type' => 'submit', 'options' => array('label' => 'button.save')),
-                'cancel' => array('type' => 'button', 'options' => array('label' => 'button.cancel')),
+                'save' => array('type' => LegacyFormHelper::getType('submit'), 'options' => array('label' => 'button.save')),
+                'cancel' => array('type' => LegacyFormHelper::getType('button'), 'options' => array('label' => 'button.cancel')),
             )
         );
 
+
         $buttonBuilder = new ButtonBuilder('name');
         $builder->shouldReceive('add')
-            ->with(m::anyOf('save', 'cancel'), m::anyOf('submit', 'button'), m::hasKey('label'))
+            ->with(m::anyOf('save', 'cancel'), m::anyOf(LegacyFormHelper::getType('submit'), LegacyFormHelper::getType('button')), m::hasKey('label'))
             ->twice()
             ->andReturn($buttonBuilder);
 
@@ -90,6 +94,9 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $this->type->buildView($view, $form, $options);
     }
 
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType::configureOptions()
+     */
     public function testConfigureOptions()
     {
 
@@ -105,7 +112,10 @@ class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
         $this->type->configureOptions($resolver);
     }
 
-    public function testGetName()
+    /**
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType::getBlockPrefix()
+     */
+    public function testGetBlockPrefix()
     {
         $this->assertEquals('form_actions', $this->type->getName());
     }

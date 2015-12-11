@@ -5,6 +5,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Tests\Form\Extension;
 use \Mockery as m;
 
 use Braincrafted\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension;
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
 
 /**
  * TypeSetterExtensionTest
@@ -28,7 +29,11 @@ class TypeSetterExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $view = m::mock('Symfony\Component\Form\FormView');
         $type = m::mock('Symfony\Component\Form\ResolvedFormTypeInterface');
-        $type->shouldReceive('getName')->andReturn('type');
+        if(LegacyFormHelper::isLegacy()) {
+            $type->shouldReceive('getName')->andReturn('form');
+        } else {
+            $type->shouldReceive('getBlockPrefix')->andReturn(LegacyFormHelper::getType('form'));
+        }
         $config = m::mock('Symfony\Component\Form\FormConfigInterface');
         $config->shouldReceive('getType')->andReturn($type);
         $form = m::mock('Symfony\Component\Form\FormInterface');
@@ -42,6 +47,7 @@ class TypeSetterExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetExtendedType()
     {
-        $this->assertEquals('form', $this->extension->getExtendedType());
+        // map old class to new one using LegacyFormHelper
+        $this->assertEquals(LegacyFormHelper::getType('form'), $this->extension->getExtendedType());
     }
 }

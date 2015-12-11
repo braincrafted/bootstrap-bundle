@@ -81,7 +81,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
                 'bootstrap_output'   => __DIR__.'/bootstrap.less',
                 'bootstrap_template' => __DIR__.'/bootstrap.html.twig'
             ));
-        $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.less_filter')->andReturn('less');
+        $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.css_preprocessor')->andReturn('less');
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.assets_dir')->andReturn(__DIR__);
 
         if (Kernel::VERSION_ID >= 20500) {
@@ -144,7 +144,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.customize')
             ->andReturn(array('variables_file' => __DIR__.'/x/variables.less'));
-        $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.less_filter')->andReturn('none');
+        $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.css_preprocessor')->andReturn('none');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);

@@ -7,6 +7,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
+
 /**
  * FormControlStaticType
  *
@@ -43,6 +45,7 @@ class ButtonTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'button';
+        // map old class to new one using LegacyFormHelper
+        return LegacyFormHelper::getType('button');
     }
 }

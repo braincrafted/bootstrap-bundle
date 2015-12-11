@@ -3,6 +3,7 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Tests\Form\Extension;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
 use \Mockery as m;
 use Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension;
 use Symfony\Component\Form\FormView;
@@ -24,14 +25,17 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testBuildView()
     {
+
+        // map old class to new one using LegacyFormHelper
         $optionsBoth = array(
             'attr' => array(
                 'input_group' => array(
-                    'button_prepend' => array('name' => 'prepend', 'type' => 'submit', 'options' => array()),
-                    'button_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
+                    'button_prepend' => array('name' => 'prepend', 'type' => LegacyFormHelper::getType('submit'), 'options' => array()),
+                    'button_append' => array('name' => 'append', 'type' => LegacyFormHelper::getType('submit'), 'options' => array())
                 )
             ),
         );
+
 
         $buttonPrepend = m::mock('Symfony\Component\Form\Button');
         $buttonPrepend->shouldReceive('createView')->andReturn('prepend');
@@ -75,12 +79,13 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
         $builder = m::mock('Symfony\Component\Form\FormBuilderInterface');
         $builder->shouldReceive('getName')->andReturn('input_name');
 
+        // map old class to new one using LegacyFormHelper
         if (isset($options['attr']['input_group']['button_prepend'])) {
-            $builder->shouldReceive('create')->with('prepend', 'submit', array())->andReturn($button)->once();
+            $builder->shouldReceive('create')->with('prepend', LegacyFormHelper::getType('submit'), array())->andReturn($button)->once();
         }
 
         if (isset($options['attr']['input_group']['button_append'])) {
-            $builder->shouldReceive('create')->with('append', 'submit', array())->andReturn($button)->once();
+            $builder->shouldReceive('create')->with('append', LegacyFormHelper::getType('submit'), array())->andReturn($button)->once();
         }
 
         $this->extension->buildForm($builder, $options);
@@ -88,11 +93,12 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function provideForForm()
     {
+
         $optionsBoth = array(
             'attr' => array(
                 'input_group' => array(
-                    'button_prepend' => array('name' => 'prepend', 'type' => 'submit', 'options' => array()),
-                    'button_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
+                    'button_prepend' => array('name' => 'prepend', 'type' => LegacyFormHelper::getType('submit'), 'options' => array()),
+                    'button_append' => array('name' => 'append', 'type' => LegacyFormHelper::getType('submit'), 'options' => array())
                 )
             ),
         );
@@ -100,7 +106,7 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
         $optionsOne = array(
             'attr' => array(
                 'input_group' => array(
-                    'button_append' => array('name' => 'append', 'type' => 'submit', 'options' => array())
+                    'button_append' => array('name' => 'append', 'type' => LegacyFormHelper::getType('submit'), 'options' => array())
                 )
             ),
         );
@@ -125,6 +131,6 @@ class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetExtendedType()
     {
-        $this->assertEquals('text', $this->extension->getExtendedType());
+        $this->assertEquals(LegacyFormHelper::getType('text'), $this->extension->getExtendedType());
     }
 }
