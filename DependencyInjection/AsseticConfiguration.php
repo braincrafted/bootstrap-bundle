@@ -38,7 +38,7 @@ class AsseticConfiguration
         // changed from css_preprocessor to css_preprocessor for 3.0
         if (in_array($config['css_preprocessor'], array('sass', 'scssphp'))) {
             $output['bootstrap_css'] = $this->buildCssWithSass($config);
-        } elseif ('none' !== $config['less_filter']) {
+        } elseif ('none' !== $config['css_preprocessor']) {
             $output['bootstrap_css'] = $this->buildCssWithLess($config);
         } else {
             $output['bootstrap_css'] = $this->buildCssWithoutLess($config);
