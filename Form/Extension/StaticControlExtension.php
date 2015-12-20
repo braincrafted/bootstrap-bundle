@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
+
 /**
  * StaticControlExtension
  *
@@ -58,6 +60,7 @@ class StaticControlExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'form';
+        // map old class to new one using LegacyFormHelper
+        return LegacyFormHelper::getType('form');
     }
 }

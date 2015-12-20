@@ -12,6 +12,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
+
 /**
  * BootstrapCollectionType
  *
@@ -64,18 +66,23 @@ class BootstrapCollectionType extends AbstractType
             // @codeCoverageIgnoreEnd
         };
 
-        $resolver->setDefaults(array(
+        $defaults =  array(
             'allow_add'          => false,
             'allow_delete'       => false,
             'prototype'          => true,
             'prototype_name'     => '__name__',
-            'type'               => 'text',
             'add_button_text'    => 'Add',
             'delete_button_text' => 'Delete',
             'sub_widget_col'     => 10,
             'button_col'         => 2,
             'options'            => array(),
-        ));
+        );
+
+
+        // map old class to new one using LegacyFormHelper
+        $defaults['type'] = LegacyFormHelper::getType('text');
+
+        $resolver->setDefaults($defaults);
 
         $resolver->setNormalizer('options', $optionsNormalizer);
     }
@@ -85,14 +92,24 @@ class BootstrapCollectionType extends AbstractType
      */
     public function getParent()
     {
-        return 'collection';
+        // map old class to new one using LegacyFormHelper
+        return LegacyFormHelper::getType('collection');
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'bootstrap_collection';
+    }
+
+    /**
+     * Backward compatibility for SF < 3.0
+     *
+     * @return null|string
+     */
+    public function getName() {
+        return $this->getBlockPrefix();
     }
 }

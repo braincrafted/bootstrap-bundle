@@ -33,9 +33,18 @@ class MoneyType extends BaseMoneyType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'money';
+    }
+
+    /**
+     * Backward compatibility for SF < 3.0
+     *
+     * @return null|string
+     */
+    public function getName() {
+        return $this->getBlockPrefix();
     }
 
     /**

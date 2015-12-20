@@ -5,6 +5,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Tests\Type;
 use \Mockery as m;
 
 use Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType;
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
 
 /**
  * BootstrapCollectionTypeTest
@@ -66,14 +67,14 @@ class BootstrapCollectionTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetParent()
     {
-        $this->assertEquals('collection', $this->type->getParent());
+        $this->assertEquals(LegacyFormHelper::getType('collection'), $this->type->getParent());
     }
 
     /**
-     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType::getName()
+     * @covers Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType::getBlockPrefix()
      */
-    public function testGetName()
+    public function testGetBlockPrefix()
     {
-        $this->assertEquals('bootstrap_collection', $this->type->getName());
+        $this->assertEquals('bootstrap_collection', $this->type->getBlockPrefix());
     }
 }
