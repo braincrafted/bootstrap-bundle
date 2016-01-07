@@ -1,5 +1,5 @@
 {
-    "name":         "lashus/bootstrap-bundle",
+    "name":         "braincrafted/bootstrap-bundle",
     "description":  "BraincraftedBootstrapBundle integrates Bootstrap into Symfony2 by providing templates, Twig extensions, services and commands.",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
