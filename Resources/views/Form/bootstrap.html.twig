@@ -217,12 +217,12 @@
     {% spaceless %}
         {% for group_label, choice in options %}
             {% if choice is iterable %}
-                <optgroup label="{{ choice_translation_domain is defined ? (choice_translation_domain is same(false) ? group_label : group_label|trans({}, choice_translation_domain)) : group_label|trans({}, translation_domain) }}">
+                <optgroup label="{{ choice_translation_domain is defined ? (choice_translation_domain is same as (false) ? group_label : group_label|trans({}, choice_translation_domain)) : group_label|trans({}, translation_domain) }}">
                     {% set options = choice %}
                     {{ block('choice_widget_options') }}
                 </optgroup>
             {% else %}
-                <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is defined ? (choice_translation_domain is same(false) ? choice.label : choice.label|trans({}, choice_translation_domain)) : choice.label|trans({}, translation_domain) }}</option>
+                <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is defined ? (choice_translation_domain is same as (false) ? choice.label : choice.label|trans({}, choice_translation_domain)) : choice.label|trans({}, translation_domain) }}</option>
             {% endif %}
         {% endfor %}
     {% endspaceless %}
