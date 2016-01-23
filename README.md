@@ -110,7 +110,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 Changelog
 ---------
 
-### Version 2.1.3 (23 January 2016)
+### Version 2.2.0 (23 January 2016)
 
 - [#331](https://github.com/braincrafted/bootstrap-bundle/pull/331) Translate menu labels (by [kamiramix](https://github.com/kamiramix))
 - [#364](https://github.com/braincrafted/bootstrap-bundle/pull/364) Update form_themes supported keyword to replace the form.resources keyword (by [cordoval](https://github.com/cordoval))
