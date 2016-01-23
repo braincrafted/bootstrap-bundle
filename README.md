@@ -98,7 +98,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
             <td>v1.10.*<br>v1.11.*</td>
         </tr>
         <tr>
-            <td><strong>v2.1.*</strong></td>
+            <td><strong>v2.2.*</strong></td>
             <td>v2.3.*<br>v2.4.*<br>v2.5.*<br>v2.6.*<br>v2.7.*<br>v2.8.*<br>v3.0.*</td>
             <td>v3.0.*<br>v3.1.*<br>v3.2.*<br>sass v3.2.*</td>
             <td>v1.10.*<br>v1.11.*</td>
