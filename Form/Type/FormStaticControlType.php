@@ -8,6 +8,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
 
 /**
  * FormStaticControlType
