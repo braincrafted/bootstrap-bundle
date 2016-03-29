@@ -46,6 +46,7 @@ class AsseticConfiguration
 
         $output['bootstrap_js'] = $this->buildJs($config);
         $output['jquery'] = $this->buildJquery($config);
+        $output['jqueryui'] = $this->buildJqueryui($config);
 
         return $output;
     }
@@ -166,6 +167,14 @@ class AsseticConfiguration
         return array(
             'inputs' => array($config['jquery_path']),
             'output' => $config['output_dir'].'js/jquery.js'
+        );
+    }
+
+    protected function buildJqueryui(array $config)
+    {
+        return array(
+            'inputs' => array($config['jqueryui_path']),
+            'output' => $config['output_dir'].'js/jquery-ui.js'
         );
     }
 }
