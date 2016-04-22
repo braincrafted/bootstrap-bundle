@@ -7,7 +7,7 @@
 
 namespace Braincrafted\Bundle\BootstrapBundle\Session;
 
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * FlashMessage
@@ -21,15 +21,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class FlashMessage
 {
-    /** @var SessionInterface */
+    /** @var Session */
     private $session;
 
     /**
      * Constructor.
      *
-     * @param SessionInterface $session The session
+     * @param Session $session The session
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(Session $session)
     {
         $this->session = $session;
     }
