@@ -7,8 +7,10 @@
 namespace Braincrafted\Bundle\BootstrapBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -79,8 +81,12 @@ class BootstrapCollectionType extends AbstractType
         );
 
 
-        // map old class to new one using LegacyFormHelper
-        $defaults['type'] = LegacyFormHelper::getType('text');
+        if (Kernel::VERSION_ID>=20800) {
+            $defaults['entry_type'] = 'Symfony\Component\Form\Extension\Core\Type\TextType';
+        } else {
+            // map old class to new one using LegacyFormHelper
+            $defaults['type'] = LegacyFormHelper::getType('text');
+        }
 
         $resolver->setDefaults($defaults);
 
