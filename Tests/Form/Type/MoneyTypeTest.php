@@ -42,13 +42,21 @@ class MoneyTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildViewRightSide()
     {
-        $view = m::mock('Symfony\Component\Form\FormView');
-        $form = m::mock('Symfony\Component\Form\FormInterface');
+        /*
+         * If the intl extension is not loaded this will throw an test error,
+         * even with the symfony provided intl component, as this php replacement
+         * layer can only handle 'en':
+         * http://symfony.com/doc/current/components/intl.html
+         */
+        if(extension_loaded('intl')) {
+            $view = m::mock('Symfony\Component\Form\FormView');
+            $form = m::mock('Symfony\Component\Form\FormInterface');
 
-        $default = \Locale::getDefault();
-        \Locale::setDefault('fr-CA');
-        $this->type->buildView($view, $form, array('currency' => 'EUR'));
-        \Locale::setDefault($default);
+            $default = \Locale::getDefault();
+            \Locale::setDefault('fr-CA');
+            $this->type->buildView($view, $form, array('currency' => 'EUR'));
+            \Locale::setDefault($default);
+        }
     }
 
     /**
