@@ -52,12 +52,15 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->container = m::mock('Symfony\Component\DependencyInjection\ContainerInterface');
         $this->container->shouldReceive('get')->with('twig')->andReturn($this->twig);
+        $this->container->shouldReceive('hasParameter')->andReturn(false);
 
         $this->kernel = m::mock('Symfony\Component\HttpKernel\KernelInterface');
         $this->kernel->shouldReceive('getName')->andReturn('app');
         $this->kernel->shouldReceive('getEnvironment')->andReturn('prod');
         $this->kernel->shouldReceive('isDebug')->andReturn(false);
         $this->kernel->shouldReceive('getContainer')->andReturn($this->container);
+        $this->kernel->shouldReceive('boot');
+        $this->kernel->shouldReceive('getBundles')->andReturn(array());
     }
 
     public function tearDown()
