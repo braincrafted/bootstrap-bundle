@@ -271,7 +271,7 @@ assetic:
             apply_to: "\.less$"
         cssrewrite: ~
 braincrafted_bootstrap:
-    less_filter: less</code></pre>
+    css_preprocessor: less</code></pre>
 
     <h4>lessphp <span class="label label-danger">Deprecated</span></h4>
 
@@ -298,7 +298,7 @@ assetic:
              apply_to: "\.less$"
         cssrewrite: ~
 braincrafted_bootstrap:
-    less_filter: lessphp</code></pre>
+    css_preprocessor: lessphp</code></pre>
 
     <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check
         the <a href="http://leafo.net/lessphp/">lessphp website</a> whether a new version has been released.</p>
@@ -324,7 +324,7 @@ assetic:
              apply_to: "\.less$"
         cssrewrite: ~
 braincrafted_bootstrap:
-    less_filter: lessphp</code></pre>
+    css_preprocessor: lessphp</code></pre>
 
     <p><span class="label label-info">Hint</span> If a new version of Bootstrap no longer compiles with lessphp, check
         the <a href="http://lessphp.gpeasy.com">less.php website</a> whether a new version has been released.</p>
@@ -334,7 +334,7 @@ braincrafted_bootstrap:
     <p>Starting with Version 2.1 BootstrapBundle supports
         <a href="https://github.com/twbs/bootstrap-sass">bootstrap-sass</a>, the official Sass port of Bootstrap.</p>
 
-    <p>If you change the config value of <code>less_filter</code> to <code>sass</code> BootstrapBundle will
+    <p>If you change the config value of <code>css_preprocessor</code> to <code>sass</code> BootstrapBundle will
         automatically use the appropriate default values for the other configuration options.</p>
 
     <pre><code class="yaml"># app/config/config.yml
@@ -344,10 +344,7 @@ assetic:
             bin: /usr/local/bin/sass
             apply_to: "\.scss$"
 braincrafted_bootstrap:
-    less_filter: sass</code></pre>
-
-    <p><span class="info">The name of the configuration value <code>less_filter</code> will be changed in Version 3.0 of
-        BootstrapBundle.</span></p>
+    css_preprocessor: sass</code></pre>
 
     <h4>scssphp</h4>
 
@@ -369,19 +366,16 @@ assetic:
         scssphp: ~
             cssrewrite: ~
 braincrafted_bootstrap:
-    less_filter: scssphp</code></pre>
+    css_preprocessor: scssphp</code></pre>
 
     <h3 id="installing-glyphicons">Installing Glyphicons</h3>
 
-    <p>Bootstrap comes with support for Glyphicons. However, you need to copy the icon fonts into your <code>web/</code>
-        directory, so that browsers can find it. BraincraftedBootstrapBundle comes with a command to copy the files for
-        you.</p>
+    <p>Bootstrap comes with support for Glyphicons. However, you need to copy the icon fonts into your <code>web/</code> directory, so that browsers can find it. BraincraftedBootstrapBundle comes with a command to copy the files for you.</p>
 
     <pre><code class="bash">php app/console braincrafted:bootstrap:install</code></pre>
 
     <p>Since you need to do this every time the font changes in Bootstrap, you can also configure a
-        <code>ScriptHandler</code> in your <code>composer.json</code>. Now the icon fonts are copied into the web
-        directory after Composer updates the packages.</p>
+        <code>ScriptHandler</code> in your <code>composer.json</code>. Now the icon fonts are copied into the web directory after Composer updates the packages.</p>
 
     <pre><code class="json">{
     ...
@@ -413,7 +407,7 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
     jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
-    less_filter: less # "less", "lessphp", "sass" or "none"
+    css_preprocessor: less # "less", "lessphp", "sass" or "none"
     fonts_dir: %kernel.root_dir%/../web/fonts
     auto_configure:
         assetic: true
@@ -574,7 +568,7 @@ knp_paginator:
 
     <ul>
         <li>The option <code>braincrafted_bootstrap.customize.variables_file</code> is set to a value other than <code>NULL</code></li>
-        <li>You use LESS, that is, the option <code>braincrafted_bootstrap.less_filter</code> is set to <code>less</code> or <code>lessphp</code></li>
+        <li>You use LESS, that is, the option <code>braincrafted_bootstrap.css_preprocessor</code> is set to <code>less</code> or <code>lessphp</code></li>
     </ul>
 
     <pre><code class="yaml"># app/config/config.yml
@@ -625,7 +619,7 @@ twig:
 
     <pre><code class="twig">&lt;!-- src/Acme/DemoBundle/Resources/views/Form/form_div_layout.html.twig --&gt;
 
-{% extends 'BraincraftedBootstrapBundle:Form:form_div_layout.html.twig' %}
+{% extends 'BraincraftedBootstrapBundle:Form:bootstrap.html.twig' %}
 
 &lt;!-- Custom code for the URL widget --&gt;
 {% block url_widget %}
