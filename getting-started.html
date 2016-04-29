@@ -201,7 +201,7 @@
                 "name": "jquery/jquery",
                 "version": "1.11.1",
                 "dist": {
-                    "url": "http://code.jquery.com/jquery-1.11.1.js",
+                    "url": "https://code.jquery.com/jquery-1.11.1.js",
                     "type": "file"
                 }
             }
@@ -237,6 +237,10 @@ class AppKernel extends Kernel
         managing your assets, you should now run the <code>dump</code> command.</p>
 
     <pre><code>php app/console assetic:dump</code></pre>
+
+    <p>In Symfony 3.0 the <code>console</code> command is located in the <code>bin</code> directory.</p>
+
+    <pre><code>php bin/console assetic:dump</code></pre>
 
     <p><span class="label label-info">Please note</span> Assetic needs to compile the LESS files from Bootstrap and
         therefore requires either <a href="http://lesscss.org">LESS</a> or
