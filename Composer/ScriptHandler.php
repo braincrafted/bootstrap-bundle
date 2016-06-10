@@ -12,7 +12,7 @@ namespace Braincrafted\Bundle\BootstrapBundle\Composer;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
-use Composer\Script\CommandEvent;
+use Composer\Script\Event;
 
 /**
  * ScriptHandler
@@ -30,7 +30,7 @@ class ScriptHandler
     /**
      * @param CommandEvent $event
      */
-    public static function install(CommandEvent $event)
+    public static function install(Event $event)
     {
         $options = self::getOptions($event);
         $consolePathOptionsKey = array_key_exists('symfony-bin-dir', $options) ? 'symfony-bin-dir' : 'symfony-app-dir';
@@ -52,7 +52,7 @@ class ScriptHandler
         static::executeCommand($event, $consolePath, 'braincrafted:bootstrap:install', $options['process-timeout']);
     }
 
-    protected static function executeCommand(CommandEvent $event, $consolePath, $cmd, $timeout = 300)
+    protected static function executeCommand(Event $event, $consolePath, $cmd, $timeout = 300)
     {
         $php = escapeshellarg(self::getPhp(false));
         $console = escapeshellarg($consolePath.'/console');
@@ -71,7 +71,7 @@ class ScriptHandler
         }
     }
 
-    protected static function getOptions(CommandEvent $event)
+    protected static function getOptions(Event $event)
     {
         $options = array_merge(array(
             'symfony-app-dir' => 'app',
