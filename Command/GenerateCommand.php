@@ -104,7 +104,7 @@ class GenerateCommand extends ContainerAwareCommand
 
         $container = $this->getContainer();
 
-        if (Kernel::VERSION_ID >= 20500) {
+        if (Kernel::VERSION_ID >= 20500 && Kernel::VERSION_ID < 30000) {
             $container->enterScope('request');
             $container->set('request', new Request(), 'request');
         }
