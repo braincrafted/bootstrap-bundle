@@ -8,27 +8,31 @@
 {% for flashMessage in app.session.flashbag.get('alert') %}
     <div class="alert alert-warning{% if close %} alert-dismissible{% endif %}">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
-        {{ flashMessage|trans({}, translation_domain) }}
+        {% if translation_domain is not same as(false) %}{% set flashMessage = flashMessage|trans({}, translation_domain) %}{% endif %}
+        {{ flashMessage }}
     </div>
 {% endfor %}
 
 {% for flashMessage in app.session.flashbag.get('danger') %}
     <div class="alert alert-danger{% if close %} alert-dismissible{% endif %}">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
-        {{ flashMessage|trans({}, translation_domain) }}
+        {% if translation_domain is not same as(false) %}{% set flashMessage = flashMessage|trans({}, translation_domain) %}{% endif %}
+        {{ flashMessage }}
     </div>
 {% endfor %}
 
 {% for flashMessage in app.session.flashbag.get('info') %}
     <div class="alert alert-info{% if close %} alert-dismissible{% endif %}">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
-        {{ flashMessage|trans({}, translation_domain) }}
+        {% if translation_domain is not same as(false) %}{% set flashMessage = flashMessage|trans({}, translation_domain) %}{% endif %}
+        {{ flashMessage }}
     </div>
 {% endfor %}
 
 {% for flashMessage in app.session.flashbag.get('success') %}
     <div class="alert alert-success{% if close %} alert-dismissible{% endif %}">
         {% if close %}<button type="button" class="close" data-dismiss="alert">&times;</button>{% endif %}
-        {{ flashMessage|trans({}, translation_domain) }}
+        {% if translation_domain is not same as(false) %}{% set flashMessage = flashMessage|trans({}, translation_domain) %}{% endif %}
+        {{ flashMessage }}
     </div>
 {% endfor %}

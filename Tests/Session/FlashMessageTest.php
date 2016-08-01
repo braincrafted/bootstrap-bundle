@@ -13,7 +13,7 @@ use Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage;
  */
 class FlashMessageTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Symfony\Component\HttpFoundation\Session\SessionInterface|\Mockery\MockInterface */
+    /** @var \Symfony\Component\HttpFoundation\Session\Session|\Mockery\MockInterface */
     private $session;
 
     /** @var \Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface|\Mockery\MockInterface */
@@ -25,7 +25,7 @@ class FlashMessageTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->flashBag = m::mock('Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface');
-        $this->session = m::mock('Symfony\Component\HttpFoundation\Session\SessionInterface');
+        $this->session = m::mock('Symfony\Component\HttpFoundation\Session\Session');
         $this->session
             ->shouldReceive('getFlashBag')
             ->withNoArgs()
