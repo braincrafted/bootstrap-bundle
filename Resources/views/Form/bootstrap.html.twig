@@ -93,7 +93,7 @@
             {% endif %}
             {% set prototype_html = '<div class="col-xs-' ~ form.vars.sub_widget_col ~ '">' ~ form_widget(prototype, prototype_vars) ~ '</div>' %}
             {% if form.vars.allow_delete %}
-                {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="btn btn-danger btn-sm" data-removefield="collection" data-field="__id__">' ~ delete_button_text|parse_icons|raw ~ '</a></div>' %}
+                {% set prototype_html = prototype_html ~ '<div class="col-xs-' ~ form.vars.button_col ~ '"><a href="#" class="' ~ form.vars.delete_button_class ~ '" data-removefield="collection" data-field="__id__">' ~ delete_button_text|parse_icons|raw ~ '</a></div>' %}
             {% endif %}
             {% set prototype_html = '<div class="row">' ~ prototype_html ~ '</div>' %}
 
@@ -111,7 +111,7 @@
                             </div>
                             {% if form.vars.allow_delete %}
                                 <div class="col-xs-{{ form.vars.button_col }}">
-                                    <a href="#" class="btn btn-danger btn-sm" data-removefield="collection" data-field="{{ field.vars.id }}">{{ delete_button_text|parse_icons|raw }}</a>
+                                    <a href="#" class="{{ form.vars.button_delete_class }}" data-removefield="collection" data-field="{{ field.vars.id }}">{{ delete_button_text|parse_icons|raw }}</a>
                                 </div>
                             {% endif %}
                         </div>
@@ -119,7 +119,7 @@
                 {% endfor %}
             </ul>
             {% if form.vars.allow_add %}
-                <a href="#" class="btn btn-primary btn-sm" data-addfield="collection" data-collection="{{ form.vars.id }}" data-prototype-name="{{ prototype_name }}">{{ add_button_text|parse_icons|raw }}</a>
+                <a href="#" class="{{ form.vars.add_button_class }}" data-addfield="collection" data-collection="{{ form.vars.id }}" data-prototype-name="{{ prototype_name }}">{{ add_button_text|parse_icons|raw }}</a>
             {% endif %}
         </div>
     {% endspaceless %}
