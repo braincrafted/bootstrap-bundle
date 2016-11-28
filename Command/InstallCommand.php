@@ -37,6 +37,11 @@ class InstallCommand extends ContainerAwareCommand
     {
         $destDir = $this->getDestDir();
 
+        if (!$destDir) {
+            // font copy is disabled
+            return;
+        }
+
         $finder = new Finder;
         $fs = new Filesystem;
 
