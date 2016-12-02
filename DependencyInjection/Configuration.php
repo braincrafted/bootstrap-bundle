@@ -47,6 +47,9 @@ class Configuration implements ConfigurationInterface
     const DEFAULT_JQUERY_PATH = '%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.1.js';
 
     /** @var string */
+    const DEFAULT_JQUERYUI_PATH = '%kernel.root_dir%/../vendor/jquery/jquery-ui/jquery-ui.js';
+
+    /** @var string */
     const DEFAULT_FONTS_DIR = '%kernel.root_dir%/../web/fonts';
 
     /**
@@ -73,6 +76,9 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('jquery_path')
                     ->defaultValue(self::DEFAULT_JQUERY_PATH)
+                ->end()
+                ->scalarNode('jqueryui_path')
+                ->defaultValue(self::DEFAULT_JQUERYUI_PATH)
                 ->end()
                 ->scalarNode('fonts_dir')
                     ->defaultValue(self::DEFAULT_FONTS_DIR)
