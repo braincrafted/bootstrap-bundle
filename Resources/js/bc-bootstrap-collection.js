@@ -32,7 +32,7 @@
 
         e && e.preventDefault();
 
-        var collection = $('#'+selector),
+        var collection = $this.closest('form').find('#'+selector),
             list = collection.find('> ul'),
             count = list.find('> li').length
         ;
