@@ -25,7 +25,7 @@
         "knplabs/knp-menu":             "~2.0@alpha",
         "knplabs/knp-menu-bundle":      "~2.0@alpha",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "phpunit/phpunit":              "~3.7",
+        "phpunit/phpunit":              "~4.8",
         "mockery/mockery":              "~0.9"
     },
     "suggest":      {

@@ -26,7 +26,7 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension;
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  * @group      unit
  */
-class BootstrapLabelExtensionTest extends \PHPUnit_Framework_TestCase
+class BootstrapLabelExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /** @var BootstrapLabelExtension */
     private $extension;

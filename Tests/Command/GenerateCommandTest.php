@@ -29,7 +29,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
  * @link       http://bootstrap.braincrafted.com BraincraftedBootstrapBundle
  * @group      unit
  */
-class GenerateCommandTest extends \PHPUnit_Framework_TestCase
+class GenerateCommandTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var m\Mock|\Twig_Environment

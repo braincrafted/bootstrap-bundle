@@ -26,7 +26,7 @@ use Braincrafted\Bundle\BootstrapBundle\Command\InstallCommand;
  * @link       http://bootstrap.braincrafted.com BraincraftedBootstrapBundle
  * @group      unit
  */
-class InstallCommandTest extends \PHPUnit_Framework_TestCase
+class InstallCommandTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {

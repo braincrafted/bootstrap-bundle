@@ -28,7 +28,7 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  * @group      unit
  */
-class BootstrapButtonExtensionTest extends \PHPUnit_Framework_TestCase
+class BootstrapButtonExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /** @var BootstrapButtonExtension */
     private $extension;

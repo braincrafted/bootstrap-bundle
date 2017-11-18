@@ -12,7 +12,7 @@ use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
  *
  * @group unit
  */
-class MoneyTypeTest extends \PHPUnit_Framework_TestCase
+class MoneyTypeTest extends \PHPUnit\Framework\TestCase
 {
     /** @var MoneyType */
     private $type;

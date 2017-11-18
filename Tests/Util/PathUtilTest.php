@@ -9,7 +9,7 @@ use Braincrafted\Bundle\BootstrapBundle\Util\PathUtil;
  *
  * @group unit
  */
-class PathUtilTest extends \PHPUnit_Framework_TestCase
+class PathUtilTest extends \PHPUnit\Framework\TestCase
 {
     /** @var PathUtil */
     private $util;
