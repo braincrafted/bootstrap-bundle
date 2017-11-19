@@ -152,6 +152,8 @@ class GenerateCommandTest extends TestCase
             ->andReturn(array('variables_file' => __DIR__.'/x/variables.less'));
         $this->container->shouldReceive('getParameter')->with('braincrafted_bootstrap.css_preprocessor')->andReturn('none');
 
+        $this->container->shouldReceive('has');
+
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
         $application->add(new GenerateCommand());
