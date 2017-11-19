@@ -74,6 +74,8 @@ class InstallCommandTest extends \PHPUnit\Framework\TestCase
             ->with('braincrafted_bootstrap.fonts_dir')
             ->andReturn(__DIR__.'/fixtures/web/fonts');
 
+        $this->container->shouldReceive('has');
+
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
         $application->add(new InstallCommand());
@@ -109,6 +111,8 @@ class InstallCommandTest extends \PHPUnit\Framework\TestCase
             ->with('braincrafted_bootstrap.css_preprocessor')
             ->andReturn('');
 
+        $this->container->shouldReceive('has');
+
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
         $application->add(new InstallCommand());
@@ -143,6 +147,8 @@ class InstallCommandTest extends \PHPUnit\Framework\TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.css_preprocessor')
             ->andReturn('');
+
+        $this->container->shouldReceive('has');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -182,6 +188,8 @@ class InstallCommandTest extends \PHPUnit\Framework\TestCase
             ->shouldReceive('getParameter')
             ->with('braincrafted_bootstrap.fontawesome_dir')
             ->andReturn('');
+
+        $this->container->shouldReceive('has');
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
