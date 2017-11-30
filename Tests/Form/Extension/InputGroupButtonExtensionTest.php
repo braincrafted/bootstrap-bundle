@@ -8,7 +8,7 @@ use \Mockery as m;
 use Braincrafted\Bundle\BootstrapBundle\Form\Extension\InputGroupButtonExtension;
 use Symfony\Component\Form\FormView;
 
-class InputGroupButtonExtensionTest extends \PHPUnit_Framework_TestCase
+class InputGroupButtonExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var InputGroupButtonExtension

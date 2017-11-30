@@ -26,7 +26,7 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension;
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  * @group      unit
  */
-class BootstrapBadgeExtensionTest extends \PHPUnit_Framework_TestCase
+class BootstrapBadgeExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /** @var BootstrapBadgeExtension */
     private $extension;

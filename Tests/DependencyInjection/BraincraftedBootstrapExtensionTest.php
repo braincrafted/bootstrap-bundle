@@ -5,14 +5,20 @@ namespace Braincrafted\Bundle\BootstrapBundle\Tests\DependencyInjection;
 use \Mockery as m;
 
 use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\BraincraftedBootstrapExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * BraincraftedBootstrapExtensionTest
  *
  * @group unit
  */
-class BraincraftedBootstrapExtensionTest extends \PHPUnit_Framework_TestCase
+class BraincraftedBootstrapExtensionTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @var BraincraftedBootstrapExtension
+     */
+    private $extension;
+
     public function setUp()
     {
         $this->extension = new BraincraftedBootstrapExtension;
@@ -26,12 +32,14 @@ class BraincraftedBootstrapExtensionTest extends \PHPUnit_Framework_TestCase
         $bag = m::mock('Symfony\Component\DependencyInjection\ParameterBag\ParameterBag');
         $bag->shouldReceive('add');
 
+        /** @var ContainerBuilder | m\Mock $container */
         $container = m::mock('Symfony\Component\DependencyInjection\ContainerBuilder');
         $container->shouldReceive('hasExtension')->andReturn(false);
         $container->shouldReceive('addResource');
         $container->shouldReceive('getParameterBag')->andReturn($bag);
         $container->shouldReceive('setDefinition');
         $container->shouldReceive('setParameter');
+        $container->shouldReceive('fileExists')->withAnyArgs()->andReturn(true);
 
         $this->extension->load(array(), $container);
     }

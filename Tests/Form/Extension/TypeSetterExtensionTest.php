@@ -12,7 +12,7 @@ use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
  *
  * @group unit
  */
-class TypeSetterExtensionTest extends \PHPUnit_Framework_TestCase
+class TypeSetterExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /** @var TypeSetterExtension */
     private $extension;

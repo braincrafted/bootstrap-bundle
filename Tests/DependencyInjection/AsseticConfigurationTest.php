@@ -9,7 +9,7 @@ use Braincrafted\Bundle\BootstrapBundle\DependencyInjection\AsseticConfiguration
  *
  * @group unit
  */
-class AsseticConfigurationTest extends \PHPUnit_Framework_TestCase
+class AsseticConfigurationTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {

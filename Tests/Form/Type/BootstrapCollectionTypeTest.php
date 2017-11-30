@@ -12,7 +12,7 @@ use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
  *
  * @group unit
  */
-class BootstrapCollectionTypeTest extends \PHPUnit_Framework_TestCase
+class BootstrapCollectionTypeTest extends \PHPUnit\Framework\TestCase
 {
     /** @var BootstrapCollectionType */
     private $type;

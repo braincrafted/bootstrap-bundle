@@ -15,7 +15,7 @@ use Braincrafted\Bundle\BootstrapBundle\Util\LegacyFormHelper;
  *
  * @group unit
  */
-class FormActionsTypeTest extends \PHPUnit_Framework_TestCase
+class FormActionsTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var FormActionsType

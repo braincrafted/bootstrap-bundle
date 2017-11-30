@@ -26,7 +26,7 @@ use Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension;
  * @link       http://bootstrap.braincrafted.com Bootstrap for Symfony2
  * @group      unit
  */
-class BootstrapIconExtensionTest extends \PHPUnit_Framework_TestCase
+class BootstrapIconExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Braincrafted\Bundle\BootstrapBundle\Twig\BootstrapIconExtension::getFilters()

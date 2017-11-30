@@ -11,7 +11,7 @@ use Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage;
  *
  * @group unit
  */
-class FlashMessageTest extends \PHPUnit_Framework_TestCase
+class FlashMessageTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Symfony\Component\HttpFoundation\Session\Session|\Mockery\MockInterface */
     private $session;
