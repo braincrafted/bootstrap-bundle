@@ -36,6 +36,5 @@
     },
     "autoload": {
         "psr-4": { "Braincrafted\\Bundle\\BootstrapBundle\\": "" }
-    },
-    "target-dir": "Braincrafted/Bundle/BootstrapBundle"
+    }
 }
