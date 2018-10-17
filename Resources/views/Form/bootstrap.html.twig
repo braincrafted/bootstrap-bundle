@@ -231,6 +231,7 @@
                 {% set id = null %}
                 {% set attr = (attribute(choice, 'attr') is defined) ? choice.attr : [] %}
                 <option value="{{ choice.value }}"
+                        {% for key, attr in choice.attr %}{{ key }}="{{ attr }}"{% endfor %}
                         {% if choice is selectedchoice(value) %} selected="selected"{% endif %}
                         {{ block('widget_container_attributes') }}>
                     {{ choice_translation_domain is defined ? (choice_translation_domain is same as (false) ? choice.label : choice.label|trans({}, choice_translation_domain)) : choice.label|trans({}, translation_domain) }}
