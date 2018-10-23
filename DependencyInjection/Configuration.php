@@ -44,7 +44,7 @@ class Configuration implements ConfigurationInterface
     const DEFAULT_BOOTSTRAP_TEMPLATE_SASS = 'BraincraftedBootstrapBundle:Bootstrap:bootstrap.scss.twig';
 
     /** @var string */
-    const DEFAULT_JQUERY_PATH = '%kernel.root_dir%/../vendor/jquery/jquery/jquery-1.11.1.js';
+    const DEFAULT_JQUERY_PATH = '%kernel.root_dir%/../vendor/frameworks/jquery/jquery.js';
 
     /** @var string */
     const DEFAULT_FONTS_DIR = '%kernel.root_dir%/../web/fonts';
