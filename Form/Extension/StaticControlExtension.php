@@ -63,4 +63,15 @@ class StaticControlExtension extends AbstractTypeExtension
         // map old class to new one using LegacyFormHelper
         return LegacyFormHelper::getType('form');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getExtendedTypes()
+    {
+        return array(
+            // map old class to new one using LegacyFormHelper
+            LegacyFormHelper::getType('form')
+        );
+    }
 }
