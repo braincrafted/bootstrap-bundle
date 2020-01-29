@@ -43,6 +43,17 @@ class InputGroupButtonExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
+    public static function getExtendedTypes()
+    {
+        return array(
+            // map old class to new one using LegacyFormHelper
+            LegacyFormHelper::getType('text')
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
 
