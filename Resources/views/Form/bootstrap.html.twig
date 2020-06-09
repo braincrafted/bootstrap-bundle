@@ -863,7 +863,7 @@
             {% endif %}
             <ul{% if not global_errors %} class="help-block"{% endif %}>
                 {% for error in errors %}
-                    <li>{{ error.message }}</li>
+                    <li>{{ error.message |trans({}, translation_domain)|raw }}</li>
                 {% endfor %}
             </ul>
             {% if global_errors == true %}
