@@ -59,8 +59,8 @@ class Configuration implements ConfigurationInterface
 
     private function buildConfigTree()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('braincrafted_bootstrap');
+        $treeBuilder = new TreeBuilder('braincrafted_bootstrap');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
