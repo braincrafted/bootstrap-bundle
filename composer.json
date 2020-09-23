@@ -1,5 +1,5 @@
 {
-    "name":         "braincrafted/bootstrap-bundle",
+    "name":         "shaygan/bootstrap-bundle",
     "description":  "BraincraftedBootstrapBundle integrates Bootstrap into Symfony2 by providing templates, Twig extensions, services and commands.",
     "keywords":     ["bootstrap"],
     "type":         "symfony-bundle",
